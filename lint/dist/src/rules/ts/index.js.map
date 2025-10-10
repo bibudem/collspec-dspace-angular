@@ -1,1 +1,0 @@
-{"version":3,"file":"index.js","sourceRoot":"","sources":["../../../../src/rules/ts/index.ts"],"names":[],"mappings":"AAAA;;;;;;GAMG;AACH,OAAO,EACL,MAAM,GAEP,MAAM,sBAAsB,CAAC;AAC9B,wCAAwC;AACxC,OAAO,KAAK,sBAAsB,MAAM,4BAA4B,CAAC;AACrE,OAAO,KAAK,wBAAwB,MAAM,8BAA8B,CAAC;AACzE,OAAO,KAAK,qBAAqB,MAAM,2BAA2B,CAAC;AAEnE,MAAM,KAAK,GAAG;IACZ,sBAAsB;IACtB,wBAAwB;IACxB,qBAAqB;CACM,CAAC"}
