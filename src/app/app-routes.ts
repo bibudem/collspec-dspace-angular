@@ -43,7 +43,6 @@ import { PROCESS_MODULE_PATH } from './process-page/process-page-routing.paths';
 import { viewTrackerResolver } from './statistics/angulartics/dspace/view-tracker.resolver';
 import { provideSubmissionState } from './submission/provide-submission-state';
 import { SUGGESTION_MODULE_PATH } from './suggestions-page/suggestions-page-routing-paths';
-import {AiSearchComponent} from "../themes/collspec/app/ai-search/ai-search.component";
 import {PagesComponent} from "../themes/collspec/app/pages/pages.component";
 import {i18nBreadcrumbResolver} from "./core/breadcrumbs/i18n-breadcrumb.resolver";
 
@@ -56,15 +55,6 @@ export const APP_ROUTES: Route[] = [
     canActivateChild: [ServerCheckGuard],
     children: [
       { path: '', redirectTo: '/home', pathMatch: 'full' },
-      //add UdeM | module Pages statiques
-      {
-        path: 'ai-search',
-        component: AiSearchComponent,
-        pathMatch: 'full',
-        resolve: { breadcrumb: i18nBreadcrumbResolver },
-        data: { title: 'collspec.ai-search', breadcrumbKey: 'collspec.ai-search' },
-        canActivate: [endUserAgreementCurrentUserGuard]
-      },
       {
         path: 'page/:page',
         component: PagesComponent,

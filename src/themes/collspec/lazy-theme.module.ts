@@ -28,14 +28,12 @@ import { BrowseByComponent } from './app/shared/browse-by/browse-by.component';
 import { SearchResultsComponent } from './app/shared/search/search-results/search-results.component';
 // collspec modules
 
-import {AiSearchComponent} from "./app/ai-search/ai-search.component";
 import { VedetteUUIDComponent } from './app/vedette/vedette-uuid/vedette-uuid.component';
 
 
 const DECLARATIONS = [
   HomePageComponent,
   VedetteUUIDComponent,
-  AiSearchComponent,
   RootComponent,
   CollectionPageComponent,
   CommunityPageComponent,
