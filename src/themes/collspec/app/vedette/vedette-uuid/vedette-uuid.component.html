@@ -1,10 +1,10 @@
 <section class="slider__section">
-  @if (slides.length > 0) {
+  @if (hasSlidesToDisplay) {
   <div class="slider__wrapper">
     <div class="slider__column">
       <div class="slider__track" #track>
         <ul class="slider__list">
-          @for (slide of slides; track trackByFn($index, slide)) {
+          @for (slide of displaySlides; track trackByFn($index, slide)) {
           <li class="slider__slide">
             <a [routerLink]="['/items', slide.id]">
               <img [src]="slide.imageUrl" [alt]="slide.title" loading="lazy">

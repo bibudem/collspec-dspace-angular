@@ -34,7 +34,7 @@ export class TopLevelCommunityListComponent extends BaseComponent implements OnI
   collections: any[] = [];
   allSouscommunities: any[] = [];
   displayedSouscommunities: any[] = [];
-  souscommunitiesPerPage = 4;
+  souscommunitiesPerPage = 3;
   currentPage = 1;
   hasMore = false;
 

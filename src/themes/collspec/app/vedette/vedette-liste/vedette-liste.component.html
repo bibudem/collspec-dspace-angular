@@ -5,13 +5,13 @@
     <ds-loading ></ds-loading>
     }  @else {
     <section class="slider__section">
-      @if (slides.length > 0) {
+      @if (hasSlidesToDisplay) {
       <div class="slider__wrapper">
         <div class="slider__column">
           <div class="slider__track">
             <ul class="slider__list" #track>
-              <!-- Boucle sur chaque diapositive -->
-              @for (slide of slides; track slide.id) {
+              <!-- Boucle sur chaque diapositive dupliquée -->
+              @for (slide of displaySlides; track trackByFn($index, slide)) {
               <li class="slider__slide">
                 <!-- Lien vers la fiche de l'item vedette -->
                 <a [routerLink]="['/items', slide.id]">

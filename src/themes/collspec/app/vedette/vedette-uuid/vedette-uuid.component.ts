@@ -37,12 +37,14 @@ export class VedetteUUIDComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('track') track: ElementRef<HTMLDivElement>;
 
   slides: Vedette[] = [];
+  displaySlides: Vedette[] = []; // Slides avec clones pour boucle infinie
   currentIndex = 0;
   itemWidth = 0;
   loading = true;
   error = false;
   autoSlideInterval: any;
   isBrowser: boolean;
+  private originalSlideCount = 0;
 
   constructor(
     private vedetteService: VedetteService,
@@ -73,6 +75,9 @@ export class VedetteUUIDComponent implements OnInit, AfterViewInit, OnDestroy {
     ).subscribe({
       next: (images) => {
         this.slides = images;
+        this.originalSlideCount = images.length;
+        // Duplique les slides pour créer une boucle infinie
+        this.displaySlides = [...images, ...images];
         this.loading = false;
         this.error = false;
 
@@ -103,7 +108,7 @@ export class VedetteUUIDComponent implements OnInit, AfterViewInit, OnDestroy {
     window.addEventListener('resize', this.calculateItemWidth.bind(this));
   }
 
-  // Calcule dynamiquement la largeur d’un item pour positionner correctement les slides
+  // Calcule dynamiquement la largeur d'un item pour positionner correctement les slides
   calculateItemWidth(): void {
     if (!this.isBrowser) return;
 
@@ -116,25 +121,60 @@ export class VedetteUUIDComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-  // Met à jour la translation horizontale du carrousel en fonction de l’index courant
+  // Met à jour la translation horizontale du carrousel en fonction de l'index courant
   updatePosition(): void {
-    if (!this.track?.nativeElement || this.slides.length === 0) return;
+    if (!this.track?.nativeElement || this.displaySlides.length === 0) return;
     const offset = -this.currentIndex * (this.itemWidth + 20);
     this.track.nativeElement.style.transform = `translateX(${offset}px)`;
   }
 
-  // Fait avancer le carrousel à la slide suivante avec effet de boucle
+  // Fait avancer le carrousel à la slide suivante avec effet de boucle infinie
   nextSlide(): void {
-    if (this.slides.length <= 1) return;
-    this.currentIndex = (this.currentIndex + 1) % this.slides.length;
-    this.updatePosition();
+    if (this.displaySlides.length <= 1) return;
+    
+    this.currentIndex++;
+
+    // Quand on atteint la fin des clones, on réinitialise sans animation
+    if (this.currentIndex >= this.displaySlides.length) {
+      // Retire la transition pour le reset instantané
+      this.track.nativeElement.style.transition = 'none';
+      this.currentIndex = 0;
+      this.updatePosition();
+
+      // Redémarre la transition après le reset
+      setTimeout(() => {
+        this.track.nativeElement.style.transition = 'transform 0.5s ease-in-out';
+      }, 50);
+    } else {
+      // Applique la transition normale pour le défilement
+      if (!this.track.nativeElement.style.transition) {
+        this.track.nativeElement.style.transition = 'transform 0.5s ease-in-out';
+      }
+      this.updatePosition();
+    }
   }
 
-  // Reculer le carrousel à la slide précédente avec effet de boucle
+  // Reculer le carrousel à la slide précédente avec effet de boucle infinie
   prevSlide(): void {
-    if (this.slides.length <= 1) return;
-    this.currentIndex = (this.currentIndex - 1 + this.slides.length) % this.slides.length;
-    this.updatePosition();
+    if (this.displaySlides.length <= 1) return;
+    
+    this.currentIndex--;
+
+    // Gère le retour au début
+    if (this.currentIndex < 0) {
+      this.track.nativeElement.style.transition = 'none';
+      this.currentIndex = this.originalSlideCount - 1;
+      this.updatePosition();
+
+      setTimeout(() => {
+        this.track.nativeElement.style.transition = 'transform 0.5s ease-in-out';
+      }, 50);
+    } else {
+      if (!this.track.nativeElement.style.transition) {
+        this.track.nativeElement.style.transition = 'transform 0.5s ease-in-out';
+      }
+      this.updatePosition();
+    }
   }
 
   // Lance un intervalle pour faire défiler automatiquement les slides
@@ -153,7 +193,12 @@ export class VedetteUUIDComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // Fonction de tracking Angular pour optimiser les performances du *ngFor
   trackByFn(index: number, item: Vedette): string {
-    return item.id;
+    return item.id + '-' + index;
+  }
+
+  // Getter pour vérifier s'il y a des slides originales
+  get hasSlidesToDisplay(): boolean {
+    return this.slides.length > 0;
   }
 
   // Nettoie les ressources à la destruction du composant : arrêt de l'auto-slide et retrait du resize listener

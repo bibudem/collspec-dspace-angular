@@ -317,7 +317,7 @@ themes:
   #
 
   - name: collspec
-    extends: dspace
+    #extends: dspace
     headTags:
       - tagName: link
         attributes:
