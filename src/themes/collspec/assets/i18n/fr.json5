@@ -5,7 +5,7 @@
   "collspec.menu.catalogues": "Catalogues",
 
   // "repository.title.prefix": "DSpace Angular :: ",
-  "repository.title.prefix": "Calypso :: ",
+  "repository.title.prefix": "Collections spéciales :: ",
   "collspec.onglet-fichier": "Fichiers",
   "collspec.onglet-notice": "Notice complète",
   "collspec.return": "Retour",
