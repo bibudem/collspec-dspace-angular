@@ -20,10 +20,9 @@
 
     <!-- Search bar and other menus -->
     <div id="header-right" class="h-100 d-flex flex-row flex-nowrap justify-content-end align-items-center gapx-1 ms-auto">
-      <ds-search-navbar></ds-search-navbar>
+      <!--<ds-search-navbar></ds-search-navbar>-->
       <ds-lang-switch></ds-lang-switch>
       <ds-auth-nav-menu *ngIf="isAuthenticated | async"></ds-auth-nav-menu>
-
       <!-- Bouton "Je donne" -->
       <a [href]="'collspec.donate.link' | translate"
          class="btn btn-donate ms-2"
@@ -51,6 +50,7 @@
           <li class="nav-item"><a role="menuitem" class="ds-menu-item" href="/page/guide">{{'collspec.menu.guide'| translate}}</a></li>
           <li class="nav-item"><a role="menuitem" class="ds-menu-item" href="/page/a-propos">{{'collspec.menu.a-propos'| translate}}</a></li>
           <li class="nav-item"><a role="menuitem" class="ds-menu-item" href="/info/feedback">{{'collspec.menu.contact'| translate}}</a></li>
+          <li class="nav-item"><a role="menuitem" class="ds-menu-item" [href]="'collspec.donate.link' | translate">{{ 'collspec.donate.text' | translate }}</a></li>
         </ul>
       </nav>
     </div>

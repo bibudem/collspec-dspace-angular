@@ -116,8 +116,7 @@ p, span, a {
 
 //mettre le bouton Se déconnecter plus petite en langeur
 .form-login  .w-100{
-  width: 35%!important;
-  margin: 20px!important;
+  margin-top:20px;
 }
 
 
@@ -409,9 +408,6 @@ p, span, a {
   z-index: 10 !important;
 }
 
-#header-logo{
-  width: 75%!important;
-}
 
 /* Lien du menu Calypso */
 a.collspec-menu {
@@ -479,8 +475,9 @@ a.collspec-menu {
 
 .navbar-expand .navbar-nav {
   flex-direction: row;
-  margin-top: 10px;
-  font-size: 1.125rem;
+  margin-top: 15px;
+  font-size: 1.25rem;
+  margin-left: 2rem;
 }
 
 .hero-section .hero-overlay ds-base-search-form form .input-group  {
@@ -734,11 +731,17 @@ a.collspec-menu {
     min-height: 60vh!important;
   }
 
-  #header-logo{
-    width: 70%!important;
-    height: auto!important;
-    margin-left: 5%!important;
+   .btn-donate{
+    display: none!important;
   }
+
+ #header-logo {
+    display: block;
+    margin-left: 1.5rem;
+    margin-right: auto;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+}
 
   .hero-section .hero-overlay ds-base-search-form form .input-group  {
     width: 150% !important;
@@ -755,6 +758,14 @@ a.collspec-menu {
   
   .footer .link-footer {
     font-size: 12px;
+  }
+
+  #main-site-header {
+    padding-top: 0;
+    padding-bottom: 0;
+    position: relative;
+    margin: 0;
+    border-radius: 0;
   }
 
 }

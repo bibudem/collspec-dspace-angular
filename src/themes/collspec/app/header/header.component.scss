@@ -56,10 +56,10 @@
 
 /* Styles pour le bouton "Je donne" */
 .btn-donate {
-  background-color: #0059ab;
-  color: white;
-  padding: 8px 12px;
-  border-radius: 16px;
+  border-color: #0B113A;
+  color: #0B113A;
+  padding: 12px 22px;
+  border-radius: 60px;
   font-size: 14px;
   font-weight: 400;
   white-space: nowrap;
@@ -94,6 +94,10 @@
 
 @media (min-width: 992px) {
   #collapsible-mobile-navbar {
+    display: none !important;
+  }
+  
+  .btn-donate{
     display: none !important;
   }
 
