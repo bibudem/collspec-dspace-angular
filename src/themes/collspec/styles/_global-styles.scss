@@ -606,23 +606,27 @@ a.lead {
 ------------------------------------------------------- */
 .hero-section {
   position: relative;
-  height: 90vh;
+  height: 95vh;
+  min-height: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   background: url('/assets/collspec/images/bibImage-home.jpg') no-repeat center center;
   background-size: cover;
-  margin-top: -15% !important;
+  margin-top: -20rem;
 }
 
 .hero-overlay {
   background: rgba(0, 0, 0, 0.2);
-  padding: 3rem;
+  padding: 2rem;
   border-radius: 1rem;
   color: white;
   width: 100%;
-  height: 90vh;
+  height: 95vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .hero-section h1 {
@@ -663,6 +667,186 @@ a.lead {
 .hero-section .hero-overlay ds-base-search-form form .input-group .form-control::placeholder {
   color: white !important;
   opacity: 1 !important;
+}
+
+/* -------------------------------------------------------
+   Media Queries - Responsive Design
+------------------------------------------------------- */
+
+/* Tablettes (768px - 1024px) */
+@media (max-width: 1024px) {
+  .hero-section h1 {
+    font-size: 7rem;
+    margin-top: 35vh;
+    margin-left: 3%;
+    padding-left: 15px;
+  }
+  
+  .hero-section .hero-overlay ds-base-search-form form .input-group {
+    width: 80% !important;
+    margin-left: 3%;
+    padding-left: 15px;
+  }
+  
+  .hero-overlay {
+    padding: 1.5rem;
+  }
+}
+
+/* Tablettes petites (600px - 768px) */
+@media (max-width: 768px) {
+  .hero-section {
+    height: 85vh;
+    min-height: 450px;
+  }
+  
+  .hero-overlay {
+    height: 85vh;
+    padding: 1rem;
+  }
+  
+  .hero-section h1 {
+    font-size: 4.5rem;
+    margin-top: 30vh;
+    margin-left: 2%;
+    padding-left: 10px;
+    line-height: 110%;
+  }
+  
+  .hero-section .hero-overlay ds-base-search-form form .input-group {
+    width: 90% !important;
+    margin-left: 2%;
+    padding-left: 10px;
+  }
+  
+  .hero-section .hero-overlay ds-base-search-form form .input-group .form-control {
+    height: 45px !important;
+    width: 70% !important;
+  }
+}
+
+/* Mobiles (425px - 600px) */
+@media (max-width: 600px) {
+  .hero-section {
+    height: 80vh;
+    min-height: 400px;
+    margin-top: -15rem;
+  }
+  
+  .hero-overlay {
+    height: 80vh;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    margin-top: -15rem;
+  }
+  
+  .hero-section h1 {
+    font-size: 4.5rem;
+    margin-top: 25vh;
+    margin-left: 0;
+    padding-left: 15px;
+    text-align: left;
+    line-height: 120%;
+  }
+  
+  .hero-section .hero-overlay ds-base-search-form form .input-group {
+    width: 95% !important;
+    margin-left: 0;
+    padding-left: 15px;
+    justify-content: center;
+  }
+  
+  .hero-section .hero-overlay ds-base-search-form form .input-group .form-control {
+    height: 40px !important;
+    width: 65% !important;
+    border-radius: 0.5rem 0 0 0.5rem !important;
+  }
+}
+
+/* Petits mobiles (jusqu'à 425px) */
+@media (max-width: 425px) {
+  .hero-section {
+    height: 75vh;
+    min-height: 350px;
+    margin-top: -5rem;
+  }
+  
+  .hero-overlay {
+    height: 75vh;
+    padding: 0.5rem;
+    margin-top: -5rem;
+  }
+  
+  .hero-section h1 {
+    font-size: 3.5rem;
+    margin-top: 0;
+    margin-bottom: 8%;
+    padding-left: 10px;
+    line-height: 120%;
+  }
+  
+  .hero-section .hero-overlay ds-base-search-form form .input-group {
+    width: 100% !important;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  .hero-section .hero-overlay ds-base-search-form form .input-group .form-control {
+    height: 38px !important;
+    width: 60% !important;
+    font-size: 14px;
+  }
+  
+  .hero-section .hero-overlay ds-base-search-form form .input-group .btn-primary {
+    padding: 0.375rem 0.75rem;
+    font-size: 14px;
+  }
+}
+
+/* Très grands écrans (au-dessus de 1440px) */
+@media (min-width: 1441px) {
+  .hero-section {
+    height: 100vh;
+  }
+  
+  .hero-overlay {
+    height: 100vh;
+  }
+  
+  .hero-section h1 {
+    font-size: 100px;
+    margin-top: 45vh;
+  }
+  
+  .hero-section .hero-overlay ds-base-search-form form .input-group {
+    width: 60% !important;
+  }
+  
+  .hero-section .hero-overlay ds-base-search-form form .input-group .form-control {
+    height: 55px !important;
+  }
+}
+
+/* Orientation paysage sur mobiles */
+@media (max-height: 600px) and (orientation: landscape) {
+  .hero-section {
+    height: 100vh;
+    min-height: 400px;
+  }
+  
+  .hero-overlay {
+    height: 100vh;
+  }
+  
+  .hero-section h1 {
+    font-size: 4.5rem;
+    margin-top: 20vh;
+    margin-bottom: 3%;
+  }
+  
+  .hero-section .hero-overlay ds-base-search-form form .input-group .form-control {
+    height: 40px !important;
+  }
 }
 
 /* -------------------------------------------------------
@@ -740,7 +924,7 @@ a.lead {
   
   .text-title-bib {
     color: white !important;
-    font-family: "Lora", Georgia, serif;
+    font-family: "Lora", Georgia, serif!important;
     font-size: 1.5rem;
     font-weight: 600;
     line-height: 150%;
@@ -1025,53 +1209,6 @@ a.collspec-menu {
   
   #collapsible-mobile-navbar.show {
     border-radius: 0;
-  }
-  
-  /* Section Hero mobile */
-  .hero-section {
-    height: 60vh;
-    margin-top: -50% !important;
-    margin-bottom: 1.5rem;
-  }
-  
-  .hero-overlay {
-    height: 60vh;
-    margin-top: 0;
-    border-radius: 0;
-  }
-  
-  .hero-section h1 {
-    font-size: 56px;
-    margin-top: 50%;
-    margin-left: 0;
-    padding: 0;
-    margin-bottom: 2rem;
-  }
-  
-  .hero-banner .hero-overlay {
-    top: 22vh;
-  }
-  
-  /* Formulaire de recherche mobile */
-  .search-bar {
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 0;
-    margin-left: -5%;
-  }
-  
-  .filter, .search-btn {
-    width: 100%;
-  }
-  
-  .hero-section .hero-overlay ds-base-search-form form .input-group {
-    width: 150% !important;
-    margin-left: 0;
-  }
-  
-  .hero-section .hero-overlay ds-base-search-form form .input-group .form-control {
-    height: 40px !important;
-    width: 40% !important;
   }
   
   /* Carousel mobile */
