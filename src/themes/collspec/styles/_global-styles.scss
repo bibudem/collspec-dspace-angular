@@ -8,11 +8,13 @@
 
 /* Import des styles globaux */
 @import '../../../styles/_global-styles.scss';
-@import './_variables.scss';
 
 /* =============================================
    CONFIGURATION DES VARIABLES
    ============================================= */
+
+/* Import des variables de base */
+@import '../../../styles/_variables.scss';
 
 /* Configuration des polices Bootstrap */
 $font-family-sans-serif: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif !default;
@@ -22,6 +24,42 @@ $font-family-serif: 'Lora', serif !default;
 $headings-font-family: $font-family-sans-serif;
 $h4-font-family: $font-family-serif;
 $body-font-family: $font-family-sans-serif;
+
+/* Variables de couleurs personnalisées */
+$blue: #2380D1 !default;
+$primary: #0b113a !default;
+$fondbase: #0b113a !default;
+$autreblue: #00407F !default;
+$lightblue: #CCE2F3;
+$extralightblue: #E5F0F8;
+$colltitre: #252525;
+
+$secondaryblue: #4998d3 !default;
+$darkblue: #0b113a !default;
+$hoverdarkblue: #0c144d !default;
+
+$redorange: #f04e24;
+$rose: #fee1de;
+$green: #024244;
+$autregreen: #249194;
+$greensecondary: #52B782;
+$darkgreen: #246405;
+$lightgreen: #4aa28b;
+$extralightgreen: #e5fdf0;
+$gray: #37424D;
+$ligthblue: #E7EBEE;
+
+$white: #ffffff !default;
+$yellow: #FFCA40 !default;
+$red: #c52f08 !default;
+$dark: darken($green, 17%) !default;
+
+$gray-800: #343a40 !default;
+$gray-700: #37424D !default;
+$gray-600: #37424D !default;
+$gray-500: #607386 !default;
+$gray-400: #607386 !default;
+$gray-100: #E7EBEE !default;
 
 /* =============================================
    STYLES GÉNÉRAUX ET TYPOGRAPHIE
@@ -140,6 +178,26 @@ p, span, a {
       right: 0.5rem;
     }
   }
+}
+/* -------------------------------------------------------
+   Styles pour les butons dans le modal de cookie
+------------------------------------------------------- */
+.orejime-Modal-saveButton {
+  background-color: $green;
+  border-radius: 16px;
+}
+
+.orejime-Button--decline {
+  border-radius: 16px;
+}
+
+.orejime-Button--info {
+  border-radius: 16px;
+}
+
+.orejime-Button--save {
+  border-radius: 16px;
+  background-color: $green;
 }
 
 /* -------------------------------------------------------
@@ -634,7 +692,7 @@ a.lead {
   }
   
   .footer-link-udem {
-    font-size: 14px;
+    font-size: 1rem;
     color: $extralightblue;
     margin: 0 10px;
     text-decoration: none;
@@ -681,9 +739,9 @@ a.lead {
   }
   
   .text-title-bib {
-    color: $secondaryblue !important;
-    font-family: Figtree;
-    font-size: 24px;
+    color: white !important;
+    font-family: "Lora", Georgia, serif;
+    font-size: 1.5rem;
     font-weight: 600;
     line-height: 150%;
   }
@@ -697,6 +755,11 @@ a.lead {
       color: $lightblue !important;
     }
   }
+}
+
+.section-footer-blue{
+  background-color:#2380D1!important;
+  color: $ligthblue;
 }
 
 /* =============================================
