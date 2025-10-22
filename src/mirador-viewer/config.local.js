@@ -17,8 +17,11 @@ import miradorSharePlugin from 'mirador-share-plugin/es/miradorSharePlugin';
 import miradorDownloadPlugin from 'mirador-dl-plugin/es/miradorDownloadPlugin';
 import miradorDownloadDialog from 'mirador-dl-plugin/es/MiradorDownloadDialog';
 import { miradorImageToolsPlugin } from 'mirador-image-tools';
-import textOverlayPlugin from 'mirador-textoverlay/es';
+// import textOverlayPlugin from 'mirador-textoverlay/es';
 import ocrHelperPlugin from '@4eyes/mirador-ocr-helper';
+import annotationPlugins from 'mirador-annotations';
+import LocalStorageAdapter from 'mirador-annotations/es/LocalStorageAdapter';
+// import AnnototAdapter from 'mirador-annotations/es/AnnototAdapter';
 // Import your custom component
 //import CustomMiradorDownloadDialog from "./CustomMiradorDownloadDialog";
 
@@ -29,12 +32,13 @@ const query = params.get('query');
 const multi = params.get('multi');
 const notMobile = params.get('notMobile');
 const langParam = params.get('lang');
+const endpointUrl = 'http://127.0.0.1:3000/annotations';
 
 let windowSettings = {};
 let sidbarPanel = 'info';
 let defaultView = 'single';
 let multipleItems = false;
-let thumbNavigation = 'off';
+let thumbNavigation = 'far-right';
 let lang = 'fr' // Default to english, but should not happen
 
 
@@ -76,6 +80,11 @@ windowSettings.manifestId = manifest;
 (Mirador.viewer(
     {
       id: 'mirador',
+      annotation: {
+        adapter: (canvasId) => new LocalStorageAdapter(`localStorage://?canvasId=${canvasId}`),
+        // adapter: (canvasId) => new AnnototAdapter(canvasId, endpointUrl),
+        exportLocalStorageAnnotations: true, // display annotation JSON export button
+      },
       mainMenuSettings: {
         show: true
       },
@@ -163,7 +172,7 @@ windowSettings.manifestId = manifest;
       },
       window: {
         allowClose: false,
-        imageToolsEnabled: false,
+        imageToolsEnabled: true,
         imageToolsOpen: false,
     		textOverlay: {
           enabled: true,
@@ -178,7 +187,8 @@ windowSettings.manifestId = manifest;
               },
           optionsRenderMode: 'simple',
         },
-        sideBarOpenByDefault: false,
+        defaultSideBarPanel: 'annotations',
+        sideBarOpenByDefault: true,
         allowFullscreen: true,
         allowMaximize: false,
         defaultView: defaultView,
@@ -216,8 +226,9 @@ windowSettings.manifestId = manifest;
       miradorDownloadDialog,
       miradorDownloadPlugin,
 	    miradorImageToolsPlugin,
-	    textOverlayPlugin,
+	    // textOverlayPlugin,
       ocrHelperPlugin,
+      annotationPlugins,
       //customPlugin
     ]
   )
