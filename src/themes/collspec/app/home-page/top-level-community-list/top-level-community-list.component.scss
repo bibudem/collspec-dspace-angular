@@ -33,10 +33,31 @@
 }
 
 .btn-darkblue {
-  width: 25%;
-  @media (max-width: 576px) {
-    width: 50%;
-  }
+  width: 15rem;
+  /* Extra small devices (phones portrait, moins de 576px) */
+    @media (max-width: 575.98px) {
+      .btn-darkblue {
+        width: 100%;
+        font-size: 14px;
+        padding: 10px 20px;
+      }
+    }
+
+    /* Small devices (phones landscape, 576px et plus) */
+    @media (min-width: 576px) and (max-width: 767.98px) {
+      .btn-darkblue {
+        width: 50%;
+        font-size: 15px;
+      }
+    }
+
+    /* Medium devices (tablettes, 768px et plus) */
+    @media (min-width: 768px) and (max-width: 991.98px) {
+      .btn-darkblue {
+        width: 40%;
+        font-size: 16px;
+      }
+    }
 }
 
 .vgr-cards {
