@@ -19,8 +19,8 @@ import miradorDownloadDialog from 'mirador-dl-plugin/es/MiradorDownloadDialog';
 import { miradorImageToolsPlugin } from 'mirador-image-tools';
 // import textOverlayPlugin from 'mirador-textoverlay/es';
 import ocrHelperPlugin from '@4eyes/mirador-ocr-helper';
-import annotationPlugins from 'mirador-annotations';
-import LocalStorageAdapter from 'mirador-annotations/es/LocalStorageAdapter';
+//import annotationPlugins from 'mirador-annotations';
+//import LocalStorageAdapter from 'mirador-annotations/es/LocalStorageAdapter';
 // import AnnototAdapter from 'mirador-annotations/es/AnnototAdapter';
 // Import your custom component
 //import CustomMiradorDownloadDialog from "./CustomMiradorDownloadDialog";
