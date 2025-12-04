@@ -80,11 +80,11 @@ windowSettings.manifestId = manifest;
 (Mirador.viewer(
     {
       id: 'mirador',
-      annotation: {
+      /*annotation: {
         adapter: (canvasId) => new LocalStorageAdapter(`localStorage://?canvasId=${canvasId}`),
         // adapter: (canvasId) => new AnnototAdapter(canvasId, endpointUrl),
         exportLocalStorageAnnotations: true, // display annotation JSON export button
-      },
+      },*/
       mainMenuSettings: {
         show: true
       },
@@ -228,7 +228,7 @@ windowSettings.manifestId = manifest;
 	    miradorImageToolsPlugin,
 	    // textOverlayPlugin,
       ocrHelperPlugin,
-      annotationPlugins,
+      //annotationPlugins,
       //customPlugin
     ]
   )

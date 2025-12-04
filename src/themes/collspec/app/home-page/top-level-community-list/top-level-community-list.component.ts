@@ -41,14 +41,14 @@ export class TopLevelCommunityListComponent extends BaseComponent implements OnI
   private unsubscribe$ = new Subject<void>();
 
   constructor(
-    private cdsCalypso: CommunityDataService,
+    private cdsCollspec: CommunityDataService,
     private collService: CollectionDataService,
     @Inject(APP_CONFIG) public appConfig: AppConfig,
-    private paginationServiceCalypso: PaginationService,
+    private paginationServiceCollspec: PaginationService,
     private vedetteService: VedetteService,
     private cdr: ChangeDetectorRef
   ) {
-    super(appConfig, cdsCalypso, paginationServiceCalypso);
+    super(appConfig, cdsCollspec, paginationServiceCollspec);
   }
 
   ngOnInit() {

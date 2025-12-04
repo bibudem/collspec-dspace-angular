@@ -17,6 +17,7 @@ import { RootModule } from '../../app/root.module';
 import { SearchResultsSkeletonComponent } from '../../app/shared/search/search-results/search-results-skeleton/search-results-skeleton.component';
 import { CollectionPageComponent } from './app/collection-page/collection-page.component';
 import { CommunityPageComponent } from './app/community-page/community-page.component';
+import { CommunityListPageComponent } from './app/community-list-page/community-list-page.component';
 import { EditItemTemplatePageComponent } from './app/collection-page/edit-item-template-page/edit-item-template-page.component';
 import { DsoEditMetadataComponent } from './app/dso-shared/dso-edit-metadata/dso-edit-metadata.component';
 import { HomePageComponent } from './app/home-page/home-page.component';
@@ -37,6 +38,7 @@ const DECLARATIONS = [
   RootComponent,
   CollectionPageComponent,
   CommunityPageComponent,
+  CommunityListPageComponent,
   ItemPageComponent,
   FeedbackComponent,
   FeedbackFormComponent,

@@ -91,18 +91,21 @@
 <!-- Section specifique au onglet choisi -->
 <div [ngbNavOutlet]="nav" class="mt-2"></div>
 <!-- Section pour mirador -->
-<div class="row" *ngIf="iiifEnabled && (activeTab === 1 || !activeTab)">
-  <div class="col-12" id="collspec-mirador">
-    <ds-mirador-viewer id="iiif-viewer"
-                       [object]="object"
-                       [searchable]="iiifSearchEnabled"
-                       [query]="iiifQuery$ | async">
-    </ds-mirador-viewer>
+ @if (iiifEnabled && (activeTab === 1 || !activeTab)) {
+  <div class="row">
+    <div class="col-12" id="collspec-mirador">
+      <ds-mirador-viewer id="iiif-viewer"
+                        [object]="object"
+                        [searchable]="iiifSearchEnabled"
+                        [query]="iiifQuery$ | async">
+      </ds-mirador-viewer>
+    </div>
   </div>
-</div>
+  }
 <!-- Fin bib add -->
 }
-<div class="row" *ngIf="!iiifEnabled">
+@if (!iiifEnabled) {
+<div class="row" >
     <div class="col-xs-12 col-md-4">
       @if (!(mediaViewer.image || mediaViewer.video)) {
       <ds-metadata-field-wrapper [hideIfNoTextContent]="false">
@@ -185,3 +188,4 @@
       </div>
     </div>
   </div>
+}
