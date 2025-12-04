@@ -1,8 +1,4 @@
-import {
-  AsyncPipe,
-  NgClass,
-  NgComponentOutlet,
-} from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { ErrorComponent } from 'src/app/shared/error/error.component';
@@ -30,8 +26,15 @@ import {ViewModeSwitchComponent} from "../../../../../app/shared/view-mode-switc
     fadeInOut,
   ],
   standalone: true,
-  imports: [VarDirective, NgClass, NgComponentOutlet, ThemedResultsBackButtonComponent, ObjectCollectionComponent,
-    ThemedLoadingComponent, ErrorComponent, AsyncPipe, TranslateModule, StartsWithLoaderComponent, ViewModeSwitchComponent],
+  imports: [AsyncPipe,
+    ErrorComponent,
+    ObjectCollectionComponent,
+    StartsWithLoaderComponent,
+    ThemedLoadingComponent,
+    ThemedResultsBackButtonComponent,
+    TranslateModule,
+    VarDirective,
+    ViewModeSwitchComponent],
 })
 export class BrowseByComponent extends BaseComponent {
 }
