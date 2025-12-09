@@ -1,0 +1,38 @@
+.bib-left-arrow {
+  background-color: #0b113a;
+  color: #ffffff;
+  font-size: 13px;
+  margin-left: 0 !important;
+  margin-bottom: 0 !important;
+  position: relative;
+  z-index: 2;
+  width: auto !important;
+  display: inline-block !important;
+  padding: 0.5rem 2rem 0.5rem 1rem;
+  transition: padding-right 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  
+  &::after {
+    content: '➝';
+    position: absolute;
+    opacity: 0;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: opacity 0.3s ease-in-out, right 0.3s ease-in-out;
+  }
+  
+  &:hover {
+    padding-right: 2.5rem;
+    background-color: #1a1f5c;
+    color: #FFFFFF;
+    
+    &::after {
+      opacity: 1;
+      right: 0.5rem;
+    }
+  }
+}
+
+.bib-circle{
+  border-radius: 50%!important;
+}

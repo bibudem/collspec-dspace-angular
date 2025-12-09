@@ -34,7 +34,7 @@
                 <h3 class="card-title mb-2">
                 <a 
                     [routerLink]="getSubcommunityUrl(subcommunity)"
-                    class="text-decoration-none text-primary stretched-link">
+                    class="text-decoration-none text-primary">
                     {{ subcommunity.title }}
                 </a>
                 </h3>
@@ -48,27 +48,25 @@
                 
                 <!-- Description -->
                 <div *ngIf="hasDescription(subcommunity)" class="card-text flex-grow-1 mb-3">
-                <p class="text-muted small mb-0">
-                    {{ subcommunity.description | slice:0:150 }}
-                    <span *ngIf="subcommunity.description.length > 150">...</span>
-                </p>
+                    <p class="text-muted small mb-0 height-5">
+                        {{ subcommunity.description | slice:0:150 }}
+                        <span *ngIf="subcommunity.description.length > 150">...</span>
+                    </p>
                 </div>
-            </div>
-            
-            <!-- Footer avec lien -->
-            <div class="card-footer bg-dark border-top">
-                <div class="d-flex align-items-center justify-content-between">
-                <span class="small text-white">
-                    {{ 'collspec.voir.plus' | translate }}
-                </span>
+                
+                <!-- Ajout du mt-auto pour pousser le bouton en bas -->
+                <div class="mt-auto">
+                    <a [routerLink]="getSubcommunityUrl(subcommunity)" class="btn bib-left-arrow">
+                        {{ 'collspec.collection.decouvrir' | translate }}
+                    </a>
                 </div>
             </div>
             </div>
         </div>
         </div>
-
+        
         <!-- Bouton "Voir plus" -->
-        <div *ngIf="hasMore && !isLoadingSubcommunities" class="text-center mt-4">
+        <div *ngIf="hasMore && !isLoadingSubcommunities" class="text-center mt-5">
         <button 
             type="button"
             class="btn btn-primary px-4"
@@ -76,7 +74,7 @@
             [attr.aria-label]="'collection.edit.item.authorizations.load-more-button' | translate">
             <i class="bi bi-plus-circle me-2"></i>
             {{ 'collection.edit.item.authorizations.load-more-button' | translate }}
-            <span class="badge bg-light text-dark ms-2">
+            <span class="badge bg-light text-dark bib-circle">
             {{ allSouscommunities.length - displayedSouscommunities.length }}
             </span>
         </button>
