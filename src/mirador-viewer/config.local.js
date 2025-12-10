@@ -19,8 +19,8 @@ import miradorDownloadDialog from 'mirador-dl-plugin/es/MiradorDownloadDialog';
 import { miradorImageToolsPlugin } from 'mirador-image-tools';
 // import textOverlayPlugin from 'mirador-textoverlay/es';
 import ocrHelperPlugin from '@4eyes/mirador-ocr-helper';
-//import annotationPlugins from 'mirador-annotations';
-//import LocalStorageAdapter from 'mirador-annotations/es/LocalStorageAdapter';
+import annotationPlugins from 'mirador-annotations';
+import LocalStorageAdapter from 'mirador-annotations/es/LocalStorageAdapter';
 // import AnnototAdapter from 'mirador-annotations/es/AnnototAdapter';
 // Import your custom component
 //import CustomMiradorDownloadDialog from "./CustomMiradorDownloadDialog";
@@ -39,7 +39,7 @@ let sidbarPanel = 'info';
 let defaultView = 'single';
 let multipleItems = false;
 let thumbNavigation = 'far-right';
-let lang = 'fr' // Default to english, but should not happen
+let lang = 'fr' // Default francais
 
 
 windowSettings.manifestId = manifest;
@@ -68,6 +68,7 @@ windowSettings.manifestId = manifest;
   }
 })();
 
+
 // Create a custom plugin to override the CanvasDownloadLinks component
 /*const customPlugin = {
   target: 'Window',
@@ -80,11 +81,6 @@ windowSettings.manifestId = manifest;
 (Mirador.viewer(
     {
       id: 'mirador',
-      /*annotation: {
-        adapter: (canvasId) => new LocalStorageAdapter(`localStorage://?canvasId=${canvasId}`),
-        // adapter: (canvasId) => new AnnototAdapter(canvasId, endpointUrl),
-        exportLocalStorageAnnotations: true, // display annotation JSON export button
-      },*/
       mainMenuSettings: {
         show: true
       },
@@ -174,6 +170,8 @@ windowSettings.manifestId = manifest;
         allowClose: false,
         imageToolsEnabled: true,
         imageToolsOpen: false,
+         // IMPORTANT: Ajouter cette ligne pour désactiver le logo DSpace
+        allowManifestLogo: false,
     		textOverlay: {
           enabled: true,
           visible: true,
@@ -217,8 +215,13 @@ windowSettings.manifestId = manifest;
         type: 'mosaic'
       },
       workspaceControlPanel: {
-        enabled: false
-      }
+        enabled: true, // Active la barre de navigation en haut avec les boutons: Ajouter ressource, navigation fenêtres, paramètres...
+      },
+      annotation: {
+        adapter: (canvasId) => new LocalStorageAdapter(`localStorage://?canvasId=${canvasId}`),
+        // adapter: (canvasId) => new AnnototAdapter(canvasId, endpointUrl),
+        exportLocalStorageAnnotations: true, // display annotation JSON export button
+      },
     },
     [
       miradorShareDialogPlugin,
@@ -228,7 +231,7 @@ windowSettings.manifestId = manifest;
 	    miradorImageToolsPlugin,
 	    // textOverlayPlugin,
       ocrHelperPlugin,
-      //annotationPlugins,
+      annotationPlugins,
       //customPlugin
     ]
   )

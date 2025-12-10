@@ -7,7 +7,7 @@
         <h1 class="title mt-2 mb-3">{{ 'communityList.title' | translate }}</h1>
         <!-- Indicateur de chargement des sous-communautés -->
         <div *ngIf="isLoadingSubcommunities" class="text-center py-4">
-        <ds-loading [message]="'subcommunities.loading' | translate"></ds-loading>
+        <ds-loading></ds-loading>
         </div>
 
         <!-- Grille des sous-communautés -->
