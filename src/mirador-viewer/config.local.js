@@ -167,9 +167,9 @@ windowSettings.manifestId = manifest;
         restrictDownloadOnSizeDefinition: false
       },
       window: {
-        allowClose: false,
+        allowClose: true,
         imageToolsEnabled: true,
-        imageToolsOpen: false,
+        imageToolsOpen: true,
          // IMPORTANT: Ajouter cette ligne pour désactiver le logo DSpace
         allowManifestLogo: false,
     		textOverlay: {
@@ -210,7 +210,7 @@ windowSettings.manifestId = manifest;
         sideBarPanel: sidbarPanel
       },
       workspace: {
-        allowNewWindows: false,
+        allowNewWindows: true,
         showZoomControls: true,
         type: 'mosaic'
       },
