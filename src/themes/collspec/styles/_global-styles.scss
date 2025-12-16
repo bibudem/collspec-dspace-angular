@@ -1257,3 +1257,27 @@ a.collspec-menu {
     display: block !important;
   }
 }
+
+.fa-globe-asia {
+  color: $darkblue!important;
+}
+
+/* Conteneur principal */
+#mirador {
+  width: 100vw;
+  height: 100vh;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch; /* iOS */
+}
+
+/* Workspace Mirador */
+.mirador-workspace {
+  min-width: 100vw;
+  overflow-x: auto;
+}
+
+/* Fenêtre Mirador */
+.mirador-window {
+  min-width: 100vw;
+}

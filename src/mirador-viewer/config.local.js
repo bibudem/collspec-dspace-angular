@@ -38,7 +38,7 @@ let windowSettings = {};
 let sidbarPanel = 'info';
 let defaultView = 'single';
 let multipleItems = false;
-let thumbNavigation = 'far-right';
+let thumbNavigation = 'far-bottom';
 let lang = 'fr' // Default francais
 
 
@@ -49,8 +49,8 @@ windowSettings.manifestId = manifest;
     defaultView = 'book';
     sidbarPanel = 'search';
     multipleItems = true;
-    if (notMobile) {
-      thumbNavigation = 'far-right';
+    if (!notMobile) {
+      thumbNavigation = 'far-bottom';// changer la disposition pour mobile
     }
     if (query !== 'null') {
       windowSettings.defaultSearchQuery = query;
@@ -59,14 +59,32 @@ windowSettings.manifestId = manifest;
     if(multi) {
       multipleItems = multi;
       if (notMobile) {
-        thumbNavigation = 'far-right';
+        thumbNavigation = 'far-bottom';
       }
     }
   }
-  if ( langParam !== 'null' ) {
+  /*if ( langParam !== 'null' ) {
     lang = langParam;
-  }
+  }*/
 })();
+
+const plugins = [
+  miradorShareDialogPlugin,
+  miradorSharePlugin,
+  miradorDownloadDialog,
+  miradorDownloadPlugin,
+  miradorShareDialogPlugin,
+];
+
+if (notMobile) {
+  plugins.push(
+    miradorImageToolsPlugin,
+    ocrHelperPlugin,
+    annotationPlugins
+    // textOverlayPlugin,
+  );
+}
+
 
 
 // Create a custom plugin to override the CanvasDownloadLinks component
@@ -168,10 +186,8 @@ windowSettings.manifestId = manifest;
       },
       window: {
         allowClose: true,
-        imageToolsEnabled: true,
-        imageToolsOpen: true,
-         // IMPORTANT: Ajouter cette ligne pour désactiver le logo DSpace
-        allowManifestLogo: false,
+        imageToolsEnabled: notMobile ? true: false,
+        imageToolsOpen: false,
     		textOverlay: {
           enabled: true,
           visible: true,
@@ -185,7 +201,7 @@ windowSettings.manifestId = manifest;
               },
           optionsRenderMode: 'simple',
         },
-        defaultSideBarPanel: 'annotations',
+        defaultSideBarPanel: 'info',
         sideBarOpenByDefault: true,
         allowFullscreen: true,
         allowMaximize: false,
@@ -217,22 +233,13 @@ windowSettings.manifestId = manifest;
       workspaceControlPanel: {
         enabled: true, // Active la barre de navigation en haut avec les boutons: Ajouter ressource, navigation fenêtres, paramètres...
       },
-      annotation: {
-        adapter: (canvasId) => new LocalStorageAdapter(`localStorage://?canvasId=${canvasId}`),
-        // adapter: (canvasId) => new AnnototAdapter(canvasId, endpointUrl),
-        exportLocalStorageAnnotations: true, // display annotation JSON export button
-      },
+      annotation: notMobile
+      ? {
+          adapter: (canvasId) =>
+            new LocalStorageAdapter(`localStorage://?canvasId=${canvasId}`),
+          exportLocalStorageAnnotations: true,
+        } : null // Annotations désactivées sur mobile
     },
-    [
-      miradorShareDialogPlugin,
-      miradorSharePlugin,
-      miradorDownloadDialog,
-      miradorDownloadPlugin,
-	    miradorImageToolsPlugin,
-	    // textOverlayPlugin,
-      ocrHelperPlugin,
-      annotationPlugins,
-      //customPlugin
-    ]
+    plugins
   )
 )(manifest);

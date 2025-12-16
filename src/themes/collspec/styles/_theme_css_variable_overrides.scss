@@ -16,21 +16,21 @@
   --ds-header-icon-color: #{$darkgreen};
   --ds-header-icon-color-hover: #{$green};
 
-  --ds-navbar-link-color: #{$darkgreen};
+  --ds-navbar-link-color: #{$darkblue};
   --ds-navbar-link-color-hover: #{$green};
   --ds-navbar-item-vertical-padding: 0.75rem;
   --ds-navbar-item-horizontal-padding: 0.75rem;
 
-  --ds-header-navbar-border-bottom-color: #{$darkgreen};
+  --ds-header-navbar-border-bottom-color: #{$darkblue};
   --ds-header-navbar-border-bottom-height: 1px;
-  --ds-header-navbar-border-top-color: #{$darkgreen};
+  --ds-header-navbar-border-top-color: #{$darkblue};
   --ds-expandable-navbar-link-color: #{$darkgreen};
-  --ds-expandable-navbar-link-color-hover: #{$green};
+  --ds-expandable-navbar-link-color-hover: #{$autreblue};
 
   --ds-breadcrumb-bg: #{$white} !important;
-  --ds-breadcrumb-link-color: #{$darkgreen};
-  --ds-breadcrumb-link-active-color: #{$green};
-  --ds-breadcrumb-link-color-hover: #{$green};
+  --ds-breadcrumb-link-color: #{$darkblue};
+  --ds-breadcrumb-link-active-color: #{$blue};
+  --ds-breadcrumb-link-color-hover: #{$autreblue};
 
   --ds-slider-color: #{$lightgreen};
   --ds-sidebar-z-index: 20;
@@ -71,12 +71,12 @@
   --ds-notification-bg-danger: #{darken(adjust-hue($danger, -10), 10%)};
   --ds-notification-bg-info: #{darken(adjust-hue($info, -10), 10%)};
   --ds-notification-bg-warning: #{darken(adjust-hue($warning, -10), 10%)};
-  --ds-breadcrumb-link-color: #{$darkgreen};
-  --ds-breadcrumb-link-active-color: #{$green};
+  --ds-breadcrumb-link-color: #{$darkblue};
+  --ds-breadcrumb-link-active-color: #{$autreblue};
   --ds-breadcrumb-max-length: 200px;
 
   --ds-slider-handle-width: 18px;
-  --ds-slider-handle-color: #{darken($green, 17%)};
+  --ds-slider-handle-color: #{darken($blue, 17%)};
 
   --ds-search-form-scope-max-width: 150px;
 
