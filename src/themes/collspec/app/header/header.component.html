@@ -3,12 +3,12 @@
     <!-- Logo and navbar wrapper -->
     <div id="header-left"
          class="h-100 flex-fill d-flex flex-row flex-nowrap justify-content-start align-items-center gapx-3">
-      <a class="d-block my-2 my-md-0" href="https://www.umontreal.ca/" [attr.aria-label]="'home.title' | translate" target="_blank">
+      <a class="d-block my-2 my-md-0" href="/" [attr.aria-label]="'home.title' | translate" >
         <img id="header-logo" src="/assets/collspec/images/logo-collspec.png" [attr.alt]="'menu.header.image.logo' | translate"/>
       </a>
-      <a class="d-block my-2 my-md-0 title titre-logo" routerLink="/" [attr.aria-label]="'home.title' | translate">
+      <!--<a class="d-block my-2 my-md-0 title titre-logo" routerLink="/" [attr.aria-label]="'home.title' | translate">
         Collections <br>spéciales
-      </a>
+      </a>-->
       <!-- Menu desktop - visible seulement sur écrans XL et plus -->
       <nav class="navbar navbar-expand p-0 align-items-stretch align-self-stretch d-none d-xl-block" id="desktop-navbar" [attr.aria-label]="'nav.main.description' | translate">
         <ul class="navbar-nav mr-auto menu-collspec">
@@ -22,6 +22,9 @@
 
     <!-- Search bar and other menus -->
     <div id="header-right" class="h-100 d-flex flex-row flex-nowrap justify-content-end align-items-center gapx-1 ms-auto">
+       @if ((isMobile$ | async)!== true) {
+           <ds-search-navbar ></ds-search-navbar>
+        }
       <ds-lang-switch></ds-lang-switch>
       <ds-auth-nav-menu *ngIf="isAuthenticated | async"></ds-auth-nav-menu>
       
