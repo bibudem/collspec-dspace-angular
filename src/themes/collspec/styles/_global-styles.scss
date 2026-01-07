@@ -665,8 +665,12 @@ a.lead {
   background: transparent;
 }
 
+.hero-section .hero-overlay ds-base-search-form form .input-group .form-control {
+  color: white!important;
+}
+
 .hero-section .hero-overlay ds-base-search-form form .input-group .form-control::placeholder {
-  color: white !important;
+  color: rgb(177, 178, 179) !important;
   opacity: 1 !important;
 }
 
