@@ -81,6 +81,10 @@ h4 {
   font-weight: 600;
 }
 
+h1 {
+  font-size: 3rem;
+}
+
 h2 {
   font-size: 2.5rem;
 }
@@ -104,6 +108,15 @@ p, span, a {
   font-style: normal;
   font-weight: 500;
   line-height: 150%;
+  font-size: 1rem;
+}
+
+.container-bib-blue{
+  max-width: 100%;
+  padding-left: 40px;
+  padding-right: 40px;
+  background: $fondbase;
+  color: white;
 }
 
 /* =============================================
@@ -263,6 +276,10 @@ nav#admin-sidebar a {
 .titre-logo:hover {
   text-decoration: underline !important;
   text-decoration-color: #004080;
+}
+
+.size-16{
+  font-size: 16px;
 }
 
 /* -------------------------------------------------------
