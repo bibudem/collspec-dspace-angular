@@ -202,7 +202,7 @@ if (notMobile) {
           optionsRenderMode: 'simple',
         },
         defaultSideBarPanel: 'info',
-        sideBarOpenByDefault: true,
+        sideBarOpenByDefault: false,
         allowFullscreen: true,
         allowMaximize: false,
         defaultView: defaultView,
