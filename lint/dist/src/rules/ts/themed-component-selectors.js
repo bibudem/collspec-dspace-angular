@@ -1,3 +1,6 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.tests = exports.rule = exports.info = exports.Message = void 0;
 /**
  * The contents of this file are subject to the license and copyright
  * detailed in the LICENSE and NOTICE files at the root of the source
@@ -5,19 +8,19 @@
  *
  * http://www.dspace.org/license/
  */
-import { ESLintUtils, } from '@typescript-eslint/utils';
-import { fixture } from '../../../test/fixture';
-import { getComponentSelectorNode } from '../../util/angular';
-import { stringLiteral } from '../../util/misc';
-import { inThemedComponentOverrideFile, isThemeableComponent, isThemedComponentWrapper, } from '../../util/theme-support';
-import { getFilename } from '../../util/typescript';
-export var Message;
+const utils_1 = require("@typescript-eslint/utils");
+const fixture_1 = require("../../../test/fixture");
+const angular_1 = require("../../util/angular");
+const misc_1 = require("../../util/misc");
+const theme_support_1 = require("../../util/theme-support");
+const typescript_1 = require("../../util/typescript");
+var Message;
 (function (Message) {
     Message["BASE"] = "wrongSelectorUnthemedComponent";
     Message["WRAPPER"] = "wrongSelectorThemedComponentWrapper";
     Message["THEMED"] = "wrongSelectorThemedComponentOverride";
-})(Message || (Message = {}));
-export const info = {
+})(Message || (exports.Message = Message = {}));
+exports.info = {
     name: 'themed-component-selectors',
     meta: {
         docs: {
@@ -42,12 +45,13 @@ Unit tests are exempt from this rule, because they may redefine components using
             [Message.THEMED]: 'Theme override of themeable component should have a selector starting with \'ds-themed-\'',
         },
     },
+    optionDocs: [],
     defaultOptions: [],
 };
-export const rule = ESLintUtils.RuleCreator.withoutDocs({
-    ...info,
+exports.rule = utils_1.ESLintUtils.RuleCreator.withoutDocs({
+    ...exports.info,
     create(context) {
-        const filename = getFilename(context);
+        const filename = (0, typescript_1.getFilename)(context);
         if (filename.endsWith('.spec.ts')) {
             return {};
         }
@@ -57,7 +61,7 @@ export const rule = ESLintUtils.RuleCreator.withoutDocs({
                     messageId: Message.WRAPPER,
                     node: selectorNode,
                     fix(fixer) {
-                        return fixer.replaceText(selectorNode, stringLiteral(selectorNode.value.replace('ds-themed-', 'ds-')));
+                        return fixer.replaceText(selectorNode, (0, misc_1.stringLiteral)(selectorNode.value.replace('ds-themed-', 'ds-')));
                     },
                 });
             }
@@ -68,7 +72,7 @@ export const rule = ESLintUtils.RuleCreator.withoutDocs({
                     messageId: Message.BASE,
                     node: selectorNode,
                     fix(fixer) {
-                        return fixer.replaceText(selectorNode, stringLiteral(selectorNode.value.replace('ds-', 'ds-base-')));
+                        return fixer.replaceText(selectorNode, (0, misc_1.stringLiteral)(selectorNode.value.replace('ds-', 'ds-base-')));
                     },
                 });
             }
@@ -79,14 +83,14 @@ export const rule = ESLintUtils.RuleCreator.withoutDocs({
                     messageId: Message.THEMED,
                     node: selectorNode,
                     fix(fixer) {
-                        return fixer.replaceText(selectorNode, stringLiteral(selectorNode.value.replace('ds-', 'ds-themed-')));
+                        return fixer.replaceText(selectorNode, (0, misc_1.stringLiteral)(selectorNode.value.replace('ds-', 'ds-themed-')));
                     },
                 });
             }
         }
         return {
             'ClassDeclaration > Decorator[expression.callee.name = "Component"]'(node) {
-                const selectorNode = getComponentSelectorNode(node);
+                const selectorNode = (0, angular_1.getComponentSelectorNode)(node);
                 if (selectorNode === undefined) {
                     return;
                 }
@@ -96,21 +100,21 @@ export const rule = ESLintUtils.RuleCreator.withoutDocs({
                 if (selector === undefined || className === undefined) {
                     return;
                 }
-                if (isThemedComponentWrapper(node)) {
+                if ((0, theme_support_1.isThemedComponentWrapper)(node)) {
                     enforceWrapperSelector(selectorNode);
                 }
-                else if (inThemedComponentOverrideFile(filename)) {
+                else if ((0, theme_support_1.inThemedComponentOverrideFile)(filename)) {
                     enforceThemedSelector(selectorNode);
                 }
-                else if (isThemeableComponent(className)) {
+                else if ((0, theme_support_1.isThemeableComponent)(className)) {
                     enforceBaseSelector(selectorNode);
                 }
             },
         };
     },
 });
-export const tests = {
-    plugin: info.name,
+exports.tests = {
+    plugin: exports.info.name,
     valid: [
         {
             name: 'Regular non-themeable component selector',
@@ -164,7 +168,7 @@ class ThemedSomethingElse extends ThemedComponent<SomethingElse> {
     invalid: [
         {
             name: 'Wrong selector for base component',
-            filename: fixture('src/app/test/test-themeable.component.ts'),
+            filename: (0, fixture_1.fixture)('src/app/test/test-themeable.component.ts'),
             code: `
 @Component({
   selector: 'ds-something',
@@ -187,7 +191,7 @@ class TestThemeableComponent {
         },
         {
             name: 'Wrong selector for wrapper component',
-            filename: fixture('src/app/test/themed-test-themeable.component.ts'),
+            filename: (0, fixture_1.fixture)('src/app/test/themed-test-themeable.component.ts'),
             code: `
 @Component({
   selector: 'ds-themed-something',
@@ -210,7 +214,7 @@ class ThemedTestThemeableComponent extends ThemedComponent<TestThemeableComponen
         },
         {
             name: 'Wrong selector for theme override',
-            filename: fixture('src/themes/test/app/test/test-themeable.component.ts'),
+            filename: (0, fixture_1.fixture)('src/themes/test/app/test/test-themeable.component.ts'),
             code: `
 @Component({
   selector: 'ds-something',
@@ -233,5 +237,5 @@ class TestThememeableComponent extends BaseComponent {
         },
     ],
 };
-export default rule;
+exports.default = exports.rule;
 //# sourceMappingURL=themed-component-selectors.js.map

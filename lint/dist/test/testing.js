@@ -1,3 +1,4 @@
+"use strict";
 /**
  * The contents of this file are subject to the license and copyright
  * detailed in the LICENSE and NOTICE files at the root of the source
@@ -5,39 +6,46 @@
  *
  * http://www.dspace.org/license/
  */
-import { RuleTester as TypeScriptRuleTester } from '@typescript-eslint/rule-tester';
-import { RuleTester } from '@typescript-eslint/utils/ts-eslint';
-import { themeableComponents } from '../src/util/theme-support';
-import { FIXTURE, fixture, } from './fixture';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.htmlRuleTester = exports.tsRuleTester = void 0;
+const rule_tester_1 = require("@typescript-eslint/rule-tester");
+const theme_support_1 = require("../src/util/theme-support");
+const fixture_1 = require("./fixture");
 // Register themed components from test fixture
-themeableComponents.initialize(FIXTURE);
-TypeScriptRuleTester.itOnly = fit;
-TypeScriptRuleTester.itSkip = xit;
-export const tsRuleTester = new TypeScriptRuleTester({
-    parser: '@typescript-eslint/parser',
+theme_support_1.themeableComponents.initialize(fixture_1.FIXTURE);
+rule_tester_1.RuleTester.itOnly = fit;
+rule_tester_1.RuleTester.itSkip = xit;
+exports.tsRuleTester = new rule_tester_1.RuleTester({
     defaultFilenames: {
-        ts: fixture('src/test.ts'),
+        ts: (0, fixture_1.fixture)('src/test.ts'),
         tsx: 'n/a',
     },
-    parserOptions: {
-        project: fixture('tsconfig.json'),
+    languageOptions: {
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
+        parser: require('@typescript-eslint/parser'),
+        parserOptions: {
+            project: (0, fixture_1.fixture)('tsconfig.json'),
+        },
     },
 });
-class HtmlRuleTester extends RuleTester {
+class HtmlRuleTester extends rule_tester_1.RuleTester {
     run(name, rule, tests) {
         super.run(name, rule, {
             valid: tests.valid.map((test) => ({
-                filename: fixture('test.html'),
+                filename: (0, fixture_1.fixture)('test.html'),
                 ...test,
             })),
             invalid: tests.invalid.map((test) => ({
-                filename: fixture('test.html'),
+                filename: (0, fixture_1.fixture)('test.html'),
                 ...test,
             })),
         });
     }
 }
-export const htmlRuleTester = new HtmlRuleTester({
-    parser: require.resolve('@angular-eslint/template-parser'),
+exports.htmlRuleTester = new HtmlRuleTester({
+    languageOptions: {
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
+        parser: require('@angular-eslint/template-parser'),
+    },
 });
 //# sourceMappingURL=testing.js.map

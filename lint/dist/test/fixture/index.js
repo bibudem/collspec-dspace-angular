@@ -7,10 +7,10 @@
  * http://www.dspace.org/license/
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.fixture = exports.FIXTURE = void 0;
+exports.FIXTURE = void 0;
+exports.fixture = fixture;
 exports.FIXTURE = 'lint/test/fixture/';
 function fixture(path) {
     return exports.FIXTURE + path;
 }
-exports.fixture = fixture;
 //# sourceMappingURL=index.js.map

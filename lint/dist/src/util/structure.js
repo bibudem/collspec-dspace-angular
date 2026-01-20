@@ -1,4 +1,7 @@
-export function bundle(name, language, index) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.bundle = bundle;
+function bundle(name, language, index) {
     return index.reduce((o, i) => {
         o.rules[i.info.name] = i.rule;
         return o;

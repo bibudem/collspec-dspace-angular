@@ -1,12 +1,15 @@
-import { ESLintUtils } from '@typescript-eslint/utils';
-import { fixture } from '../../../test/fixture';
-import { DISALLOWED_THEME_SELECTORS, fixSelectors, } from '../../util/theme-support';
-import { getFilename, getSourceCode, } from '../../util/typescript';
-export var Message;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.tests = exports.rule = exports.info = exports.Message = void 0;
+const utils_1 = require("@typescript-eslint/utils");
+const fixture_1 = require("../../../test/fixture");
+const theme_support_1 = require("../../util/theme-support");
+const typescript_1 = require("../../util/typescript");
+var Message;
 (function (Message) {
     Message["WRONG_SELECTOR"] = "mustUseThemedWrapperSelector";
-})(Message || (Message = {}));
-export const info = {
+})(Message || (exports.Message = Message = {}));
+exports.info = {
     name: 'themed-component-usages',
     meta: {
         docs: {
@@ -23,18 +26,19 @@ The only exception to this rule are unit tests, where we may want to use the bas
             [Message.WRONG_SELECTOR]: 'Themeable components should be used via their ThemedComponent wrapper\'s selector',
         },
     },
+    optionDocs: [],
     defaultOptions: [],
 };
-export const rule = ESLintUtils.RuleCreator.withoutDocs({
-    ...info,
+exports.rule = utils_1.ESLintUtils.RuleCreator.withoutDocs({
+    ...exports.info,
     create(context) {
-        if (getFilename(context).includes('.spec.ts')) {
+        if ((0, typescript_1.getFilename)(context).includes('.spec.ts')) {
             // skip inline templates in unit tests
             return {};
         }
-        const parserServices = getSourceCode(context).parserServices;
+        const parserServices = (0, typescript_1.getSourceCode)(context).parserServices;
         return {
-            [`Element$1[name = /^${DISALLOWED_THEME_SELECTORS}/]`](node) {
+            [`Element[name = /^${theme_support_1.DISALLOWED_THEME_SELECTORS}/]`](node) {
                 const { startSourceSpan, endSourceSpan } = node;
                 const openStart = startSourceSpan.start.offset;
                 context.report({
@@ -42,7 +46,7 @@ export const rule = ESLintUtils.RuleCreator.withoutDocs({
                     loc: parserServices.convertNodeSourceSpanToLoc(startSourceSpan),
                     fix(fixer) {
                         const oldSelector = node.name;
-                        const newSelector = fixSelectors(oldSelector);
+                        const newSelector = (0, theme_support_1.fixSelectors)(oldSelector);
                         const ops = [
                             fixer.replaceTextRange([openStart + 1, openStart + 1 + oldSelector.length], newSelector),
                         ];
@@ -59,8 +63,8 @@ export const rule = ESLintUtils.RuleCreator.withoutDocs({
         };
     },
 });
-export const tests = {
-    plugin: info.name,
+exports.tests = {
+    plugin: exports.info.name,
     valid: [
         {
             name: 'use no-prefix selectors in HTML templates',
@@ -73,33 +77,21 @@ export const tests = {
         {
             name: 'use no-prefix selectors in TypeScript templates',
             code: `
-@Component({
-  template: '<ds-test-themeable></ds-test-themeable>'
-})
-class Test {
-}
+<ds-test-themeable></ds-test-themeable>
         `,
         },
         {
             name: 'use no-prefix selectors in TypeScript test templates',
-            filename: fixture('src/test.spec.ts'),
+            filename: (0, fixture_1.fixture)('src/test.spec.ts'),
             code: `
-@Component({
-  template: '<ds-test-themeable></ds-test-themeable>'
-})
-class Test {
-}
+<ds-test-themeable></ds-test-themeable>
         `,
         },
         {
             name: 'base selectors are also allowed in TypeScript test templates',
-            filename: fixture('src/test.spec.ts'),
+            filename: (0, fixture_1.fixture)('src/test.spec.ts'),
             code: `
-@Component({
-  template: '<ds-base-test-themeable></ds-base-test-themeable>'
-})
-class Test {
-}
+<ds-base-test-themeable></ds-base-test-themeable>
         `,
         },
     ],
@@ -154,5 +146,5 @@ class Test {
         },
     ],
 };
-export default rule;
+exports.default = exports.rule;
 //# sourceMappingURL=themed-component-usages.js.map
