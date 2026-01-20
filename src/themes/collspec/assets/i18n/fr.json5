@@ -1,4 +1,6 @@
 {
+  "collspec.cookies.consent.content-notice.description":"Vos données personnelles sont récupérées et utilisées dans les contextes suivants : <strong>authentification, préférences, consentement et statistiques</strong>. <br> Pour plus d'informations, veuillez vous référer à la <a href="https://vie-privee.umontreal.ca/confidentialite">politique de protection de la vie privée.</a>"
+  
   "collspec.menu.a-propos": "À propos",
   "collspec.menu.guide": "Guide collections",
   "collspec.menu.contact": "Nous joindre",
