@@ -14,6 +14,10 @@ import {
   DomSanitizer,
   SafeResourceUrl,
 } from '@angular/platform-browser';
+import { BitstreamDataService } from '@dspace/core/data/bitstream-data.service';
+import { BundleDataService } from '@dspace/core/data/bundle-data.service';
+import { WidthCategory } from '@dspace/core/shared/host-window-type';
+import { Item } from '@dspace/core/shared/item.model';
 import { TranslateModule } from '@ngx-translate/core';
 import {
   Observable,
@@ -29,10 +33,7 @@ import { BitstreamDataService } from '../../core/data/bitstream-data.service';
 import { BundleDataService } from '../../core/data/bundle-data.service';
 import { LocaleService } from '../../core/locale/locale.service';
 import { Item } from '../../core/shared/item.model';
-import {
-  HostWindowService,
-  WidthCategory,
-} from '../../shared/host-window.service';
+import { HostWindowService } from '../../shared/host-window.service';
 import { MiradorViewerService } from './mirador-viewer.service';
 
 @Component({
@@ -44,7 +45,6 @@ import { MiradorViewerService } from './mirador-viewer.service';
     AsyncPipe,
     TranslateModule,
   ],
-  standalone: true,
 })
 export class MiradorViewerComponent implements OnInit {
 
