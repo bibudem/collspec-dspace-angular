@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 import { AiService } from '../../service/ai.service';
 import { Ai } from '../../models/Ai';
 import {ActivatedRoute, Router, RouterModule} from '@angular/router';
@@ -6,28 +13,27 @@ import { BehaviorSubject, Observable} from 'rxjs';
 import { config } from "../../config/config";
 import {AsyncPipe, CommonModule, Location} from '@angular/common';
 import { DSONameService } from "../../../../app/core/breadcrumbs/dso-name.service";
-import { hasValue, isNotEmpty } from "../../../../app/shared/empty.util";
 import { getFirstSucceededRemoteDataPayload } from "../../../../app/core/shared/operators";
 import { DSpaceObject } from "../../../../app/core/shared/dspace-object.model";
-import { currentPath } from "../../../../app/shared/utils/route.utils";
 import { ScopeSelectorModalComponent } from "../../../../app/shared/search-form/scope-selector-modal/scope-selector-modal.component";
 import { take, tap } from "rxjs/operators";
 import {NgbModal, NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import { DSpaceObjectDataService } from "../../../../app/core/data/dspace-object-data.service";
-import { SearchService } from "../../../../app/core/shared/search/search.service";
-import {NotificationsService} from "../../../../app/shared/notifications/notifications.service";
+import { SearchService } from "../../../../app/shared/search/search.service";
 import {TranslateModule, TranslateService} from '@ngx-translate/core';
 import {ThemedLoadingComponent} from "../../../../app/shared/loading/themed-loading.component";
 import {FormsModule} from "@angular/forms";
 import {SearchFormComponent} from "../../../../app/shared/search-form/search-form.component";
 import {BrowserOnlyPipe} from "../../../../app/shared/utils/browser-only.pipe";
+import { hasValue, isNotEmpty } from '@dspace/shared/utils/empty.util';
+import { currentPath } from '@dspace/core/router/utils/route.utils';
 
 @Component({
   selector: 'ds-ai-search',
   templateUrl: './ai-search.component.html',
   styleUrls: ['./ai-search.component.scss'],
   standalone: true,
-  imports: [ThemedLoadingComponent, TranslateModule, RouterModule, CommonModule, NgbModule, FormsModule, SearchFormComponent, AsyncPipe, BrowserOnlyPipe],
+  imports: [TranslateModule, RouterModule, CommonModule, NgbModule, FormsModule, AsyncPipe],
 })
 export class AiSearchComponent implements OnInit {
   images$: Observable<Ai[]>;
@@ -53,11 +59,9 @@ export class AiSearchComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private location: Location,
-    protected modalService: NgbModal,
     protected dsoService: DSpaceObjectDataService,
     public dsoNameService: DSONameService,
     protected searchService: SearchService,
-    private notificationsService: NotificationsService,
     private translate: TranslateService
   ) {}
 
@@ -96,7 +100,7 @@ export class AiSearchComponent implements OnInit {
     this.translate.get(['collspec.ai-title-notification', 'collspec.ai-content-notification']).subscribe((messages: { [key: string]: string }) => {
       this.titleNotif = messages['collspec.ai-title-notification'];
       this.contentNotif = messages['collspec.ai-content-notification'];
-      this.showInfoNotification(this.titleNotif,this.contentNotif);
+      //this.showInfoNotification(this.titleNotif,this.contentNotif);
     });
 
   }
@@ -195,13 +199,13 @@ export class AiSearchComponent implements OnInit {
   }
 
   // Méthode pour ouvrir la modalité de sélection de portée
-  openScopeModal() {
+ /* openScopeModal() {
     const ref = this.modalService.open(ScopeSelectorModalComponent);
     ref.componentInstance.scopeChange.pipe(take(1)).subscribe((scope: DSpaceObject) => {
       this.selectedScope.next(scope);
       this.onScopeChange(scope);
     });
-  }
+  }*/
 
   // Méthode pour effacer la requête de recherche
   clearSearchQuery() {
@@ -232,10 +236,10 @@ export class AiSearchComponent implements OnInit {
   }
 
   // Méthode pour affichage de la notification
-  showInfoNotification(title: string, content: string): void {
+  /*showInfoNotification(title: string, content: string): void {
     this.notificationsService.info(title, content, {
       timeOut: 10000, // Durée d'affichage
       animate: 'fromRight' // Animation d'entrée de la notification
     });
-  }
+  }*/
 }

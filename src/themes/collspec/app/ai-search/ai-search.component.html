@@ -13,17 +13,17 @@
         <form #form="ngForm" (ngSubmit)="updateSearch(form.value)">
             <div class="form-group input-group">
               <div  class="input-group-prepend">
-                <button class="scope-button btn btn-outline-secondary text-truncate"
+                <!--<button class="scope-button btn btn-outline-secondary text-truncate"
                         [ngbTooltip]="dsoNameService.getName(selectedScope | async)" type="button"
                         (click)="openScopeModal()">
                   {{dsoNameService.getName(selectedScope | async) || ('search.form.scope.all' | translate)}}
-                </button>
+                </button>-->
               </div>
-              <input type="text" [(ngModel)]="searchQuery" name="query" class="form-control" [attr.data-test]="'search-box' | dsBrowserOnly">
-              <span class="input-group-append">
-            <button type="submit" class="search-button btn btn-primary" [attr.data-test]="'search-button' | dsBrowserOnly">
+              <!--<input type="text" [(ngModel)]="searchQuery" name="query" class="form-control" [attr.data-test]="'search-box' | dsBrowserOnly">-->
+        <span class="input-group-append">
+            <!--<button type="submit" class="search-button btn btn-primary" [attr.data-test]="'search-button' | dsBrowserOnly">
               <i class="fas fa-search"></i> {{ ('search.form.search' | translate) }}
-            </button>
+            </button>-->
           </span>
             </div>
           <div class="filters-list" *ngIf="searchQuery">

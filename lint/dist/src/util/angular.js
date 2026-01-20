@@ -1,3 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getComponentSelectorNode = getComponentSelectorNode;
+exports.getComponentStandaloneNode = getComponentStandaloneNode;
+exports.getComponentImportNode = getComponentImportNode;
+exports.getComponentClassName = getComponentClassName;
+exports.getComponentSuperClassName = getComponentSuperClassName;
+exports.getComponentInitializer = getComponentInitializer;
+exports.getComponentInitializerNodeByName = getComponentInitializerNodeByName;
+exports.isPartOfViewChild = isPartOfViewChild;
 /**
  * The contents of this file are subject to the license and copyright
  * detailed in the LICENSE and NOTICE files at the root of the source
@@ -5,62 +15,62 @@
  *
  * http://www.dspace.org/license/
  */
-import { TSESTree } from '@typescript-eslint/utils';
-import { getObjectPropertyNodeByName } from './typescript';
-export function getComponentSelectorNode(componentDecoratorNode) {
+const utils_1 = require("@typescript-eslint/utils");
+const typescript_1 = require("./typescript");
+function getComponentSelectorNode(componentDecoratorNode) {
     const property = getComponentInitializerNodeByName(componentDecoratorNode, 'selector');
     if (property !== undefined) {
         // todo: support template literals as well
-        if (property.type === TSESTree.AST_NODE_TYPES.Literal && typeof property.value === 'string') {
+        if (property.type === utils_1.TSESTree.AST_NODE_TYPES.Literal && typeof property.value === 'string') {
             return property;
         }
     }
     return undefined;
 }
-export function getComponentStandaloneNode(componentDecoratorNode) {
+function getComponentStandaloneNode(componentDecoratorNode) {
     const property = getComponentInitializerNodeByName(componentDecoratorNode, 'standalone');
     if (property !== undefined) {
-        if (property.type === TSESTree.AST_NODE_TYPES.Literal && typeof property.value === 'boolean') {
+        if (property.type === utils_1.TSESTree.AST_NODE_TYPES.Literal && typeof property.value === 'boolean') {
             return property;
         }
     }
     return undefined;
 }
-export function getComponentImportNode(componentDecoratorNode) {
+function getComponentImportNode(componentDecoratorNode) {
     const property = getComponentInitializerNodeByName(componentDecoratorNode, 'imports');
     if (property !== undefined) {
-        if (property.type === TSESTree.AST_NODE_TYPES.ArrayExpression) {
+        if (property.type === utils_1.TSESTree.AST_NODE_TYPES.ArrayExpression) {
             return property;
         }
     }
     return undefined;
 }
-export function getComponentClassName(decoratorNode) {
-    if (decoratorNode.parent.type !== TSESTree.AST_NODE_TYPES.ClassDeclaration) {
+function getComponentClassName(decoratorNode) {
+    if (decoratorNode.parent.type !== utils_1.TSESTree.AST_NODE_TYPES.ClassDeclaration) {
         return undefined;
     }
-    if (decoratorNode.parent.id?.type !== TSESTree.AST_NODE_TYPES.Identifier) {
+    if (decoratorNode.parent.id?.type !== utils_1.TSESTree.AST_NODE_TYPES.Identifier) {
         return undefined;
     }
     return decoratorNode.parent.id.name;
 }
-export function getComponentSuperClassName(decoratorNode) {
-    if (decoratorNode.parent.type !== TSESTree.AST_NODE_TYPES.ClassDeclaration) {
+function getComponentSuperClassName(decoratorNode) {
+    if (decoratorNode.parent.type !== utils_1.TSESTree.AST_NODE_TYPES.ClassDeclaration) {
         return undefined;
     }
-    if (decoratorNode.parent.superClass?.type !== TSESTree.AST_NODE_TYPES.Identifier) {
+    if (decoratorNode.parent.superClass?.type !== utils_1.TSESTree.AST_NODE_TYPES.Identifier) {
         return undefined;
     }
     return decoratorNode.parent.superClass.name;
 }
-export function getComponentInitializer(componentDecoratorNode) {
+function getComponentInitializer(componentDecoratorNode) {
     return componentDecoratorNode.expression.arguments[0];
 }
-export function getComponentInitializerNodeByName(componentDecoratorNode, name) {
+function getComponentInitializerNodeByName(componentDecoratorNode, name) {
     const initializer = getComponentInitializer(componentDecoratorNode);
-    return getObjectPropertyNodeByName(initializer, name);
+    return (0, typescript_1.getObjectPropertyNodeByName)(initializer, name);
 }
-export function isPartOfViewChild(node) {
+function isPartOfViewChild(node) {
     return node.parent?.callee?.name === 'ViewChild';
 }
 //# sourceMappingURL=angular.js.map

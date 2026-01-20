@@ -16,7 +16,7 @@ import { PaginationService } from '../../../../../app/core/pagination/pagination
 import { VedetteService } from '../../../service/vedette.service';
 import {map, takeUntil} from 'rxjs/operators';
 import { Vedette } from '../../../models/Vedette';
-import {hasValue} from "../../../../../app/shared/empty.util";
+import { hasValue, isNotEmpty } from '@dspace/shared/utils/empty.util';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 

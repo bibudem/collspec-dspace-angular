@@ -1,3 +1,18 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DISALLOWED_THEME_SELECTORS = exports.themeableComponents = void 0;
+exports.isThemedComponentWrapper = isThemedComponentWrapper;
+exports.getBaseComponentClassName = getBaseComponentClassName;
+exports.isThemeableComponent = isThemeableComponent;
+exports.inThemedComponentOverrideFile = inThemedComponentOverrideFile;
+exports.allThemeableComponents = allThemeableComponents;
+exports.getThemeableComponentByBaseClass = getThemeableComponentByBaseClass;
+exports.isAllowedUnthemedUsage = isAllowedUnthemedUsage;
+exports.fixSelectors = fixSelectors;
+exports.getFileTheme = getFileTheme;
 /**
  * The contents of this file are subject to the license and copyright
  * detailed in the LICENSE and NOTICE files at the root of the source
@@ -5,18 +20,20 @@
  *
  * http://www.dspace.org/license/
  */
-import { TSESTree } from '@typescript-eslint/utils';
-import { readFileSync } from 'fs';
-import { basename } from 'path';
-import ts from 'typescript';
-import { getComponentClassName, isPartOfViewChild, } from './angular';
-import { isPartOfClassDeclaration, isPartOfTypeExpression, } from './typescript';
+const node_fs_1 = require("node:fs");
+const node_path_1 = require("node:path");
+const utils_1 = require("@typescript-eslint/utils");
+const glob_1 = require("glob");
+const typescript_1 = __importDefault(require("typescript"));
+const angular_1 = require("./angular");
+const misc_1 = require("./misc");
+const typescript_2 = require("./typescript");
 function isAngularComponentDecorator(node) {
-    if (node.kind === ts.SyntaxKind.Decorator && node.parent.kind === ts.SyntaxKind.ClassDeclaration) {
+    if (node.kind === typescript_1.default.SyntaxKind.Decorator && node.parent.kind === typescript_1.default.SyntaxKind.ClassDeclaration) {
         const decorator = node;
-        if (decorator.expression.kind === ts.SyntaxKind.CallExpression) {
+        if (decorator.expression.kind === typescript_1.default.SyntaxKind.CallExpression) {
             const method = decorator.expression;
-            if (method.expression.kind === ts.SyntaxKind.Identifier) {
+            if (method.expression.kind === typescript_1.default.SyntaxKind.Identifier) {
                 return method.expression.text === 'Component';
             }
         }
@@ -24,10 +41,10 @@ function isAngularComponentDecorator(node) {
     return false;
 }
 function findImportDeclaration(source, identifierName) {
-    return ts.forEachChild(source, (topNode) => {
-        if (topNode.kind === ts.SyntaxKind.ImportDeclaration) {
+    return typescript_1.default.forEachChild(source, (topNode) => {
+        if (topNode.kind === typescript_1.default.SyntaxKind.ImportDeclaration) {
             const importDeclaration = topNode;
-            if (importDeclaration.importClause?.namedBindings?.kind === ts.SyntaxKind.NamedImports) {
+            if (importDeclaration.importClause?.namedBindings?.kind === typescript_1.default.SyntaxKind.NamedImports) {
                 const namedImports = importDeclaration.importClause?.namedBindings;
                 for (const element of namedImports.elements) {
                     if (element.name.text === identifierName) {
@@ -66,7 +83,7 @@ class ThemeableComponentRegistry {
                     for (const heritageClause of classNode.heritageClauses) {
                         for (const type of heritageClause.types) {
                             if (type.expression.escapedText === 'ThemedComponent') {
-                                if (type.kind !== ts.SyntaxKind.ExpressionWithTypeArguments || type.typeArguments === undefined) {
+                                if (type.kind !== typescript_1.default.SyntaxKind.ExpressionWithTypeArguments || type.typeArguments === undefined) {
                                     continue;
                                 }
                                 const firstTypeArg = type.typeArguments[0];
@@ -78,14 +95,14 @@ class ThemeableComponentRegistry {
                                 if (importDeclaration === undefined) {
                                     continue;
                                 }
-                                const basePath = resolveLocalPath(importDeclaration.moduleSpecifier.text, path);
-                                themeableComponents.add({
+                                const basePath = resolveLocalPath(importDeclaration.moduleSpecifier.text, (0, misc_1.toUnixStylePath)(path));
+                                exports.themeableComponents.add({
                                     baseClass,
                                     basePath: basePath.replace(new RegExp(`^${prefix}`), ''),
-                                    baseFileName: basename(basePath).replace(/\.ts$/, ''),
+                                    baseFileName: (0, node_path_1.basename)(basePath).replace(/\.ts$/, ''),
                                     wrapperClass,
                                     wrapperPath: path.replace(new RegExp(`^${prefix}`), ''),
-                                    wrapperFileName: basename(path).replace(/\.ts$/, ''),
+                                    wrapperFileName: (0, node_path_1.basename)(path).replace(/\.ts$/, ''),
                                 });
                             }
                         }
@@ -93,14 +110,13 @@ class ThemeableComponentRegistry {
                     return;
                 }
                 else {
-                    ts.forEachChild(node, traverse);
+                    typescript_1.default.forEachChild(node, traverse);
                 }
             }
             traverse(source);
         }
-        const glob = require('glob');
         // note: this outputs Unix-style paths on Windows
-        const wrappers = glob.GlobSync(prefix + 'src/app/**/themed-*.component.ts', { ignore: 'node_modules/**' }).found;
+        const wrappers = (0, glob_1.globSync)(prefix + 'src/app/**/themed-*.component.ts', { ignore: 'node_modules/**' });
         for (const wrapper of wrappers) {
             registerWrapper(wrapper);
         }
@@ -113,13 +129,13 @@ class ThemeableComponentRegistry {
         this.byWrapperPath.set(entry.wrapperPath, entry);
     }
 }
-export const themeableComponents = new ThemeableComponentRegistry();
+exports.themeableComponents = new ThemeableComponentRegistry();
 /**
  * Construct the AST of a TypeScript source file
  * @param file
  */
 function getSource(file) {
-    return ts.createSourceFile(file, readFileSync(file).toString(), ts.ScriptTarget.ES2020, // todo: actually use tsconfig.json?
+    return typescript_1.default.createSourceFile(file, (0, node_fs_1.readFileSync)(file).toString(), typescript_1.default.ScriptTarget.ES2020, // todo: actually use tsconfig.json?
     /*setParentNodes */ true);
 }
 /**
@@ -140,53 +156,65 @@ function resolveLocalPath(path, relativeTo) {
         throw new Error(`Unsupported local path: ${path}`);
     }
 }
-export function isThemedComponentWrapper(decoratorNode) {
-    if (decoratorNode.parent.type !== TSESTree.AST_NODE_TYPES.ClassDeclaration) {
+function isThemedComponentWrapper(decoratorNode) {
+    if (decoratorNode.parent.type !== utils_1.TSESTree.AST_NODE_TYPES.ClassDeclaration) {
         return false;
     }
-    if (decoratorNode.parent.superClass?.type !== TSESTree.AST_NODE_TYPES.Identifier) {
+    if (decoratorNode.parent.superClass?.type !== utils_1.TSESTree.AST_NODE_TYPES.Identifier) {
         return false;
     }
     return decoratorNode.parent.superClass?.name === 'ThemedComponent';
 }
-export function getBaseComponentClassName(decoratorNode) {
-    const wrapperClass = getComponentClassName(decoratorNode);
+function getBaseComponentClassName(decoratorNode) {
+    const wrapperClass = (0, angular_1.getComponentClassName)(decoratorNode);
     if (wrapperClass === undefined) {
         return;
     }
-    themeableComponents.initialize();
-    const entry = themeableComponents.byWrapperClass.get(wrapperClass);
+    exports.themeableComponents.initialize();
+    const entry = exports.themeableComponents.byWrapperClass.get(wrapperClass);
     if (entry === undefined) {
         return undefined;
     }
     return entry.baseClass;
 }
-export function isThemeableComponent(className) {
-    themeableComponents.initialize();
-    return themeableComponents.byBaseClass.has(className);
+function isThemeableComponent(className) {
+    exports.themeableComponents.initialize();
+    return exports.themeableComponents.byBaseClass.has(className);
 }
-export function inThemedComponentOverrideFile(filename) {
+function inThemedComponentOverrideFile(filename) {
     const match = filename.match(/src\/themes\/[^\/]+\/(app\/.*)/);
     if (!match) {
         return false;
     }
-    themeableComponents.initialize();
+    exports.themeableComponents.initialize();
     // todo: this is fragile!
-    return themeableComponents.byBasePath.has(`src/${match[1]}`);
+    return exports.themeableComponents.byBasePath.has(`src/${match[1]}`);
 }
-export function allThemeableComponents() {
-    themeableComponents.initialize();
-    return [...themeableComponents.entries];
+function allThemeableComponents() {
+    exports.themeableComponents.initialize();
+    return [...exports.themeableComponents.entries];
 }
-export function getThemeableComponentByBaseClass(baseClass) {
-    themeableComponents.initialize();
-    return themeableComponents.byBaseClass.get(baseClass);
+function getThemeableComponentByBaseClass(baseClass) {
+    exports.themeableComponents.initialize();
+    return exports.themeableComponents.byBaseClass.get(baseClass);
 }
-export function isAllowedUnthemedUsage(usageNode) {
-    return isPartOfClassDeclaration(usageNode) || isPartOfTypeExpression(usageNode) || isPartOfViewChild(usageNode);
+function isAllowedUnthemedUsage(usageNode) {
+    return (0, typescript_2.isPartOfClassDeclaration)(usageNode) || (0, typescript_2.isPartOfTypeExpression)(usageNode) || (0, angular_1.isPartOfViewChild)(usageNode);
 }
-export const DISALLOWED_THEME_SELECTORS = 'ds-(base|themed)-';
-export function fixSelectors(text) {
+exports.DISALLOWED_THEME_SELECTORS = 'ds-(base|themed)-';
+function fixSelectors(text) {
     return text.replaceAll(/ds-(base|themed)-/g, 'ds-');
+}
+/**
+ * Determine the theme of the current file based on its path in the project.
+ * @param context the current ESLint rule context
+ */
+function getFileTheme(context) {
+    // note: shouldn't use plain .filename (doesn't work in DSpace Angular 7.4)
+    const m = context.getFilename()?.match(/\/src\/themes\/([^/]+)\//);
+    if (m?.length === 2) {
+        return m[1];
+    }
+    return undefined;
 }
 //# sourceMappingURL=theme-support.js.map

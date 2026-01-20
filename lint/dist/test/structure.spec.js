@@ -1,3 +1,4 @@
+"use strict";
 /**
  * The contents of this file are subject to the license and copyright
  * detailed in the LICENSE and NOTICE files at the root of the source
@@ -5,10 +6,14 @@
  *
  * http://www.dspace.org/license/
  */
-import { default as html } from '../src/rules/html';
-import { default as ts } from '../src/rules/ts';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const html_1 = __importDefault(require("../src/rules/html"));
+const ts_1 = __importDefault(require("../src/rules/ts"));
 describe('plugin structure', () => {
-    for (const pluginExports of [ts, html]) {
+    for (const pluginExports of [ts_1.default, html_1.default]) {
         const pluginName = pluginExports.name ?? 'UNNAMED PLUGIN';
         describe(pluginName, () => {
             it('should have a name', () => {
@@ -55,6 +60,12 @@ describe('plugin structure', () => {
                         expect(ruleExports.tests).toBeTruthy();
                         expect(ruleExports.tests.valid.length).toBeGreaterThan(0);
                         expect(ruleExports.tests.invalid.length).toBeGreaterThan(0);
+                    });
+                    it('should contain a valid ESLint rule', () => {
+                        // we don't have a better way to enforce this, but it's something at least
+                        expect(ruleExports.rule.name).toBeUndefined('Rules should be passed to RuleCreator, omitting info.name since it is not part of the RuleWithMeta interface');
+                        expect(ruleExports.rule.create).toBeTruthy();
+                        expect(ruleExports.rule.meta).toEqual(ruleExports.info.meta);
                     });
                 });
             }

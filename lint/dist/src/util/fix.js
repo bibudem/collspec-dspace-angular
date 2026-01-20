@@ -1,3 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.appendObjectProperties = appendObjectProperties;
+exports.appendArrayElement = appendArrayElement;
+exports.isLast = isLast;
+exports.removeWithCommas = removeWithCommas;
+exports.replaceOrRemoveArrayIdentifier = replaceOrRemoveArrayIdentifier;
 /**
  * The contents of this file are subject to the license and copyright
  * detailed in the LICENSE and NOTICE files at the root of the source
@@ -5,12 +12,12 @@
  *
  * http://www.dspace.org/license/
  */
-import { TSESTree } from '@typescript-eslint/utils';
-import { getSourceCode } from './typescript';
-export function appendObjectProperties(context, fixer, objectNode, properties) {
+const utils_1 = require("@typescript-eslint/utils");
+const typescript_1 = require("./typescript");
+function appendObjectProperties(context, fixer, objectNode, properties) {
     // todo: may not handle empty objects too well
     const lastProperty = objectNode.properties[objectNode.properties.length - 1];
-    const source = getSourceCode(context);
+    const source = (0, typescript_1.getSourceCode)(context);
     const nextToken = source.getTokenAfter(lastProperty);
     // todo: newline & indentation are hardcoded for @Component({})
     // todo: we're assuming that we need trailing commas, what if we don't?
@@ -22,8 +29,8 @@ export function appendObjectProperties(context, fixer, objectNode, properties) {
         return fixer.insertTextAfter(lastProperty, ',' + newPart);
     }
 }
-export function appendArrayElement(context, fixer, arrayNode, value) {
-    const source = getSourceCode(context);
+function appendArrayElement(context, fixer, arrayNode, value) {
+    const source = (0, typescript_1.getSourceCode)(context);
     if (arrayNode.elements.length === 0) {
         // This is the first element
         const openArray = source.getTokenByRangeStart(arrayNode.range[0]);
@@ -49,22 +56,22 @@ export function appendArrayElement(context, fixer, arrayNode, value) {
         }
     }
 }
-export function isLast(elementNode) {
+function isLast(elementNode) {
     if (!elementNode.parent) {
         return false;
     }
     let siblingNodes = [null];
-    if (elementNode.parent.type === TSESTree.AST_NODE_TYPES.ArrayExpression) {
+    if (elementNode.parent.type === utils_1.TSESTree.AST_NODE_TYPES.ArrayExpression) {
         siblingNodes = elementNode.parent.elements;
     }
-    else if (elementNode.parent.type === TSESTree.AST_NODE_TYPES.ImportDeclaration) {
+    else if (elementNode.parent.type === utils_1.TSESTree.AST_NODE_TYPES.ImportDeclaration) {
         siblingNodes = elementNode.parent.specifiers;
     }
     return elementNode === siblingNodes[siblingNodes.length - 1];
 }
-export function removeWithCommas(context, fixer, elementNode) {
+function removeWithCommas(context, fixer, elementNode) {
     const ops = [];
-    const source = getSourceCode(context);
+    const source = (0, typescript_1.getSourceCode)(context);
     let nextToken = source.getTokenAfter(elementNode);
     let prevToken = source.getTokenBefore(elementNode);
     if (nextToken !== null && prevToken !== null) {
@@ -86,13 +93,13 @@ export function removeWithCommas(context, fixer, elementNode) {
     }
     return ops;
 }
-export function replaceOrRemoveArrayIdentifier(context, fixer, identifierNode, newValue) {
-    if (identifierNode.parent.type !== TSESTree.AST_NODE_TYPES.ArrayExpression) {
+function replaceOrRemoveArrayIdentifier(context, fixer, identifierNode, newValue) {
+    if (identifierNode.parent.type !== utils_1.TSESTree.AST_NODE_TYPES.ArrayExpression) {
         throw new Error('Parent node is not an array expression!');
     }
     const array = identifierNode.parent;
     for (const element of array.elements) {
-        if (element !== null && element.type === TSESTree.AST_NODE_TYPES.Identifier && element.name === newValue) {
+        if (element !== null && element.type === utils_1.TSESTree.AST_NODE_TYPES.Identifier && element.name === newValue) {
             return removeWithCommas(context, fixer, identifierNode);
         }
     }

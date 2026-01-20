@@ -1,3 +1,4 @@
+"use strict";
 /**
  * The contents of this file are subject to the license and copyright
  * detailed in the LICENSE and NOTICE files at the root of the source
@@ -5,17 +6,21 @@
  *
  * http://www.dspace.org/license/
  */
-import { default as htmlPlugin } from '../src/rules/html';
-import { default as tsPlugin } from '../src/rules/ts';
-import { htmlRuleTester, tsRuleTester, } from './testing';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const html_1 = __importDefault(require("../src/rules/html"));
+const ts_1 = __importDefault(require("../src/rules/ts"));
+const testing_1 = require("./testing");
 describe('TypeScript rules', () => {
-    for (const { info, rule, tests } of tsPlugin.index) {
-        tsRuleTester.run(info.name, rule, tests);
+    for (const { info, rule, tests } of ts_1.default.index) {
+        testing_1.tsRuleTester.run(info.name, rule, tests);
     }
 });
 describe('HTML rules', () => {
-    for (const { info, rule, tests } of htmlPlugin.index) {
-        htmlRuleTester.run(info.name, rule, tests);
+    for (const { info, rule, tests } of html_1.default.index) {
+        testing_1.htmlRuleTester.run(info.name, rule, tests);
     }
 });
 //# sourceMappingURL=rules.spec.js.map
