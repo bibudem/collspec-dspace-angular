@@ -1,0 +1,39 @@
+{
+  // "repository.title.prefix": "DSpace Angular :: ",
+  "repository.title.prefix": "Collections spéciales :: ",
+  "collspec.tab-files": "Files",
+  "collspec.tab-notice": "Full notice",
+  "collspec.return": "Return",
+  "collspec.consult": "Consult",
+  "collspec.ai-title": "Perform a search with AI",
+  "collspec.ai-explanation": "Explanation ...",
+  "collspec.ai-cancel": "Cancel",
+  "collspec.ai-link": "Start",
+  "collspec.ai-search-title": "Find Similar Images with AI",
+  "collspec.ai-search-description": "Explore visually similar items from our collection with just one click",
+  "collspec.ai-load-more": "Load more",
+  "collspec.ai-selected-img": "Selected image",
+  "collspec.ai-notification-title": "AI Search Title",
+  "collspec.ai-notification-content": "Here is a message for the AI search",
+
+  //variable pour texte dans nav top
+  "collspec.page-udem.breadcrumbs": "Lire plus",
+  "collspec.ai-search.breadcrumbs": "Recherche IA",
+
+  // Contact page
+  "collspec.contact-title": "Contact Us",
+  "collspec.contact-description": "For any questions or additional information regarding this platform, please do not hesitate to contact us.",
+  "collspec.contact-phone": "+123 456 7890",
+  "collspec.contact-email": "contact@example.ca",
+  "collspec.contact-links-title": "Stay in touch",
+  "collspec.contact-libraries": "Libraries",
+  "collspec.contact-udem": "University of Montreal",
+
+  // FAQ
+  "collspec.faq.titre": "FAQ - Your Questions, Our Answers",
+  "collspec.faq.description": "FAQ - Your Questions, Our Answers",
+
+  "collspec.droits.titre": "Copyright and Usage",
+  "collspec.droits.description": "Notice on the Use of Digital Object Collection Content"
+
+}

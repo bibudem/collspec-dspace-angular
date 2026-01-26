@@ -1,0 +1,49 @@
+<div class="carousel-bib-home">
+  <div class="container-fluid font-blue">
+    @if (loading) {
+    <!-- Affichage du composant de chargement -->
+    <ds-loading ></ds-loading>
+    }  @else {
+    <section class="slider__section">
+      @if (hasSlidesToDisplay) {
+      <div class="slider__wrapper">
+        <div class="slider__column">
+          <div class="slider__track">
+            <ul class="slider__list" #track>
+              <!-- Boucle sur chaque diapositive dupliquée -->
+              @for (slide of displaySlides; track trackByFn($index, slide)) {
+              <li class="slider__slide">
+                <!-- Lien vers la fiche de l'item vedette -->
+                <a [routerLink]="['/items', slide.id]">
+                  <!-- Image de l'item vedette -->
+                  <img [src]="slide.imageUrl" [alt]="slide.title" loading="lazy" />
+                  <div class="slider__caption">
+                    <h4>{{ slide.title }}</h4>
+                  </div>
+                </a>
+              </li>
+              }
+            </ul>
+          </div>
+          <!-- Flèches de navigation du carrousel -->
+          <button class="slider__arrow slider__arrow--prev" (click)="prevSlide()">‹</button>
+          <button class="slider__arrow slider__arrow--next" (click)="nextSlide()">›</button>
+        </div>
+      </div>
+      } @else {
+      <!-- Message affiché s'il n'y a aucune diapositive -->
+      <div class="no-images-message">No featured items available</div>
+      }
+
+      <!-- Titre et description traduits de la section vedette -->
+      <div class="col-md-12">
+        <div class="carousel-bib-title">
+          <i class="bi bi-quote display-1"></i>
+          <h2 class="fw-bold bib-title">{{ 'collspec.accueil.vedette.titre' | translate }}</h2>
+          <p>{{ 'collspec.accueil.vedette.description' | translate }}</p>
+        </div>
+      </div>
+    </section>
+    }
+  </div>
+</div>

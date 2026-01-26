@@ -1,0 +1,24 @@
+<section class="slider__section">
+  @if (hasSlidesToDisplay) {
+  <div class="slider__wrapper">
+    <div class="slider__column">
+      <div class="slider__track" #track>
+        <ul class="slider__list">
+          @for (slide of displaySlides; track trackByFn($index, slide)) {
+          <li class="slider__slide">
+            <a [routerLink]="['/items', slide.id]">
+              <img [src]="slide.imageUrl" [alt]="slide.title" loading="lazy">
+              <div class="slider__caption">
+                <h4><a href="/items/{{ slide.id }}">{{ slide.title }}</a></h4>
+              </div>
+            </a>
+          </li>
+          }
+        </ul>
+      </div>
+      <button class="slider__arrow slider__arrow--prev" (click)="prevSlide()">‹</button>
+      <button class="slider__arrow slider__arrow--next" (click)="nextSlide()">›</button>
+    </div>
+  </div>
+  }
+</section>

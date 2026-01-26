@@ -1,0 +1,73 @@
+<header id="main-site-header">
+  <div class="container h-100 d-flex flex-row flex-wrap align-items-center justify-content-between gapx-3 gapy-2" id="main-site-header-container">
+    <!-- Logo and navbar wrapper -->
+    <div id="header-left"
+         class="h-100 flex-fill d-flex flex-row flex-nowrap justify-content-start align-items-center gapx-3">
+      <a class="d-block my-2 my-md-0" href="/" [attr.aria-label]="'home.title' | translate" >
+        <img id="header-logo" src="/assets/collspec/images/logo-collspec.png" [attr.alt]="'menu.header.image.logo' | translate"/>
+      </a>
+      <!--<a class="d-block my-2 my-md-0 title titre-logo" routerLink="/" [attr.aria-label]="'home.title' | translate">
+        Collections <br>spéciales
+      </a>-->
+      <!-- Menu desktop - visible seulement sur écrans XL et plus -->
+      <nav class="navbar navbar-expand p-0 align-items-stretch align-self-stretch d-none d-xl-block" id="desktop-navbar" [attr.aria-label]="'nav.main.description' | translate">
+        <ul class="navbar-nav mr-auto menu-collspec">
+          <li class="nav-item"><a role="menuitem" class="ds-menu-item" href="/community-list">{{'collspec.menu.catalogues'| translate}}</a></li>
+          <li class="nav-item"><a role="menuitem" class="ds-menu-item" href="/page/guide">{{'collspec.menu.guide'| translate}}</a></li>
+          <li class="nav-item"><a role="menuitem" class="ds-menu-item" href="/page/a-propos">{{'collspec.menu.a-propos'| translate}}</a></li>
+          <li class="nav-item"><a role="menuitem" class="ds-menu-item" href="https://bib.umontreal.ca/nous-joindre/"
+           target="_blank">{{'collspec.menu.contact'| translate}}</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Search bar and other menus -->
+    <div id="header-right" class="h-100 d-flex flex-row flex-nowrap justify-content-end align-items-center gapx-1 ms-auto">
+       @if ((isMobile$ | async)!== true) {
+           <ds-search-navbar ></ds-search-navbar>
+        }
+      <ds-lang-switch></ds-lang-switch>
+      <ds-auth-nav-menu *ngIf="isAuthenticated | async"></ds-auth-nav-menu>
+      
+      <!-- Bouton Donate desktop -->
+      <a [href]="'collspec.donate.link' | translate"
+         class="btn btn-donate ms-2"
+         target="_blank"
+         rel="noopener noreferrer"
+         [attr.aria-label]="'collspec.donate.aria-label' | translate">
+        {{ 'collspec.donate.text' | translate }}
+      </a>
+
+      <!-- Bouton de menu mobile ET tablette -->
+      <div id="mobile-navbar-toggler" class="d-block d-xl-none ms-2">
+        <button id="navbar-toggler" class="btn btn-transparent" type="button" (click)="toggleNavbar()"
+                [attr.aria-label]="'nav.toggle' | translate" aria-controls="collapsible-mobile-navbar"
+                [attr.aria-expanded]="(isNavBarCollapsed$ | async) !== true">
+          <span class="fas fa-bars fa-fw fa-xl toggler-icon" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile & Tablet Navbar -->
+    <div class="w-100 order-last d-xl-none">
+      <nav id="collapsible-mobile-navbar" class="collapse" [ngClass]="{'show': !(isNavBarCollapsed$ | async)}">
+        <ul class="navbar-nav mr-auto menu-collspec text-start">
+          <li class="nav-item"><a role="menuitem" class="ds-menu-item" href="/communities">{{'collspec.menu.catalogues'| translate}}</a></li>
+          <li class="nav-item"><a role="menuitem" class="ds-menu-item" href="/page/guide">{{'collspec.menu.guide'| translate}}</a></li>
+          <li class="nav-item"><a role="menuitem" class="ds-menu-item" href="/page/a-propos">{{'collspec.menu.a-propos'| translate}}</a></li>
+          <li class="nav-item"><a role="menuitem" class="ds-menu-item" href="/info/feedback">{{'collspec.menu.contact'| translate}}</a></li>
+          <!-- Bouton Donate mobile -->
+          <li class="nav-item nav-item-donate">
+            <a [href]="'collspec.donate.link' | translate"
+               class="btn btn-donate-mobile"
+               target="_blank"
+               rel="noopener noreferrer"
+               [attr.aria-label]="'collspec.donate.aria-label' | translate">
+              {{ 'collspec.donate.text' | translate }}
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>

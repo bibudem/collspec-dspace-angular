@@ -1,0 +1,290 @@
+/* -------------------------------------------------------
+   Variables pour le thème collspec
+------------------------------------------------------- */
+@import 'src/themes/collspec/styles/_variables.scss';
+
+/* -------------------------------------------------------
+   Composant principal : Carrousel vedette
+------------------------------------------------------- */
+
+.bib-title {
+  font-weight: 500!important;
+  font-family: $font-family-serif;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: 'liga' off, 'clig' off;
+  margin-bottom: 1rem;
+  color: $darkblue!important;
+  text-align: left;
+  margin-top: 5%;
+  width: 40%;
+  margin-left: 8%;
+  padding-left: 15px;
+  &:hover {
+    color: white;
+  }
+}
+
+p {
+  text-align: left;
+  margin-left: 20%;
+  padding-right: 10%;
+  color: $colltitre;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: $font-family-sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 21px */
+}
+
+.slider {
+  &__section {
+    margin-inline: auto;
+    padding-block: 2.5rem;
+    margin-left: 5.5rem;
+  }
+
+  &__wrapper {
+    max-width: 100vw;
+    margin-inline: auto;
+    position: relative;
+  }
+
+  &__column {
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__track {
+    overflow: hidden;
+    width: 100%;
+    margin-left: 8%;
+    padding-left: 15px;
+  }
+
+  &__list {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    will-change: transform;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    gap: 1rem;
+  }
+
+  &__slide {
+    flex: 0 0 calc(100% / 1.5);
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-left: 0;
+
+    img {
+      width: 100%;
+      height: 460px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover img {
+      transform: scale(1.03);
+    }
+  }
+
+  &__caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+    color: white;
+    padding: 1.5rem 1rem;
+
+    h4 {
+      margin: 0;
+      margin-left:1.5rem;
+      font-size: 1.5rem;
+      font-weight: 500;
+      font-family: $font-family-serif;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: white;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    a {
+      color: white !important;
+    }
+  }
+
+  &__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(11, 17, 58, 0.3);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    &--prev {
+      left: 0;
+    }
+
+    &--next {
+      right: 0;
+    }
+  }
+}
+
+
+@media (max-width: 992px) {
+  .slider {
+    &__section {
+      padding-block: 1rem;
+      margin-left: -1% !important;
+    }
+
+    &__track {
+      margin-left: 0;
+    }
+
+    &__column {
+      padding: 0 1.5rem;
+    }
+
+    &__slide {
+      flex: 0 0 100%;
+      img {
+        height: 360px;
+      }
+    }
+
+    &__caption {
+      padding: 1rem 0.8rem;
+
+      h4 {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+
+  .slider {
+    &__section {
+      margin-left: -1% !important;
+    }
+    &__slide {
+      flex: 0 0 100%;
+      margin-left: 0;
+
+      img {
+        height: 300px;
+      }
+      .bib-title {
+        font-size: 1.5rem;
+        margin: 1.5rem auto 1rem 8%;
+      }
+    }
+  }
+
+  .hero-section h1, .hero-section .h1 {
+    font-size: 42px;
+    margin-top: 70%;
+    margin-left: -25px;
+    line-height: 1;
+  }
+
+  .carousel-bib-home {
+    padding: 0 0.5rem;
+  }
+
+
+
+  .bib-title {
+    margin-top: 1.5rem;
+    font-size: 1.5rem;
+  }
+
+  .slider {
+    &__section {
+      padding-block: 0.5rem;
+    }
+
+    &__column {
+      padding: 0 1rem;
+    }
+
+    &__slide {
+      flex: 0 0 calc(100% / 1.5);
+    }
+
+    &__caption {
+      padding: 0.8rem 0.6rem;
+
+      h4 {
+        font-size: 0.8rem;
+      }
+    }
+
+    &__arrow {
+      width: 30px;
+      height: 30px;
+      font-size: 1rem;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .slider {
+    &__slide {
+      flex: 0 0 100%;
+
+      img {
+        height: 250px;
+      }
+    }
+
+    &__list {
+      gap: 0.5rem;
+    }
+
+    &__caption {
+      padding: 0.6rem 0.5rem;
+
+      h4 {
+        font-size: 0.7rem;
+      }
+    }
+  }
+
+  .bib-title {
+    font-size: 1.3rem;
+    margin-top: 1rem;
+  }
+}
+
+.loading-indicator,
+.error-message,
+.no-images-message {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}

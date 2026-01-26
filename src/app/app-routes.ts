@@ -44,6 +44,8 @@ import { PROCESS_MODULE_PATH } from './process-page/process-page-routing.paths';
 import { viewTrackerResolver } from './statistics/angulartics/dspace/view-tracker.resolver';
 import { provideSubmissionState } from './submission/provide-submission-state';
 import { SUGGESTION_MODULE_PATH } from './suggestions-page/suggestions-page-routing-paths';
+import {PagesComponent} from "../themes/collspec/app/pages/pages.component";
+import {i18nBreadcrumbResolver} from "./core/breadcrumbs/i18n-breadcrumb.resolver";
 
 export const APP_ROUTES: Route[] = [
   { path: INTERNAL_SERVER_ERROR, component: ThemedPageInternalServerErrorComponent },
@@ -54,6 +56,15 @@ export const APP_ROUTES: Route[] = [
     canActivateChild: [ServerCheckGuard],
     children: [
       { path: '', redirectTo: '/home', pathMatch: 'full' },
+      {
+        path: 'page/:page',
+        component: PagesComponent,
+        pathMatch: 'full',
+        resolve: { breadcrumb: i18nBreadcrumbResolver },
+        data: { title: 'collspec.page-udem', breadcrumbKey: 'collspec.page-udem' },
+        canActivate: [endUserAgreementCurrentUserGuard]
+      },
+      //fin add UdeM
       {
         path: 'reload/:rnd',
         component: ThemedPageNotFoundComponent,

@@ -1,0 +1,281 @@
+/* =============================================
+   STYLES GÉNÉRAUX DU HEADER
+   ============================================= */
+
+#main-site-header {
+  position: relative;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin: 1.75rem 5rem;
+  border-radius: 1rem;
+  background: white;
+  z-index: 10 !important;
+  overflow: visible;
+}
+
+.titre-logo {
+  margin-top: 1.5rem !important;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 0.9;
+  color: #192b33;
+  font-family: Lora, serif !important;
+}
+
+.titre-logo:hover {
+  text-decoration: underline !important;
+  text-decoration-color: #004080;
+}
+
+
+/* =============================================
+   BOUTON DONATE
+   ============================================= */
+
+.btn-donate {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #0B113A !important;
+  background: transparent !important;
+  color: #0B113A !important;
+  padding: 10px 15px !important;
+  border-radius: 60px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+  white-space: nowrap;
+}
+
+.btn-donate::after {
+  content: '→';
+  font-size: 20px;
+  font-weight: 500;
+  margin-left: 7px;
+}
+
+.btn-donate:hover {
+  background-color: #0B113A !important;
+  color: white !important;
+  text-decoration: none !important;
+  box-shadow: 0 4px 12px rgba(11, 17, 58, 0.2);
+}
+
+.btn-donate:hover::after {
+  opacity: 1;
+  transform: translateX(20%);
+  color: white;
+}
+
+/* Version mobile du bouton Donate */
+.btn-donate-mobile {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #0B113A !important;
+  background: transparent !important;
+  color: #0B113A !important;
+  padding: 12px 20px !important;
+  border-radius: 60px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+  width: calc(100% - 2rem);
+  margin: 0.5rem 1rem !important;
+  text-align: center;
+  justify-content: center;
+}
+
+.btn-donate-mobile::after {
+  content: '→';
+  font-size: 20px;
+  font-weight: 500;
+  margin-left: 7px;
+}
+
+.btn-donate-mobile:hover {
+  background-color: #0B113A !important;
+  color: white !important;
+  text-decoration: none !important;
+  box-shadow: 0 4px 12px rgba(11, 17, 58, 0.2);
+}
+
+/* =============================================
+   MENU MOBILE & TABLETTE
+   ============================================= */
+
+#mobile-navbar-toggler {
+  display: none;
+}
+
+#navbar-toggler {
+  padding: 0.5rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+#navbar-toggler[aria-expanded="true"] {
+  transform: rotate(90deg);
+}
+
+.toggler-icon {
+  color: #0059ab;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+#navbar-toggler:hover .toggler-icon {
+  color: #004080;
+}
+
+#collapsible-mobile-navbar {
+  background-color: #f8f9fa;
+  border-top: 1px solid #dee2e6;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  position: relative;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 0 1rem;
+}
+
+#collapsible-mobile-navbar.show {
+  max-height: 600px;
+  padding: 1rem;
+  border-radius: 0 0 16px 16px;
+}
+
+#collapsible-mobile-navbar .menu-collspec {
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+}
+
+#collapsible-mobile-navbar .nav-item {
+  margin: 0 !important;
+  border-bottom: 1px solid #e9ecef;
+  padding: 0;
+}
+
+#collapsible-mobile-navbar .nav-item:last-child {
+  border-bottom: none;
+}
+
+#collapsible-mobile-navbar .ds-menu-item {
+  display: block;
+  padding: 0.75rem 1rem;
+  color: #192b33;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-family: 'Figtree', sans-serif;
+}
+
+#collapsible-mobile-navbar .ds-menu-item:hover {
+  background-color: #e9ecef;
+  color: #004080;
+}
+
+/* Style spécifique pour l'item Donate dans le menu mobile */
+#collapsible-mobile-navbar .nav-item-donate {
+  border-bottom: none;
+  margin-top: 0.5rem !important;
+  padding: 0;
+}
+
+#collapsible-mobile-navbar .nav-item-donate .btn-donate-mobile {
+  margin: 0.5rem 0 !important;
+}
+
+/* =============================================
+   MEDIA QUERIES - TABLETTE (768px - 1199px)
+   ============================================= */
+
+@media (max-width: 1199.98px) {
+  #desktop-navbar {
+    display: none !important;
+  }
+  
+  #mobile-navbar-toggler {
+    display: block !important;
+  }
+  
+  .btn-donate {
+    display: none !important;
+  }
+  
+  #header-right {
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+  }
+  
+  #header-logo {
+    max-height: 40px;
+  }
+}
+
+/* =============================================
+   MEDIA QUERIES - MOBILE (jusqu'à 767px)
+   ============================================= */
+
+@media (max-width: 767.98px) {
+  #main-site-header {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin: 0;
+    border-radius: 0;
+  }
+  
+  #header-logo {
+    display: block;
+    margin-left: 1.5rem;
+    margin-right: auto;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+    max-height: 35px;
+  }
+  
+  .titre-logo {
+    margin-top: 1rem !important;
+    font-size: 18px;
+  }
+  
+  #collapsible-mobile-navbar {
+    border-radius: 0;
+  }
+  
+  #collapsible-mobile-navbar.show {
+    border-radius: 0;
+  }
+}
+
+/* =============================================
+   MEDIA QUERIES - DESKTOP (1200px et plus)
+   ============================================= */
+
+@media (min-width: 1200px) {
+  #collapsible-mobile-navbar {
+    display: none !important;
+  }
+  
+  #mobile-navbar-toggler {
+    display: none !important;
+  }
+  
+  .btn-donate {
+    display: inline-flex !important;
+  }
+  
+  #desktop-navbar {
+    display: block !important;
+  }
+}

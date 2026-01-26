@@ -1,0 +1,63 @@
+{
+  "collspec.cookies.consent.content-notice.description":"Vos données personnelles sont récupérées et utilisées dans les contextes suivants : <strong>authentification, préférences, consentement et statistiques</strong>. <br> Pour plus d'informations, veuillez vous référer à la <a href="https://vie-privee.umontreal.ca/confidentialite">politique de protection de la vie privée.</a>"
+  
+  "collspec.menu.a-propos": "À propos",
+  "collspec.menu.guide": "Guide collections",
+  "collspec.menu.contact": "Nous joindre",
+  "collspec.menu.catalogues": "Catalogues",
+
+  // "repository.title.prefix": "DSpace Angular :: ",
+  "repository.title.prefix": "Collections spéciales :: ",
+  "collspec.onglet-fichier": "Fichiers",
+  "collspec.onglet-notice": "Notice complète",
+  "collspec.return": "Retour",
+  "collspec.consulter": "Consulter",
+  "collspec.ai-titre": "Effectuer une recherche avec IA",
+  "collspec.ai-explication": "Explication ...",
+  "collspec.ai-annuler": "Annuler",
+  "collspec.ai-lien": "Commencer",
+  "collspec.ai-search-title": "Trouver des images similaires avec l'IA",
+  "collspec.ai-search-description": "Explorez des objets visuellement similaires de notre collection en un seul clic",
+  "collspec.ai-charger": "Charger plus",
+  "collspec.ai-img-selection": "Image sélectionnée",
+  "collspec.ai-title-notification": "Titre recherche Ai",
+  "collspec.ai-content-notification": "Voici un message pour la recherche Ai",
+
+  //variable pour texte dans nav top
+  "collspec.page-udem.breadcrumbs": "Lire plus",
+  "collspec.voir.plus": "Voir plus",
+  "collspec.ai-search.breadcrumbs": "Recherche IA",
+
+  "collspec.accueil.titre": "Collections <br> spéciales",
+
+  "collspec.accueil.vedette.titre": "Découvrez nos meilleures publications",
+
+  "collspec.accueil.vedette.description": "Découvrez notre collection exclusive d'articles en vedette, méticuleusement sélectionnés pour vous offrir le meilleur de notre contenu. Chaque article a été choisi avec soin afin de vous proposer une expérience enrichissante et captivante, reflétant notre engagement à vous présenter des informations de qualité et des perspectives uniques.",
+
+  "collspec.faq.titre": "FAQ - Vos Questions, Nos Réponses",
+
+  "collspec.faq.description": "Trouvez rapidement les informations essentielles pour mieux naviguer sur notre site",
+
+  "collspec.droits.titre": "Droit d'auteur et utilisation",
+
+  "collspec.droits.description": "Avis sur l'utilisation du contenu des collections d'objets numériques",
+
+  "collspec.collection.decouvrir": "Explorer la collection",
+
+  //footer
+  "collspec.footer.bibliotheque": "Les bibliothèques de l’Université de Montréal",
+  "collspec.footer.emergency": "Urgence 514 343-7771",
+  "collspec.footer.contact.titre": "Nous joindre",
+  "collspec.footer.contact.clavarder": "Clavarder avec l'équipe des bibliothèques",
+  "collspec.footer.infos.titre": "Infos",
+  "collspec.footer.infos.a_propos": "À propos",
+  "collspec.footer.infos.a_propos.description": "Ce portail vous permet d'explorer une sélection d'articles issus des collections spéciales de la Bibliothèque de l’Université de Montréal. Ces documents, conservés pour leur valeur historique, académique ou culturelle, sont accessibles pour consultation et recherche.",
+  "collspec.footer.liens.confidentialite": "Confidentialité",
+  "collspec.footer.liens.accord_utilisateur": " Condition d’utilisation",
+  "collspec.footer.copyright": "© Université de Montréal, {{year}}. Tous droits réservés",
+
+  "collspec.donate.text": "Je donne",
+  "collspec.donate.link": "https://bib.umontreal.ca/nous-soutenir/",
+  "collspec.donate.aria-label": "Faire un don"
+
+}

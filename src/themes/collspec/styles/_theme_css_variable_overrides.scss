@@ -1,0 +1,105 @@
+// Override or add CSS variables for your theme here
+/* -------------------------------------------------------
+   Variables pour le thème blue fonsé
+---------------------------------------------------------- */
+@import './_variables.scss';
+
+// Override or add CSS variables for your theme here
+
+:root {
+  --bs-primary: #{$green};
+  --bs-secondary: #{$autreblue};
+
+  --ds-header-height: 100px;
+  --ds-header-logo-height: 60px;
+  --ds-header-logo-height-xs: 53px;
+  --ds-header-icon-color: #{$autreblue};
+  --ds-header-icon-color-hover: #{$blue};
+
+  --ds-navbar-link-color: #{$darkblue};
+  --ds-navbar-link-color-hover: #{$green};
+  --ds-navbar-item-vertical-padding: 0.75rem;
+  --ds-navbar-item-horizontal-padding: 0.75rem;
+
+  --ds-header-navbar-border-bottom-color: #{$darkblue};
+  --ds-header-navbar-border-bottom-height: 1px;
+  --ds-header-navbar-border-top-color: #{$darkblue};
+  --ds-expandable-navbar-link-color: #{$blue};
+  --ds-expandable-navbar-link-color-hover: #{$autreblue};
+
+  --ds-breadcrumb-bg: #{$white} !important;
+  --ds-breadcrumb-link-color: #{$darkblue};
+  --ds-breadcrumb-link-active-color: #{$blue};
+  --ds-breadcrumb-link-color-hover: #{$autreblue};
+
+  --ds-slider-color: #{$lightgreen};
+  --ds-sidebar-z-index: 20;
+
+  --ds-admin-sidebar-bg: #{$ds-admin-sidebar-bg};
+  --ds-admin-sidebar-active-bg: #{$ds-admin-sidebar-active-bg};
+  --ds-admin-sidebar-header-bg: #{darken($ds-admin-sidebar-bg, 7%)};
+  --ds-admin-sidebar-logo-height: 20px;
+  --ds-admin-sidebar-fixed-element-width: #{$ds-admin-sidebar-fixed-element-width};
+  --ds-admin-sidebar-fixed-element-z-index: 10;
+  --ds-admin-sidebar-collapsible-element-width: #{$ds-admin-sidebar-collapsible-element-width};
+  --ds-admin-sidebar-total-width: #{$ds-admin-sidebar-total-width};
+  --ds-admin-sidebar-link-color: #{$gray};
+  --ds-admin-sidebar-link-hover-color: #{$extralightgreen};
+  --ds-admin-sidebar-item-padding: 1rem;
+  --ds-admin-sidebar-section-indent: .75rem;
+
+  --ds-dark-scrollbar-bg: #{$ds-admin-sidebar-active-bg};
+  --ds-dark-scrollbar-alt-bg: #{lighten($ds-admin-sidebar-active-bg, 2%)};
+  --ds-dark-scrollbar-fg: #{$ds-admin-sidebar-fg};
+  --ds-dark-scrollbar-width: 8px;
+
+  --ds-submission-sections-margin-bottom: .5rem;
+
+  --ds-edit-item-button-min-width: 100px;
+  --ds-edit-item-metadata-field-width: 190px;
+  --ds-edit-item-language-field-width: 43px;
+
+  --ds-thumbnail-max-width: 125px;
+  --ds-thumbnail-placeholder-background: #{$gray-100};
+  --ds-thumbnail-placeholder-border: 1px solid #{$gray-300};
+  --ds-thumbnail-placeholder-color: #{lighten($greensecondary, 7%)};
+
+  --ds-dso-selector-list-max-height: 475px;
+  --ds-dso-selector-current-background-color: #eeeeee;
+  --ds-dso-selector-current-background-hover-color: #{darken(#eeeeee, 10%)};
+  --ds-notification-bg-success: #{darken(adjust-hue($success, -10), 10%)};
+  --ds-notification-bg-danger: #{darken(adjust-hue($danger, -10), 10%)};
+  --ds-notification-bg-info: #{darken(adjust-hue($info, -10), 10%)};
+  --ds-notification-bg-warning: #{darken(adjust-hue($warning, -10), 10%)};
+  --ds-breadcrumb-link-color: #{$darkblue};
+  --ds-breadcrumb-link-active-color: #{$autreblue};
+  --ds-breadcrumb-max-length: 200px;
+
+  --ds-slider-handle-width: 18px;
+  --ds-slider-handle-color: #{darken($blue, 17%)};
+
+  --ds-search-form-scope-max-width: 150px;
+
+  --ds-context-x-offset: -16px;
+  --ds-context-help-icon-size: 16px;
+  --ds-context-help-tooltip-width: 300px;
+  --ds-context-help-tooltip-link-color: $white;
+
+  --ds-gap: 0.25rem;
+
+  --ds-dso-edit-field-width: 210px;
+  --ds-dso-edit-lang-width: 90px;
+  --ds-dso-edit-actions-width: 173px;
+  --ds-dso-edit-virtual-tooltip-min-width: 300px;
+
+  --ds-comcol-logo-max-width: 500px;
+  --ds-comcol-logo-max-height: 500px;
+
+  --ds-primary-bg: #{$ds-primary-bg};
+  --ds-secondary-bg: #{$ds-secondary-bg};
+  --ds-success-bg: #{$ds-success-bg};
+  --ds-info-bg: #{$ds-info-bg};
+  --ds-warning-bg: #{$ds-warning-bg};
+  --ds-danger-bg: #{$ds-danger-bg};
+}
+

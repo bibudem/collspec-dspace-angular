@@ -1,2 +1,3 @@
 config.*.yml
+!config.collspec.yml
 !config.example.yml

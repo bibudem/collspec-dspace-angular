@@ -1,0 +1,48 @@
+<!-- Section home-page avec image de fond -->
+<div class="hero-section">
+  <div class="hero-overlay">
+    <h1 [innerHTML]="'collspec.accueil.titre' | translate"></h1>
+    <!-- Barre de recherche avec filtres -->
+    <div class="search-bar">
+      <ds-search-form [inPlaceSearch]="false"
+                      [searchPlaceholder]="'home.search-form.placeholder' | translate">
+      </ds-search-form>
+    </div>
+  </div>
+</div>
+<ds-home-coar></ds-home-coar>
+<ds-vedette-liste></ds-vedette-liste>
+<ds-home-news></ds-home-news>
+
+<div [ngClass]="appConfig.homePage.showDiscoverFilters ? 'container-fluid' : 'container'">
+  <div class="row">
+    <div class="col-sm-3" *ngIf="appConfig.homePage.showDiscoverFilters">
+      @if (showDiscoverFilters) {
+        <ds-configuration-search-page
+          [sideBarWidth]="3"
+          [showViewModes]="false"
+          [searchEnabled]="false"
+          [inPlaceSearch]="false"
+          [showScopeSelector]="false">
+          <ng-container searchContentTop *ngTemplateOutlet="homeContent"></ng-container>
+        </ds-configuration-search-page>
+        }
+        @if (!showDiscoverFilters) {
+        <div class="container">
+          <ng-container *ngTemplateOutlet="homeContent"></ng-container>
+        </div>
+      }
+    </div>
+    <div [ngClass]="appConfig.homePage.showDiscoverFilters ? 'col-sm-9' : 'col-sm-12'">
+      <ds-top-level-community-list></ds-top-level-community-list>
+    </div>
+  </div>
+</div>
+<ds-suggestions-popup></ds-suggestions-popup>
+
+<ng-template #homeContent>
+    @if (recentSubmissionspageSize>0) {
+      <ds-recent-item-list></ds-recent-item-list>
+    }
+</ng-template>
+

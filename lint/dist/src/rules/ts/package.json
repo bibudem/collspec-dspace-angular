@@ -1,6 +1,0 @@
-{
-  "name": "eslint-plugin-dspace-angular-ts",
-  "version": "0.0.0",
-  "main": "./index.js",
-  "private": true
-}
