@@ -36,4 +36,31 @@
   "collspec.droits.titre": "Copyright and Usage",
   "collspec.droits.description": "Notice on the Use of Digital Object Collection Content"
 
+  "collspec.footer.liens.confidentialite": "Privacy",
+
+  "collspec.footer.liens.accord_utilisateur": "Terms of Use",
+
+  "collspec.footer.param.confidentiel": "Customize cookies",
+
+  "collspec.footer.copyright": "© Université de Montréal, {{year}}. All rights reserved",
+
+  "collspec.footer.contact.clavarder": "Chat with the library team",
+
+  "collspec.accueil.titre": "Special <br> Collections",
+
+  "collspec.menu.a-propos": "About",
+
+  "collspec.menu.guide": "Collections guide",
+
+  "collspec.menu.contact": "Contact us",
+
+  "collspec.menu.catalogues": "Catalogues",
+
+  "collspec.donate.text": "Donate",
+
+  "collspec.donate.link": "https://bib.umontreal.ca/nous-soutenir/",
+
+  "collspec.donate.aria-label": "Make a donation",
+
+  "collspec.onglet-fichier": "Files"
 }

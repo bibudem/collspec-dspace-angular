@@ -4782,10 +4782,10 @@
   "repository.image.logo": "Logo du dépôt",
 
   // "repository.title": "DSpace Repository",
-  "repository.title": "Dépôt DSpace",
+  "repository.title": "Collections spéciales",
 
   // "repository.title.prefix": "DSpace Repository :: ",
-  "repository.title.prefix": "Dépôt DSpace :: ",
+  "repository.title.prefix": "Collections spéciales :: ",
 
   "resource-policies.add.button": "Ajouter",
 

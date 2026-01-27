@@ -7213,4 +7213,86 @@
   "item.preview.organization.address.addressLocality": "City",
 
   "item.preview.organization.alternateName": "Alternative name",
+
+   "collspec.tab-files": "Files",
+
+  "collspec.tab-notice": "Full notice",
+
+  "collspec.return": "Return",
+
+  "collspec.consult": "Consult",
+
+  "collspec.ai-title": "Perform a search with AI",
+
+  "collspec.ai-explanation": "Explanation ...",
+
+  "collspec.ai-cancel": "Cancel",
+
+  "collspec.ai-link": "Start",
+
+  "collspec.ai-search-title": "Find Similar Images with AI",
+
+  "collspec.ai-search-description": "Explore visually similar items from our collection with just one click",
+
+  "collspec.ai-load-more": "Load more",
+
+  "collspec.ai-selected-img": "Selected image",
+
+  "collspec.ai-notification-title": "AI Search Title",
+
+  "collspec.ai-notification-content": "Here is a message for the AI search",
+
+  "collspec.page-udem.breadcrumbs": "Lire plus",
+
+  "collspec.ai-search.breadcrumbs": "Recherche IA",
+
+  "collspec.contact-title": "Contact Us",
+
+  "collspec.contact-description": "For any questions or additional information regarding this platform, please do not hesitate to contact us.",
+
+  "collspec.contact-phone": "+123 456 7890",
+
+  "collspec.contact-email": "contact@example.ca",
+
+  "collspec.contact-links-title": "Stay in touch",
+
+  "collspec.contact-libraries": "Libraries",
+
+  "collspec.contact-udem": "University of Montreal",
+
+  "collspec.faq.titre": "FAQ - Your Questions, Our Answers",
+
+  "collspec.faq.description": "FAQ - Your Questions, Our Answers",
+
+  "collspec.droits.titre": "Copyright and Usage",
+
+  "collspec.droits.description": "Notice on the Use of Digital Object Collection Content",
+
+  "collspec.footer.liens.confidentialite": "Privacy",
+
+  "collspec.footer.liens.accord_utilisateur": "Terms of Use",
+
+  "collspec.footer.param.confidentiel": "Customize cookies",
+
+  "collspec.footer.copyright": "© Université de Montréal, {{year}}. All rights reserved",
+
+  "collspec.footer.contact.clavarder": "Chat with the library team",
+
+  "collspec.accueil.titre": "Special <br> Collections",
+
+  "collspec.menu.a-propos": "About",
+
+  "collspec.menu.guide": "Collections guide",
+
+  "collspec.menu.contact": "Contact us",
+
+  "collspec.menu.catalogues": "Catalogues",
+
+  "collspec.donate.text": "Donate",
+
+  "collspec.donate.link": "https://bib.umontreal.ca/nous-soutenir/",
+
+  "collspec.donate.aria-label": "Make a donation",
+
+  "collspec.onglet-fichier": "Files"
 }
