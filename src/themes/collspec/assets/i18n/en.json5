@@ -1,66 +1,59 @@
 {
-  // "repository.title.prefix": "DSpace Angular :: ",
-  "repository.title.prefix": "Collections spéciales :: ",
-  "collspec.tab-files": "Files",
-  "collspec.tab-notice": "Full notice",
-  "collspec.return": "Return",
-  "collspec.consult": "Consult",
-  "collspec.ai-title": "Perform a search with AI",
-  "collspec.ai-explanation": "Explanation ...",
-  "collspec.ai-cancel": "Cancel",
-  "collspec.ai-link": "Start",
-  "collspec.ai-search-title": "Find Similar Images with AI",
-  "collspec.ai-search-description": "Explore visually similar items from our collection with just one click",
-  "collspec.ai-load-more": "Load more",
-  "collspec.ai-selected-img": "Selected image",
-  "collspec.ai-notification-title": "AI Search Title",
-  "collspec.ai-notification-content": "Here is a message for the AI search",
-
-  //variable pour texte dans nav top
-  "collspec.page-udem.breadcrumbs": "Lire plus",
-  "collspec.ai-search.breadcrumbs": "Recherche IA",
-
-  // Contact page
-  "collspec.contact-title": "Contact Us",
-  "collspec.contact-description": "For any questions or additional information regarding this platform, please do not hesitate to contact us.",
-  "collspec.contact-phone": "+123 456 7890",
-  "collspec.contact-email": "contact@example.ca",
-  "collspec.contact-links-title": "Stay in touch",
-  "collspec.contact-libraries": "Libraries",
-  "collspec.contact-udem": "University of Montreal",
-
-  // FAQ
-  "collspec.faq.titre": "FAQ - Your Questions, Our Answers",
-  "collspec.faq.description": "FAQ - Your Questions, Our Answers",
-
-  "collspec.droits.titre": "Copyright and Usage",
-  "collspec.droits.description": "Notice on the Use of Digital Object Collection Content"
-
-  "collspec.footer.liens.confidentialite": "Privacy",
-
-  "collspec.footer.liens.accord_utilisateur": "Terms of Use",
-
-  "collspec.footer.param.confidentiel": "Customize cookies",
-
-  "collspec.footer.copyright": "© Université de Montréal, {{year}}. All rights reserved",
-
-  "collspec.footer.contact.clavarder": "Chat with the library team",
-
-  "collspec.accueil.titre": "Special <br> Collections",
+  "collspec.cookies.consent.content-notice.description": "Your personal data is collected and used in the following contexts: <strong>authentication, preferences, consent, and statistics</strong>. <br> For more information, please refer to the <a href=\"https://vie-privee.umontreal.ca/confidentialite\">privacy policy</a>.",
 
   "collspec.menu.a-propos": "About",
-
   "collspec.menu.guide": "Collections guide",
-
   "collspec.menu.contact": "Contact us",
-
   "collspec.menu.catalogues": "Catalogues",
 
+  "repository.title.prefix": "Special Collections :: ",
+
+  "collspec.onglet-fichier": "Files",
+  "collspec.onglet-notice": "Full record",
+  "collspec.return": "Back",
+  "collspec.consulter": "View",
+
+  "collspec.ai-titre": "Search using AI",
+  "collspec.ai-explication": "Explanation ...",
+  "collspec.ai-annuler": "Cancel",
+  "collspec.ai-lien": "Get started",
+  "collspec.ai-search-title": "Find similar images with AI",
+  "collspec.ai-search-description": "Explore visually similar items from our collection in a single click",
+  "collspec.ai-charger": "Load more",
+  "collspec.ai-img-selection": "Selected image",
+  "collspec.ai-title-notification": "AI search title",
+  "collspec.ai-content-notification": "Here is a message for the AI search",
+
+  "collspec.page-udem.breadcrumbs": "Read more",
+  "collspec.voir.plus": "See more",
+  "collspec.ai-search.breadcrumbs": "AI search",
+
+  "collspec.accueil.titre": "Special <br> Collections",
+  "collspec.accueil.vedette.titre": "Discover our featured publications",
+  "collspec.accueil.vedette.description": "Explore our exclusive collection of featured items, carefully curated to offer you the very best of our content. Each item has been thoughtfully selected to provide a rich and engaging experience, reflecting our commitment to delivering high-quality information and unique perspectives.",
+
+  "collspec.faq.titre": "FAQ – Your Questions, Answered",
+  "collspec.faq.description": "Quickly find essential information to better navigate our site",
+
+  "collspec.droits.titre": "Copyright and usage",
+  "collspec.droits.description": "Notice regarding the use of digital collection items",
+
+  "collspec.collection.decouvrir": "Explore the collection",
+
+  "collspec.footer.bibliotheque": "Libraries of the Université de Montréal",
+  "collspec.footer.emergency": "Emergency 514 343-7771",
+  "collspec.footer.contact.titre": "Contact us",
+  "collspec.footer.contact.clavarder": "Chat with the library team",
+
+  "collspec.footer.infos.titre": "Information",
+  "collspec.footer.infos.a_propos": "About",
+  "collspec.footer.infos.a_propos.description": "This portal allows you to explore a selection of items from the Special Collections of the Université de Montréal Libraries. These documents, preserved for their historical, academic, or cultural value, are available for consultation and research.",
+
+  "collspec.footer.liens.confidentialite": "Privacy",
+  "collspec.footer.liens.accord_utilisateur": "Terms of Use",
+  "collspec.footer.copyright": "© Université de Montréal, {{year}}. All rights reserved",
+
   "collspec.donate.text": "Donate",
-
   "collspec.donate.link": "https://bib.umontreal.ca/nous-soutenir/",
-
-  "collspec.donate.aria-label": "Make a donation",
-
-  "collspec.onglet-fichier": "Files"
+  "collspec.donate.aria-label": "Make a donation"
 }
