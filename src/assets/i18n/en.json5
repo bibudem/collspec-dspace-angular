@@ -3399,7 +3399,7 @@
 
   "login.form.new-user": "New user? Click here to register.",
 
-  "login.form.oidc": "Log in with OIDC",
+  "login.form.oidc": "UdeM Authentication",
 
   "login.form.orcid": "Log in with ORCID",
 
