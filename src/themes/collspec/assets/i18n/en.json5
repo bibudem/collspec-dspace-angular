@@ -53,6 +53,8 @@
   "collspec.footer.sofia": "Sofia Catalogue",
   "collspec.footer.data-base": "A–Z Databases",
   "collspec.footer.contact.site-bib": "Library website",
+  "collspec.footer.param.confidentiel": "Privacy settings",
+
 
   "collspec.donate.text": "Donate",
   "collspec.donate.link": "https://bib.umontreal.ca/nous-soutenir/",
