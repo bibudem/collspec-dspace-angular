@@ -56,6 +56,7 @@
   "collspec.footer.liens.accord_utilisateur": " Condition d’utilisation",
   "collspec.footer.copyright": "© Université de Montréal, {{year}}. Tous droits réservés",
   "collspec.footer.sofia": "Catalogue Sofia",
+  "collspec.footer.param.confidentiel": "Personnaliser les témoins",
 
   "collspec.footer.data-base": "Base de données A-Z",
 
