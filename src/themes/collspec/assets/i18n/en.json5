@@ -1,5 +1,5 @@
 {
-  "collspec.cookies.consent.content-notice.description": "Your personal data is collected and used in the following contexts: <strong>authentication, preferences, consent, and statistics</strong>. <br> For more information, please refer to the <a href=\"https://vie-privee.umontreal.ca/confidentialite\">privacy policy</a>.",
+  "collspec.cookies.consent.content-notice.description": 'Your personal data is collected and used for the following purposes: <strong>authentication, preferences, consent, and statistics</strong>.<br>For more information, please refer to the <a href="https://vie-privee.umontreal.ca/confidentialite">privacy policy</a>.',
 
   "collspec.menu.a-propos": "About",
   "collspec.menu.guide": "Collections guide",
