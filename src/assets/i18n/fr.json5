@@ -3596,7 +3596,7 @@
 
   "login.form.new-user": "Pas encore de compte? Cliquer ici pour vous enregistrer.",
 
-  "login.form.oidc": "Connexion par OpenID",
+  "login.form.oidc": "Authentification UdeM",
 
   "login.form.orcid": "Se connecter via ORCID",
 
