@@ -55,6 +55,13 @@
   "collspec.footer.liens.confidentialite": "Confidentialité",
   "collspec.footer.liens.accord_utilisateur": " Condition d’utilisation",
   "collspec.footer.copyright": "© Université de Montréal, {{year}}. Tous droits réservés",
+  "collspec.footer.sofia": "Catalogue Sofia",
+
+  "collspec.footer.data-base": "Base de données A-Z",
+
+  "collspec.footer.infos.a_propos": "À propos",
+
+  "collspec.footer.contact.site-bib": "Site des bibliothèques",
 
   "collspec.donate.text": "Je donne",
   "collspec.donate.link": "https://bib.umontreal.ca/nous-soutenir/",
