@@ -1,5 +1,5 @@
 {
-  "collspec.cookies.consent.content-notice.description": 'Your personal data is collected and used for the following purposes: <strong>authentication, preferences, consent, and statistics</strong>.<br>For more information, please refer to the <a href="https://vie-privee.umontreal.ca/confidentialite">privacy policy</a>.',
+  "collspec.cookies.consent.content-notice.description": "Your personal data is collected and used for the following purposes: <strong>authentication, preferences, consent, and statistics</strong>.<br>For more information, please refer to the <a href=\"https://vie-privee.umontreal.ca/confidentialite\">privacy policy</a>.",
 
   "collspec.menu.a-propos": "About",
   "collspec.menu.guide": "Collections guide",
@@ -44,14 +44,15 @@
   "collspec.footer.emergency": "Emergency 514 343-7771",
   "collspec.footer.contact.titre": "Contact us",
   "collspec.footer.contact.clavarder": "Chat with the library team",
-
   "collspec.footer.infos.titre": "Information",
   "collspec.footer.infos.a_propos": "About",
   "collspec.footer.infos.a_propos.description": "This portal allows you to explore a selection of items from the Special Collections of the Université de Montréal Libraries. These documents, preserved for their historical, academic, or cultural value, are available for consultation and research.",
-
   "collspec.footer.liens.confidentialite": "Privacy",
   "collspec.footer.liens.accord_utilisateur": "Terms of Use",
   "collspec.footer.copyright": "© Université de Montréal, {{year}}. All rights reserved",
+  "collspec.footer.sofia": "Sofia Catalogue",
+  "collspec.footer.data-base": "A–Z Databases",
+  "collspec.footer.contact.site-bib": "Library website",
 
   "collspec.donate.text": "Donate",
   "collspec.donate.link": "https://bib.umontreal.ca/nous-soutenir/",
