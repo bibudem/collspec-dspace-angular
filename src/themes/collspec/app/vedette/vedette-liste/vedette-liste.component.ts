@@ -34,7 +34,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 export class VedetteListeComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('track') track: ElementRef<HTMLUListElement>;
   slides: Vedette[] = [];
-  displaySlides: Vedette[] = []; // Slides avec clones pour boucle infinie
+  displaySlides: Vedette[] = []; 
   currentIndex = 0;
   itemWidth = 0;
   loading = true;
