@@ -1,65 +1,122 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError, map, shareReplay } from 'rxjs/operators';
+import { catchError, map, shareReplay, tap } from 'rxjs/operators';
 import { Vedette } from '../models/Vedette';
-import {config} from "../config/config";
+import { config } from '../config/config';
+
+interface CacheEntry<T> {
+  data: T;
+  expiresAt: number;
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class VedetteService {
-  urlApiVedette: string = config.urlApiVedette;
+  private readonly urlApiVedette: string = config.urlApiVedette;
+  private readonly CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes
+  private readonly CACHE_KEY_HOME = 'vedette_home';
+  private readonly CACHE_KEY_COLL_PREFIX = 'vedette_coll_';
+  private readonly COLLECTION_LIMIT = 10;
+  private readonly isBrowser: boolean;
+
+  // Cache mémoire pour éviter les requêtes HTTP dupliquées dans la même session
   private imagesHomeCache$?: Observable<Vedette[]>;
-  private imageCollCache$: { [id: string]: Observable<Vedette[]> } = {};
+  private imageCollCache$: Record<string, Observable<Vedette[]>> = {};
 
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
-  // Méthode pour récupérer les images de la page d'accueil
   getImagesHome(): Observable<Vedette[]> {
-    // Si les images ne sont pas en cache, effectuer la requête et mettre en cache les résultats
+    const cached = this.getFromLocalStorage<Vedette[]>(this.CACHE_KEY_HOME);
+    if (cached) return of(cached);
+
     if (!this.imagesHomeCache$) {
-      this.imagesHomeCache$ = this.fetchImages(this.urlApiVedette).pipe(shareReplay(1));
+      this.imagesHomeCache$ = this.fetchImages(this.urlApiVedette).pipe(
+        tap((data) => this.saveToLocalStorage(this.CACHE_KEY_HOME, data)),
+        shareReplay(1)
+      );
     }
     return this.imagesHomeCache$;
   }
 
-  // Méthode pour récupérer les images d'une collection par ID
   getImagesColl(id: string): Observable<Vedette[]> {
-    const limit = 10;
-    // Si les images de la collection ne sont pas en cache, effectuer la requête et mettre en cache les résultats
+    const cacheKey = `${this.CACHE_KEY_COLL_PREFIX}${id}`;
+    const cached = this.getFromLocalStorage<Vedette[]>(cacheKey);
+    if (cached) return of(cached);
+
     if (!this.imageCollCache$[id]) {
-      this.imageCollCache$[id] = this.fetchImages(`${this.urlApiVedette}/${limit}/${id}`).pipe(shareReplay(1));
+      const url = `${this.urlApiVedette}/${this.COLLECTION_LIMIT}/${id}`;
+      this.imageCollCache$[id] = this.fetchImages(url).pipe(
+        tap((data) => this.saveToLocalStorage(cacheKey, data)),
+        shareReplay(1)
+      );
     }
     return this.imageCollCache$[id];
   }
 
-  // Méthode pour effectuer la requête HTTP et transformer les données
-  private fetchImages(apiUrl: string): Observable<Vedette[]> {
-    return this.http.get(apiUrl).pipe(
-      map((data: any) =>
-        data.items.map((item: any) => ({
-          id: item.id,
-          title: item.title,
-          description: item.description,
-          imageUrl: item.group.image[0].url,
-        } as Vedette))
-      ),
-      catchError((error) => {
-        console.error('Error fetching images', error);
-        return of([]); // Retourner une liste vide en cas d'erreur
-      })
-    );
+  shuffleArray(array: Vedette[]): Vedette[] {
+    const shuffled = [...array]; // Évite la mutation du tableau original
+    let currentIndex = shuffled.length;
+    while (currentIndex !== 0) {
+      const randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+      [shuffled[currentIndex], shuffled[randomIndex]] = [shuffled[randomIndex], shuffled[currentIndex]];
+    }
+    return shuffled;
   }
 
-  // Méthode pour mélanger un tableau
-  shuffleArray(array: Vedette[]): Vedette[] {
-    let currentIndex = array.length, randomIndex;
-    while (currentIndex !== 0) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+  // ───── Cache localStorage ─────
+
+  private saveToLocalStorage<T>(key: string, data: T): void {
+    if (!this.isBrowser) return null; 
+    try {
+      const entry: CacheEntry<T> = {
+        data,
+        expiresAt: Date.now() + this.CACHE_TTL_MS,
+      };
+      localStorage.setItem(key, JSON.stringify(entry));
+    } catch (error) {
+      console.warn(`[VedetteService] Impossible d'écrire dans le localStorage`, error);
     }
-    return array;
+  }
+
+  private getFromLocalStorage<T>(key: string): T | null {
+    if (!this.isBrowser) return null; 
+    try {
+      const raw = localStorage.getItem(key);
+      if (!raw) return null;
+
+      const entry: CacheEntry<T> = JSON.parse(raw);
+      if (Date.now() > entry.expiresAt) {
+        localStorage.removeItem(key); // Nettoyage automatique
+        return null;
+      }
+      return entry.data;
+    } catch (error) {
+      console.warn(`[VedetteService] Erreur de lecture du localStorage`, error);
+      return null;
+    }
+  }
+
+  // ───── HTTP ─────
+
+  private fetchImages(apiUrl: string): Observable<Vedette[]> {
+    return this.http.get<{ items: any[] }>(apiUrl).pipe(
+      map(({ items }) =>
+        items.map(
+          (item): Vedette => ({
+            id: item.id,
+            title: item.title,
+            description: item.description,
+            imageUrl: item.group.image[0].url,
+          })
+        )
+      ),
+      catchError((error) => {
+        console.error('[VedetteService] Erreur lors du fetch', error);
+        return of([]);
+      })
+    );
   }
 }

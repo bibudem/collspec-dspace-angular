@@ -1,9 +1,5 @@
 <div class="container mb-3">
     <div class="top-level-communities">
-    <!-- Affichage des communautés principales (hérité du parent) -->
-    <ng-container *ngVar="communitiesRD$ | async as communitiesRD">
-        <ds-loading *ngIf="communitiesRD?.isLoading" message="{{'loading.default' | translate}}"></ds-loading>
-    </ng-container>
         <h1 class="title mt-2 mb-3">{{ 'communityList.title' | translate }}</h1>
         <!-- Indicateur de chargement des sous-communautés -->
         <div *ngIf="isLoadingSubcommunities" class="text-center py-4">
