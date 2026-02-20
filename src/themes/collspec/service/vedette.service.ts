@@ -19,6 +19,7 @@ export class VedetteService {
   private readonly CACHE_KEY_HOME = 'vedette_home';
   private readonly CACHE_KEY_COLL_PREFIX = 'vedette_coll_';
   private readonly COLLECTION_LIMIT = 10;
+  private readonly isBrowser: boolean;
 
   // Cache mémoire pour éviter les requêtes HTTP dupliquées dans la même session
   private imagesHomeCache$?: Observable<Vedette[]>;
@@ -68,6 +69,7 @@ export class VedetteService {
   // ───── Cache localStorage ─────
 
   private saveToLocalStorage<T>(key: string, data: T): void {
+    if (!this.isBrowser) return null; 
     try {
       const entry: CacheEntry<T> = {
         data,
@@ -80,6 +82,7 @@ export class VedetteService {
   }
 
   private getFromLocalStorage<T>(key: string): T | null {
+    if (!this.isBrowser) return null; 
     try {
       const raw = localStorage.getItem(key);
       if (!raw) return null;
