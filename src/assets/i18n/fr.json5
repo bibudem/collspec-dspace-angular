@@ -32,7 +32,7 @@
 
   "error-page.description.404": "Page introuvable",
 
-  "error-page.orcid.generic-error": "Une erreur s'est produite lors de la connexion via ORCID. Assurez-vous d'avoir partagé l'adresse de votre compte ORCID avec DSpace. Si l'erreur persiste, contacter l'administrateur.",
+  "error-page.orcid.generic-error": "Une erreur s'est produite lors de la connexion via ORCID. Assurez-vous d'avoir partagé l'adresse de votre compte ORCID avec Collections spéciales. Si l'erreur persiste, contacter l'administrateur.",
 
   "listelement.badge.access-status": "Statut d'accès:",
 
@@ -152,7 +152,7 @@
 
   "admin.registries.metadata.breadcrumbs": "Registre de métadonnées",
 
-  "admin.registries.metadata.description": "Le registre de métadonnées présente une liste à jour de tous les champs de métadonnées disponibles dans le dépôt. Ces champs peuvent être répartis entre plusieurs schémas. Le schéma Dublin Core qualifié est toutefois requis dans DSpace.",
+  "admin.registries.metadata.description": "Le registre de métadonnées présente une liste à jour de tous les champs de métadonnées disponibles dans le dépôt. Ces champs peuvent être répartis entre plusieurs schémas. Le schéma Dublin Core qualifié est toutefois requis dans Collections spéciales.",
 
   "admin.registries.metadata.form.create": "Ajouter un schéma de métadonnées",
 
@@ -1982,7 +1982,7 @@
 
   "forgot-email.form.header": "Mot de passe oublié",
 
-  "forgot-email.form.info": "Créer un compte pour vous abonner à des collections afin de recevoir des mises à jour via courrier électronique ainsi que pour déposer de nouveaux Items dans DSpace.",
+  "forgot-email.form.info": "Créer un compte pour vous abonner à des collections afin de recevoir des mises à jour via courrier électronique ainsi que pour déposer de nouveaux Items dans Collections spéciales.",
 
   "forgot-email.form.email": "Adresse électronique *",
 
@@ -2210,7 +2210,7 @@
 
   "home.title": "Accueil",
 
-  "home.top-level-communities.head": "Communautés dans DSpace",
+  "home.top-level-communities.head": "Communautés dans Collections spéciales",
 
   "home.top-level-communities.help": "Sélectionner une communauté pour parcourir les collections sous-jacentes.",
 
@@ -3392,7 +3392,7 @@
 
   "login.form.forgot-password": "Mot de passe oublié?",
 
-  "login.form.header": "Se connecter à DSpace",
+  "login.form.header": "Se connecter à Collections spéciales",
 
   "login.form.new-user": "Pas encore de compte? Cliquer ici pour vous enregistrer.",
 
@@ -3412,7 +3412,7 @@
 
   "login.breadcrumbs": "Connexion",
 
-  "logout.form.header": "Se déconnecter de DSpace",
+  "logout.form.header": "Se déconnecter de Collections spéciales",
 
   "logout.form.submit": "Se déconnecter",
 
@@ -3452,7 +3452,7 @@
 
   "menu.section.browse_community_by_title": "Titre",
 
-  "menu.section.browse_global": "Tout DSpace",
+  "menu.section.browse_global": "Tout Collections spéciales",
 
   "menu.section.browse_global_by_author": "Auteur",
 
@@ -3594,7 +3594,7 @@
 
   "metadata-export-search.submit.error": "L'exportation a échoué",
 
-  "mydspace.breadcrumbs": "Mon compte DSpace",
+  "mydspace.breadcrumbs": "Mon compte",
 
   "mydspace.description": "",
 
@@ -3648,7 +3648,7 @@
 
   "mydspace.results.no-uri": "Aucune URI",
 
-  "mydspace.search-form.placeholder": "Rechercher dans mon compte DSpace...",
+  "mydspace.search-form.placeholder": "Rechercher dans mon compte ...",
 
   "mydspace.show.workflow": "Tableau de suivi",
 
@@ -3656,7 +3656,7 @@
 
   "mydspace.show.supervisedWorkspace": "Items supervisés",
 
-  "mydspace.status": "Statut de Mon DSpace :",
+  "mydspace.status": "Statut :",
 
   "mydspace.status.mydspaceArchived": "Archivés",
 
@@ -3668,7 +3668,7 @@
 
   "mydspace.status.mydspaceWorkspace": "Dépôts en cours",
 
-  "mydspace.title": "Mon compte DSpace",
+  "mydspace.title": "Mon compte",
 
   "mydspace.upload.upload-failed": "Erreur à la création de l'espace de travail. Veuillez vérifier le contenu téléchargé avant de réessayer.",
 
@@ -3704,7 +3704,7 @@
 
   "nav.main.description": "Barre de navigation principale",
 
-  "nav.mydspace": "Mon compte DSpace",
+  "nav.mydspace": "Mon compte",
 
   "nav.profile": "Profil",
 
@@ -4328,7 +4328,7 @@
 
   "register-page.registration.header": "Inscription d'un nouvel utilisateur",
 
-  "register-page.registration.info": "Créer un compte pour pouvoir vous abonner aux collections et recevoir les nouveautés via courrier électronique ainsi que déposer de nouveaux Items dans DSpace.",
+  "register-page.registration.info": "Créer un compte pour pouvoir vous abonner aux collections et recevoir les nouveautés via courrier électronique ainsi que déposer de nouveaux Items dans Collections spéciales.",
 
   "register-page.registration.email": "Adresse électronique *",
 
@@ -4868,9 +4868,9 @@
 
   "search.form.search": "Recherche",
 
-  "search.form.search_dspace": "Recherche dans DSpace",
+  "search.form.search_dspace": "Recherche dans Collections spéciales",
 
-  "search.form.scope.all": "Tout le dépôt DSpace",
+  "search.form.scope.all": "Tout le dépôt Collections spéciales",
 
   "search.results.head": "Résultats de recherche",
 
@@ -5036,9 +5036,9 @@
 
   "submission.import-external.title.none": "Importer les métadonnées depuis une source externe",
 
-  "submission.import-external.page.hint": "Entrer votre recherche ci-dessus pour rechercher des éléments du web à importer dans DSpace",
+  "submission.import-external.page.hint": "Entrer votre recherche ci-dessus pour rechercher des éléments du web à importer dans Collections spéciales",
 
-  "submission.import-external.back-to-my-dspace": "Retour à mon compte DSpace",
+  "submission.import-external.back-to-my-dspace": "Retour à mon compte Collections spéciales",
 
   "submission.import-external.search.placeholder": "Recherche de la source externe",
 
@@ -5912,7 +5912,7 @@
 
   "thumbnail.person.placeholder": "Aucune photo de profil disponible",
 
-  title: "DSpace",
+  title: "Collections spéciales",
 
   "vocabulary-treeview.header": "Arborescence hiérarchique",
 
@@ -7431,4 +7431,6 @@
   "collspec.onglet-fichier": "Fichiers",
 
   "collspec.cookies.consent.content-notice.description": "Vos données personnelles sont collectées et utilisées aux fins suivantes : <strong>authentification, préférences, consentement et statistiques</strong>.<br>Pour plus d’informations, veuillez consulter la <a href=\"https://vie-privee.umontreal.ca/confidentialite\">politique de protection de la vie privée</a>.",
+
+  "collspec.menu.blrcs": "BLRCS",
 }

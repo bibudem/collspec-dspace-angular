@@ -1,4 +1,3 @@
-<!-- Déclare le template de fallback en haut -->
 <ng-template #loadingContent>
   <ds-loading></ds-loading>
 </ng-template>
@@ -23,11 +22,11 @@
             </div>
           </ng-container>
 
-          <div class="text-center mt-3" *ngIf="hasMore">
-            <button class="btn btn-outline-primary" (click)="loadMore()">
-              {{ 'item.edit.bitstreams.bundle.load.more' | translate }}
-            </button>
+          <!-- Indicateur de chargement pendant le scroll -->
+          <div *ngIf="isLoadingMore" class="w-100 text-center py-3">
+            <ds-loading></ds-loading>
           </div>
+
         </ng-container>
       </ng-container>
 
