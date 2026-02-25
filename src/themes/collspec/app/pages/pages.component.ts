@@ -5,7 +5,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { TranslateModule } from '@ngx-translate/core';
 import { AboutComponent } from "./about/about.component";
 import { CommonModule } from '@angular/common';
-import { GuideComponent } from './guide/guide.component';
+import { PageblrcsComponent } from './BLRCS/page-blrcs.component';
 
 @Component({
   selector: 'ds-pages',
@@ -17,7 +17,7 @@ import { GuideComponent } from './guide/guide.component';
     TranslateModule,
     RouterModule,
     NgbModule,
-    GuideComponent,
+    PageblrcsComponent,
     AboutComponent
   ],
 })
@@ -25,7 +25,7 @@ export class PagesComponent implements OnInit {
   currentComponent: any;
   private readonly componentMap: { [key: string]: any } = {
     'a-propos': AboutComponent,
-    'guide': GuideComponent,
+    'blrcs': PageblrcsComponent,
 
   };
 
