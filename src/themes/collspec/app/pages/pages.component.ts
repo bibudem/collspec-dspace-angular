@@ -5,7 +5,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { TranslateModule } from '@ngx-translate/core';
 import { AboutComponent } from "./about/about.component";
 import { CommonModule } from '@angular/common';
-import { PageblrcsComponent } from './BLRCS/page-blrcs.component';
+import { PageblrcsComponent } from './blrcs/page-blrcs.component';
 
 @Component({
   selector: 'ds-pages',
