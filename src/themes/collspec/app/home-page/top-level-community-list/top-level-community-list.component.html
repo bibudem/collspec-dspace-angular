@@ -6,8 +6,8 @@
   <div class="card-group vgr-cards">
     <ng-container *ngIf="communitiesRD$ | async as communitiesRD">
       <ng-container *ngIf="communitiesRD?.hasSucceeded">
-        <ng-container *ngIf="displayedSouscommunities.length > 0; else loadingContent">
-          <ng-container *ngFor="let souscommunitie of displayedSouscommunities">
+        <ng-container *ngIf="allSouscommunities.length > 0; else loadingContent">
+          <ng-container *ngFor="let souscommunitie of allSouscommunities">
             <div class="card" *ngIf="souscommunitie?.vedette">
               <div class="card-img-body">
                 <img class="card-img" [src]="souscommunitie.vedette" alt="Item {{ souscommunitie.title }}">
@@ -21,12 +21,6 @@
               </div>
             </div>
           </ng-container>
-
-          <!-- Indicateur de chargement pendant le scroll -->
-          <div *ngIf="isLoadingMore" class="w-100 text-center py-3">
-            <ds-loading></ds-loading>
-          </div>
-
         </ng-container>
       </ng-container>
 

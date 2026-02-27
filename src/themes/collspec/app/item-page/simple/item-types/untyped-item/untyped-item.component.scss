@@ -1,30 +1,66 @@
 .nav-tabs {
-  font-size: 16px;
+  font-size: 15px;
   list-style: none;
-  display: flex;
+  display: inline-flex;
   flex-wrap: wrap;
-  padding-left: 0;
+  padding: 0;
+  margin-top: 1.2rem;
   margin-bottom: 0;
-  color: #eeecec;
-  background: #334652;
-  box-shadow: 0 0.2px 3px #0000007a;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  gap: 4px;
+  width: 100%;
+  border-bottom: none;
 
   li {
     a {
-      display: block;
-      padding: 1em 2em;
+      display: flex;
+      align-items: center;
+      padding: 0.5em 1.4em;
       outline: none;
       text-decoration: none;
-      opacity: 0.9;
-      border-radius: 0;
-      color: white;
+      color: #334652;
+      font-weight: 400;
+      font-size: 0.95rem;
+      background: transparent;
+      border: 2px solid #C3CCD5; // Bordure grise sur tous les onglets
+      border-radius: 8px 8px 0 0 !important;
+      transition: all 0.2s ease;
+
+      &:hover {
+        border-color: #334652;
+        color: #334652;
+      }
     }
   }
 
+  // Onglet actif — bordure orange uniquement
   .nav-link.active {
-    animation: md-tab-ripple 0.2s linear forwards;
-    background-color: white;
-    border-bottom: solid 1px #f04e24;
+    background-color: #ffffff;
     color: #334652;
+    font-weight: 600;
+    border: 2px solid #266883; // Bordure orange tout autour
+    border-radius: 8px;
+
+    &:hover {
+      border-color: #266883;
+      color: #334652;
+    }
   }
+}
+
+// Zone de contenu
+[ngbnavoutlet] {
+  background-color: #ffffff;
+  border: 1.5px solid #d0d0d0;
+  border-radius: 0 4px 4px 4px;
+  padding: 1.8rem;
+  margin-top: 0.5rem;
+  box-shadow: none;
+}
+
+@keyframes md-tab-ripple {
+  0% { opacity: 0.85; }
+  100% { opacity: 1; }
 }
