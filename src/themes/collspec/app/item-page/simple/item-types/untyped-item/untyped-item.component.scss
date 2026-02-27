@@ -9,7 +9,6 @@
   background: transparent;
   border: none;
   box-shadow: none;
-  gap: 4px;
   width: 100%;
   border-bottom: none;
 
@@ -20,32 +19,32 @@
       padding: 0.5em 1.4em;
       outline: none;
       text-decoration: none;
-      color: #334652;
+      color: #2b4e72;
       font-weight: 400;
       font-size: 0.95rem;
       background: transparent;
-      border: 2px solid #C3CCD5; // Bordure grise sur tous les onglets
+      border: 1px solid #dee2e6; // Bordure grise sur tous les onglets
       border-radius: 8px 8px 0 0 !important;
       transition: all 0.2s ease;
 
       &:hover {
-        border-color: #334652;
-        color: #334652;
+        border-color: #2b4e72;
+        color: #2b4e72;
       }
     }
   }
 
   // Onglet actif — bordure orange uniquement
   .nav-link.active {
-    background-color: #ffffff;
-    color: #334652;
-    font-weight: 600;
-    border: 2px solid #266883; // Bordure orange tout autour
+    background-color: #2b4e72;
+    color: #ffffff;
+    border: 1px solid #2b4e72; // Bordure orange tout autour
     border-radius: 8px;
 
     &:hover {
-      border-color: #266883;
-      color: #334652;
+      border-color: #2b4e72;
+      background-color: #2b4e72;
+      color: #ffffff;
     }
   }
 }
