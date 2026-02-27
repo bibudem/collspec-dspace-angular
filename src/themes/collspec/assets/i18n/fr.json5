@@ -9,7 +9,7 @@
 
   // "repository.title.prefix": "DSpace Angular :: ",
   "repository.title.prefix": "Collections spéciales :: ",
-  "collspec.onglet-fichier": "Fichiers",
+  "collspec.onglet-fichier": "Image",
   "collspec.onglet-notice": "Notice complète",
   "collspec.return": "Retour",
   "collspec.consulter": "Consulter",
