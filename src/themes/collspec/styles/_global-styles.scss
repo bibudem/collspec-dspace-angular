@@ -1094,6 +1094,13 @@ a.collspec-menu {
   font-weight: bold;
 }
 
+.list-group-item  {
+    border-radius: 8px 8px 0 0 !important;
+     &:hover {
+        border-color: #2b4e72;
+      }
+}
+
 /* -------------------------------------------------------
    FAQ Styles
 ------------------------------------------------------- */
