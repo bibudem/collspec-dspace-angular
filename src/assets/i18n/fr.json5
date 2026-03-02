@@ -7330,7 +7330,7 @@
 
   "collspec.consulter": "Consulter",
 
-  "collspec.ai-titre": "Effectuer une recherche avec IA",
+  "collspec.ai-titre": "Effectuer une recherche avec l'IA",
 
   "collspec.ai-explication": "Explication ...",
 
@@ -7346,9 +7346,9 @@
 
   "collspec.ai-img-selection": "Image sélectionnée",
 
-  "collspec.ai-title-notification": "Titre recherche Ai",
+  "collspec.ai-title-notification": "Titre recherche IA",
 
-  "collspec.ai-content-notification": "Voici un message pour la recherche Ai",
+  "collspec.ai-content-notification": "Voici un message pour la recherche IA",
 
   "collspec.page-udem.breadcrumbs": "Lire plus",
 
@@ -7370,11 +7370,11 @@
 
   "collspec.contact-udem": "University of Montreal",
 
-  "collspec.accueil.vedette.titre": "Découvrez nos meilleures publications",
+  "collspec.accueil.vedette.titre": "Publications en vedette",
 
   "collspec.accueil.vedette.description": "Découvrez notre collection exclusive d'articles en vedette, méticuleusement sélectionnés pour vous offrir le meilleur de notre contenu. Chaque article a été choisi avec soin afin de vous proposer une expérience enrichissante et captivante, reflétant notre engagement à vous présenter des informations de qualité et des perspectives uniques.",
 
-  "collspec.faq.titre": "FAQ - Vos Questions, Nos Réponses",
+  "collspec.faq.titre": "FAQ - Vos Questions, nos Réponses",
 
   "collspec.faq.description": "Trouvez rapidement les informations essentielles pour mieux naviguer sur notre site",
 
@@ -7404,7 +7404,7 @@
 
   "collspec.footer.liens.confidentialite": "Confidentialité",
 
-  "collspec.footer.liens.accord_utilisateur": " Condition d’utilisation",
+  "collspec.footer.liens.accord_utilisateur": " Conditions d’utilisation",
 
   "collspec.footer.param.confidentiel": "Personnaliser les témoins",
 
@@ -7416,7 +7416,7 @@
 
   "collspec.menu.a-propos": "À propos",
 
-  "collspec.menu.guide": "Guide collections",
+  "collspec.menu.guide": "Guide des collections",
 
   "collspec.menu.contact": "Nous joindre",
 
