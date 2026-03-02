@@ -2206,7 +2206,7 @@
 
   "home.breadcrumbs": "Home",
 
-  "home.search-form.placeholder": "Search the repository ...",
+  "home.search-form.placeholder": "Search in collections ...",
 
   "home.title": "Home",
 
@@ -4564,7 +4564,7 @@
 
   "search.breadcrumbs": "Search",
 
-  "search.search-form.placeholder": "Search the repository ...",
+  "search.search-form.placeholder": "Search in collections ...",
 
   "search.filters.remove": "Remove filter of type {{ type }} with value {{ value }}",
 

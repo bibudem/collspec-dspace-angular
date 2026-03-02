@@ -2206,7 +2206,7 @@
 
   "home.breadcrumbs": "Accueil",
 
-  "home.search-form.placeholder": "Rechercher dans le dépôt...",
+  "home.search-form.placeholder": "Rechercher dans les collections ...",
 
   "home.title": "Accueil",
 
@@ -4564,7 +4564,7 @@
 
   "search.breadcrumbs": "Recherche",
 
-  "search.search-form.placeholder": "Rechercher dans le dépôt...",
+  "search.search-form.placeholder": "Rechercher dans les collections ...",
 
   "search.filters.remove": "Supprimer le filtre de type {{ type }} avec la valeur {{ value }}",
 
