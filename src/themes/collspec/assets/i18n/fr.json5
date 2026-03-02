@@ -2,7 +2,7 @@
   "collspec.cookies.consent.content-notice.description": "Vos données personnelles sont collectées et utilisées aux fins suivantes : <strong>authentification, préférences, consentement et statistiques</strong>.<br>Pour plus d’informations, veuillez consulter la <a href=\"https://vie-privee.umontreal.ca/confidentialite\">politique de protection de la vie privée</a>.",
 
   "collspec.menu.a-propos": "À propos",
-  "collspec.menu.guide": "Guide collections",
+  "collspec.menu.guide": "Guide des collections",
   "collspec.menu.blrcs": "BLRCS",
   "collspec.menu.contact": "Nous joindre",
   "collspec.menu.catalogues": "Catalogues",
@@ -13,7 +13,7 @@
   "collspec.onglet-notice": "Notice complète",
   "collspec.return": "Retour",
   "collspec.consulter": "Consulter",
-  "collspec.ai-titre": "Effectuer une recherche avec IA",
+  "collspec.ai-titre": "Effectuer une recherche avec l'IA",
   "collspec.ai-explication": "Explication ...",
   "collspec.ai-annuler": "Annuler",
   "collspec.ai-lien": "Commencer",
@@ -21,8 +21,8 @@
   "collspec.ai-search-description": "Explorez des objets visuellement similaires de notre collection en un seul clic",
   "collspec.ai-charger": "Charger plus",
   "collspec.ai-img-selection": "Image sélectionnée",
-  "collspec.ai-title-notification": "Titre recherche Ai",
-  "collspec.ai-content-notification": "Voici un message pour la recherche Ai",
+  "collspec.ai-title-notification": "Titre recherche IA",
+  "collspec.ai-content-notification": "Voici un message pour la recherche IA",
 
   //variable pour texte dans nav top
   "collspec.page-udem.breadcrumbs": "Lire plus",
@@ -31,11 +31,11 @@
 
   "collspec.accueil.titre": "Collections <br> spéciales",
 
-  "collspec.accueil.vedette.titre": "Découvrez nos meilleures publications",
+  "collspec.accueil.vedette.titre": "Publications en vedette",
 
   "collspec.accueil.vedette.description": "Découvrez notre collection exclusive d'articles en vedette, méticuleusement sélectionnés pour vous offrir le meilleur de notre contenu. Chaque article a été choisi avec soin afin de vous proposer une expérience enrichissante et captivante, reflétant notre engagement à vous présenter des informations de qualité et des perspectives uniques.",
 
-  "collspec.faq.titre": "FAQ - Vos Questions, Nos Réponses",
+  "collspec.faq.titre": "FAQ - Vos Questions, nos Réponses",
 
   "collspec.faq.description": "Trouvez rapidement les informations essentielles pour mieux naviguer sur notre site",
 
@@ -54,14 +54,12 @@
   "collspec.footer.infos.a_propos": "À propos",
   "collspec.footer.infos.a_propos.description": "Ce portail vous permet d'explorer une sélection d'articles issus des collections spéciales de la Bibliothèque de l’Université de Montréal. Ces documents, conservés pour leur valeur historique, académique ou culturelle, sont accessibles pour consultation et recherche.",
   "collspec.footer.liens.confidentialite": "Confidentialité",
-  "collspec.footer.liens.accord_utilisateur": " Condition d’utilisation",
+  "collspec.footer.liens.accord_utilisateur": " Conditions d’utilisation",
   "collspec.footer.copyright": "© Université de Montréal, {{year}}. Tous droits réservés",
   "collspec.footer.sofia": "Catalogue Sofia",
   "collspec.footer.param.confidentiel": "Personnaliser les témoins",
 
   "collspec.footer.data-base": "Base de données A-Z",
-
-  "collspec.footer.infos.a_propos": "À propos",
 
   "collspec.footer.contact.site-bib": "Site des bibliothèques",
 
