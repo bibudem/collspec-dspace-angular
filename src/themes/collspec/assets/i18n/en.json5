@@ -60,4 +60,7 @@
   "collspec.donate.text": "Donate",
   "collspec.donate.link": "https://bib.umontreal.ca/nous-soutenir/",
   "collspec.donate.aria-label": "Make a donation"
+  
+  "home.search-form.placeholder": "Search in collections ...",
+  "search.search-form.placeholder": "Search in collections ...",
 }
