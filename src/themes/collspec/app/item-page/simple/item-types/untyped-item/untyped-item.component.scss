@@ -64,6 +64,6 @@
   100% { opacity: 1; }
 }
 
-.item-page-title-field span {
-  font-size: inherit;
+.item-page-title-field .dont-break-out {
+  font-size: inherit!important;
 }
