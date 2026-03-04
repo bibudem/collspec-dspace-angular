@@ -69,5 +69,7 @@
   
   "home.search-form.placeholder": "Rechercher dans les collections ...",
   "search.search-form.placeholder": "Rechercher dans les collections ...",
+  
+  "community.page.handle": "URI permanent de cette collection",
 
 }
