@@ -1334,3 +1334,17 @@ span.dont-break-out {
     }
   }
 }
+
+/* =============================================
+  MIRADOR - occuper tout l'espace disponible
+  ============================================= */
+/* Supprimer le message :
+"Utiliser le plein écran pour une meilleure visualisation" */
+p.full-text-op {
+  display: none !important;
+}
+
+/* Cacher le deuxième élément du fil d'Ariane: Collections spéciales */
+.nav-breadcrumb ol.breadcrumb li:nth-child(2) {
+  display: none;
+}

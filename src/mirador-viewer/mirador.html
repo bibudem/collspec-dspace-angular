@@ -3,9 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <title>Mirador</title>
+  <style>
+    /* Réordonne les boutons de droite */
+    .mirador-window-top-bar button[aria-label="Plein écran"] {
+      order: 1;
+    }
+    .mirador-window-top-bar button[aria-label="Options de fenêtre"] {
+      order: 2;
+    }
+    .mirador-window-top-bar button[aria-label="Autres options et outils"] {
+      order: 3;
+    }
+    .mirador-window-top-bar .mirador-window-close {
+      order: 4;
+    }
+  </style>
 </head>
 <body>
 <div id="mirador"></div>
 <script src="mirador.js"></script>
+<script>
+  // Détecte le changement de taille de la fenêtre (déclenché quand l'iframe
+  // passe en plein écran dans DSpace) et réinitialise le zoom OSD.
+  window.addEventListener('resize', () => {
+    setTimeout(() => {
+      const allResetBtns = document.querySelectorAll(
+        'button[title="Réinitialiser le zoom"], button[aria-label="Réinitialiser le zoom"]'
+      );
+      allResetBtns.forEach(resetBtn => {
+        if (resetBtn.offsetParent !== null) {
+          resetBtn.click();
+          //console.log('Reset zoom via resize');
+        }
+      });
+    }, 300);
+  });
+</script>
 </body>
 </html>

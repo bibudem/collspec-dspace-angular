@@ -73,7 +73,6 @@ const plugins = [
   miradorSharePlugin,
   miradorDownloadDialog,
   miradorDownloadPlugin,
-  miradorShareDialogPlugin,
 ];
 
 if (notMobile) {
