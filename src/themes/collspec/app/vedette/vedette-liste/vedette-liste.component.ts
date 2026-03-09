@@ -172,7 +172,7 @@ export class VedetteListeComponent implements OnInit, AfterViewInit, OnDestroy {
   // Lance le défilement automatique du carrousel
   startAutoSlide(): void {
     this.stopAutoSlide();
-    this.autoSlideInterval = setInterval(() => this.nextSlide(), 4000);
+    this.autoSlideInterval = setInterval(() => this.nextSlide(), 5000);
   }
 
   // Arrête le défilement automatique
@@ -181,6 +181,16 @@ export class VedetteListeComponent implements OnInit, AfterViewInit, OnDestroy {
       clearInterval(this.autoSlideInterval);
       this.autoSlideInterval = null;
     }
+  }
+
+    // Met en pause le défilement automatique lorsque le curseur survole le carrousel
+  onMouseEnter(): void {
+    this.stopAutoSlide();
+  }
+
+  // Reprend le défilement automatique lorsque le curseur quitte le carrousel
+  onMouseLeave(): void {
+    this.startAutoSlide();
   }
 
   // Fonction de tracking Angular pour optimiser les itérations
@@ -200,4 +210,5 @@ export class VedetteListeComponent implements OnInit, AfterViewInit, OnDestroy {
       window.removeEventListener('resize', this.calculateItemWidth.bind(this));
     }
   }
+
 }

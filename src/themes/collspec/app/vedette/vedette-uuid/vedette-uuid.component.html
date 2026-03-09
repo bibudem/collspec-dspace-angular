@@ -1,6 +1,6 @@
 <section class="slider__section">
   @if (hasSlidesToDisplay) {
-  <div class="slider__wrapper">
+  <div class="slider__wrapper" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
     <div class="slider__column">
       <div class="slider__track" #track>
         <ul class="slider__list">

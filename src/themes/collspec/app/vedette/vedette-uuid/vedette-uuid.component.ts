@@ -180,7 +180,7 @@ export class VedetteUUIDComponent implements OnInit, AfterViewInit, OnDestroy {
   // Lance un intervalle pour faire défiler automatiquement les slides
   startAutoSlide(): void {
     this.stopAutoSlide();
-    this.autoSlideInterval = setInterval(() => this.nextSlide(), 3500);
+    this.autoSlideInterval = setInterval(() => this.nextSlide(), 5000);
   }
 
   // Arrête le défilement automatique si actif
@@ -189,6 +189,16 @@ export class VedetteUUIDComponent implements OnInit, AfterViewInit, OnDestroy {
       clearInterval(this.autoSlideInterval);
       this.autoSlideInterval = null;
     }
+  }
+
+  // Pause au survol du carrousel
+  onMouseEnter(): void {
+    this.stopAutoSlide();
+  }
+
+  // Reprise à la sortie du curseur
+  onMouseLeave(): void {
+    this.startAutoSlide();
   }
 
   // Fonction de tracking Angular pour optimiser les performances du *ngFor
@@ -208,4 +218,6 @@ export class VedetteUUIDComponent implements OnInit, AfterViewInit, OnDestroy {
       window.removeEventListener('resize', this.calculateItemWidth.bind(this));
     }
   }
+
+
 }

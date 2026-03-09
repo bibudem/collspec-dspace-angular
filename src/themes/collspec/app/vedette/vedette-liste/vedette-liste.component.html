@@ -4,9 +4,9 @@
     <!-- Affichage du composant de chargement -->
     <ds-loading ></ds-loading>
     }  @else {
-    <section class="slider__section">
+    <section class="slider__section" >
       @if (hasSlidesToDisplay) {
-      <div class="slider__wrapper">
+      <div class="slider__wrapper" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
         <div class="slider__column">
           <div class="slider__track">
             <ul class="slider__list" #track>
