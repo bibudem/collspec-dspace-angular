@@ -79,6 +79,17 @@ export class TopLevelCommunityListComponent extends BaseComponent implements OnI
     });
   }
 
+  isClaudeGingras(souscommunitie: any): boolean {
+    if (!souscommunitie) return false;
+
+    const targetId = 'bb619460-d68f-45d0-aad9-e8faaf0ed73f';
+    const targetTitle = 'collection claude gingras';
+
+    const title = souscommunitie.title?.toLowerCase()?.trim();
+
+    return souscommunitie.id === targetId || title === targetTitle;
+  }
+
   ngOnDestroy() {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
