@@ -66,6 +66,7 @@
   "collspec.donate.text": "Je donne",
   "collspec.donate.link": "https://bib.umontreal.ca/nous-soutenir/",
   "collspec.donate.aria-label": "Faire un don",
+  "collspec.footer.based_on_dspace": "Application basée sur <a href='http://www.dspace.org/' target='_blank' class='link-footer'>DSpace</a>, logiciel open source.",
   
   "home.search-form.placeholder": "Rechercher dans les collections ...",
   "search.search-form.placeholder": "Rechercher dans les collections ...",
