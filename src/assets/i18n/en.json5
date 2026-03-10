@@ -1594,7 +1594,7 @@
 
   "community.page.edit": "Edit this community",
 
-  "community.page.handle": "Permanent URI for this community",
+  "community.page.handle": "Permanent URI for this collection",
 
   "community.page.license": "License",
 
@@ -7419,4 +7419,8 @@
   "collspec.footer.param.confidentiel": "Privacy settings",
 
   "collspec.menu.blrcs": "BLRCS",
+
+  "collspec.footer.dspace.copyright": "DSpace software, copyright © 2002-{{year}}",
+
+  "collspec.footer.based_on_dspace": "Application based on <a href='http://www.dspace.org/' target='_blank' class='link-footer'>DSpace</a>, open source software.",
 }

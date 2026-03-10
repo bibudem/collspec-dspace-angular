@@ -1594,7 +1594,7 @@
 
   "community.page.edit": "Éditer cette communauté",
 
-  "community.page.handle": "URI permanent de cette communauté",
+  "community.page.handle": "URI permanent de cette collection",
 
   "community.page.license": "Licence",
 
@@ -7433,4 +7433,8 @@
   "collspec.cookies.consent.content-notice.description": "Vos données personnelles sont collectées et utilisées aux fins suivantes : <strong>authentification, préférences, consentement et statistiques</strong>.<br>Pour plus d’informations, veuillez consulter la <a href=\"https://vie-privee.umontreal.ca/confidentialite\">politique de protection de la vie privée</a>.",
 
   "collspec.menu.blrcs": "BLRCS",
+
+  "collspec.footer.dspace.copyright": "Logiciel DSpace, copyright © 2002-{{year}}",
+
+  "collspec.footer.based_on_dspace": "Application basée sur <a href='http://www.dspace.org/' target='_blank' class='link-footer'>DSpace</a>, logiciel open source.",
 }

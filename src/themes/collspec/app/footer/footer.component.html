@@ -142,16 +142,19 @@
   <section class="section-footer-blue">
     <div class="container">
       <div class="row">
-        <div class="col-md-6 col-sm-12 text-center text-sm-left">
+        <div class="col-md-7 col-sm-12 text-center text-sm-left">
           <ul class="terms-privacy d-flex justify-content-center justify-content-sm-start list-unstyled mt-3">
-            <li>
-              <a href="https://www.umontreal.ca/" class="link-footer" target="_blank" rel="noopener">
-                {{ 'collspec.footer.copyright' | translate: { year: dateObj | date:'y' } }}
-              </a>
-            </li>
-          </ul>
+              <li>
+                <span [innerHTML]="'collspec.footer.based_on_dspace' | translate" class='link-footer'></span>
+              </li>
+              <li>
+                <a href="https://www.umontreal.ca/" class="link-footer" target="_blank" rel="noopener">
+                  &nbsp;{{ 'collspec.footer.copyright' | translate: { year: dateObj | date:'y' } }}
+                </a>
+              </li>
+            </ul>
         </div>
-        <div class="col-md-6 col-sm-12 text-center text-sm-right">
+        <div class="col-md-5 col-sm-12 text-center text-sm-right">
           <ul class="terms-privacy d-flex justify-content-center justify-content-sm-end list-unstyled mt-3">
             <li class="ml-2">
               <a href="/info/privacy" class="link-footer">{{ 'collspec.footer.param.confidentiel' | translate }}</a>
