@@ -43,6 +43,7 @@ let lang = 'fr' // Default francais
 
 
 windowSettings.manifestId = manifest;
+windowSettings.view = 'book';
 
 (() => {
   if (searchOption) {
@@ -192,7 +193,7 @@ if (notMobile) {
           visible: false,
           skipEmptyLines: true,
     		  opacity: 0.3,
-    		  color: '#00FF7B',
+    		  color: '#52B782',
               correction: {
                 enabled: true,
                 emailUrlKeepParams: ['manifest'],
