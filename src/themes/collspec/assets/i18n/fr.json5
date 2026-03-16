@@ -72,5 +72,9 @@
   "search.search-form.placeholder": "Rechercher dans les collections ...",
   
   "community.page.handle": "URI permanent de cette collection",
+  
+  "browse.comcol.by.type": "Type",
+  "browse.comcol.by.language": "Langue",
+  "browse.comcol.by.publisher": "Éditeur",
 
 }
