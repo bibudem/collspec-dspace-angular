@@ -3,79 +3,234 @@
 <head>
   <meta charset="UTF-8">
   <title>Mirador</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Lora:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
   <style>
-    /* Réordonne les boutons de droite */
-    .mirador-window-top-bar button[aria-label="Plein écran"] {
-      order: 1;
+    /* -------------------------------------------------------
+       Réordonne les boutons de la barre de titre
+    ------------------------------------------------------- */
+    .mirador-window-top-bar button[aria-label="Full screen"] { order: 1; }
+    .mirador-window-top-bar button[aria-label="Window views & thumbnail display"] { order: 2; }
+    .mirador-window-top-bar button[aria-label="Window options"] { order: 3; }
+    .mirador-window-top-bar .mirador-window-close { order: 4; }
+
+    /* -------------------------------------------------------
+       Fond du workspace
+    ------------------------------------------------------- */
+    .mirador1 {
+      background: #ffffff !important;
     }
-    .mirador-window-top-bar button[aria-label="Options de fenêtre"] {
-      order: 2;
+
+    /* -------------------------------------------------------
+       Barre de titre de la fenêtre
+    ------------------------------------------------------- */
+    .mirador-window-top-bar {
+      background-color: #ffffff !important;
     }
-    .mirador-window-top-bar button[aria-label="Autres options et outils"] {
-      order: 3;
+
+    .mirador34.mirador33 {
+      border-top: 2px solid #2380D1 !important;
     }
-    .mirador-window-top-bar .mirador-window-close {
-      order: 4;
+
+    .mirador-window-top-bar .MuiTypography-h2 {
+      font-family: 'Figtree', Georgia, serif !important;
+      font-size: 1.25rem !important;  /* 14px */
+      font-weight: 600 !important;
+      color: #0b113a !important;
     }
-	/* Cacher le description du niveau manifest dans Mirador */
-	p.MuiTypography-root.MuiTypography-body1 span.mirador-third-party-html {
-      display: none !important;
+
+    /* -------------------------------------------------------
+       Panneau latéral — fond et bordure
+    ------------------------------------------------------- */
+    .mirador-companion-window-left {
+      background-color: #ffffff !important;
+      border-right: 1px solid #E7EBEE !important;
     }
-	/* ── Panneau de métadonnées : base commune ── */
-	.mirador-companion-area-left .mirador-companion-windows dl,
-	.mirador-companion-area-left .mirador-companion-windows dt,
-	.mirador-companion-area-left .mirador-companion-windows dd {
-	  -webkit-text-size-adjust: 100%;
-	  -webkit-font-smoothing: antialiased;
-	  font-family: Lato, Helvetica, Arial, sans-serif;
-	  color: rgba(0, 0, 0, 0.87);
-	  word-break: break-word;
-	  box-sizing: border-box;
-	  border: 0 solid #e2e8f0;
-	  margin: 0;
-	  user-select: auto;
-	  cursor: auto;
-	  scroll-margin-top: 12rem;
-	  --transition-duration: 250ms;
-	}
-	/* ── dl ── */
-	.mirador-companion-area-left .mirador-companion-windows dl {
-	  font-size: 1rem;
-	  line-height: 2;
-	}
-	/* ── dt (libellés) ── */
-	.mirador-companion-area-left .mirador-companion-windows dt {
-	  font-size: 0.95rem;
-	  font-weight: 700;
-	  letter-spacing: 0.02em;
-	  line-height: 1.375;
-	  margin-top: 0.5rem;
-	  color: #006780;
-	}
-	/* ── dd (valeurs) ── */
-	.mirador-companion-area-left .mirador-companion-windows dd {
-	  font-size: 0.95rem;
-	  font-weight: 400;
-	  line-height: 1.6em;
-	  letter-spacing: 0em;
-	  color: rgba(116, 116, 116, 1);
-	  padding-bottom: 0.5rem;
-	  margin-bottom: 0.5em;
-	  border-bottom: 1px solid rgba(232, 232, 232, 1);
-	}
-	/* ── dd: Supprimer la bordure du dernier élément ── */
-	.mirador-companion-area-left .mirador-companion-windows dd:last-child {
-	  border-bottom: none;
-	  padding-bottom: 0;
-	}
+
+    /* -------------------------------------------------------
+       En-tête "About this item"
+    ------------------------------------------------------- */
+    .mirador-companion-window-header .MuiTypography-h3 {
+      font-family: 'Figtree', -apple-system, sans-serif !important;
+      font-size: 0.875rem !important;  /* 11px — label uppercase discret */
+      font-weight: 600 !important;
+      letter-spacing: 0.10em !important;
+      text-transform: uppercase !important;
+      color: #607386 !important;
+    }
+
+    /* -------------------------------------------------------
+       Titres de section : "Current item", "Resource", "Related"
+    ------------------------------------------------------- */
+    .mirador-window-sidebar-info-panel .MuiTypography-overline {
+      font-family: 'Figtree', -apple-system, sans-serif !important;
+      font-size: 0.625rem !important;  /* 10px — overline compact */
+      font-weight: 600 !important;
+      letter-spacing: 0.12em !important;
+      text-transform: uppercase !important;
+      color: #607386 !important;
+    }
+
+    /* -------------------------------------------------------
+       Titre item courant et titre ressource
+    ------------------------------------------------------- */
+    .mirador-window-sidebar-info-panel .MuiTypography-h4 {
+      font-family: 'Figtree', -apple-system, sans-serif !important;
+      font-size: 1.125rem !important;
+      font-weight: 600 !important;
+      color: #0b113a !important;
+      padding: 0.25rem 1rem 0.625rem !important;
+      line-height: 1.4 !important;
+    }
+
+    /* -------------------------------------------------------
+       Labels clés (dt)
+    ------------------------------------------------------- */
+    .mirador-window-sidebar-info-panel .mirador-label-value-metadata dt {
+      font-family: 'Figtree', -apple-system, sans-serif !important;
+      font-size: 0.85rem !important; 
+      font-weight: 600 !important;
+      color: #607386!important;
+      letter-spacing: 0.06em !important;
+      padding-top: 0.375rem !important;
+      margin-top: 0.25rem !important;
+      border-top: 0.5px solid #E7EBEE !important;
+    }
+
+    /* -------------------------------------------------------
+       Valeurs (dd)
+    ------------------------------------------------------- */
+    .mirador-window-sidebar-info-panel .mirador-label-value-metadata dd {
+      font-family: 'Figtree', -apple-system, sans-serif !important;
+      font-size: 0.8125rem !important;  /* 13px */
+      font-weight: 500 !important;
+      color: #252525 !important;
+      line-height: 1.5 !important;
+      margin-bottom: 0.25em !important;
+      margin-left: 0 !important;
+    }
+
+    /* -------------------------------------------------------
+       Span interne .mirador-third-party-html
+    ------------------------------------------------------- */
+    .mirador-window-sidebar-info-panel .mirador-third-party-html {
+      font-family: 'Figtree', -apple-system, sans-serif !important;
+      font-size: 0.8125rem !important;  /* 13px */
+      font-weight: 500 !important;
+      color: #252525 !important;
+      line-height: 1.5 !important;
+    }
+
+    /* -------------------------------------------------------
+       Liens dans les métadonnées
+    ------------------------------------------------------- */
+    .mirador-window-sidebar-info-panel .mirador-label-value-metadata a {
+      font-family: 'Figtree', -apple-system, sans-serif !important;
+      font-size: 0.8125rem !important;
+      font-weight: 500 !important;
+      color: #2380D1 !important;
+      word-break: break-all !important;
+      text-decoration: none !important;
+    }
+
+    .mirador-window-sidebar-info-panel .mirador-label-value-metadata a:hover {
+      color: #0b113a !important;
+      text-decoration: underline !important;
+    }
+
+    /* -------------------------------------------------------
+       Compteur de pages et label canvas
+    ------------------------------------------------------- */
+    .mirador-canvas-count,
+    .mirador-canvas-label {
+      font-family: 'Figtree', -apple-system, sans-serif !important;
+      font-size: 0.8125rem !important;
+      font-weight: 500 !important;
+      color: #607386 !important;
+    }
+
+    /* -------------------------------------------------------
+       Onglets latéraux — indicateur actif
+    ------------------------------------------------------- */
+    .MuiTabs-indicator {
+      background-color: #2380D1 !important;
+    }
+
+    .MuiTab-root.Mui-selected {
+      color: #2380D1 !important;
+      border-right-color: #2380D1 !important;
+    }
+
+    .MuiTab-root.Mui-selected .MuiSvgIcon-root {
+      color: #2380D1 !important;
+    }
+
+    .MuiTab-root:not(.Mui-selected) .MuiSvgIcon-root {
+      color: #607386 !important;
+    }
+
+    /* -------------------------------------------------------
+       Panneau de navigation workspace (barre gauche)
+    ------------------------------------------------------- */
+    .mirador-workspace-control-panel {
+      background-color: #222930 !important;
+    }
+
+    .mirador-workspace-control-panel .MuiIconButton-root .MuiSvgIcon-root {
+      color: #CCE2F3 !important;
+    }
+
+    .mirador-workspace-control-panel .MuiIconButton-root:hover .MuiSvgIcon-root {
+      color: #ffffff !important;
+    }
+
+    .mirador-workspace-control-panel .MuiFab-primary {
+      background-color: #2380D1 !important;
+    }
+
+    .mirador-workspace-control-panel .MuiFab-primary:hover {
+      background-color: #0c144d !important;
+    }
+
+    /* -------------------------------------------------------
+       Vignettes (thumbnail navigation)
+    ------------------------------------------------------- */
+    .mirador-thumb-navigation {
+      background-color: #ffffff !important;
+      border-top: 0.5px solid #E7EBEE !important;
+    }
+
+    .mirador77.mirador78 {
+      outline-color: #2380D1 !important;
+    }
+
+    /* -------------------------------------------------------
+       Scrollbar panneau
+    ------------------------------------------------------- */
+    .mirador-scrollto-scrollable::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    .mirador-scrollto-scrollable::-webkit-scrollbar-track {
+      background: #E7EBEE;
+    }
+
+    .mirador-scrollto-scrollable::-webkit-scrollbar-thumb {
+      background: #CCE2F3;
+      border-radius: 4px;
+    }
+
+    .mirador-scrollto-scrollable::-webkit-scrollbar-thumb:hover {
+      background: #2380D1;
+    }
+
   </style>
 </head>
 <body>
 <div id="mirador"></div>
 <script src="mirador.js"></script>
 <script>
-  // Détecte le changement de taille de la fenêtre (déclenché quand l'iframe
-  // passe en plein écran dans DSpace) et réinitialise le zoom OSD.
   window.addEventListener('resize', () => {
     setTimeout(() => {
       const allResetBtns = document.querySelectorAll(
@@ -84,7 +239,6 @@
       allResetBtns.forEach(resetBtn => {
         if (resetBtn.offsetParent !== null) {
           resetBtn.click();
-          //console.log('Reset zoom via resize');
         }
       });
     }, 300);

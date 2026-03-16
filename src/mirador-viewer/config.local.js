@@ -32,7 +32,7 @@ const query = params.get('query');
 const multi = params.get('multi');
 const notMobile = params.get('notMobile');
 const langParam = params.get('lang');
-const endpointUrl = 'http://127.0.0.1:3000/annotations';
+//const endpointUrl = 'http://127.0.0.1:3000/annotations';
 
 let windowSettings = {};
 let sidbarPanel = 'info';
@@ -43,7 +43,7 @@ let lang = 'fr' // Default francais
 
 
 windowSettings.manifestId = manifest;
-windowSettings.view = 'book';
+//windowSettings.view = 'book';
 
 (() => {
   if (searchOption) {
@@ -64,9 +64,9 @@ windowSettings.view = 'book';
       }
     }
   }
-  /*if ( langParam !== 'null' ) {
+  if ( langParam !== 'null' ) {
     lang = langParam;
-  }*/
+  }
 })();
 
 const plugins = [
@@ -119,10 +119,10 @@ if (notMobile) {
           palette: {
             type: 'light',
             primary: {
-              main: '#266883',
+              main: '#0B113A',
             },
             secondary: {
-              main: '#b03727',
+              main: '#B72600',
             },
             shades: { // Shades that can be used to offset color areas of the Workspace / Window
               dark: '#eeeeee',
@@ -130,13 +130,13 @@ if (notMobile) {
               light: '#ffffff',
             },
             highlights: {
-              primary: '#ffff00',
-              secondary: '#00BFFF',
+              primary: '#FFCA40',
+              secondary: '#6BA5D1',
             },
             search: {
-              default: { fillStyle: '#00BFFF', globalAlpha: 0.3 },
-              hovered: { fillStyle: '#00FFFF', globalAlpha: 0.3 },
-              selected: { fillStyle: '#ff0900', globalAlpha: 0.3 },
+              default: { fillStyle: '#6BA5D1', globalAlpha: 0.3 },
+              hovered: { fillStyle: '#2178C4', globalAlpha: 0.3 },
+              selected: { fillStyle: '#B72600', globalAlpha: 0.3 },
             },
           },
         },
@@ -144,14 +144,14 @@ if (notMobile) {
           palette: {
             type: 'dark',
             primary: {
-              main: '#2790b0',
+              main: '#2178C4',
             },
             secondary: {
               main: '#eeeeee',
             },
             highlights: {
-              primary: '#ffff00',
-              secondary: '#00BFFF',
+              primary: '#FFCA40',
+              secondary: '#6BA5D1',
             },
           },
         },
@@ -193,7 +193,7 @@ if (notMobile) {
           visible: false,
           skipEmptyLines: true,
     		  opacity: 0.3,
-    		  color: '#52B782',
+    		  color: '#6BA5D1',
               correction: {
                 enabled: true,
                 emailUrlKeepParams: ['manifest'],
@@ -202,7 +202,7 @@ if (notMobile) {
           optionsRenderMode: 'complex',
         },
         defaultSideBarPanel: 'info',
-        sideBarOpenByDefault: true,
+        sideBarOpenByDefault: false,
         allowFullscreen: true,
         allowMaximize: false,
         defaultView: defaultView,
