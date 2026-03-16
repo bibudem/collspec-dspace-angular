@@ -39,6 +39,13 @@
       font-weight: 600 !important;
       color: #0b113a !important;
     }
+	
+	/* -------------------------------------------------------
+       Cacher le description du niveau manifest dans Mirador
+    ------------------------------------------------------- */
+	p.MuiTypography-root.MuiTypography-body1 span.mirador-third-party-html {
+      display: none !important;
+    }
 
     /* -------------------------------------------------------
        Panneau latéral — fond et bordure
@@ -109,17 +116,6 @@
       line-height: 1.5 !important;
       margin-bottom: 0.25em !important;
       margin-left: 0 !important;
-    }
-
-    /* -------------------------------------------------------
-       Span interne .mirador-third-party-html
-    ------------------------------------------------------- */
-    .mirador-window-sidebar-info-panel .mirador-third-party-html {
-      font-family: 'Figtree', -apple-system, sans-serif !important;
-      font-size: 0.8125rem !important;  /* 13px */
-      font-weight: 500 !important;
-      color: #252525 !important;
-      line-height: 1.5 !important;
     }
 
     /* -------------------------------------------------------
@@ -224,7 +220,17 @@
     .mirador-scrollto-scrollable::-webkit-scrollbar-thumb:hover {
       background: #2380D1;
     }
-
+	
+	/* -------------------------------------------------------
+       Retour à la ligne automatique de titre Mirador
+    ------------------------------------------------------- */
+	.mirador-window header nav h2.MuiTypography-noWrap {
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+    word-break: break-word;
+    line-height: 1.4;
+    }
   </style>
 </head>
 <body>
