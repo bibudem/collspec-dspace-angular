@@ -287,8 +287,22 @@
 <script>
   /* -------------------------------------------------------
      Réinitialise le zoom au resize de l'iframe
+     — compare les dimensions pour ignorer les faux resize
+       déclenchés par OSD pendant le zoom
   ------------------------------------------------------- */
+  let lastWidth = window.innerWidth;
+  let lastHeight = window.innerHeight;
+
   window.addEventListener('resize', () => {
+    const newWidth = window.innerWidth;
+    const newHeight = window.innerHeight;
+
+    // Ignore si les dimensions n'ont pas vraiment changé
+    if (newWidth === lastWidth && newHeight === lastHeight) return;
+
+    lastWidth = newWidth;
+    lastHeight = newHeight;
+
     setTimeout(() => {
       const allResetBtns = document.querySelectorAll(
         'button[title="Réinitialiser le zoom"], button[aria-label="Réinitialiser le zoom"]'
@@ -304,7 +318,7 @@
   ------------------------------------------------------- */
   function createLoader() {
     const el = document.createElement('div');
-    el.className = 'mirador-tile-loader';
+    el.className = 'mirador-tile-loader hidden';
     el.innerHTML = '<div class="loader-spinner"></div>';
     return el;
   }
@@ -322,31 +336,47 @@
     }, 500);
   }
 
-  // Vérifie si le canvas a du contenu — pixel central non transparent
-  function waitForCanvas(canvas, loader) {
-    const maxWait = setTimeout(() => hideLoader(loader), 10000);
+  /* Lit tous les canvas OSD — OSD en utilise deux superposés,
+     on vérifie le premier canvas non masqué qui a du contenu */
+  function isCanvasLoaded(osdContainer) {
+    const canvases = osdContainer.querySelectorAll('canvas');
+    for (const canvas of canvases) {
+      // Ignore les canvas masqués (visibility: hidden)
+      if (canvas.style.visibility === 'hidden') continue;
+      if (canvas.width === 0 || canvas.height === 0) continue;
+      try {
+        const ctx = canvas.getContext('2d');
+        // Échantillonne plusieurs points pour plus de fiabilité
+        const points = [
+          [Math.floor(canvas.width / 2), Math.floor(canvas.height / 2)],
+          [Math.floor(canvas.width / 4), Math.floor(canvas.height / 4)],
+          [Math.floor(canvas.width * 3 / 4), Math.floor(canvas.height / 4)],
+        ];
+        for (const [x, y] of points) {
+          const pixel = ctx.getImageData(x, y, 1, 1).data;
+          if (pixel[3] > 0) return true;
+        }
+      } catch (e) {
+        return true; // CORS ou erreur — on considère chargé
+      }
+    }
+    return false;
+  }
+
+  function waitForCanvas(osdContainer, loader) {
+    // Sécurité : cache le loader après 15s max
+    const maxWait = setTimeout(() => hideLoader(loader), 15000);
 
     function check() {
       if (loader.classList.contains('hidden')) {
         clearTimeout(maxWait);
         return;
       }
-      try {
-        const ctx = canvas.getContext('2d');
-        const pixel = ctx.getImageData(
-          Math.floor(canvas.width / 2),
-          Math.floor(canvas.height / 2),
-          1, 1
-        ).data;
-        if (pixel[3] > 0) {
-          clearTimeout(maxWait);
-          hideLoader(loader);
-        } else {
-          requestAnimationFrame(check);
-        }
-      } catch (e) {
+      if (isCanvasLoaded(osdContainer)) {
         clearTimeout(maxWait);
         hideLoader(loader);
+      } else {
+        requestAnimationFrame(check);
       }
     }
     requestAnimationFrame(check);
@@ -355,10 +385,12 @@
   function triggerLoader(osdSection, loader) {
     const osdContainer = osdSection.querySelector('.openseadragon-container');
     if (!osdContainer) return;
-    const canvas = osdContainer.querySelector('canvas');
-    if (!canvas) return;
+
+    // N'affiche le loader que si l'image n'est pas déjà prête
+    if (isCanvasLoaded(osdContainer)) return;
+
     showLoader(loader);
-    waitForCanvas(canvas, loader);
+    waitForCanvas(osdContainer, loader);
   }
 
   function attachLoader(osdSection) {
@@ -367,8 +399,7 @@
     const loader = createLoader();
     osdSection.appendChild(loader);
 
-    // ── Méthode 1 : aria-label change à chaque navigation de page
-    // Mirador met à jour aria-label="Item: Page X" sur la section OSD
+    // ── Méthode 1 : aria-label mis à jour par Mirador à chaque page
     new MutationObserver(() => {
       triggerLoader(osdSection, loader);
     }).observe(osdSection, {
@@ -376,21 +407,17 @@
       attributeFilter: ['aria-label']
     });
 
-    // ── Méthode 2 : clic sur les boutons prev/next
-    // Délégation sur le document pour capturer les boutons
-    // même s'ils sont recréés par Mirador
+    // ── Méthode 2 : clic sur les boutons prev/next (délégation document)
     document.addEventListener('click', (e) => {
       const btn = e.target.closest(
         '.mirador-next-canvas-button, .mirador-previous-canvas-button'
       );
       if (!btn) return;
-      // Vérifie que le bouton appartient à cette fenêtre OSD
-      if (!osdSection.closest('.mirador-window')
-            ?.contains(btn)) return;
+      if (!osdSection.closest('.mirador-window')?.contains(btn)) return;
       setTimeout(() => triggerLoader(osdSection, loader), 150);
     });
 
-    // ── Méthode 3 : clic sur les vignettes (thumbnail nav)
+    // ── Méthode 3 : clic sur les vignettes
     document.addEventListener('click', (e) => {
       const thumb = e.target.closest('.mirador-thumbnail-nav-canvas');
       if (!thumb) return;
@@ -401,7 +428,6 @@
     triggerLoader(osdSection, loader);
   }
 
-  // Attend que Mirador monte les sections OSD dans le DOM
   function watchForOSD() {
     const rootObserver = new MutationObserver(() => {
       document.querySelectorAll('.mirador-osd-container')
