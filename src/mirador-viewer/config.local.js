@@ -17,7 +17,7 @@ import miradorSharePlugin from 'mirador-share-plugin/es/miradorSharePlugin';
 import miradorDownloadPlugin from 'mirador-dl-plugin/es/miradorDownloadPlugin';
 import miradorDownloadDialog from 'mirador-dl-plugin/es/MiradorDownloadDialog';
 import { miradorImageToolsPlugin } from 'mirador-image-tools';
-// import textOverlayPlugin from 'mirador-textoverlay/es';
+import textOverlayPlugin from 'mirador-textoverlay/es';
 import ocrHelperPlugin from '@4eyes/mirador-ocr-helper';
 import annotationPlugins from 'mirador-annotations';
 import LocalStorageAdapter from 'mirador-annotations/es/LocalStorageAdapter';
@@ -80,8 +80,8 @@ if (notMobile) {
   plugins.push(
     miradorImageToolsPlugin,
     ocrHelperPlugin,
-    annotationPlugins
-    // textOverlayPlugin,
+    annotationPlugins,
+    textOverlayPlugin,
   );
 }
 
@@ -188,18 +188,19 @@ if (notMobile) {
         allowClose: true,
         imageToolsEnabled: notMobile ? true: false,
         imageToolsOpen: false,
-    		textOverlay: {
+    	textOverlay: {
           enabled: true,
           visible: false,
           skipEmptyLines: true,
-    		  opacity: 0.3,
-    		  color: '#6BA5D1',
-              correction: {
-                enabled: true,
-                emailUrlKeepParams: ['manifest'],
-                emailRecipient: null,
-              },
-          optionsRenderMode: 'complex',
+    	  opacity: 0,
+    	  color: '#6BA5D1',
+		  overlayFont: "'Courier New', monospace, Arial, Helvetica, sans-serif",
+		  correction: {
+			enabled: true,
+			emailUrlKeepParams: ['manifest'],
+			emailRecipient: null,
+		  },
+          optionsRenderMode: 'simple',
         },
         defaultSideBarPanel: 'info',
         sideBarOpenByDefault: false,
