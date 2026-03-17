@@ -23,22 +23,62 @@
     }
 
     /* -------------------------------------------------------
-       Barre de titre de la fenêtre
+      Titre de la fenêtre — responsive
     ------------------------------------------------------- */
     .mirador-window-top-bar {
-      background-color: #ffffff !important;
+      display: flex !important;
+      flex-wrap: nowrap !important;
+      align-items: center !important;
+      height: auto !important;
+      min-height: 32px !important;
+      gap: 0 !important;
     }
+
+    /* Le titre prend l'espace disponible mais laisse la place aux boutons */
+    .mirador-window-top-bar .MuiTypography-h2 {
+      flex: 1 1 0 !important;
+      min-width: 0 !important;
+    }
+
+    /* Les boutons ne rétrécissent pas */
+    .mirador-window-top-bar .MuiIconButton-root {
+      flex-shrink: 0 !important;
+    }
+
+    .mirador-window-top-bar .MuiTypography-h2,
+      .mirador-window header nav h2.MuiTypography-noWrap {
+        font-family: 'Figtree', Georgia, serif !important;
+        font-weight: 600 !important;
+        color: #0b113a !important;
+        font-size: 1rem !important;
+        line-height: 1.3 !important;
+        white-space: normal !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        min-width: 0 !important;
+        flex: 1 1 0 !important;
+      }
+
+      @media (min-width: 480px) {
+        .mirador-window-top-bar .MuiTypography-h2 {
+          font-size: 1rem !important;
+          white-space: nowrap !important;
+        }
+      }
+
+      @media (min-width: 768px) {
+        .mirador-window-top-bar .MuiTypography-h2 {
+          font-size: 1.25rem !important;
+          white-space: nowrap !important;
+        }
+      }
+
 
     .mirador34.mirador33 {
       border-top: 2px solid #2380D1 !important;
     }
 
-    .mirador-window-top-bar .MuiTypography-h2 {
-      font-family: 'Figtree', Georgia, serif !important;
-      font-size: 1.25rem !important;
-      font-weight: 600 !important;
-      color: #0b113a !important;
-    }
+   
 
     /* -------------------------------------------------------
        Cacher la description du niveau manifest dans Mirador
@@ -221,26 +261,6 @@
       background: #2380D1;
     }
 
-    /* -------------------------------------------------------
-       Retour à la ligne automatique du titre Mirador
-    ------------------------------------------------------- */
-    .mirador-window header nav h2.MuiTypography-noWrap {
-      white-space: normal !important;
-      overflow: visible !important;
-      text-overflow: unset !important;
-      word-break: break-word;
-      line-height: 1.4;
-    }
-
-    @media (min-width: 768px) {
-      .mirador-window header nav h2.MuiTypography-noWrap {
-        white-space: normal !important;
-        overflow: visible !important;
-        text-overflow: unset !important;
-        word-break: break-word;
-        line-height: 1.4;
-      }
-    }
 
     /* -------------------------------------------------------
        LOADER — animation de chargement des tuiles OSD
