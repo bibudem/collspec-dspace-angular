@@ -35,15 +35,15 @@
 
     .mirador-window-top-bar .MuiTypography-h2 {
       font-family: 'Figtree', Georgia, serif !important;
-      font-size: 1.25rem !important;  /* 14px */
+      font-size: 1.25rem !important;
       font-weight: 600 !important;
       color: #0b113a !important;
     }
-	
-	/* -------------------------------------------------------
-       Cacher le description du niveau manifest dans Mirador
+
+    /* -------------------------------------------------------
+       Cacher la description du niveau manifest dans Mirador
     ------------------------------------------------------- */
-	p.MuiTypography-root.MuiTypography-body1 span.mirador-third-party-html {
+    p.MuiTypography-root.MuiTypography-body1 span.mirador-third-party-html {
       display: none !important;
     }
 
@@ -60,7 +60,7 @@
     ------------------------------------------------------- */
     .mirador-companion-window-header .MuiTypography-h3 {
       font-family: 'Figtree', -apple-system, sans-serif !important;
-      font-size: 0.875rem !important;  /* 11px — label uppercase discret */
+      font-size: 0.875rem !important;
       font-weight: 600 !important;
       letter-spacing: 0.10em !important;
       text-transform: uppercase !important;
@@ -72,7 +72,7 @@
     ------------------------------------------------------- */
     .mirador-window-sidebar-info-panel .MuiTypography-overline {
       font-family: 'Figtree', -apple-system, sans-serif !important;
-      font-size: 0.625rem !important;  /* 10px — overline compact */
+      font-size: 0.625rem !important;
       font-weight: 600 !important;
       letter-spacing: 0.12em !important;
       text-transform: uppercase !important;
@@ -96,9 +96,9 @@
     ------------------------------------------------------- */
     .mirador-window-sidebar-info-panel .mirador-label-value-metadata dt {
       font-family: 'Figtree', -apple-system, sans-serif !important;
-      font-size: 0.85rem !important; 
+      font-size: 0.85rem !important;
       font-weight: 600 !important;
-      color: #607386!important;
+      color: #607386 !important;
       letter-spacing: 0.06em !important;
       padding-top: 0.375rem !important;
       margin-top: 0.25rem !important;
@@ -110,7 +110,7 @@
     ------------------------------------------------------- */
     .mirador-window-sidebar-info-panel .mirador-label-value-metadata dd {
       font-family: 'Figtree', -apple-system, sans-serif !important;
-      font-size: 0.8125rem !important;  /* 13px */
+      font-size: 0.8125rem !important;
       font-weight: 500 !important;
       color: #252525 !important;
       line-height: 1.5 !important;
@@ -220,16 +220,74 @@
     .mirador-scrollto-scrollable::-webkit-scrollbar-thumb:hover {
       background: #2380D1;
     }
-	
-	/* -------------------------------------------------------
-       Retour à la ligne automatique de titre Mirador
+
+    /* -------------------------------------------------------
+       Retour à la ligne automatique du titre Mirador
     ------------------------------------------------------- */
-	.mirador-window header nav h2.MuiTypography-noWrap {
-    white-space: normal !important;
-    overflow: visible !important;
-    text-overflow: unset !important;
-    word-break: break-word;
-    line-height: 1.4;
+    .mirador-window header nav h2.MuiTypography-noWrap {
+      white-space: normal !important;
+      overflow: visible !important;
+      text-overflow: unset !important;
+      word-break: break-word;
+      line-height: 1.4;
+    }
+
+    @media (min-width: 768px){
+      .mirador-window header nav h2.MuiTypography-noWrap {
+          white-space: normal !important;
+          overflow: visible !important;
+          text-overflow: unset !important;
+          word-break: break-word;
+          line-height: 1.4;
+        }
+    }
+    /* -------------------------------------------------------
+       LOADER — animation de chargement des tuiles OSD
+    ------------------------------------------------------- */
+    .mirador-tile-loader {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.88);
+      z-index: 100;
+      pointer-events: none;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+
+    .mirador-tile-loader.fade-out {
+      opacity: 0;
+    }
+
+    .mirador-tile-loader.hidden {
+      display: none;
+    }
+
+    /* Spinner — cercle tournant aux couleurs de la charte */
+    .loader-spinner {
+      width: 2.25rem;
+      height: 2.25rem;
+      border: 3px solid #CCE2F3;
+      border-top-color: #2380D1;
+      border-radius: 50%;
+      animation: mirador-spin 0.75s linear infinite;
+    }
+
+    /* Texte sous le spinner */
+    .loader-text {
+      margin-top: 0.75rem;
+      font-family: 'Figtree', -apple-system, sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #607386;
+      letter-spacing: 0.03em;
+    }
+
+    @keyframes mirador-spin {
+      to { transform: rotate(360deg); }
     }
   </style>
 </head>
@@ -237,18 +295,128 @@
 <div id="mirador"></div>
 <script src="mirador.js"></script>
 <script>
+  /* -------------------------------------------------------
+     Réinitialise le zoom au resize de l'iframe
+  ------------------------------------------------------- */
   window.addEventListener('resize', () => {
     setTimeout(() => {
       const allResetBtns = document.querySelectorAll(
         'button[title="Réinitialiser le zoom"], button[aria-label="Réinitialiser le zoom"]'
       );
       allResetBtns.forEach(resetBtn => {
-        if (resetBtn.offsetParent !== null) {
-          resetBtn.click();
-        }
+        if (resetBtn.offsetParent !== null) resetBtn.click();
       });
     }, 300);
   });
+
+  /* -------------------------------------------------------
+     Loader OSD — injecte un spinner dans chaque viewer
+     et le retire une fois les tuiles rendues
+  ------------------------------------------------------- */
+  function createLoader() {
+    const el = document.createElement('div');
+    el.className = 'mirador-tile-loader';
+    el.innerHTML = `
+      <div class="loader-spinner"></div>
+      <span class="loader-text">Chargement de l'image…</span>
+    `;
+    return el;
+  }
+
+  function showLoader(loader) {
+    loader.classList.remove('hidden', 'fade-out');
+    loader.style.opacity = '1';
+  }
+
+  function hideLoader(loader) {
+    loader.classList.add('fade-out');
+    setTimeout(() => {
+      loader.classList.add('hidden');
+      loader.classList.remove('fade-out');
+    }, 500);
+  }
+
+  // Vérifie si le canvas OSD a du contenu (pixel central non transparent)
+  function waitForCanvas(canvas, loader) {
+    // Délai de sécurité : cache le loader après 10s max
+    const maxWait = setTimeout(() => hideLoader(loader), 10000);
+
+    function check() {
+      if (loader.classList.contains('hidden')) {
+        clearTimeout(maxWait);
+        return;
+      }
+      try {
+        const ctx = canvas.getContext('2d');
+        const pixel = ctx.getImageData(
+          Math.floor(canvas.width / 2),
+          Math.floor(canvas.height / 2),
+          1, 1
+        ).data;
+        if (pixel[3] > 0) {
+          clearTimeout(maxWait);
+          hideLoader(loader);
+        } else {
+          requestAnimationFrame(check);
+        }
+      } catch (e) {
+        clearTimeout(maxWait);
+        hideLoader(loader);
+      }
+    }
+    requestAnimationFrame(check);
+  }
+
+  function attachLoader(osdSection) {
+    // Évite les doublons
+    if (osdSection.querySelector('.mirador-tile-loader')) return;
+
+    const loader = createLoader();
+    osdSection.appendChild(loader);
+
+    // Observe les changements dans le container OSD :
+    // un changement de style sur le canvas = nouvelle page en cours de chargement
+    const osdContainer = osdSection.querySelector('.openseadragon-container');
+    if (!osdContainer) return;
+
+    const observer = new MutationObserver(() => {
+      const canvas = osdContainer.querySelector('canvas');
+      if (!canvas) return;
+      showLoader(loader);
+      waitForCanvas(canvas, loader);
+    });
+
+    observer.observe(osdContainer, {
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['style', 'width', 'height']
+    });
+
+    // Déclenche immédiatement au premier chargement
+    const canvas = osdContainer.querySelector('canvas');
+    if (canvas) {
+      showLoader(loader);
+      waitForCanvas(canvas, loader);
+    }
+  }
+
+  // Attend que Mirador monte les sections OSD dans le DOM
+  function watchForOSD() {
+    const rootObserver = new MutationObserver(() => {
+      document.querySelectorAll('.mirador-osd-container').forEach(attachLoader);
+    });
+    rootObserver.observe(document.getElementById('mirador'), {
+      childList: true,
+      subtree: true
+    });
+  }
+
+  // Démarre l'observation dès que la page est prête
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', watchForOSD);
+  } else {
+    watchForOSD();
+  }
 </script>
 </body>
 </html>
