@@ -232,15 +232,16 @@
       line-height: 1.4;
     }
 
-    @media (min-width: 768px){
+    @media (min-width: 768px) {
       .mirador-window header nav h2.MuiTypography-noWrap {
-          white-space: normal !important;
-          overflow: visible !important;
-          text-overflow: unset !important;
-          word-break: break-word;
-          line-height: 1.4;
-        }
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: unset !important;
+        word-break: break-word;
+        line-height: 1.4;
+      }
     }
+
     /* -------------------------------------------------------
        LOADER — animation de chargement des tuiles OSD
     ------------------------------------------------------- */
@@ -266,7 +267,6 @@
       display: none;
     }
 
-    /* Spinner — cercle tournant aux couleurs de la charte */
     .loader-spinner {
       width: 2.25rem;
       height: 2.25rem;
@@ -274,16 +274,6 @@
       border-top-color: #2380D1;
       border-radius: 50%;
       animation: mirador-spin 0.75s linear infinite;
-    }
-
-    /* Texte sous le spinner */
-    .loader-text {
-      margin-top: 0.75rem;
-      font-family: 'Figtree', -apple-system, sans-serif;
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: #607386;
-      letter-spacing: 0.03em;
     }
 
     @keyframes mirador-spin {
@@ -310,15 +300,12 @@
   });
 
   /* -------------------------------------------------------
-     Loader OSD — injecte un spinner dans chaque viewer
-     et le retire une fois les tuiles rendues
+     Loader OSD
   ------------------------------------------------------- */
   function createLoader() {
     const el = document.createElement('div');
     el.className = 'mirador-tile-loader';
-    el.innerHTML = `
-      <div class="loader-spinner"></div>
-    `;
+    el.innerHTML = '<div class="loader-spinner"></div>';
     return el;
   }
 
@@ -335,9 +322,8 @@
     }, 500);
   }
 
-  // Vérifie si le canvas OSD a du contenu (pixel central non transparent)
+  // Vérifie si le canvas a du contenu — pixel central non transparent
   function waitForCanvas(canvas, loader) {
-    // Délai de sécurité : cache le loader après 10s max
     const maxWait = setTimeout(() => hideLoader(loader), 10000);
 
     function check() {
@@ -366,43 +352,60 @@
     requestAnimationFrame(check);
   }
 
+  function triggerLoader(osdSection, loader) {
+    const osdContainer = osdSection.querySelector('.openseadragon-container');
+    if (!osdContainer) return;
+    const canvas = osdContainer.querySelector('canvas');
+    if (!canvas) return;
+    showLoader(loader);
+    waitForCanvas(canvas, loader);
+  }
+
   function attachLoader(osdSection) {
-    // Évite les doublons
     if (osdSection.querySelector('.mirador-tile-loader')) return;
 
     const loader = createLoader();
     osdSection.appendChild(loader);
 
-    // Observe les changements dans le container OSD :
-    // un changement de style sur le canvas = nouvelle page en cours de chargement
-    const osdContainer = osdSection.querySelector('.openseadragon-container');
-    if (!osdContainer) return;
-
-    const observer = new MutationObserver(() => {
-      const canvas = osdContainer.querySelector('canvas');
-      if (!canvas) return;
-      showLoader(loader);
-      waitForCanvas(canvas, loader);
-    });
-
-    observer.observe(osdContainer, {
-      subtree: true,
+    // ── Méthode 1 : aria-label change à chaque navigation de page
+    // Mirador met à jour aria-label="Item: Page X" sur la section OSD
+    new MutationObserver(() => {
+      triggerLoader(osdSection, loader);
+    }).observe(osdSection, {
       attributes: true,
-      attributeFilter: ['style', 'width', 'height']
+      attributeFilter: ['aria-label']
     });
 
-    // Déclenche immédiatement au premier chargement
-    const canvas = osdContainer.querySelector('canvas');
-    if (canvas) {
-      showLoader(loader);
-      waitForCanvas(canvas, loader);
-    }
+    // ── Méthode 2 : clic sur les boutons prev/next
+    // Délégation sur le document pour capturer les boutons
+    // même s'ils sont recréés par Mirador
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest(
+        '.mirador-next-canvas-button, .mirador-previous-canvas-button'
+      );
+      if (!btn) return;
+      // Vérifie que le bouton appartient à cette fenêtre OSD
+      if (!osdSection.closest('.mirador-window')
+            ?.contains(btn)) return;
+      setTimeout(() => triggerLoader(osdSection, loader), 150);
+    });
+
+    // ── Méthode 3 : clic sur les vignettes (thumbnail nav)
+    document.addEventListener('click', (e) => {
+      const thumb = e.target.closest('.mirador-thumbnail-nav-canvas');
+      if (!thumb) return;
+      setTimeout(() => triggerLoader(osdSection, loader), 150);
+    });
+
+    // Premier chargement
+    triggerLoader(osdSection, loader);
   }
 
   // Attend que Mirador monte les sections OSD dans le DOM
   function watchForOSD() {
     const rootObserver = new MutationObserver(() => {
-      document.querySelectorAll('.mirador-osd-container').forEach(attachLoader);
+      document.querySelectorAll('.mirador-osd-container')
+        .forEach(attachLoader);
     });
     rootObserver.observe(document.getElementById('mirador'), {
       childList: true,
@@ -410,7 +413,6 @@
     });
   }
 
-  // Démarre l'observation dès que la page est prête
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', watchForOSD);
   } else {
