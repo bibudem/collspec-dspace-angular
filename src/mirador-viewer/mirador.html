@@ -288,18 +288,20 @@
 /* -------------------------------------------------------
    Reset zoom quand Mirador change réellement de taille
 ------------------------------------------------------- */
-  window.addEventListener('resize', () => {
-    setTimeout(() => {
-      const allResetBtns = document.querySelectorAll(
-        'button[title="Réinitialiser le zoom"], button[aria-label="Réinitialiser le zoom"]'
-      );
-      allResetBtns.forEach(resetBtn => {
-        if (resetBtn.offsetParent !== null) {
-          resetBtn.click();
-        }
-      });
-    }, 500);
-  });
+const miradorContainer = document.getElementById('mirador');
+
+const resizeObserver = new ResizeObserver(() => {
+  setTimeout(() => {
+    const allResetBtns = document.querySelectorAll(
+      'button[title="Reset zoom"], button[aria-label="Reset zoom"]'
+    );
+    allResetBtns.forEach(resetBtn => {
+      if (resetBtn.offsetParent !== null) resetBtn.click();
+    });
+  }, 500);
+});
+
+resizeObserver.observe(miradorContainer);
 
   /* -------------------------------------------------------
      Loader OSD
