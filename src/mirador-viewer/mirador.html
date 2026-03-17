@@ -285,32 +285,20 @@
 <div id="mirador"></div>
 <script src="mirador.js"></script>
 <script>
-  /* -------------------------------------------------------
-     Réinitialise le zoom au resize de l'iframe
-     — compare les dimensions pour ignorer les faux resize
-       déclenchés par OSD pendant le zoom
-  ------------------------------------------------------- */
-  let lastWidth = window.innerWidth;
-  let lastHeight = window.innerHeight;
-
+/* -------------------------------------------------------
+   Reset zoom quand Mirador change réellement de taille
+------------------------------------------------------- */
   window.addEventListener('resize', () => {
-    const newWidth = window.innerWidth;
-    const newHeight = window.innerHeight;
-
-    // Ignore si les dimensions n'ont pas vraiment changé
-    if (newWidth === lastWidth && newHeight === lastHeight) return;
-
-    lastWidth = newWidth;
-    lastHeight = newHeight;
-
     setTimeout(() => {
       const allResetBtns = document.querySelectorAll(
         'button[title="Réinitialiser le zoom"], button[aria-label="Réinitialiser le zoom"]'
       );
       allResetBtns.forEach(resetBtn => {
-        if (resetBtn.offsetParent !== null) resetBtn.click();
+        if (resetBtn.offsetParent !== null) {
+          resetBtn.click();
+        }
       });
-    }, 300);
+    }, 400);
   });
 
   /* -------------------------------------------------------
@@ -364,8 +352,8 @@
   }
 
   function waitForCanvas(osdContainer, loader) {
-    // Sécurité : cache le loader après 15s max
-    const maxWait = setTimeout(() => hideLoader(loader), 15000);
+    // Sécurité : cache le loader après 30s max
+    const maxWait = setTimeout(() => hideLoader(loader), 30000);
 
     function check() {
       if (loader.classList.contains('hidden')) {
