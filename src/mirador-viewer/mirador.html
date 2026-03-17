@@ -384,39 +384,52 @@ resizeObserver.observe(miradorContainer);
   }
 
   function attachLoader(osdSection) {
-    if (osdSection.querySelector('.mirador-tile-loader')) return;
 
-    const loader = createLoader();
-    osdSection.appendChild(loader);
+  if (osdSection.querySelector('.mirador-tile-loader')) return;
 
-    // ── Méthode 1 : aria-label mis à jour par Mirador à chaque page
-    new MutationObserver(() => {
-      triggerLoader(osdSection, loader);
-    }).observe(osdSection, {
-      attributes: true,
-      attributeFilter: ['aria-label']
-    });
+  const loader = createLoader();
+  osdSection.appendChild(loader);
 
-    // ── Méthode 2 : clic sur les boutons prev/next (délégation document)
-    document.addEventListener('click', (e) => {
-      const btn = e.target.closest(
-        '.mirador-next-canvas-button, .mirador-previous-canvas-button'
-      );
-      if (!btn) return;
-      if (!osdSection.closest('.mirador-window')?.contains(btn)) return;
-      setTimeout(() => triggerLoader(osdSection, loader), 150);
-    });
+  const osdContainer = osdSection.querySelector('.openseadragon-container');
+  if (!osdContainer) return;
 
-    // ── Méthode 3 : clic sur les vignettes
-    document.addEventListener('click', (e) => {
-      const thumb = e.target.closest('.mirador-thumbnail-nav-canvas');
-      if (!thumb) return;
-      setTimeout(() => triggerLoader(osdSection, loader), 150);
-    });
+  function startLoadingCheck() {
+    showLoader(loader);
 
-    // Premier chargement
-    triggerLoader(osdSection, loader);
+    // attend que le canvas contienne réellement l'image
+    waitForCanvas(osdContainer, loader);
   }
+
+  /* navigation Mirador */
+  document.addEventListener('click', (e) => {
+
+    const btn = e.target.closest(
+      '.mirador-next-canvas-button, .mirador-previous-canvas-button'
+    );
+
+    if (btn && osdSection.closest('.mirador-window')?.contains(btn)) {
+      setTimeout(startLoadingCheck, 100);
+    }
+
+    const thumb = e.target.closest('.mirador-thumbnail-nav-canvas');
+
+    if (thumb) {
+      setTimeout(startLoadingCheck, 100);
+    }
+
+  });
+
+  /* changement de page détecté par Mirador */
+  new MutationObserver(() => {
+    startLoadingCheck();
+  }).observe(osdSection, {
+    attributes: true,
+    attributeFilter: ['aria-label']
+  });
+
+  /* premier chargement */
+  startLoadingCheck();
+}
 
   function watchForOSD() {
     const rootObserver = new MutationObserver(() => {
