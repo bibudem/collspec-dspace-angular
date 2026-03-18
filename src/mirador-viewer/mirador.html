@@ -293,34 +293,6 @@
 <script src="mirador.js"></script>
 <script>
 /* -------------------------------------------------------
-   Deplacer le boutton du plugin textoverlay de Mirador
-------------------------------------------------------- */
-let applied = false;
-
-function fixMiradorButtons() {
-  if (applied) return;
-
-  const btn = document.querySelector('button[aria-label*="text overlay"]');
-  if (!btn) return;
-
-  const parent = btn.closest('.MuiPaper-elevation4');
-  if (!parent) return;
-
-  parent.style.top = '125px';
-  applied = true;
-}
-
-fixMiradorButtons();
-
-const observer = new MutationObserver(fixMiradorButtons);
-
-observer.observe(document.body, {
-  childList: true,
-  subtree: true
-});
-</script>
-<script>
-/* -------------------------------------------------------
    Reset zoom quand Mirador change réellement de taille
 ------------------------------------------------------- */
 const miradorContainer = document.getElementById('mirador');
@@ -358,7 +330,7 @@ resizeObserver.observe(miradorContainer);
     setTimeout(() => {
       loader.classList.add('hidden');
       loader.classList.remove('fade-out');
-    }, 500);
+    }, 600);
   }
 
   /* Lit tous les canvas OSD — OSD en utilise deux superposés,
