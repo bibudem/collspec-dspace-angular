@@ -40,6 +40,8 @@ let defaultView = 'single';
 let multipleItems = false;
 let thumbNavigation = 'far-bottom';
 let lang = 'fr' // Default francais
+let manifestData = manifest;
+let manifestId = manifest;
 
 
 windowSettings.manifestId = manifest;
@@ -95,152 +97,183 @@ if (notMobile) {
   mapDispatchToProps: null,
   mapStateToProps: null,
 };*/
+// =====================================================
+// FILTRE BUNDLE VEDETTE
+// =====================================================
+fetch(manifest)
+  .then(res => res.json())
+  .then(json => {
+    if (json.sequences && json.structures) {
+      const vedetteCanvasIds = new Set();
+      json.structures.forEach(range => {
+        if (range.label && range.label.toUpperCase() === 'VEDETTE') {
+          (range.canvases || []).forEach(id => vedetteCanvasIds.add(id));
+        }
+      });
+      json.sequences.forEach(seq => {
+        seq.canvases = seq.canvases.filter(c => !vedetteCanvasIds.has(c['@id']));
+        // Renuméroter les canvases restants à partir de Page 1
+        seq.canvases.forEach((canvas, index) => {
+          canvas.label = `Page ${index + 1}`;
+        });
+       });
+      json.structures = json.structures.filter(r => r.label?.toUpperCase() !== 'VEDETTE');
 
-(Mirador.viewer(
-    {
-      id: 'mirador',
-      mainMenuSettings: {
-        show: true
-      },
-      language: lang,       // The default language set in the application
-	    availableLanguages: { // All the languages available in the language switcher
-        fr: 'Français',
-        en: 'English'
-	    },
-      showLocalePicker: true,
-      thumbnailNavigation: {
-        defaultPosition: thumbNavigation, // Which position for the thumbnail navigation to be be displayed. Other possible values are "far-bottom" or "far-right"
-        displaySettings: true, // Display the settings for this in WindowTopMenu
-        height: 120, // height of entire ThumbnailNavigation area when position is "far-bottom"
-        width: 100, // width of one canvas (doubled for book view) in ThumbnailNavigation area when position is "far-right"
-      },
-      themes: {
-        light: {
-          palette: {
-            type: 'light',
-            primary: {
-              main: '#0B113A',
+      // Créer un Blob URL pour que Mirador ne re-fetch pas l'original
+      const blob = new Blob([JSON.stringify(json)], { type: 'application/json' });
+      const blobUrl = URL.createObjectURL(blob);
+      manifestData = blobUrl;
+      windowSettings.manifestId = blobUrl;
+    }
+  })
+  .catch(e => console.warn('Filtre VEDETTE échoué', e))
+  .finally(() => {   
+    (Mirador.viewer(
+        {
+          id: 'mirador',
+          mainMenuSettings: {
+            show: true
+          },
+          language: lang,       // The default language set in the application
+          availableLanguages: { // All the languages available in the language switcher
+            fr: 'Français',
+            en: 'English'
+          },
+          showLocalePicker: true,
+          thumbnailNavigation: {
+            defaultPosition: thumbNavigation, // Which position for the thumbnail navigation to be be displayed. Other possible values are "far-bottom" or "far-right"
+            displaySettings: true, // Display the settings for this in WindowTopMenu
+            height: 120, // height of entire ThumbnailNavigation area when position is "far-bottom"
+            width: 100, // width of one canvas (doubled for book view) in ThumbnailNavigation area when position is "far-right"
+          },
+          themes: {
+            light: {
+              palette: {
+                type: 'light',
+                primary: {
+                  main: '#0B113A',
+                },
+                secondary: {
+                  main: '#B72600',
+                },
+                shades: { // Shades that can be used to offset color areas of the Workspace / Window
+                  dark: '#eeeeee',
+                  main: '#ffffff',
+                  light: '#ffffff',
+                },
+                highlights: {
+                  primary: '#FFCA40',
+                  secondary: '#6BA5D1',
+                },
+                search: {
+                  default: { fillStyle: '#6BA5D1', globalAlpha: 0.3 },
+                  hovered: { fillStyle: '#2178C4', globalAlpha: 0.3 },
+                  selected: { fillStyle: '#B72600', globalAlpha: 0.3 },
+                },
+              },
             },
-            secondary: {
-              main: '#B72600',
-            },
-            shades: { // Shades that can be used to offset color areas of the Workspace / Window
-              dark: '#eeeeee',
-              main: '#ffffff',
-              light: '#ffffff',
-            },
-            highlights: {
-              primary: '#FFCA40',
-              secondary: '#6BA5D1',
-            },
-            search: {
-              default: { fillStyle: '#6BA5D1', globalAlpha: 0.3 },
-              hovered: { fillStyle: '#2178C4', globalAlpha: 0.3 },
-              selected: { fillStyle: '#B72600', globalAlpha: 0.3 },
+            dark: {
+              palette: {
+                type: 'dark',
+                primary: {
+                  main: '#2178C4',
+                },
+                secondary: {
+                  main: '#eeeeee',
+                },
+                highlights: {
+                  primary: '#FFCA40',
+                  secondary: '#6BA5D1',
+                },
+              },
             },
           },
-        },
-        dark: {
-          palette: {
-            type: 'dark',
-            primary: {
-              main: '#2178C4',
-            },
-            secondary: {
-              main: '#eeeeee',
-            },
-            highlights: {
-              primary: '#FFCA40',
-              secondary: '#6BA5D1',
-            },
-          },
-        },
-      },
-      selectedTheme: 'light',
-      data: [manifest],
-      windows: [
-        windowSettings
-      ],
-      miradorSharePlugin: {
-        dragAndDropInfoLink: 'https://iiif.io',
-        embedOption: {
-          enabled: true,
-          embedUrlReplacePattern: [
-            /.*\.edu\/(\w+)\/iiif\/manifest/,
-            manifest
+          selectedTheme: 'light',
+          data: [manifestData],
+          windows: [
+            windowSettings
           ],
-          syncIframeDimensions: {
-            height: {param: 'maxheight'},
+          miradorSharePlugin: {
+            dragAndDropInfoLink: 'https://iiif.io',
+            embedOption: {
+              enabled: true,
+              embedUrlReplacePattern: [
+                /.*\.edu\/(\w+)\/iiif\/manifest/,
+                manifest
+              ],
+              syncIframeDimensions: {
+                height: {param: 'maxheight'},
+              },
+            },
+            shareLink: {
+              enabled: true,
+              manifestIdReplacePattern: [
+                /\/iiif\/manifest/,
+                '',
+              ],
+            },
           },
-        },
-        shareLink: {
+          miradorDownloadPlugin: {
+            restrictDownloadOnSizeDefinition: false
+          },
+          window: {
+            allowClose: true,
+            imageToolsEnabled: notMobile ? true: false,
+            imageToolsOpen: false,
+          textOverlay: {
+              enabled: true,
+              visible: false,
+              skipEmptyLines: true,
+            opacity: 0,
+            color: '#6BA5D1',
+          overlayFont: "'Courier New', monospace, Arial, Helvetica, sans-serif",
+          correction: {
           enabled: true,
-          manifestIdReplacePattern: [
-            /\/iiif\/manifest/,
-            '',
-          ],
+          emailUrlKeepParams: ['manifest'],
+          emailRecipient: null,
+          },
+              optionsRenderMode: 'simple',
+            },
+            defaultSideBarPanel: 'info',
+            sideBarOpenByDefault: false,
+            allowFullscreen: true,
+            allowMaximize: false,
+            defaultView: defaultView,
+            sideBarOpen: notMobile,
+            allowTopMenuButton: true,
+            defaultSidebarPanelWidth: 300,
+            switchCanvasOnSearch: true,
+            views: [
+              { key: 'single', behaviors: ['individuals'] },
+              { key: 'book', behaviors: ['paged'] },
+              { key: 'scroll', behaviors: ['continuous'] },
+              { key: 'gallery' },
+            ],
+            panels: {
+              info: true,
+              attribution: false,
+              canvas: true,
+              search: searchOption,
+              layers: false,
+            },
+            sideBarPanel: sidbarPanel
+          },
+          workspace: {
+            allowNewWindows: true,
+            showZoomControls: true,
+            type: 'mosaic'
+          },
+          workspaceControlPanel: {
+            enabled: true, // Active la barre de navigation en haut avec les boutons: Ajouter ressource, navigation fenêtres, paramètres...
+          },
+          annotation: notMobile
+          ? {
+              adapter: (canvasId) =>
+                new LocalStorageAdapter(`localStorage://?canvasId=${canvasId}`),
+              exportLocalStorageAnnotations: true,
+            } : null // Annotations désactivées sur mobile
         },
-      },
-      miradorDownloadPlugin: {
-        restrictDownloadOnSizeDefinition: false
-      },
-      window: {
-        allowClose: true,
-        imageToolsEnabled: notMobile ? true: false,
-        imageToolsOpen: false,
-    	textOverlay: {
-          enabled: true,
-          visible: false,
-          skipEmptyLines: true,
-    	  opacity: 0,
-    	  color: '#6BA5D1',
-		  overlayFont: "'Courier New', monospace, Arial, Helvetica, sans-serif",
-		  correction: {
-			enabled: true,
-			emailUrlKeepParams: ['manifest'],
-			emailRecipient: null,
-		  },
-          optionsRenderMode: 'simple',
-        },
-        defaultSideBarPanel: 'info',
-        sideBarOpenByDefault: false,
-        allowFullscreen: true,
-        allowMaximize: false,
-        defaultView: defaultView,
-        sideBarOpen: notMobile,
-        allowTopMenuButton: true,
-        defaultSidebarPanelWidth: 300,
-        switchCanvasOnSearch: true,
-        views: [
-          { key: 'single', behaviors: ['individuals'] },
-          { key: 'book', behaviors: ['paged'] },
-          { key: 'scroll', behaviors: ['continuous'] },
-          { key: 'gallery' },
-        ],
-        panels: {
-          info: true,
-          attribution: false,
-          canvas: true,
-          search: searchOption,
-          layers: false,
-        },
-        sideBarPanel: sidbarPanel
-      },
-      workspace: {
-        allowNewWindows: true,
-        showZoomControls: true,
-        type: 'mosaic'
-      },
-      workspaceControlPanel: {
-        enabled: true, // Active la barre de navigation en haut avec les boutons: Ajouter ressource, navigation fenêtres, paramètres...
-      },
-      annotation: notMobile
-      ? {
-          adapter: (canvasId) =>
-            new LocalStorageAdapter(`localStorage://?canvasId=${canvasId}`),
-          exportLocalStorageAnnotations: true,
-        } : null // Annotations désactivées sur mobile
-    },
-    plugins
-  )
-)(manifest);
+        plugins
+      )
+    )(manifestData);
+ });
