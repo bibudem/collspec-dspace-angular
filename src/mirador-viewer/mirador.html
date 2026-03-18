@@ -54,10 +54,31 @@
         flex: 1 1 0 !important;
       }
 
+      .mirador-osd-container .MuiFab-root {
+          margin-top: 10px !important;
+        }
+
+        /* Force les boutons text overlay à ne plus se superposer */
+        .mirador-osd-container > div {
+          display: flex !important;
+          flex-direction: column !important;
+          align-items: flex-end !important;
+          gap: 10px !important;
+
+          position: absolute;
+          right: 16px;
+          bottom: 80px;
+        }
+
       @media (max-width: 768px) {
         .mirador-window-top-bar .MuiTypography-h2, .mirador-window header nav h2.MuiTypography-noWrap {
           font-size: 1.15rem !important;
           white-space: nowrap !important;
+        }
+
+        button[aria-label*="text overlay"],
+        button[aria-label*="OCR"] {
+          display: none !important;
         }
       }
 
@@ -358,29 +379,43 @@ resizeObserver.observe(miradorContainer);
   /* Lit tous les canvas OSD — OSD en utilise deux superposés,
      on vérifie le premier canvas non masqué qui a du contenu */
   function isCanvasLoaded(osdContainer) {
-    const canvases = osdContainer.querySelectorAll('canvas');
-    for (const canvas of canvases) {
-      // Ignore les canvas masqués (visibility: hidden)
-      if (canvas.style.visibility === 'hidden') continue;
-      if (canvas.width === 0 || canvas.height === 0) continue;
-      try {
-        const ctx = canvas.getContext('2d');
-        // Échantillonne plusieurs points pour plus de fiabilité
-        const points = [
-          [Math.floor(canvas.width / 2), Math.floor(canvas.height / 2)],
-          [Math.floor(canvas.width / 4), Math.floor(canvas.height / 4)],
-          [Math.floor(canvas.width * 3 / 4), Math.floor(canvas.height / 4)],
-        ];
-        for (const [x, y] of points) {
-          const pixel = ctx.getImageData(x, y, 1, 1).data;
-          if (pixel[3] > 0) return true;
+      const canvases = osdContainer.querySelectorAll('canvas');
+
+      for (const canvas of canvases) {
+        if (canvas.style.visibility === 'hidden') continue;
+        if (canvas.width === 0 || canvas.height === 0) continue;
+
+        try {
+          const ctx = canvas.getContext('2d');
+
+          const points = [
+            [0.25, 0.25],
+            [0.5, 0.5],
+            [0.75, 0.75],
+            [0.25, 0.75],
+            [0.75, 0.25]
+          ];
+
+          let visiblePixels = 0;
+
+          for (const [px, py] of points) {
+            const x = Math.floor(canvas.width * px);
+            const y = Math.floor(canvas.height * py);
+            const pixel = ctx.getImageData(x, y, 1, 1).data;
+
+            if (pixel[3] > 0) visiblePixels++;
+          }
+
+          // seuil minimum (ex: 3/5 points visibles)
+          if (visiblePixels >= 3) return true;
+
+        } catch (e) {
+          return true;
         }
-      } catch (e) {
-        return true; // CORS ou erreur — on considère chargé
       }
+
+      return false;
     }
-    return false;
-  }
 
   function waitForCanvas(osdContainer, loader) {
     // Sécurité : cache le loader après 30s max
