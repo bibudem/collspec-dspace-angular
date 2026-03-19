@@ -23,7 +23,7 @@
       font-weight: 400;
       font-size: 0.95rem;
       background: transparent;
-      border: 1px solid #dee2e6; // Bordure grise sur tous les onglets
+      border: 1px solid #dee2e6;
       border-radius: 8px 8px 0 0 !important;
       transition: all 0.2s ease;
 
@@ -34,11 +34,10 @@
     }
   }
 
-  // Onglet actif — bordure orange uniquement
   .nav-link.active {
     background-color: #2b4e72;
     color: #ffffff;
-    border: 1px solid #2b4e72; // Bordure orange tout autour
+    border: 1px solid #2b4e72;
     border-radius: 8px;
 
     &:hover {
@@ -47,9 +46,21 @@
       color: #ffffff;
     }
   }
+
+  // ── Ajout : petits écrans ──────────────────────────────
+  @media (max-width: 576px) {
+    li {
+      flex: 1 1 auto;
+
+      a {
+        justify-content: center;
+        padding: 0.5em 1.2em;
+        font-size: 0.85rem;
+      }
+    }
+  }
 }
 
-// Zone de contenu
 [ngbnavoutlet] {
   background-color: #ffffff;
   border: 1.5px solid #d0d0d0;
@@ -62,4 +73,3 @@
   0% { opacity: 0.85; }
   100% { opacity: 1; }
 }
-
