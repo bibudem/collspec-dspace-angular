@@ -54,10 +54,38 @@
         flex: 1 1 0 !important;
       }
       
-      /* Pour le bouton Expand text overlay */
-      .MuiPaper-elevation4 > div > button[aria-label="Expand text overlay options"] {
-          position: absolute;
-          top: 125px !important;
+      /* -------------------------------------------------------
+        Boutons flottants OSD — empiler verticalement
+        (remplace l'ancienne règle "Expand text overlay")
+      ------------------------------------------------------- */
+
+      /* Conteneur commun — position de référence */
+      .mirador-osd-container:has(button[aria-label="Expand image tools"]) {
+        position: relative !important;
+      }
+
+      /* Wrapper du bouton "Expand image tools" */
+      .mirador-osd-container .MuiPaper-elevation4:has(button[aria-label="Expand image tools"]) {
+        position: absolute !important;
+        top: 8px !important;
+        right: 8px !important;
+        z-index: 10 !important;
+      }
+
+      /* Wrapper du bouton "Show/Hide OCR" */
+      .mirador-osd-container .MuiPaper-elevation4:has(button[aria-label="Show/Hide OCR"]) {
+        position: absolute !important;
+        top: 60px !important;
+        right: 8px !important;
+        z-index: 10 !important;
+      }
+
+      /* Wrapper du bouton "Expand text overlay options" */
+      .mirador-osd-container .MuiPaper-elevation4:has(button[aria-label="Expand text overlay options"]) {
+        position: absolute !important;
+        top: 112px !important;
+        right: 8px !important;
+        z-index: 10 !important;
       }
 
       @media (max-width: 768px) {
