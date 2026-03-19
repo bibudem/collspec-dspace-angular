@@ -18,9 +18,11 @@ import miradorDownloadPlugin from 'mirador-dl-plugin/es/miradorDownloadPlugin';
 import miradorDownloadDialog from 'mirador-dl-plugin/es/MiradorDownloadDialog';
 import { miradorImageToolsPlugin } from 'mirador-image-tools';
 import textOverlayPlugin from 'mirador-textoverlay/es';
-import ocrHelperPlugin from '@4eyes/mirador-ocr-helper';
+//import ocrHelperPlugin from '@4eyes/mirador-ocr-helper';
 import annotationPlugins from 'mirador-annotations';
 import LocalStorageAdapter from 'mirador-annotations/es/LocalStorageAdapter';
+import imageCropperPlugin from 'mirador-imagecropper/es';
+
 // import AnnototAdapter from 'mirador-annotations/es/AnnototAdapter';
 // Import your custom component
 //import CustomMiradorDownloadDialog from "./CustomMiradorDownloadDialog";
@@ -81,9 +83,10 @@ const plugins = [
 if (notMobile) {
   plugins.push(
     miradorImageToolsPlugin,
-    ocrHelperPlugin,
+    //ocrHelperPlugin,
     annotationPlugins,
     textOverlayPlugin,
+	imageCropperPlugin,
   );
 }
 
@@ -221,19 +224,31 @@ fetch(manifest)
             imageToolsEnabled: notMobile ? true: false,
             imageToolsOpen: false,
           textOverlay: {
-              enabled: true,
-              visible: false,
-              skipEmptyLines: true,
-            opacity: 0,
+            enabled: true,
+            visible: false,
+			useAutoColors: true,
+			textColor: '#000000',
+			bgColor: '#ffffff',
+			selectionTextColor: '#218a59',
+			selectionBackgroundColor: '#21428a',
+            skipEmptyLines: true,
+            opacity: 0.5,
             color: '#6BA5D1',
-          overlayFont: "'Courier New', monospace, Arial, Helvetica, sans-serif",
-          correction: {
-          enabled: true,
-          emailUrlKeepParams: ['manifest'],
-          emailRecipient: null,
-          },
-              optionsRenderMode: 'simple',
+            overlayFont: "'EB Garamond', Garamond, Tahoma, Calibri, 'Courier New', monospace, Arial, Helvetica, sans-serif",
+			optionsRenderMode: 'simple',
+            correction: {
+            enabled: true,
+            emailUrlKeepParams: ['manifest'],
+            emailRecipient: null,
             },
+          },
+		  imageCropper: {
+	        enabled: true,
+	        active: false,
+	        dialogOpen: false,
+	        roundingPrecision: 5,
+	        showRightsInformation: false,
+	      },
             defaultSideBarPanel: 'info',
             sideBarOpenByDefault: false,
             allowFullscreen: true,
