@@ -54,8 +54,10 @@
         flex: 1 1 0 !important;
       }
       
-      div.MuiPaper-elevation4.mirador108.mirador109 {
-        top:125px !important;
+      /* Pour le bouton Expand text overlay */
+      .MuiPaper-elevation4 > div > button[aria-label="Expand text overlay options"] {
+          position: absolute;
+          top: 125px !important;
       }
 
       @media (max-width: 768px) {
@@ -69,6 +71,104 @@
           display: none !important;
         }
       }
+
+      /* -------------------------------------------------------
+        Barre de navigation workspace — correction mobile
+      ------------------------------------------------------- */
+
+      /* Sur mobile : barre en haut, hauteur fixe, icônes centrées */
+      @media (max-width: 599px) {
+
+        /* Réduit la hauteur de la barre en haut */
+        .mirador-workspace-control-panel.mirador5 {
+          height: 52px !important;
+          min-height: 52px !important;
+        }
+
+        /* Réduit les boutons dans la barre */
+        .mirador-workspace-control-panel .MuiIconButton-root {
+          padding: 6px !important;
+        }
+
+        .mirador-workspace-control-panel .MuiFab-sizeMedium,
+        .mirador-workspace-control-panel .MuiFab-root {
+          width: 36px !important;
+          height: 36px !important;
+          min-height: 36px !important;
+        }
+
+        /* Compense le padding-top du workspace (était 74px) */
+        .mirador21 {
+          padding-top: 52px !important;
+        }
+
+        /* Icônes plus petites dans la barre */
+        .mirador-workspace-control-panel .MuiSvgIcon-root {
+          font-size: 1.2rem !important;
+        }
+
+        /* Badge du compteur de fenêtres */
+        .mirador-workspace-control-panel .MuiBadge-badge {
+          font-size: 0.6rem !important;
+          height: 16px !important;
+          min-width: 16px !important;
+          padding: 0 4px !important;
+        }
+      }
+    /* -------------------------------------------------------
+      Panneau Search — correction layout
+    ------------------------------------------------------- */
+
+    /* L'en-tête passe en wrap pour que le formulaire
+      tombe sur la 2e ligne naturellement */
+    .mirador-companion-window-header {
+      flex-wrap: wrap !important;
+      align-items: center !important;
+      padding: 4px 8px !important;
+      min-height: auto !important;
+      row-gap: 4px !important;
+    }
+
+    /* Titre "SEARCH" occupe toute la largeur de la 1re ligne */
+    .mirador-companion-window-header .MuiTypography-h3 {
+      flex: 0 0 auto !important;
+      order: 1 !important;
+    }
+
+    /* Bouton "open in panel" reste à droite du titre */
+    .mirador-companion-window-header > .MuiIconButton-root {
+      flex: 0 0 auto !important;
+      order: 2 !important;
+      margin-left: auto !important;
+    }
+
+    /* Le bloc titre-controls (qui contient le formulaire)
+      prend toute la largeur sur la 2e ligne */
+    .mirador-companion-window-header .mirador-companion-window-title-controls {
+      flex: 1 1 100% !important;
+      width: 100% !important;
+      min-width: 0 !important;
+      order: 3 !important;
+      padding: 0 !important;
+      margin: 0 0 4px 0 !important;
+      min-height: auto !important;
+    }
+
+    /* Formulaire et input pleine largeur */
+    .mirador-companion-window-header form {
+      width: 100% !important;
+    }
+
+    .mirador-companion-window-header .MuiFormControl-root,
+    .mirador-companion-window-header .MuiAutocomplete-root {
+      width: 100% !important;
+    }
+
+    /* Empêche l'input de déborder */
+    .mirador-companion-window-header .MuiInputBase-root {
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
 
     /* -------------------------------------------------------
        Cacher la description du niveau manifest dans Mirador

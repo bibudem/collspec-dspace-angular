@@ -1268,7 +1268,91 @@ span.dont-break-out {
     background: #f8f9fa !important;
   }
 }
+/* -------------------------------------------------------
+   Footer Mobile - Améliorations responsive (sans JS)
+------------------------------------------------------- */
+@media (max-width: 767.98px) {
+  .footer {
+    padding-top: 16px;
 
+    // Cacher le logo et les réseaux sociaux sur mobile
+    .col-md-3:last-of-type {
+      display: none !important; // Cache la colonne logo
+    }
+
+    .social-icons {
+      display: none !important; // Cache les réseaux sociaux
+    }
+
+    // Toutes les colonnes en ligne sur mobile
+    .col-sm-6 {
+      width: 50% !important;
+      margin-top: 8px !important;
+      margin-bottom: 8px !important;
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+
+    // Supprimer les bordures droites
+    .border-r {
+      border-right: none !important;
+      border-bottom: 1px solid #60738630;
+      padding-bottom: 8px;
+    }
+
+    // Réduire les espacements des liens
+    .footer-link-udem {
+      font-size: 0.8rem !important;
+      margin: 0 !important;
+
+      li {
+        margin-top: 4px !important;
+      }
+    }
+
+    ul.list-unstyled li {
+      margin-top: 6px !important;
+    }
+
+    // Titre footer plus petit
+    .text-title-bib {
+      font-size: 1.1rem !important;
+      margin-bottom: 8px !important;
+    }
+
+    // En-tête footer
+    .col-md-12 {
+      margin-bottom: 4px !important;
+    }
+
+    // Icônes SVG plus petites
+    svg {
+      width: 14px !important;
+      height: 14px !important;
+    }
+  }
+
+  // Bas de page compact
+  .section-footer-blue {
+    padding: 4px 0 !important;
+
+    .terms-privacy {
+      flex-wrap: wrap !important;
+      justify-content: center !important;
+      gap: 2px;
+      margin-top: 4px !important;
+      margin-bottom: 4px !important;
+
+      li {
+        font-size: 11px !important;
+      }
+
+      .link-footer {
+        font-size: 11px !important;
+      }
+    }
+  }
+}
 /* -------------------------------------------------------
    Desktop (1200px et plus)
 ------------------------------------------------------- */
