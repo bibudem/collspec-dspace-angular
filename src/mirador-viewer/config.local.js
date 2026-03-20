@@ -68,9 +68,9 @@ windowSettings.manifestId = manifest;
       }
     }
   }
-  if ( langParam !== 'null' ) {
-    lang = langParam;
-  }
+  if (langParam && ['fr', 'en'].includes(langParam)) {
+      lang = langParam;
+    }
 })();
 
 const plugins = [
