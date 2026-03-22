@@ -76,5 +76,11 @@
   "browse.comcol.by.type": "Type",
   "browse.comcol.by.language": "Langue",
   "browse.comcol.by.publisher": "Éditeur",
-
+  
+  "dso-selector.set-scope.community.button": "Rechercher dans toutes les Collections spéciales",
+  "menu.section.browse_global": "Toutes les Collections spéciales",
+  "nav.browse.header": "Toutes les Collections spéciales",
+  "search.form.scope.all": "Toutes les Collections spéciales",
+  "dso-selector.set-scope.community.input-header": "Rechercher une collection",
+  "dso-selector.placeholder": "Rechercher une collection",
 }
