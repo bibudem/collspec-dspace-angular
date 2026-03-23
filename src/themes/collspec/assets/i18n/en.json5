@@ -70,4 +70,11 @@
   "browse.comcol.by.type": "By Type",
   "browse.comcol.by.language": "By Language",
   "browse.comcol.by.publisher": "By Publisher",
+  
+  "dso-selector.set-scope.community.button": "Search all Special Collections",
+  "menu.section.browse_global": "All Special Collections",
+  "nav.browse.header": "All Special Collections",
+  "search.form.scope.all": "All Special Collections",
+  "dso-selector.set-scope.community.input-header": "Search for a collection",
+  "dso-selector.placeholder": "Search for a collection",
 }
