@@ -1428,6 +1428,14 @@ p.full-text-op {
   display: none !important;
 }
 
+/* Donner un peu de fond au fil d'Ariane */
+.nav-breadcrumb{
+  background-color: #f8f9fa!important;
+}
+
+.nav-breadcrumb ol.breadcrumb{
+  background-color: #f8f9fa!important;
+}
 /* Cacher le deuxième élément du fil d'Ariane: Collections spéciales */
 .nav-breadcrumb ol.breadcrumb li:nth-child(2) {
   display: none;
