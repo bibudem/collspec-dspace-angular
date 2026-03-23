@@ -8,12 +8,28 @@
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Lora:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
   <style>
     /* -------------------------------------------------------
-       Réordonne les boutons de la barre de titre
+      Réordonne les boutons de la barre de titre
+      (supporte français et anglais)
     ------------------------------------------------------- */
-    .mirador-window-top-bar button[aria-label="Full screen"] { order: 1; }
-    .mirador-window-top-bar button[aria-label="Window views & thumbnail display"] { order: 2; }
-    .mirador-window-top-bar button[aria-label="Window options"] { order: 3; }
-    .mirador-window-top-bar .mirador-window-close { order: 4; }
+
+    /* 1. Full screen / Plein écran */
+    .mirador-window-top-bar button[aria-label="Full screen"],
+    .mirador-window-top-bar button[aria-label="Plein écran"] { order: 1; }
+
+    /* 2. Window views & thumbnail display / Autres options et outils */
+    .mirador-window-top-bar button[aria-label="Window views & thumbnail display"],
+    .mirador-window-top-bar button[aria-label="Autres options et outils"] { order: 2; }
+
+    /* 3. Crop / Activate selection of an image region */
+    .mirador-window-top-bar button[aria-label="Activate selection of an image region"] { order: 3; }
+
+    /* 4. Window options / Options de fenêtre */
+    .mirador-window-top-bar button[aria-label="Window options"],
+    .mirador-window-top-bar button[aria-label="Options de fenêtre"] { order: 4; }
+
+    /* 5. Fermer */
+    .mirador-window-top-bar button[aria-label="Fermer cette fenêtre"],
+    .mirador-window-top-bar .mirador-window-close { order: 5; }
 
     /* -------------------------------------------------------
        Fond du workspace
