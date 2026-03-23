@@ -77,4 +77,6 @@
   "search.form.scope.all": "All Special Collections",
   "dso-selector.set-scope.community.input-header": "Search for a collection",
   "dso-selector.placeholder": "Search for a collection",
+  
+  "search.filters.filter.language.head": "Language",
 }
