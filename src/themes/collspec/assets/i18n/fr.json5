@@ -83,4 +83,7 @@
   "search.form.scope.all": "Toutes les Collections spéciales",
   "dso-selector.set-scope.community.input-header": "Rechercher une collection",
   "dso-selector.placeholder": "Rechercher une collection",
+  
+  "search.filters.filter.language.head": "Langue",
+
 }
