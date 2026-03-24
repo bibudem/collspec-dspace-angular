@@ -142,6 +142,59 @@ fetch(manifest)
             fr: 'Français',
             en: 'English'
           },
+          // Ajoute ceci pour surcharger les traductions manquantes
+        translations: {
+          fr: {
+            // --- mirador-textoverlay ---
+            collapseTextOverlayOptions: "Réduire les options de superposition de texte",
+            disableTextOverlay: "Désactiver la superposition de texte",
+            enableTextOverlay: "Activer la superposition de texte",
+            expandTextOverlayOptions: "Développer les options de superposition de texte",
+            textOpacity: "Opacité du texte",
+            textSelect: "Texte sélectionnable",
+            textVisible: "Texte visible",
+            colorPicker: "Sélecteur de couleur",
+            textColor: "Couleur du texte",
+            backgroundColor: "Couleur de fond de la ligne",
+            resetTextColors: "Réinitialiser les couleurs",
+
+            // --- mirador-imagecropper ---
+            imageCropper: {
+              activate: "Activer la sélection d'une zone de l'image",
+              close: "Fermer",
+              copiedToClipboard: "Copié dans le presse-papiers avec succès",
+              copyToClipboard: "Copier dans le presse-papiers",
+              deactivate: "Désactiver la sélection d'une zone de l'image",
+              linkToSelectedRegion: "Lien vers la zone sélectionnée",
+              mirror: "Miroir de l'image",
+              noteRights: "Veuillez noter la mention de droits",
+              noteRights_plural: "Veuillez noter les mentions de droits",
+              openDialog: "Ouvrir la fenêtre des paramètres",
+              options: "Options",
+              preview: {
+                label: "Aperçu",
+                link: "Afficher avec les options sélectionnées ci-dessus"
+              },
+              quality: {
+                bitonal: "Bitonal",
+                color: "Couleur",
+                default: "Par défaut",
+                gray: "Niveaux de gris",
+                label: "Qualité"
+              },
+              reflection: "Réflexion",
+              rotation: "Rotation",
+              share: {
+                envelope: "Partager par courriel",
+                facebook: "Partager sur Facebook",
+                pinterest: "Partager sur Pinterest",
+                whatsapp: "Partager via WhatsApp",
+                x: "Partager sur X"
+              },
+              size: "Taille"
+            }
+          }
+        },
           showLocalePicker: true,
           thumbnailNavigation: {
             defaultPosition: thumbNavigation, // Which position for the thumbnail navigation to be be displayed. Other possible values are "far-bottom" or "far-right"
