@@ -145,6 +145,13 @@ fetch(manifest)
           // Ajoute ceci pour surcharger les traductions manquantes
         translations: {
           fr: {
+            // mirador-share-plugin
+            share: "Partager",
+            // mirador-dl-plugin
+            download: "Télécharger",
+            // mirador-image-tools
+            hideImageTools: "Masquer les outils d'image",
+            showImageTools: "Afficher les outils d'image",
             // --- mirador-textoverlay ---
             collapseTextOverlayOptions: "Réduire les options de superposition de texte",
             disableTextOverlay: "Désactiver la superposition de texte",
