@@ -79,4 +79,18 @@
   "dso-selector.placeholder": "Search for a collection",
   
   "search.filters.filter.language.head": "Language",
+  
+  "community.subcoms-cols.breadcrumbs": "Collections and sub-collections",
+  "community.all-lists.head": "Collections and sub-collections",
+  "home.top-level-communities.head": "Collections in Special Collections",
+  "home.top-level-communities.help": "Select a collection to browse its sub-collections.",
+  "loading.community": "Loading collection...",
+  "loading.sub-communities": "Loading sub-collections...",
+  "loading.top-level-communities": "Loading top-level collections....",
+  "menu.section.browse_community": "This collection",
+  "menu.section.browse_global_communities_and_collections": "Collections and sub-collections",
+  "subscriptions.community": "Subscriptions for collections",
+ 
+  "collspec.page-udem": "About",
+  
 }

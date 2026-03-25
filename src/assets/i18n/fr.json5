@@ -1434,7 +1434,7 @@
 
   "community.browse.logo": "Ajouter un logo à la communauté",
 
-  "community.subcoms-cols.breadcrumbs": "Collections",
+  "community.subcoms-cols.breadcrumbs": "Collections et sous-collections",
 
   "community.create.breadcrumbs": "Créer une communauté",
 
@@ -1602,7 +1602,7 @@
 
   "community.page.options": "Options",
 
-  "community.all-lists.head": "Collections",
+  "community.all-lists.head": "Collections et sous-collections",
 
   "community.search.breadcrumbs": "Recherche",
 
@@ -2210,9 +2210,9 @@
 
   "home.title": "Accueil",
 
-  "home.top-level-communities.head": "Communautés dans Collections spéciales",
+  "home.top-level-communities.head": "Collections dans Collections spéciales",
 
-  "home.top-level-communities.help": "Sélectionner une communauté pour parcourir les collections sous-jacentes.",
+  "home.top-level-communities.help": "Sélectionner une collection pour parcourir les collections sous-jacentes.",
 
   "info.accessibility-settings.breadcrumbs": "Paramètres d'accessibilité",
 
@@ -3366,7 +3366,7 @@
 
   "loading.content-source": "Source de contenu en cours de chargement...",
 
-  "loading.community": "Communauté en cours de chargement...",
+  "loading.community": "Collection en cours de chargement...",
 
   "loading.default": "En cours de chargement...",
 
@@ -3384,9 +3384,9 @@
 
   "loading.sub-collections": "Sous-collections en cours de chargement...",
 
-  "loading.sub-communities": "Sous-communautés en cours de chargement...",
+  "loading.sub-communities": "Sous-collection en cours de chargement...",
 
-  "loading.top-level-communities": "Communautés de 1er niveau en cours de chargement...",
+  "loading.top-level-communities": "Collections de 1er niveau en cours de chargement...",
 
   "login.form.email": "Adresse électronique",
 
@@ -3444,7 +3444,7 @@
 
   "menu.section.admin_search": "Recherche Administrateur",
 
-  "menu.section.browse_community": "Cette communauté",
+  "menu.section.browse_community": "Cette collection",
 
   "menu.section.browse_community_by_author": "Auteur",
 
@@ -3466,7 +3466,7 @@
 
   "menu.section.browse_global_by_title": "Titre",
 
-  "menu.section.browse_global_communities_and_collections": "Communautés et collections",
+  "menu.section.browse_global_communities_and_collections": "Collections et sous-collections",
 
   "menu.section.browse_global_geospatial_map": "Par géolocalisation (Carte)",
 
@@ -5830,7 +5830,7 @@
 
   "subscriptions.collection": "Abonnements pour les collections",
 
-  "subscriptions.community": "Abonnements pour les communautés",
+  "subscriptions.community": "Abonnements pour les collections",
 
   "subscriptions.subscription_type": "Type d'abonnement",
 
@@ -7445,4 +7445,6 @@
   "browse.comcol.by.publisher": "Éditeur",
 
   "search.filters.filter.language.head": "Langue",
+
+  "collspec.page-udem": "À propos",
 }
