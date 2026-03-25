@@ -146,13 +146,11 @@ fetch(manifest)
         translations: {
           fr: {
             // mirador-share-plugin
-            DialogTitle: "Partager",
-            shareLinkText: "Partager le lien",
-            // mirador-dl-plugin
-            Download: "Télécharger",
-            // mirador-image-tools
-            HideImageTools: "Masquer les outils d'image",
+            hideImageTools: "Masquer les outils d'image",
             showImageTools: "Afficher les outils d'image",
+            collapse_open: "Fermer les outils de réglages de l'image",
+            collapse_close: "Ouvrir les outils de réglages de l'image",
+            revert: "Réinitialiser l'image",
             // --- mirador-textoverlay ---
             collapseTextOverlayOptions: "Réduire les options de superposition de texte",
             disableTextOverlay: "Désactiver la superposition de texte",
