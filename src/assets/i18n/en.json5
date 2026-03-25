@@ -1782,7 +1782,7 @@
 
   "dso-selector.no-results": "No {{ type }} found",
 
-  "dso-selector.placeholder": "Search for a {{ type }}",
+  "dso-selector.placeholder": "Search for a collection",
 
   "dso-selector.placeholder.type.community": "community",
 
@@ -1794,11 +1794,11 @@
 
   "dso-selector.set-scope.community.head": "Select a search scope",
 
-  "dso-selector.set-scope.community.button": "Search all of DSpace",
+  "dso-selector.set-scope.community.button": "Search all Special Collections",
 
   "dso-selector.set-scope.community.or-divider": "or",
 
-  "dso-selector.set-scope.community.input-header": "Search for a community or collection",
+  "dso-selector.set-scope.community.input-header": "Search for a collection",
 
   "dso-selector.claim.item.head": "Profile tips",
 
@@ -3452,7 +3452,7 @@
 
   "menu.section.browse_community_by_title": "By Title",
 
-  "menu.section.browse_global": "All of DSpace",
+  "menu.section.browse_global": "All Special Collections",
 
   "menu.section.browse_global_by_author": "By Author",
 
@@ -3688,7 +3688,7 @@
 
   "notification.suggestion.please": "Please",
 
-  "nav.browse.header": "All of DSpace",
+  "nav.browse.header": "All Special Collections",
 
   "nav.community-browse.header": "By Community",
 
@@ -4870,7 +4870,7 @@
 
   "search.form.search_dspace": "All repository",
 
-  "search.form.scope.all": "All of DSpace",
+  "search.form.scope.all": "All Special Collections",
 
   "search.results.head": "Search Results",
 
@@ -7423,4 +7423,12 @@
   "collspec.footer.dspace.copyright": "DSpace software, copyright © 2002-{{year}}",
 
   "collspec.footer.based_on_dspace": "Application based on <a href='http://www.dspace.org/' target='_blank' class='link-footer'>DSpace</a>, open source software.",
+
+  "browse.comcol.by.type": "By Type",
+
+  "browse.comcol.by.language": "By Language",
+
+  "browse.comcol.by.publisher": "By Publisher",
+
+  "search.filters.filter.language.head": "Language",
 }

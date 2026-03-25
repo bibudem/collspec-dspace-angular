@@ -1782,7 +1782,7 @@
 
   "dso-selector.no-results": "Aucun {{ type }} trouvé",
 
-  "dso-selector.placeholder": "Rechercher un(e) {{ type }}",
+  "dso-selector.placeholder": "Rechercher une collection",
 
   "dso-selector.placeholder.type.community": "communauté",
 
@@ -1794,11 +1794,11 @@
 
   "dso-selector.set-scope.community.head": "Sélectionner un champ de recherche",
 
-  "dso-selector.set-scope.community.button": "Chercher dans toutes les collections",
+  "dso-selector.set-scope.community.button": "Rechercher dans toutes les Collections spéciales",
 
   "dso-selector.set-scope.community.or-divider": "ou",
 
-  "dso-selector.set-scope.community.input-header": "Chercher une communauté ou une collection",
+  "dso-selector.set-scope.community.input-header": "Rechercher une collection",
 
   "dso-selector.claim.item.head": "Astuces sur le profil",
 
@@ -3452,7 +3452,7 @@
 
   "menu.section.browse_community_by_title": "Titre",
 
-  "menu.section.browse_global": "Tout Collections spéciales",
+  "menu.section.browse_global": "Toutes les Collections spéciales",
 
   "menu.section.browse_global_by_author": "Auteur",
 
@@ -3688,7 +3688,7 @@
 
   "notification.suggestion.please": "S'il vous plaît",
 
-  "nav.browse.header": "Tout Dspace",
+  "nav.browse.header": "Toutes les Collections spéciales",
 
   "nav.community-browse.header": "Par communauté",
 
@@ -4870,7 +4870,7 @@
 
   "search.form.search_dspace": "Recherche dans Collections spéciales",
 
-  "search.form.scope.all": "Tout le dépôt Collections spéciales",
+  "search.form.scope.all": "Toutes les Collections spéciales",
 
   "search.results.head": "Résultats de recherche",
 
@@ -7437,4 +7437,12 @@
   "collspec.footer.dspace.copyright": "Logiciel DSpace, copyright © 2002-{{year}}",
 
   "collspec.footer.based_on_dspace": "Application basée sur <a href='http://www.dspace.org/' target='_blank' class='link-footer'>DSpace</a>, logiciel open source.",
+
+  "browse.comcol.by.type": "Type",
+
+  "browse.comcol.by.language": "Langue",
+
+  "browse.comcol.by.publisher": "Éditeur",
+
+  "search.filters.filter.language.head": "Langue",
 }
