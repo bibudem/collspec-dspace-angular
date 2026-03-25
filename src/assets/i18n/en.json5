@@ -1434,7 +1434,7 @@
 
   "community.browse.logo": "Browse for a community logo",
 
-  "community.subcoms-cols.breadcrumbs": "Subcommunities and Collections",
+  "community.subcoms-cols.breadcrumbs": "Collections and sub-collections",
 
   "community.create.breadcrumbs": "Create Community",
 
@@ -1602,7 +1602,7 @@
 
   "community.page.options": "Options",
 
-  "community.all-lists.head": "Subcommunities and Collections",
+  "community.all-lists.head": "Collections and sub-collections",
 
   "community.search.breadcrumbs": "Search",
 
@@ -2210,9 +2210,9 @@
 
   "home.title": "Home",
 
-  "home.top-level-communities.head": "Communities in DSpace",
+  "home.top-level-communities.head": "Collections in Special Collections",
 
-  "home.top-level-communities.help": "Select a community to browse its collections.",
+  "home.top-level-communities.help": "Select a collection to browse its sub-collections.",
 
   "info.accessibility-settings.breadcrumbs": "Accessibility settings",
 
@@ -3366,7 +3366,7 @@
 
   "loading.content-source": "Loading content source...",
 
-  "loading.community": "Loading community...",
+  "loading.community": "Loading collection...",
 
   "loading.default": "Loading...",
 
@@ -3384,9 +3384,9 @@
 
   "loading.sub-collections": "Loading sub-collections...",
 
-  "loading.sub-communities": "Loading sub-communities...",
+  "loading.sub-communities": "Loading sub-collections...",
 
-  "loading.top-level-communities": "Loading top-level communities...",
+  "loading.top-level-communities": "Loading top-level collections....",
 
   "login.form.email": "Email address",
 
@@ -3444,7 +3444,7 @@
 
   "menu.section.admin_search": "Admin Search",
 
-  "menu.section.browse_community": "This Community",
+  "menu.section.browse_community": "This collection",
 
   "menu.section.browse_community_by_author": "By Author",
 
@@ -3466,7 +3466,7 @@
 
   "menu.section.browse_global_by_title": "By Title",
 
-  "menu.section.browse_global_communities_and_collections": "Communities & Collections",
+  "menu.section.browse_global_communities_and_collections": "Collections and sub-collections",
 
   "menu.section.browse_global_geospatial_map": "By Geolocation (Map)",
 
@@ -5830,7 +5830,7 @@
 
   "subscriptions.collection": "Subscriptions for collections",
 
-  "subscriptions.community": "Subscriptions for communities",
+  "subscriptions.community": "Subscriptions for collections",
 
   "subscriptions.subscription_type": "Subscription type",
 
@@ -7431,4 +7431,6 @@
   "browse.comcol.by.publisher": "By Publisher",
 
   "search.filters.filter.language.head": "Language",
+
+  "collspec.page-udem": "About",
 }
