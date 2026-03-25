@@ -145,12 +145,15 @@ fetch(manifest)
           // Ajoute ceci pour surcharger les traductions manquantes
         translations: {
           fr: {
-            // mirador-share-plugin
-            hideImageTools: "Masquer les outils d'image",
-            showImageTools: "Afficher les outils d'image",
-            collapse_open: "Fermer les outils de réglages de l'image",
-            collapse_close: "Ouvrir les outils de réglages de l'image",
-            revert: "Réinitialiser l'image",
+            // mirador-image-tools
+            hide: "Masquer les outils",
+            show: "Afficher les outils",
+            collapse_open: "Réduire les outils",
+            collapse_close: "Développer les outils",
+            revert: "Rétablir l'image",
+            dialogTitle: "Partager",
+            shareLinkText: "Partager le lien",
+            download: "Télécharger",
             // --- mirador-textoverlay ---
             collapseTextOverlayOptions: "Réduire les options de superposition de texte",
             disableTextOverlay: "Désactiver la superposition de texte",
