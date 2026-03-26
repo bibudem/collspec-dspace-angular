@@ -154,7 +154,7 @@ export class HeadTagService {
       const title = this.translate.get(routeInfo.data.value.title, routeInfo.data.value);
       combineLatest([titlePrefix, title]).pipe(take(1)).subscribe(([translatedTitlePrefix, translatedTitle]: [string, string]) => {
         this.addMetaTag('title', translatedTitlePrefix + translatedTitle);
-        this.title.setTitle(translatedTitlePrefix + translatedTitle);
+        this.title.setTitle(translatedTitle  + ' | ' + translatedTitlePrefix);
       });
     }
     if (routeInfo.data.value.description) {
@@ -230,7 +230,7 @@ export class HeadTagService {
     //this.title.setTitle(value);
     // Bib Udem: Ajouter le préfixe comme dans processRouteChange
     this.translate.get('repository.title.prefix').pipe(take(1)).subscribe((prefix: string) => {
-      this.title.setTitle(prefix + value);
+      this.title.setTitle(value +' | '+ prefix);
     });
   }
 
