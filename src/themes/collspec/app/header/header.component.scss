@@ -278,4 +278,42 @@
   #desktop-navbar {
     display: block !important;
   }
+  .logo-brand-group{
+    margin-left: -3rem;
+  }
+  .logo-title{
+    white-space: normal;
+    margin-top: 10px;
+    font-size: 14px;
+  }
 }
+.logo-brand-group {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo-img-part {
+  display: flex;
+  align-items: center;
+}
+
+.logo-divider {
+  width: 1.5px;
+  height: 36px;
+  background: #b0b8be;
+  margin: 0 10px;
+  flex-shrink: 0;
+  border-radius: 2px;
+}
+
+.logo-title {
+  font-family: Lora, serif;
+  font-weight: 500;
+  font-size: 19px;
+  color: #192b33;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Supprimer les styles de .titre-logo séparé */
