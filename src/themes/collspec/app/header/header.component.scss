@@ -256,6 +256,15 @@
   #collapsible-mobile-navbar.show {
     border-radius: 0;
   }
+
+  .logo-brand-group{
+    margin-left: -2rem;
+  }
+  .logo-title{
+    white-space: normal!important;
+    margin-top: 10px;
+    font-size: 14px!important;
+  }
 }
 
 /* =============================================
@@ -287,6 +296,7 @@
     font-size: 14px;
   }
 }
+
 .logo-brand-group {
   display: flex;
   align-items: center;

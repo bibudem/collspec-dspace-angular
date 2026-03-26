@@ -227,7 +227,11 @@ export class HeadTagService {
   protected setTitleTag(): void {
     const value = this.dsoNameService.getName(this.currentObject.getValue());
     this.addMetaTag('title', value);
-    this.title.setTitle(value);
+    //this.title.setTitle(value);
+    // Bib Udem: Ajouter le préfixe comme dans processRouteChange
+    this.translate.get('repository.title.prefix').pipe(take(1)).subscribe((prefix: string) => {
+      this.title.setTitle(prefix + value);
+    });
   }
 
   /**
