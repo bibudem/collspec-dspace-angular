@@ -328,7 +328,7 @@ fetch(manifest)
             ],
             panels: {
               info: true,
-              attribution: false,
+              attribution: true,
               canvas: true,
               search: searchOption,
               layers: false,
