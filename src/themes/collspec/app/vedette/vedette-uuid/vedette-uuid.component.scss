@@ -10,7 +10,7 @@
     margin-inline: auto;
     padding-block: 1rem;
     overflow: hidden;
-  position: relative;
+    position: relative;
   }
 
   &__wrapper {
@@ -37,7 +37,7 @@
   }
 
   &__slide {
-    flex: 0 0 100% ;
+    flex: 0 0 100%;
     position: relative;
     border-radius: 12px;
     overflow: hidden;
@@ -85,29 +85,42 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(11, 17, 58, 0.3);
+    background: rgba(0, 0, 0, 0.45);
     color: white;
     border: none;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 1.5rem;
+    width: 42px;
+    height: 42px;
+    font-size: 1.4rem;
     cursor: pointer;
     z-index: 10;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.25s ease;
+    backdrop-filter: blur(4px);
 
     &:hover {
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.75);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    &:active {
+      transform: translateY(-50%) scale(0.95);
+    }
+
+    &:disabled {
+      opacity: 0.2;
+      cursor: not-allowed;
+      pointer-events: none;
     }
 
     &--prev {
-      left: 10px;
+      left: 12px;
     }
 
     &--next {
-      right: 10px;
+      right: 12px;
     }
   }
 }
@@ -124,13 +137,21 @@
   .slider {
     &__slide {
       flex: 0 0 100%;
-       width: 100%;
+      width: 100%;
     }
 
     &__arrow {
       width: 30px;
       height: 30px;
       font-size: 1rem;
+      
+      &--prev {
+        left: 10px;
+      }
+      
+      &--next {
+        right: 10px;
+      }
     }
   }
 }
