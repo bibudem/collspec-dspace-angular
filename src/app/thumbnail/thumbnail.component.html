@@ -18,12 +18,16 @@
          (load)="successHandler()"/>
   }
   @if (src() === null && isLoading() === false) {
-    <div class="thumbnail-content outer">
+    <!--<div class="thumbnail-content outer">
       <div class="inner">
         <div class="thumbnail-placeholder centered">
           {{ placeholder | translate }}
         </div>
       </div>
-    </div>
+    </div>-->
+    <img class="thumbnail-content img-fluid"
+      src="/assets/collspec/images/imageDefaultcollspec.jpg"
+      [alt]="placeholder | translate"
+      (load)="successHandler()"/>
   }
 </div>
