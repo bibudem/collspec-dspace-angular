@@ -575,8 +575,8 @@ nav#admin-sidebar a {
 .card-columns .card {
   position: relative;
   height: auto;
-  min-height: 430px;
-  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.05),
+  min-height: 450px;
+  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.05),
               0 2px 3px rgba(0, 0, 0, 0.05),
               0 2px 1px rgba(0, 0, 0, 0.05) !important;
   border-radius: 8px!important;
@@ -585,6 +585,7 @@ nav#admin-sidebar a {
   background-size: cover;
   border: none !important;
   padding-bottom: 1.5rem;
+  background: #e7ebee48!important;
 
   .card-body {
     padding: 1rem !important;
