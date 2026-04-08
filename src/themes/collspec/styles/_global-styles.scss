@@ -575,7 +575,7 @@ nav#admin-sidebar a {
 .card-columns .card {
   position: relative;
   height: auto;
-  min-height: 420px;
+  min-height: 430px;
   box-shadow: 0 3px 2px rgba(0, 0, 0, 0.05),
               0 2px 3px rgba(0, 0, 0, 0.05),
               0 2px 1px rgba(0, 0, 0, 0.05) !important;
@@ -608,8 +608,8 @@ nav#admin-sidebar a {
 
     // Auteur / date tronqués à 2 lignes
     .item-authors {
-      font-size: 12px !important;
-      color: $gray-600 !important;
+      font-size: 11px !important;
+      color: $gray-500 !important;
       line-height: 1.2 !important;
       margin-bottom: 0 !important;
       display: -webkit-box !important;
@@ -618,21 +618,14 @@ nav#admin-sidebar a {
       -webkit-box-orient: vertical !important;
       overflow: hidden !important;
     }
-    // Description / date tronqués à 1 lignes
-    .card-text {
-      font-size: 11px !important;
-      line-height: 1.2 !important;
-      display: -webkit-box !important;
-      -webkit-line-clamp: 1 !important;
-      line-clamp: 1 !important;
-      -webkit-box-orient: vertical !important;
-      overflow: hidden !important;
-    }
+    // Cacher la description sur le vue Grid
+    .item-abstract {
+      display: none!important    }
 
     // Bouton Afficher
     a {
       position: absolute;
-      top: 85%;
+      top: 90%;
       right: 5px;
       color: #ffffff;
       width: auto;
