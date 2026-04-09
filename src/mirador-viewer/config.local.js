@@ -321,8 +321,8 @@ fetch(manifest)
             defaultSidebarPanelWidth: 300,
             switchCanvasOnSearch: true,
             views: [
-              { key: 'single', behaviors: ['individuals'] },
-              { key: 'book', behaviors: ['paged'] },
+              { key: 'single', behaviors: ['individuals', 'paged'] },
+              { key: 'book', behaviors: ['paged', 'individuals'] },
               { key: 'scroll', behaviors: ['continuous'] },
               { key: 'gallery' },
             ],
