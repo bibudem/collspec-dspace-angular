@@ -100,9 +100,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     private modalService: NgbModal,
     private modalConfig: NgbModalConfig,
   ) {
-    //FORCER FR
-    this.translate.setDefaultLang('fr');
-    this.translate.use('fr');
 
     this.notificationOptions = environment.notifications;
 
