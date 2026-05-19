@@ -34,6 +34,8 @@ const query = params.get('query');
 const multi = params.get('multi');
 const notMobile = params.get('notMobile');
 const langParam = params.get('lang');
+// NIMA - 2026-05-19 : ajout pour le lien vers une page par numéro de canvas
+const page = parseInt(params.get('page') || '1', 10);
 //const endpointUrl = 'http://127.0.0.1:3000/annotations';
 
 let windowSettings = {};
@@ -47,6 +49,8 @@ let manifestId = manifest;
 
 
 windowSettings.manifestId = manifest;
+// NIMA 2026-05-19
+windowSettings.canvasIndex = page - 1;
 //windowSettings.view = 'book';
 
 (() => {
