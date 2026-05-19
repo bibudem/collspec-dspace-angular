@@ -34,6 +34,10 @@ import {
 } from '../../shared/host-window.service';
 import { MiradorViewerService } from './mirador-viewer.service';
 
+
+// NIMA 2026-05-19 : ajout pour pointer vers une page spécifique dans le document (URL)
+import { ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'ds-mirador-viewer',
   styleUrls: ['./mirador-viewer.component.scss'],
@@ -82,6 +86,7 @@ export class MiradorViewerComponent implements OnInit {
 
   constructor(private sanitizer: DomSanitizer,
               private viewerService: MiradorViewerService,
+			  private route: ActivatedRoute, // NIMA - 2026-05-19
               private bitstreamDataService: BitstreamDataService,
               private bundleDataService: BundleDataService,
               private hostWindowService: HostWindowService,
@@ -96,9 +101,16 @@ export class MiradorViewerComponent implements OnInit {
     // The path to the REST manifest endpoint.
     const manifestApiEndpoint = encodeURIComponent(environment.rest.baseUrl + '/iiif/'
       + this.object.id + '/manifest');
+	// NIMA - 2026-05-19 ajout pour trouver la page par numéro de canvas dans le lien
+	const page = this.route.snapshot.queryParamMap.get('page');
     // The Express path to Mirador viewer.
     let viewerPath = `${environment.ui.nameSpace}${environment.ui.nameSpace.length > 1 ? '/' : ''}`
       + `iiif/mirador/index.html?manifest=${manifestApiEndpoint}`;
+	  
+	// NIMA - 2026-05-19
+	if (page) {
+	  viewerPath += '&page=' + page;
+	}
     if (this.searchable) {
       // Tell the viewer add search to menu.
       viewerPath += '&searchable=' + this.searchable;
