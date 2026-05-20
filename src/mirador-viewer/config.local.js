@@ -47,7 +47,6 @@ let lang = 'fr' // Default francais
 let manifestData = manifest;
 let manifestId = manifest;
 
-
 windowSettings.manifestId = manifest;
 // NIMA 2026-05-19
 windowSettings.canvasIndex = page - 1;
@@ -325,8 +324,8 @@ fetch(manifest)
             defaultSidebarPanelWidth: 300,
             switchCanvasOnSearch: true,
             views: [
-              { key: 'single', behaviors: ['individuals'] },
-              { key: 'book', behaviors: ['paged'] },
+              { key: 'single', behaviors: ['individuals', 'paged'] },
+              { key: 'book', behaviors: ['paged', 'individuals'] },
               { key: 'scroll', behaviors: ['continuous'] },
               { key: 'gallery' },
             ],
