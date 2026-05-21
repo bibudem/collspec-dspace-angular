@@ -35,7 +35,12 @@ const multi = params.get('multi');
 const notMobile = params.get('notMobile');
 const langParam = params.get('lang');
 // NIMA - 2026-05-19 : ajout pour le lien vers une page par numéro de canvas
-const page = parseInt(params.get('page') || '1', 10);
+const pageParam = params.get('page') || '1';
+
+const pages = pageParam
+  .split(',')
+  .map(p => parseInt(p, 10))
+  .filter(p => !isNaN(p));
 //const endpointUrl = 'http://127.0.0.1:3000/annotations';
 
 let windowSettings = {};
@@ -49,8 +54,10 @@ let manifestId = manifest;
 
 windowSettings.manifestId = manifest;
 // NIMA 2026-05-19
-windowSettings.canvasIndex = page - 1;
+windowSettings.canvasIndex = pages[0] - 1;
 //windowSettings.view = 'book';
+
+window.miradorInstance = null;
 
 (() => {
   if (searchOption) {
@@ -134,7 +141,7 @@ fetch(manifest)
   })
   .catch(e => console.warn('Filtre VEDETTE échoué', e))
   .finally(() => {   
-    (Mirador.viewer(
+    window.miradorInstance = Mirador.viewer(
         {
           id: 'mirador',
           mainMenuSettings: {
@@ -354,6 +361,54 @@ fetch(manifest)
             } : null // Annotations désactivées sur mobile
         },
         plugins
-      )
-    )(manifestData);
- });
+      );
+
+  
+  // NIMA 2026-05-21 ajout de numéro de page dans l'URL pour Single view et Book view
+  window.miradorInstance.store.subscribe(() => {
+
+  const state = window.miradorInstance.store.getState();
+
+  const windows = state.windows;
+
+  if (!windows || !Object.keys(windows).length) {
+    return;
+  }
+
+  const firstWindow = windows[Object.keys(windows)[0]];
+
+  const visible = firstWindow.visibleCanvases;
+
+  if (!visible || !visible.length) {
+    return;
+  }
+
+  const pages = visible
+    .map((canvasUrl) => {
+
+      const match = canvasUrl.match(/\/canvas\/c(\d+)/);
+
+      if (!match) {
+        return null;
+      }
+
+      return parseInt(match[1], 10) + 1;
+    })
+    .filter(p => p !== null);
+
+  if (!pages.length) {
+    return;
+  }
+
+  const pageParam = pages.join(',');
+
+  const parentUrl = new URL(window.parent.location.href);
+
+  parentUrl.searchParams.delete('page');
+  parentUrl.href = parentUrl.href + `?page=${pageParam}`;
+
+  window.parent.history.replaceState({}, '', parentUrl);
+
+});
+
+});
