@@ -105,7 +105,6 @@ a {
 ------------------------------------------------------- */
 p, span, a {
   font-family: $font-family-sans-serif!important;
-  font-style: normal;
   font-weight: 500;
   line-height: 150%;
   font-size: 1rem;
@@ -663,18 +662,15 @@ nav#admin-sidebar a {
    Éléments de liste
 ------------------------------------------------------- */
 a.lead {
-  display: flex;
-  width: 100%;
-  padding: 14px;
-  flex-direction: column;
-  align-items: flex-start;
-  border-radius: 0px 0px 12px 12px;
-  border-top: 1px solid #C3CCD5;
-  background: #eef4f76b !important;
+  padding: 14px 16px;
+  display: block;
+  border-radius: 6px;
   position: relative;
+  background: #f8f9fa;
+  border-bottom: 1px solid #f8f9fa;
   
   &:hover {
-    background: #EEF4F7 !important;
+    border-bottom: 1px solid $secondaryblue;
   }
 }
 
