@@ -131,12 +131,19 @@ p {
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    font-size: 1.5rem;
+    padding: 0;
     cursor: pointer;
     z-index: 10;
     display: flex;
     align-items: center;
     justify-content: center;
+    line-height: 1;
+
+    i {
+      font-size: 1.2rem;
+      line-height: 1;
+      display: flex;
+    }
 
     &:hover {
       background: rgba(0, 0, 0, 0.6);
@@ -247,7 +254,10 @@ p {
     &__arrow {
       width: 30px;
       height: 30px;
-      font-size: 1rem;
+
+      i {
+        font-size: 0.9rem;
+      }
     }
   }
 }
