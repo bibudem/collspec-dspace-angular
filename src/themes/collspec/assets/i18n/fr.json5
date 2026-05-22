@@ -98,5 +98,18 @@
   "subscriptions.community": "Abonnements pour les collections",
  
   "collspec.page-udem": "À propos",
-
+  
+  "search.filters.language.fra": "Français",
+  "search.filters.language.fre": "Français",
+  "search.filters.language.frm": "Français moyen",
+  "search.filters.language.fro": "Ancien français",
+  "search.filters.language.eng": "Anglais",
+  "search.filters.language.enm": "Moyen anglais",
+  "search.filters.language.deu": "Allemand",
+  "search.filters.language.spa": "Espagnol",
+  "search.filters.language.ita": "Italien",
+  "search.filters.language.por": "Portugais",
+  "search.filters.language.lat": "Latin",
+  "search.filters.language.alg": "Langues algonquiennes",
+  
 }
