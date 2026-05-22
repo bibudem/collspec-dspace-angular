@@ -93,4 +93,17 @@
  
   "collspec.page-udem": "About",
   
+  "search.filters.language.fra": "French",
+  "search.filters.language.fre": "French",
+  "search.filters.language.frm": "Middle French",
+  "search.filters.language.fro": "Old French",
+  "search.filters.language.eng": "English",
+  "search.filters.language.enm": "Middle English",
+  "search.filters.language.deu": "German",
+  "search.filters.language.spa": "Spanish",
+  "search.filters.language.ita": "Italian",
+  "search.filters.language.por": "Portuguese",
+  "search.filters.language.lat": "Latin",
+  "search.filters.language.alg": "Algonquian languages",
+  
 }
