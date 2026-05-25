@@ -22,6 +22,8 @@ import textOverlayPlugin from 'mirador-textoverlay/es';
 import annotationPlugins from 'mirador-annotations';
 import LocalStorageAdapter from 'mirador-annotations/es/LocalStorageAdapter';
 import imageCropperPlugin from 'mirador-imagecropper/es';
+// NIMA 2026-05-25 : plugin maison pour gérer l'affichage de différents types d'item selon la communauté.
+import HideMetadataPlugin from './miradorPlugins/HideMetadataPlugin';
 
 // import AnnototAdapter from 'mirador-annotations/es/AnnototAdapter';
 // Import your custom component
@@ -97,6 +99,7 @@ if (notMobile) {
     annotationPlugins,
     textOverlayPlugin,
 	imageCropperPlugin,
+	HideMetadataPlugin,
   );
 }
 
