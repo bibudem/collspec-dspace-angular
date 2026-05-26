@@ -106,10 +106,13 @@ export class UntypedItemComponent extends BaseComponent implements OnInit {
       (item) => {
         this.itemRD = item;
         // Accéder aux métadonnées de l'élément
-        this.metadata = Object.entries(item.payload.metadata).map(([key, value]) => ({
-          label: key,
-          value: this.extractMetadataValues(value),
-        }));
+        const excludedFields = ['collspec.vedette', 'collspec.vedettecoll'];
+        this.metadata = Object.entries(item.payload.metadata)
+          .filter(([key]) => !excludedFields.includes(key))
+          .map(([key, value]) => ({
+            label: key,
+            value: this.extractMetadataValues(value),
+          }));
       },
       (error) => {
         console.error('Erreur lors de la récupération de l\'élément :', error);
