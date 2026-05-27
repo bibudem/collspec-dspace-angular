@@ -1,7 +1,7 @@
 import {AsyncPipe, CommonModule} from '@angular/common';
 import {
   ChangeDetectionStrategy,
-  Component, OnInit, ViewChild,
+  Component, OnInit,
 } from '@angular/core';
 import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -29,7 +29,7 @@ import { ThemedThumbnailComponent } from '../../../../../../../app/thumbnail/the
 import {config} from "../../../../../config/config";
 import {RouteService} from "../../../../../../../app/core/services/route.service";
 import {ItemDataService} from "../../../../../../../app/core/data/item-data.service";
-import {NgbModal, NgbModule, NgbNav} from "@ng-bootstrap/ng-bootstrap";
+import {NgbModal, NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {FullFileSectionComponent} from "../../../../../../../app/item-page/full/field-components/file-section/full-file-section.component";
 
 /**
@@ -70,14 +70,11 @@ import {FullFileSectionComponent} from "../../../../../../../app/item-page/full/
   ],
 })
 export class UntypedItemComponent extends BaseComponent implements OnInit {
-  activeTab: number = 1;
-  metadata: any[] = [];  // Tableau pour stocker les métadonnées de l'élément
-  itemRD : any;
+  noticeOpen = false;
+  metadata: any[] = [];
+  itemRD: any;
   backendApi: string = config.backendApi;
   idItem: string;
-  activeTabParam: string;
-
-  @ViewChild('nav') nav: NgbNav;
 
   constructor(
     protected routeService: RouteService,
@@ -92,14 +89,7 @@ export class UntypedItemComponent extends BaseComponent implements OnInit {
   ngOnInit() {
     super.ngOnInit();
 
-    // Récupérer l'ID de l'élément à partir de l'URL
     this.idItem = this.route.snapshot.paramMap.get('id');
-
-    // Récupérer le paramètre d'URL 'tab' (ou un autre nom que vous préférez)
-    this.activeTabParam = this.route.snapshot.queryParamMap.get('tab');
-
-    // Définir l'onglet actif en fonction du paramètre d'URL
-    this.activeTab = this.activeTabParam ? +this.activeTabParam : 1;
 
     // Appeler le service pour récupérer l'élément avec les métadonnées
     this.itemDataService.findById(this.idItem).subscribe(
@@ -118,6 +108,14 @@ export class UntypedItemComponent extends BaseComponent implements OnInit {
         console.error('Erreur lors de la récupération de l\'élément :', error);
       }
     );
+  }
+
+  toggleNotice(): void {
+    this.noticeOpen = !this.noticeOpen;
+  }
+
+  formatLabel(key: string): string {
+    return key.split('.').join(' · ');
   }
 
   /**

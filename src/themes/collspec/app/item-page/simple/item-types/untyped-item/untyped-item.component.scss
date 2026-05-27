@@ -1,75 +1,162 @@
-.nav-tabs {
-  font-size: 15px;
-  list-style: none;
+// ── Bouton toggle (barre du haut) ────────────────────────
+.btn-notice-toggle {
   display: inline-flex;
-  flex-wrap: wrap;
-  padding: 0;
-  margin-top: 1.2rem;
-  margin-bottom: 0;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #00407F;
+  background: transparent;
+  border: 1.5px solid #00407F;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+  margin-top: 0.5rem;
+  white-space: nowrap;
+
+  &:hover {
+    background: #00407F;
+    color: #fff;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.7rem;
+  }
+}
+
+// ── Wrapper du viewer (contexte de positionnement) ───────
+.collspec-viewer-wrapper {
+  position: relative;
+  margin-top: 0.5rem;
+  overflow: hidden;
+  min-height: 420px;
+}
+
+// ── Drawer glissant (overlay sur le viewer) ──────────────
+.collspec-notice-drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 340px;
+  max-width: 42%;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  box-shadow: -6px 0 24px rgba(11, 17, 58, 0.18);
+  z-index: 10;
+
+  &.open {
+    transform: translateX(0);
+  }
+
+  @media (max-width: 992px) {
+    width: 300px;
+    max-width: 60%;
+  }
+
+  @media (max-width: 640px) {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+// ── En-tête du drawer ────────────────────────────────────
+.notice-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: #0b113a;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.notice-drawer-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.notice-close-btn {
   background: transparent;
   border: none;
-  box-shadow: none;
-  width: 100%;
-  border-bottom: none;
+  color: rgba(255, 255, 255, 0.65);
+  cursor: pointer;
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  line-height: 1;
+  transition: color 0.2s;
 
-  li {
-    a {
-      display: flex;
-      align-items: center;
-      padding: 0.75em 3.4em;
-      outline: none;
-      text-decoration: none;
-      color: #2b4e72;
-      font-weight: 400;
-      font-size: 0.95rem;
-      background: transparent;
-      border: 1px solid #dee2e6;
-      border-radius: 8px 8px 0 0 !important;
-      transition: all 0.2s ease;
+  &:hover {
+    color: #fff;
+  }
+}
 
-      &:hover {
-        border-color: #2b4e72;
-        color: #2b4e72;
-      }
-    }
+// ── Corps scrollable du drawer ───────────────────────────
+.notice-drawer-body {
+  flex: 1;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 1rem;
+
+  // Firefox
+  scrollbar-width: thin;
+  scrollbar-color: #b0c4d8 #f4f6f8;
+
+  // Webkit (Chrome, Edge, Safari)
+  &::-webkit-scrollbar {
+    width: 5px;
   }
 
-  .nav-link.active {
-    background-color: #2b4e72;
-    color: #ffffff;
-    border: 1px solid #2b4e72;
-    border-radius: 8px;
+  &::-webkit-scrollbar-track {
+    background: #f4f6f8;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #b0c4d8;
+    border-radius: 3px;
 
     &:hover {
-      border-color: #2b4e72;
-      background-color: #2b4e72;
-      color: #ffffff;
-    }
-  }
-
-  // ── Ajout : petits écrans ──────────────────────────────
-  @media (max-width: 576px) {
-    li {
-      flex: 1 1 auto;
-
-      a {
-        justify-content: center;
-        padding: 0.5em 1.2em;
-        font-size: 0.85rem;
-      }
+      background-color: #7a9bb8;
     }
   }
 }
 
-[ngbnavoutlet] {
-  background-color: #ffffff;
-  border: 1.5px solid #d0d0d0;
-  border-radius: 0 4px 4px 4px;
-  margin-top: 0.5rem;
-  box-shadow: none;
-}
+// ── Liste des métadonnées ────────────────────────────────
+.notice-dl {
+  margin: 0;
 
-@keyframes md-tab-ripple {
-  0% { opacity: 0.85; }
-  100% { opacity: 1; }
+  dt {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #8a9bb0;
+    letter-spacing: 0.01em;
+    margin-top: 1rem;
+    margin-bottom: 0.2rem;
+    padding-bottom: 0.2rem;
+    border-bottom: 1px solid #eef2f7;
+    word-break: break-word;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  dd {
+    font-size: 0.875rem;
+    color: #252525;
+    margin: 0 0 0.1rem 0;
+    padding: 0.1rem 0 0.1rem 0.65rem;
+    border-left: 2px solid #CCE2F3;
+    line-height: 1.5;
+    word-break: break-word;
+  }
 }
