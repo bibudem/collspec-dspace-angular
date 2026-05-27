@@ -1,109 +1,53 @@
 @if (showBackButton$ | async) {
 <ds-results-back-button [back]="back"></ds-results-back-button>
 }
-<!-- Add bib icons pour la recheche AI -->
-<!--<div class="align-items-end">
-  <img src="/assets/collspec/images/ai.png" alt="Clip recherche Calypso" title="Rechercher avec CLIP " class="collspec-img-ia mt-2 float-right ml-1" (click)="openDialog(content)">
-</div>-->
-<!-- fin bib -->
-<!-- Cacher titre -->
-<div class="d-flex flex-row">
-  <!--<ds-item-page-title-field [item]="object" class="me-auto">
-  </ds-item-page-title-field>-->
-  <ds-dso-edit-menu class="ms-auto"></ds-dso-edit-menu>
+<div class="d-flex flex-row align-items-center">
+  @if (iiifEnabled) {
+  <button class="btn-notice-toggle ms-auto me-2" (click)="toggleNotice()">
+    {{'collspec.onglet-notice' | translate}}
+    <i class="fas" [ngClass]="noticeOpen ? 'fa-chevron-right' : 'fa-chevron-left'" style="font-size:0.7rem;"></i>
+  </button>
+  }
+  <ds-dso-edit-menu></ds-dso-edit-menu>
 </div>
 
-<!-- Add bib modal confirmation -->
-<!--<ng-template #content let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title">{{'collspec.ai-titre' | translate}}</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    {{'collspec.ai-explication' | translate}}
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cancel click')">{{'collspec.clip-annuler' | translate}}Annuler</button>
-    <button type="button" class="btn btn-success" (click)="redirectToClipSearch()">{{'collspec.clip-lien' | translate}}</button>
-  </div>
-</ng-template>-->
-<!-- fin bib -->
-
-<!-- Add bib afficher le contenu dans des onglets -->
 @if (iiifEnabled) {
-<div>
-  <ul ngbNav #nav="ngbNav" [(activeId)]="activeTab" class="nav-tabs" >
-    <li [ngbNavItem]="1" [routerLink]="['.']" [queryParams]="{tab: 1}" routerLinkActive="active"  >
-      <a ngbNavLink (click)="displaySection('collspec-mirador')">{{'collspec.onglet-fichier' | translate}}</a>
-      <ng-template ngbNavContent>
-        <!-- Cette section reste vide parce qu'elle affichera mirador -->
-      </ng-template>
-    </li>
-    <li [ngbNavItem]="2" [routerLink]="['.']" [queryParams]="{tab: 2}" routerLinkActive="active" >
-      <a ngbNavLink (click)="hideSection('collspec-mirador')">{{'collspec.onglet-notice' | translate}}</a>
-      <ng-template ngbNavContent>
-        <!-- Afficher les métadonnées dans un tableau -->
-        <div class="table-responsive mt-2">
-          <table class="table  table-striped">
-            <tbody>
-            <ng-container >
-              <tr *ngFor="let meta of metadata">
-                <td>{{meta.label}}</td>
-                <td>{{meta.value}}</td>
-              </tr>
-            </ng-container>
-            </tbody>
-          </table>
-        </div>
-        <div *ngIf="itemRD?.payload as item">
+<div class="collspec-viewer-wrapper">
 
-          <ds-item-page-collections [item]="item"></ds-item-page-collections>
-        </div>
-        <!-- fin importation -->
-      </ng-template>
-    </li>
-    <!--<li [ngbNavItem]="3" [routerLink]="['.']" [queryParams]="{tab: 3}" routerLinkActive="active" >
-      <a ngbNavLink (click)="hideSection('collspec-mirador')">{{'collspec.onglet-autre' | translate}}</a>
-      <ng-template ngbNavContent>
-        <div class="table-responsive mt-2">
-          Ajoutez le contenu spécifique à l'onglet 3 ici -->
-        <!--<table class="table  table-striped mt-3">
-          <tbody>
-          <tr>
-            <th>Colone 1</th>
-            <th>Colone 2</th>
-            <th>Colone 3</th>
-          </tr>
-          <tr>
-            <td>Donnees 1</td>
-            <td>Donnees 2</td>
-            <td>Donnees 3</td>
-          </tr>
-          </tbody>
-        </table>
+  <ds-mirador-viewer id="iiif-viewer"
+                    [object]="object"
+                    [searchable]="iiifSearchEnabled"
+                    [query]="iiifQuery$ | async">
+  </ds-mirador-viewer>
+
+  <!-- Drawer latéral glissant -->
+  <div class="collspec-notice-drawer" [class.open]="noticeOpen">
+    <div class="notice-drawer-header">
+      <span class="notice-drawer-title">{{'collspec.onglet-notice' | translate}}</span>
+      <button class="notice-close-btn" (click)="toggleNotice()" aria-label="Fermer">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="notice-drawer-body">
+      <dl class="notice-dl">
+        <ng-container *ngFor="let meta of metadata">
+          <dt>{{meta.label}}</dt>
+          <ng-container *ngIf="meta.value">
+            <ng-container *ngFor="let v of meta.value">
+              <dd>{{v}}</dd>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </dl>
+      <div *ngIf="itemRD?.payload as item">
+        <ds-item-page-collections [item]="item"></ds-item-page-collections>
       </div>
-    </ng-template>
-    </li>-->
-  </ul>
-</div>
-<!-- Section specifique au onglet choisi -->
-<div [ngbNavOutlet]="nav" class="mt-2"></div>
-<!-- Section pour mirador -->
- @if (iiifEnabled && (activeTab === 1 || !activeTab)) {
-  <div class="row">
-    <div class="col-12" id="collspec-mirador">
-      <ds-mirador-viewer id="iiif-viewer"
-                        [object]="object"
-                        [searchable]="iiifSearchEnabled"
-                        [query]="iiifQuery$ | async">
-      </ds-mirador-viewer>
     </div>
   </div>
-  }
-<!-- Fin bib add -->
+
+</div>
 }
+
 @if (!iiifEnabled) {
 <div class="row" >
     <div class="col-xs-12 col-md-4">
@@ -148,7 +92,6 @@
                                   [fields]="['dc.description']"
                                   [label]="'item.page.description'">
       </ds-generic-item-page-field>
-
       <ds-generic-item-page-field [item]="object"
                                   [fields]="['dc.subject']"
                                   [separator]="', '"
