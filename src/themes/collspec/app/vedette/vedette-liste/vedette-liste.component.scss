@@ -8,17 +8,18 @@
 ------------------------------------------------------- */
 
 .bib-title {
-  font-weight: 500!important;
+  font-weight: 500 !important;
   font-family: $font-family-serif;
   font-variant-numeric: lining-nums tabular-nums;
   font-feature-settings: 'liga' off, 'clig' off;
   margin-bottom: 1rem;
-  color: $darkblue!important;
+  color: $darkblue !important;
   text-align: left;
   margin-top: 5%;
   width: 40%;
   margin-left: 8%;
   padding-left: 15px;
+
   &:hover {
     color: white;
   }
@@ -35,7 +36,7 @@ p {
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
-  line-height: 150%; /* 21px */
+  line-height: 150%;
 }
 
 .slider {
@@ -105,7 +106,7 @@ p {
 
     h4 {
       margin: 0;
-      margin-left:1.5rem;
+      margin-left: 1.5rem;
       font-size: 1.5rem;
       font-weight: 500;
       font-family: $font-family-serif;
@@ -149,34 +150,78 @@ p {
       background: rgba(0, 0, 0, 0.6);
     }
 
-    &--prev {
-      left: 0;
+    &--prev { left: 0; }
+    &--next { right: 0; }
+  }
+
+  &__indicators {
+    position: absolute;
+    bottom: 0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    z-index: 20;
+  }
+
+  &__indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.25s ease;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: -8px;
     }
 
-    &--next {
-      right: 0;
+    &.active {
+      background: #ffffff;
+      transform: scale(1.4);
+    }
+
+    &:hover:not(.active) {
+      background: rgba(255, 255, 255, 0.8);
     }
   }
 }
 
+// ── Grand écran (≤ 1200px) ───────────────────────────────
+@media (max-width: 1200px) {
+  .slider {
+    &__section {
+      margin-left: 2rem;
+    }
+  }
+}
 
+// ── Tablette (≤ 992px) ───────────────────────────────────
 @media (max-width: 992px) {
   .slider {
     &__section {
       padding-block: 1rem;
-      margin-left: -1% !important;
+      margin-left: 0;
     }
 
     &__track {
       margin-left: 0;
+      padding-left: 0;
     }
 
     &__column {
-      padding: 0 1.5rem;
+      padding: 0 2.5rem;
     }
 
     &__slide {
       flex: 0 0 100%;
+
       img {
         height: 360px;
       }
@@ -186,68 +231,54 @@ p {
       padding: 1rem 0.8rem;
 
       h4 {
-        font-size: 0.9rem;
+        margin-left: 0;
+        font-size: 1.1rem;
       }
     }
+
+    &__arrow {
+      &--prev { left: 0.25rem; }
+      &--next { right: 0.25rem; }
+    }
+  }
+
+  .bib-title {
+    width: 70%;
+    margin-left: 4%;
+  }
+
+  p {
+    margin-left: 8%;
+    padding-right: 6%;
   }
 }
 
+// ── Mobile paysage (≤ 768px) ─────────────────────────────
 @media (max-width: 768px) {
-
-  .slider {
-    &__section {
-      margin-left: -1% !important;
-    }
-    &__slide {
-      flex: 0 0 100%;
-      margin-left: 0;
-
-      img {
-        height: 300px;
-      }
-      .bib-title {
-        font-size: 1.5rem;
-        margin: 1.5rem auto 1rem 8%;
-      }
-    }
-  }
-
-  .hero-section h1, .hero-section .h1 {
-    font-size: 42px;
-    margin-top: 70%;
-    margin-left: -25px;
-    line-height: 1;
-  }
-
-  .carousel-bib-home {
-    padding: 0 0.5rem;
-  }
-
-
-
-  .bib-title {
-    margin-top: 1.5rem;
-    font-size: 1.5rem;
-  }
-
   .slider {
     &__section {
       padding-block: 0.5rem;
+      margin-left: 0;
     }
 
     &__column {
-      padding: 0 1rem;
+      padding: 0 2rem;
     }
 
     &__slide {
-      flex: 0 0 calc(100% / 1.5);
+      flex: 0 0 100%;
+
+      img {
+        height: 270px;
+      }
     }
 
     &__caption {
       padding: 0.8rem 0.6rem;
 
       h4 {
-        font-size: 0.8rem;
+        margin-left: 0;
+        font-size: 0.9rem;
       }
     }
 
@@ -258,17 +289,42 @@ p {
       i {
         font-size: 0.9rem;
       }
+
+      &--prev { left: 0.2rem; }
+      &--next { right: 0.2rem; }
     }
+  }
+
+  .carousel-bib-home {
+    padding: 0 0.5rem;
+  }
+
+  .bib-title {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+    text-align: left;
+  }
+
+  p {
+    margin-left: 5%;
+    padding-right: 5%;
   }
 }
 
+// ── Mobile portrait (≤ 576px) ────────────────────────────
 @media (max-width: 576px) {
   .slider {
+    &__column {
+      padding: 0 1.5rem;
+    }
+
     &__slide {
       flex: 0 0 100%;
 
       img {
-        height: 250px;
+        height: 220px;
       }
     }
 
@@ -280,7 +336,7 @@ p {
       padding: 0.6rem 0.5rem;
 
       h4 {
-        font-size: 0.7rem;
+        font-size: 0.8rem;
       }
     }
   }
@@ -288,6 +344,50 @@ p {
   .bib-title {
     font-size: 1.3rem;
     margin-top: 1rem;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  p {
+    margin-left: 2.5%;
+    padding-right: 2.5%;
+    font-size: 0.9rem;
+  }
+}
+
+// ── Très petit écran (≤ 480px) ───────────────────────────
+@media (max-width: 480px) {
+  .slider {
+    &__column {
+      padding: 0 1rem;
+    }
+
+    &__slide img {
+      height: 180px;
+    }
+
+    &__caption h4 {
+      font-size: 0.75rem;
+    }
+
+    &__arrow {
+      width: 26px;
+      height: 26px;
+
+      i {
+        font-size: 0.75rem;
+      }
+    }
+
+    &__indicator {
+      width: 7px;
+      height: 7px;
+    }
+  }
+
+  .bib-title {
+    font-size: 1.1rem;
   }
 }
 

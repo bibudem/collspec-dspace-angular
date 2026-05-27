@@ -1,6 +1,7 @@
 import {AsyncPipe, CommonModule} from '@angular/common';
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component, OnInit,
 } from '@angular/core';
 import {ActivatedRoute, Router, RouterLink} from '@angular/router';
@@ -75,13 +76,15 @@ export class UntypedItemComponent extends BaseComponent implements OnInit {
   itemRD: any;
   backendApi: string = config.backendApi;
   idItem: string;
+  copiedUri: string | null = null;
 
   constructor(
     protected routeService: RouteService,
     protected router: Router,
     protected route: ActivatedRoute,
     private itemDataService: ItemDataService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private cdr: ChangeDetectorRef
   ) {
     super(routeService, router);
   }
@@ -112,6 +115,22 @@ export class UntypedItemComponent extends BaseComponent implements OnInit {
 
   toggleNotice(): void {
     this.noticeOpen = !this.noticeOpen;
+  }
+
+  get handleUrl(): string | null {
+    const uriMeta = this.metadata.find(m => m.label === 'dc.identifier.uri');
+    return uriMeta?.value?.[0] ?? null;
+  }
+
+  copyToClipboard(url: string): void {
+    navigator.clipboard.writeText(url).then(() => {
+      this.copiedUri = url;
+      this.cdr.detectChanges();
+      setTimeout(() => {
+        this.copiedUri = null;
+        this.cdr.detectChanges();
+      }, 2000);
+    }).catch(() => {});
   }
 
   formatLabel(key: string): string {

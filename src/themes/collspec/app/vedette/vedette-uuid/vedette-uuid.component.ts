@@ -140,6 +140,12 @@ export class VedetteUUIDComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+  goToSlide(index: number): void {
+    this.currentIndex = index;
+    this.updatePosition();
+    this.stopAutoSlide();
+  }
+
   startAutoSlide(): void {
     this.stopAutoSlide();
 

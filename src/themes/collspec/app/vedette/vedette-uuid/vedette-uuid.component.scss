@@ -76,6 +76,7 @@
       color: white;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     }
+
     a {
       color: white !important;
     }
@@ -85,28 +86,28 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.45);
+    background: rgba(11, 17, 58, 0.3);
     color: white;
     border: none;
     border-radius: 50%;
-    width: 42px;
-    height: 42px;
-    font-size: 1.4rem;
+    width: 40px;
+    height: 40px;
+    padding: 0;
     cursor: pointer;
     z-index: 10;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.25s ease;
-    backdrop-filter: blur(4px);
+    transition: background 0.25s ease;
 
-    &:hover {
-      background: rgba(0, 0, 0, 0.75);
-      transform: translateY(-50%) scale(1.1);
+    i {
+      font-size: 1.1rem;
+      line-height: 1;
+      display: flex;
     }
 
-    &:active {
-      transform: translateY(-50%) scale(0.95);
+    &:hover {
+      background: rgba(0, 0, 0, 0.6);
     }
 
     &:disabled {
@@ -115,12 +116,46 @@
       pointer-events: none;
     }
 
-    &--prev {
-      left: 12px;
+    &--prev { left: 12px; }
+    &--next { right: 12px; }
+  }
+
+  &__indicators {
+    position: absolute;
+    bottom: 0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    z-index: 20;
+  }
+
+  &__indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.25s ease;
+    // Zone de touch élargie sans changer le visuel
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: -8px;
     }
 
-    &--next {
-      right: 12px;
+    &.active {
+      background: #ffffff;
+      transform: scale(1.4);
+    }
+
+    &:hover:not(.active) {
+      background: rgba(255, 255, 255, 0.8);
     }
   }
 }
@@ -133,25 +168,87 @@
   color: #666;
 }
 
+// ── Tablette (≤ 992px) ───────────────────────────────────
+@media (max-width: 992px) {
+  .slider {
+    &__section {
+      width: 88vw;
+    }
+
+    &__slide img {
+      height: 380px;
+    }
+
+    &__caption h4 {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+// ── Mobile paysage / petite tablette (≤ 768px) ───────────
 @media (max-width: 768px) {
   .slider {
-    &__slide {
-      flex: 0 0 100%;
+    &__section {
       width: 100%;
+      padding-block: 0.75rem;
+    }
+
+    &__slide img {
+      height: 280px;
+    }
+
+    &__caption {
+      padding: 1rem 0.75rem;
+
+      h4 {
+        font-size: 1rem;
+      }
     }
 
     &__arrow {
-      width: 30px;
-      height: 30px;
-      font-size: 1rem;
-      
-      &--prev {
-        left: 10px;
+      width: 32px;
+      height: 32px;
+
+      i {
+        font-size: 0.9rem;
       }
-      
-      &--next {
-        right: 10px;
+
+      &--prev { left: 8px; }
+      &--next { right: 8px; }
+    }
+  }
+}
+
+// ── Mobile portrait (≤ 480px) ────────────────────────────
+@media (max-width: 480px) {
+  .slider {
+    &__slide img {
+      height: 210px;
+    }
+
+    &__caption {
+      padding: 0.75rem 0.6rem;
+
+      h4 {
+        font-size: 0.85rem;
       }
+    }
+
+    &__arrow {
+      width: 28px;
+      height: 28px;
+
+      i {
+        font-size: 0.75rem;
+      }
+
+      &--prev { left: 4px; }
+      &--next { right: 4px; }
+    }
+
+    &__indicator {
+      width: 7px;
+      height: 7px;
     }
   }
 }

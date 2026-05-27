@@ -3,7 +3,7 @@
 }
 <div class="d-flex flex-row align-items-center">
   @if (iiifEnabled) {
-  <button class="btn-notice-toggle ms-auto me-2" (click)="toggleNotice()">
+  <button class="btn btn-notice-toggle ms-auto me-2" (click)="toggleNotice()">
     {{'collspec.onglet-notice' | translate}}
     <i class="fas" [ngClass]="noticeOpen ? 'fa-chevron-right' : 'fa-chevron-left'" style="font-size:0.7rem;"></i>
   </button>
@@ -14,7 +14,7 @@
 @if (iiifEnabled) {
 <div class="collspec-viewer-wrapper">
 
-  <ds-mirador-viewer id="iiif-viewer"
+<ds-mirador-viewer id="iiif-viewer"
                     [object]="object"
                     [searchable]="iiifSearchEnabled"
                     [query]="iiifQuery$ | async">
@@ -34,7 +34,17 @@
           <dt>{{meta.label}}</dt>
           <ng-container *ngIf="meta.value">
             <ng-container *ngFor="let v of meta.value">
-              <dd>{{v}}</dd>
+              <dd>
+                <ng-container *ngIf="meta.label === 'dc.identifier.uri'; else plainValue">
+                  <span class="notice-uri">
+                    <a [href]="v" target="_blank" rel="noopener noreferrer" class="notice-uri-link">{{v}}</a>
+                    <button class="notice-copy-btn" (click)="copyToClipboard(v)" title="Copier le lien">
+                      <i class="fas" [ngClass]="copiedUri === v ? 'fa-check' : 'fa-copy'"></i>
+                    </button>
+                  </span>
+                </ng-container>
+                <ng-template #plainValue>{{v}}</ng-template>
+              </dd>
             </ng-container>
           </ng-container>
         </ng-container>

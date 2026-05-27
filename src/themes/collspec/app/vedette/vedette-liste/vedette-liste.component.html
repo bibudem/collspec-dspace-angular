@@ -28,6 +28,19 @@
           <!-- Flèches de navigation du carrousel -->
           <button class="slider__arrow slider__arrow--prev" (click)="prevSlide()"><i class="fas fa-chevron-left"></i></button>
           <button class="slider__arrow slider__arrow--next" (click)="nextSlide()"><i class="fas fa-chevron-right"></i></button>
+
+          @if (slides.length > 1) {
+          <div class="slider__indicators">
+            @for (slide of slides; track slide.id) {
+            <button
+              class="slider__indicator"
+              [class.active]="activeIndicator === $index"
+              (click)="goToSlide($index)"
+              [attr.aria-label]="'Slide ' + ($index + 1)">
+            </button>
+            }
+          </div>
+          }
         </div>
       </div>
       } @else {
