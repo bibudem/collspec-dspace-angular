@@ -132,6 +132,17 @@ export class VedetteListeComponent implements OnInit, OnDestroy {
     }
   }
 
+  goToSlide(index: number): void {
+    this.currentIndex = index;
+    this.updatePosition();
+    this.stopAutoSlide();
+    this.startAutoSlide();
+  }
+
+  get activeIndicator(): number {
+    return this.currentIndex % (this.originalSlideCount || 1);
+  }
+
   prevSlide(): void {
     if (this.displaySlides.length <= 1) return;
 
