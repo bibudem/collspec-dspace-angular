@@ -21,7 +21,7 @@ import textOverlayPlugin from 'mirador-textoverlay/es';
 //import ocrHelperPlugin from '@4eyes/mirador-ocr-helper';
 import annotationPlugins from 'mirador-annotations';
 import LocalStorageAdapter from 'mirador-annotations/es/LocalStorageAdapter';
-import imageCropperPlugin from 'mirador-imagecropper/es';
+import imageCropperPlugin from 'mirador-imagecropper/lib';
 // NIMA 2026-05-25 : plugin maison pour gérer l'affichage de différents types d'item selon la communauté.
 import HideMetadataPlugin from './miradorPlugins/HideMetadataPlugin';
 
@@ -367,7 +367,40 @@ fetch(manifest)
       );
 
   
+  // Patch store.dispatch pour restaurer l'adapter d'annotations après import workspace.
+  // JSON.stringify (utilisé par l'export Mirador) supprime les fonctions : l'adapter
+  // disparaît du config importé, ce qui fait crasher miradorAnnotationPlugin.render()
+  // à la ligne `config.annotation.adapter('poke')` → écran blanc.
+  if (notMobile) {
+    const _origDispatch = window.miradorInstance.store.dispatch.bind(window.miradorInstance.store);
+    window.miradorInstance.store.dispatch = function(action) {
+      if (
+        action.type === 'mirador/IMPORT_MIRADOR_STATE' &&
+        action.state?.config?.annotation &&
+        !action.state.config.annotation.adapter
+      ) {
+        action = {
+          ...action,
+          state: {
+            ...action.state,
+            config: {
+              ...action.state.config,
+              annotation: {
+                ...action.state.config.annotation,
+                adapter: (canvasId) =>
+                  new LocalStorageAdapter(`localStorage://?canvasId=${canvasId}`),
+              },
+            },
+          },
+        };
+      }
+      return _origDispatch(action);
+    };
+  }
+
   // NIMA 2026-05-21 ajout de numéro de page dans l'URL pour Single view et Book view
+  let lastPageParam = null;
+
   window.miradorInstance.store.subscribe(() => {
 
   const state = window.miradorInstance.store.getState();
@@ -405,11 +438,18 @@ fetch(manifest)
 
   const pageParam = pages.join(',');
 
+  if (pageParam === lastPageParam) {
+    return;
+  }
+  lastPageParam = pageParam;
+
   const parentUrl = new URL(window.parent.location.href);
 
-  parentUrl.searchParams.delete('page');
-  parentUrl.href = parentUrl.href + `?page=${pageParam}`;
+  if (pageParam === parentUrl.searchParams.get('page')) {
+    return;
+  }
 
+  parentUrl.searchParams.set('page', pageParam);
   window.parent.history.replaceState({}, '', parentUrl);
 
 });

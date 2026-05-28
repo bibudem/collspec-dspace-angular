@@ -28,6 +28,8 @@ webpack.records.json
 
 morgan.log
 
+src/themes/collspec/config/config.ts
+
 # Yarn no longer used
 yarn.lock
 yarn-error.log
