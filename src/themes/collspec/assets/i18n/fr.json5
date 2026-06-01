@@ -96,6 +96,8 @@
   "menu.section.browse_community": "Cette collection",
   "menu.section.browse_global_communities_and_collections": "Collections et sous-collections",
   "subscriptions.community": "Abonnements pour les collections",
+  "community.sub-collection-list.head": "Collections au sein de cette collection",
+  "community.sub-community-list.head": "Sous-collections dans cette collection",
  
   "collspec.page-udem": "À propos",
   
