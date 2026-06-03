@@ -9,7 +9,6 @@
   color: #00407F;
   background: transparent;
   border: 1.5px solid #00407F;
-  border-radius: 6px;
   cursor: pointer;
   transition: background 0.2s ease, color 0.2s ease;
   margin-top: 0.5rem;
@@ -62,6 +61,58 @@
   @media (max-width: 640px) {
     width: 100%;
     max-width: 100%;
+  }
+}
+
+// ── Barre handle / lien permanent ───────────────────────
+.collspec-handle-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  background: #f4f6f8;
+  border-bottom: 1px solid #dee2e6;
+  font-size: 0.78rem;
+}
+
+.collspec-handle-icon {
+  color: #607386;
+  flex-shrink: 0;
+  font-size: 0.75rem;
+}
+
+.collspec-handle-link {
+  color: #00407F;
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
+
+  &:hover {
+    text-decoration: underline;
+    color: #0b113a;
+  }
+}
+
+.collspec-handle-copy {
+  background: transparent;
+  border: none;
+  color: #8a9bb0;
+  cursor: pointer;
+  padding: 0.2rem 0.35rem;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+  transition: color 0.2s;
+
+  &:hover {
+    color: #00407F;
+  }
+
+  .fa-check {
+    color: #249158;
   }
 }
 
@@ -158,5 +209,43 @@
     border-left: 2px solid #CCE2F3;
     line-height: 1.5;
     word-break: break-word;
+  }
+}
+
+// ── URI avec lien + bouton copie ─────────────────────────
+.notice-uri {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.notice-uri-link {
+  color: #0b113a;
+  text-decoration: underline;
+  word-break: break-all;
+  font-size: 0.8rem;
+
+  &:hover {
+    color: #00407F;
+  }
+}
+
+.notice-copy-btn {
+  background: transparent;
+  border: none;
+  color: #8a9bb0;
+  cursor: pointer;
+  padding: 0.2rem;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+  transition: color 0.2s;
+
+  &:hover {
+    color: #00407F;
+  }
+
+  .fa-check {
+    color: #249158;
   }
 }
