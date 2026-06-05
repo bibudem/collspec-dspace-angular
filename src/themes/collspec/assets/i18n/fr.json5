@@ -76,6 +76,8 @@
   "browse.comcol.by.type": "Type",
   "browse.comcol.by.language": "Langue",
   "browse.comcol.by.publisher": "Éditeur",
+  "browse.comcol.by.contributor": "Contributeur",
+  "browse.comcol.by.datecreated": "Date de création",
   "browse.startsWith.type_date": "Ou saisir une date (année-mois) puis cliquer sur « Valider »",
   "browse.startsWith.type_date.label": "Ou saisir une date (année-mois) puis cliquer sur le bouton « Valider »",
   "browse.startsWith.type_text": "Ou saisir les premières lettres puis cliquer sur le bouton « Valider »",

@@ -70,6 +70,8 @@
   "browse.comcol.by.type": "By Type",
   "browse.comcol.by.language": "By Language",
   "browse.comcol.by.publisher": "By Publisher",
+  "browse.comcol.by.contributor": "Contributor",
+  "browse.comcol.by.datecreated": "Date Created",
   "browse.search-form.placeholder": "Search in collections",
   
   "dso-selector.set-scope.community.button": "Search all Special Collections",

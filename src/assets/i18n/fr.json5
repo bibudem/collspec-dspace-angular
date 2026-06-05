@@ -7487,4 +7487,8 @@
   "search.filters.filter.dateCreated.min.label": "Début",
 
   "sorting.dcterms.created.ASC": "Date de création (croissante)",
+
+  "browse.comcol.by.contributor": "Contributeur",
+
+  "browse.comcol.by.datecreated": "Date de création",
 }
