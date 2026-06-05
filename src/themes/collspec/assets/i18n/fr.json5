@@ -76,6 +76,10 @@
   "browse.comcol.by.type": "Type",
   "browse.comcol.by.language": "Langue",
   "browse.comcol.by.publisher": "Éditeur",
+  "browse.startsWith.type_date": "Ou saisir une date (année-mois) puis cliquer sur « Valider »",
+  "browse.startsWith.type_date.label": "Ou saisir une date (année-mois) puis cliquer sur le bouton « Valider »",
+  "browse.startsWith.type_text": "Ou saisir les premières lettres puis cliquer sur le bouton « Valider »",
+  "browse.search-form.placeholder": "Rechercher dans les collection",
   
   "dso-selector.set-scope.community.button": "Rechercher dans toutes les Collections spéciales",
   "menu.section.browse_global": "Toutes les Collections spéciales",

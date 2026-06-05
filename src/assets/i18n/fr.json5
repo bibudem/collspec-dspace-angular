@@ -1116,11 +1116,11 @@
 
   "browse.startsWith.submit": "Valider",
 
-  "browse.startsWith.type_date": "Ou saisir une date (année-mois) puis cliquer sur « Parcourir par »",
+  "browse.startsWith.type_date": "Ou saisir une date (année-mois) puis cliquer sur « Valider »",
 
-  "browse.startsWith.type_date.label": "Ou saisir une date (année-mois) puis cliquer sur le bouton « Parcourir »",
+  "browse.startsWith.type_date.label": "Ou saisir une date (année-mois) puis cliquer sur le bouton « Valider »",
 
-  "browse.startsWith.type_text": "Ou saisir les premières lettres puis cliquer sur le bouton « Parcourir »",
+  "browse.startsWith.type_text": "Ou saisir les premières lettres puis cliquer sur le bouton « Valider »",
 
   "browse.startsWith.input": "Filtrer",
 
@@ -7194,7 +7194,7 @@
 
   "item.page.cc.license.disclaimer": "Sauf indication contraire, la licence de cet Item est décrite comme",
 
-  "browse.search-form.placeholder": "Chercher dans le dépôt",
+  "browse.search-form.placeholder": "Rechercher dans les collection",
 
   "file-download-link.download": "Télécharger ",
 
