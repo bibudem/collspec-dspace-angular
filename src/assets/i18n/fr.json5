@@ -4572,7 +4572,7 @@
 
   "search.filters.applied.f.author": "Auteur",
 
-  "search.filters.applied.f.dateIssued.max": "Jusque",
+  "search.filters.applied.f.dateIssued.max": "Jusqu’à",
 
   "search.filters.applied.f.dateIssued.min": "Depuis",
 
@@ -4672,7 +4672,7 @@
 
   "search.filters.filter.creativeWorkPublisher.label": "Recherche d'un éditeur",
 
-  "search.filters.filter.dateIssued.head": "Date",
+  "search.filters.filter.dateIssued.head": "Date de publication",
 
   "search.filters.filter.dateIssued.max.placeholder": "Depuis",
 
@@ -4940,7 +4940,7 @@
 
   "sorting.dc.date.issued.ASC": "Date de publication (croissante)",
 
-  "sorting.dc.date.issued.DESC": "Date de publication (décroissante)",
+  "sorting.dc.date.issued.DESC": "Date de création (décroissante)",
 
   "sorting.dc.date.accessioned.ASC": "Date de dépôt (croissante)",
 
@@ -7471,4 +7471,20 @@
   "search.filters.language.lat": "Latin",
 
   "search.filters.language.alg": "Langues algonquiennes",
+
+  "search.filters.filter.dateCreated.head": "Date de création",
+
+  "search.filters.applied.f.dateCreated.max": "Jusqu’à",
+
+  "search.filters.applied.f.dateCreated.min": "Depuis",
+
+  "search.filters.filter.dateCreated.max.placeholder": "Jusqu’à",
+
+  "search.filters.filter.dateCreated.max.label": "Fin",
+
+  "search.filters.filter.dateCreated.min.placeholder": "Depuis",
+
+  "search.filters.filter.dateCreated.min.label": "Début",
+
+  "sorting.dcterms.created.ASC": "Date de création (croissante)",
 }
