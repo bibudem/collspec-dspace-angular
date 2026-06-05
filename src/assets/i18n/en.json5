@@ -7473,4 +7473,8 @@
   "search.filters.filter.dateCreated.min.label": "Start",
 
   "sorting.dcterms.created.ASC": "Date Created Ascending",
+
+  "browse.comcol.by.contributor": "Contributor",
+
+  "browse.comcol.by.datecreated": "Date Created",
 }
