@@ -85,6 +85,20 @@
   "dso-selector.placeholder": "Rechercher une collection",
   
   "search.filters.filter.language.head": "Langue",
+  "search.filters.filter.dateIssued.head": "Date de publication",
+  "search.filters.filter.dateCreated.head": "Date de création",
+  
+  "search.filters.applied.f.dateIssued.max": "Jusqu’à",
+  "search.filters.applied.f.dateCreated.max": "Jusqu’à",
+  "search.filters.applied.f.dateCreated.min": "Depuis",
+  
+  "search.filters.filter.dateCreated.max.placeholder": "Jusqu’à",
+  "search.filters.filter.dateCreated.max.label": "Fin",
+  "search.filters.filter.dateCreated.min.placeholder": "Depuis",
+  "search.filters.filter.dateCreated.min.label": "Début",
+  
+  "sorting.dcterms.created.ASC": "Date de création (croissante)",
+  "sorting.dc.date.issued.DESC": "Date de création (décroissante)",
   
   "community.subcoms-cols.breadcrumbs": "Collections et sous-collections",
   "community.all-lists.head": "Collections et sous-collections",
