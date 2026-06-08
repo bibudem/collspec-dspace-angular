@@ -7,18 +7,28 @@
    Composant principal : Carrousel vedette
 ------------------------------------------------------- */
 
+.vedette-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-left: 0;
+  padding-left: 0;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
 .bib-title {
   font-weight: 500 !important;
   font-family: $font-family-serif;
   font-variant-numeric: lining-nums tabular-nums;
   font-feature-settings: 'liga' off, 'clig' off;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
   color: $darkblue !important;
   text-align: left;
-  margin-top: 5%;
-  width: 40%;
-  margin-left: 8%;
-  padding-left: 15px;
+  margin-top: 0;
+  margin-left: 0;
+  padding-left: 0;
+  width: auto;
 
   &:hover {
     color: white;
@@ -27,8 +37,10 @@
 
 p {
   text-align: left;
-  margin-left: 20%;
-  padding-right: 10%;
+  margin-left: 8%;
+  padding-left: 5px;
+  padding-right: 15%;
+  margin-bottom: 2rem;
   color: $colltitre;
   font-variant-numeric: lining-nums tabular-nums;
   font-feature-settings: 'liga' off, 'clig' off;
@@ -242,14 +254,16 @@ p {
     }
   }
 
-  .bib-title {
-    width: 70%;
-    margin-left: 4%;
+  .vedette-header {
+    margin-left: 0;
+    padding-left: 2.5rem;
   }
 
   p {
-    margin-left: 8%;
-    padding-right: 6%;
+    margin-left: 0;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    font-size: 15px;
   }
 }
 
@@ -299,17 +313,16 @@ p {
     padding: 0 0.5rem;
   }
 
-  .bib-title {
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 0;
-    text-align: left;
+  .vedette-header {
+    margin-left: 0;
+    padding-left: 2rem;
   }
 
   p {
-    margin-left: 5%;
-    padding-right: 5%;
+    margin-left: 0;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    font-size: 15px;
   }
 }
 
@@ -341,17 +354,22 @@ p {
     }
   }
 
+  .vedette-header {
+    margin-left: 0;
+    padding-left: 1.5rem;
+    margin-top: 1rem;
+
+    i { font-size: 1.8rem; }
+  }
+
   .bib-title {
     font-size: 1.3rem;
-    margin-top: 1rem;
-    width: 95%;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   p {
-    margin-left: 2.5%;
-    padding-right: 2.5%;
+    margin-left: 0;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
     font-size: 0.9rem;
   }
 }

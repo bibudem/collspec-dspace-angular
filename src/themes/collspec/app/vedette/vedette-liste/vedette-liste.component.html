@@ -4,7 +4,16 @@
     <!-- Affichage du composant de chargement -->
     <ds-loading ></ds-loading>
     }  @else {
-    <section class="slider__section" >
+    <section class="slider__section">
+
+      <!-- Titre et description de la section vedette -->
+      <div class="carousel-bib-title">
+        <div class="vedette-header">
+          <h2 class="fw-bold bib-title">{{ 'collspec.accueil.vedette.titre' | translate }}</h2>
+        </div>
+        <p [innerHTML]="'collspec.accueil.vedette.description' | translate"></p>
+      </div>
+
       @if (hasSlidesToDisplay) {
       <div class="slider__wrapper" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
         <div class="slider__column">
@@ -48,14 +57,6 @@
       <div class="no-images-message">{{ 'collspec.accueil.vedette.error' | translate }}</div>
       }
 
-      <!-- Titre et description traduits de la section vedette -->
-      <div class="col-md-12">
-        <div class="carousel-bib-title">
-          <i class="bi bi-quote display-1"></i>
-          <h2 class="fw-bold bib-title">{{ 'collspec.accueil.vedette.titre' | translate }}</h2>
-          <p>{{ 'collspec.accueil.vedette.description' | translate }}</p>
-        </div>
-      </div>
     </section>
     }
   </div>
