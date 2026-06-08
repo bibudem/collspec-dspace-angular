@@ -1,6 +1,7 @@
 import {
   AsyncPipe,
   NgClass,
+  NgIf,
   NgTemplateOutlet,
 } from '@angular/common';
 import { Component } from '@angular/core';
@@ -33,6 +34,7 @@ import { VedetteListeComponent } from '../vedette/vedette-liste/vedette-liste.co
     AsyncPipe,
     TranslateModule,
     NgClass,
+    NgIf,
     ConfigurationSearchPageComponent,
     HomeCoarComponent,
     ThemedConfigurationSearchPageComponent,
