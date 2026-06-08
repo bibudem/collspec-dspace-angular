@@ -81,6 +81,12 @@
   "browse.comcol.by.type": "Type",
   "browse.comcol.by.language": "Langue",
   "browse.comcol.by.publisher": "Éditeur",
+  "browse.comcol.by.contributor": "Contributeur",
+  "browse.comcol.by.datecreated": "Date de création",
+  "browse.startsWith.type_date": "Ou saisir une date (année-mois) puis cliquer sur « Valider »",
+  "browse.startsWith.type_date.label": "Ou saisir une date (année-mois) puis cliquer sur le bouton « Valider »",
+  "browse.startsWith.type_text": "Ou saisir les premières lettres puis cliquer sur le bouton « Valider »",
+  "browse.search-form.placeholder": "Rechercher dans les collection",
   
   "dso-selector.set-scope.community.button": "Rechercher dans toutes les Collections spéciales",
   "menu.section.browse_global": "Toutes les Collections spéciales",
@@ -90,6 +96,20 @@
   "dso-selector.placeholder": "Rechercher une collection",
   
   "search.filters.filter.language.head": "Langue",
+  "search.filters.filter.dateIssued.head": "Date de publication",
+  "search.filters.filter.dateCreated.head": "Date de création",
+  
+  "search.filters.applied.f.dateIssued.max": "Jusqu’à",
+  "search.filters.applied.f.dateCreated.max": "Jusqu’à",
+  "search.filters.applied.f.dateCreated.min": "Depuis",
+  
+  "search.filters.filter.dateCreated.max.placeholder": "Jusqu’à",
+  "search.filters.filter.dateCreated.max.label": "Fin",
+  "search.filters.filter.dateCreated.min.placeholder": "Depuis",
+  "search.filters.filter.dateCreated.min.label": "Début",
+  
+  "sorting.dcterms.created.ASC": "Date de création (croissante)",
+  "sorting.dc.date.issued.DESC": "Date de création (décroissante)",
   
   "community.subcoms-cols.breadcrumbs": "Collections et sous-collections",
   "community.all-lists.head": "Collections et sous-collections",

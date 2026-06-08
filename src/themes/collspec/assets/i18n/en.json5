@@ -75,6 +75,9 @@
   "browse.comcol.by.type": "By Type",
   "browse.comcol.by.language": "By Language",
   "browse.comcol.by.publisher": "By Publisher",
+  "browse.comcol.by.contributor": "Contributor",
+  "browse.comcol.by.datecreated": "Date Created",
+  "browse.search-form.placeholder": "Search in collections",
   
   "dso-selector.set-scope.community.button": "Search all Special Collections",
   "menu.section.browse_global": "All Special Collections",
@@ -84,6 +87,19 @@
   "dso-selector.placeholder": "Search for a collection",
   
   "search.filters.filter.language.head": "Language",
+  "search.filters.filter.dateIssued.head": "Date Issued",
+  "search.filters.filter.dateCreated.head": "Date Created",
+  
+  "search.filters.applied.f.dateCreated.max": "End date",
+  "search.filters.applied.f.dateCreated.min": "Start date",
+  
+  "search.filters.filter.dateCreated.max.placeholder": "Maximum Date",
+  "search.filters.filter.dateCreated.max.label": "End",
+  "search.filters.filter.dateCreated.min.placeholder": "Minimum Date",
+  "search.filters.filter.dateCreated.min.label": "Start",
+  
+  "sorting.dcterms.created.ASC": "Date Created Ascending",
+  "sorting.dc.date.issued.DESC": "Date Created Descending",
   
   "community.subcoms-cols.breadcrumbs": "Collections and sub-collections",
   "community.all-lists.head": "Collections and sub-collections",

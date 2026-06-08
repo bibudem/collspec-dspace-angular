@@ -4672,7 +4672,7 @@
 
   "search.filters.filter.creativeWorkPublisher.label": "Search publisher",
 
-  "search.filters.filter.dateIssued.head": "Date",
+  "search.filters.filter.dateIssued.head": "Date Issued",
 
   "search.filters.filter.dateIssued.max.placeholder": "Maximum Date",
 
@@ -4940,7 +4940,7 @@
 
   "sorting.dc.date.issued.ASC": "Date Issued Ascending",
 
-  "sorting.dc.date.issued.DESC": "Date Issued Descending",
+  "sorting.dc.date.issued.DESC": "Date Created Descending",
 
   "sorting.dc.date.accessioned.ASC": "Accessioned Date Ascending",
 
@@ -7194,7 +7194,7 @@
 
   "item.page.cc.license.disclaimer": "Except where otherwised noted, this item's license is described as",
 
-  "browse.search-form.placeholder": "Search the repository",
+  "browse.search-form.placeholder": "Search in collections",
 
   "file-download-link.download": "Download ",
 
@@ -7457,6 +7457,26 @@
   "search.filters.language.lat": "Latin",
 
   "search.filters.language.alg": "Algonquian languages",
+
+  "search.filters.filter.dateCreated.head": "Date Created",
+
+  "search.filters.applied.f.dateCreated.max": "End date",
+
+  "search.filters.applied.f.dateCreated.min": "Start date",
+
+  "search.filters.filter.dateCreated.max.placeholder": "Maximum Date",
+
+  "search.filters.filter.dateCreated.max.label": "End",
+
+  "search.filters.filter.dateCreated.min.placeholder": "Minimum Date",
+
+  "search.filters.filter.dateCreated.min.label": "Start",
+
+  "sorting.dcterms.created.ASC": "Date Created Ascending",
+
+  "browse.comcol.by.contributor": "Contributor",
+
+  "browse.comcol.by.datecreated": "Date Created",
 
   "collspec.accueil.intro.lead": "Our special collections are filled with unique, old, and rare items, ready to enrich research and teaching, or even become objects of research themselves!",
 
