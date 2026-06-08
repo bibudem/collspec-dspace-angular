@@ -2,14 +2,23 @@
 <div class="hero-section">
   <div class="hero-overlay">
     <h1 [innerHTML]="'collspec.accueil.titre' | translate"></h1>
-    <!-- Barre de recherche avec filtres -->
-    <div class="search-bar">
-      <ds-search-form [inPlaceSearch]="false"
-                      [searchPlaceholder]="'home.search-form.placeholder' | translate">
-      </ds-search-form>
+    <div class="hero-content">
+      <div class="hero-intro">
+        <p class="hero-intro__lead">{{ 'collspec.accueil.intro.lead' | translate }}</p>
+        <div class="hero-intro__body">
+          <p>{{ 'collspec.accueil.intro.para1' | translate }}</p>
+        </div>
+      </div>
+      <!-- Barre de recherche avec filtres -->
+      <div class="search-bar">
+        <ds-search-form [inPlaceSearch]="false"
+                        [searchPlaceholder]="'home.search-form.placeholder' | translate">
+        </ds-search-form>
+      </div>
     </div>
   </div>
 </div>
+
 <ds-home-coar></ds-home-coar>
 <ds-vedette-liste></ds-vedette-liste>
 <ds-home-news></ds-home-news>

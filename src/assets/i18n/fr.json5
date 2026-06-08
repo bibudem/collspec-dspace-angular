@@ -7370,9 +7370,9 @@
 
   "collspec.contact-udem": "University of Montreal",
 
-  "collspec.accueil.vedette.titre": "Publications en vedette",
+  "collspec.accueil.vedette.titre": "En vedette",
 
-  "collspec.accueil.vedette.description": "Découvrez notre collection exclusive d'articles en vedette, méticuleusement sélectionnés pour vous offrir le meilleur de notre contenu. Chaque article a été choisi avec soin afin de vous proposer une expérience enrichissante et captivante, reflétant notre engagement à vous présenter des informations de qualité et des perspectives uniques.",
+  "collspec.accueil.vedette.description": "Nos plus beaux trésors, nos dernières numérisations – notre collection En vedette vous présente une sélection de documents et objets tirés de nos différents fonds et collections. Un bon point de départ pour explorer l’univers des collections spéciales de l’UdeM!",
 
   "collspec.faq.titre": "FAQ - Vos Questions, nos Réponses",
 
@@ -7412,7 +7412,7 @@
 
   "collspec.footer.contact.clavarder": "Clavarder avec l'équipe des bibliothèques",
 
-  "collspec.accueil.titre": "Collections <br> spéciales",
+  "collspec.accueil.titre": "Découvrez nos pièces uniques",
 
   "collspec.menu.a-propos": "À propos",
 
@@ -7491,4 +7491,12 @@
   "browse.comcol.by.contributor": "Contributeur",
 
   "browse.comcol.by.datecreated": "Date de création",
+
+  "collspec.accueil.intro.lead": "Nos collections spéciales regorgent de pièces uniques, anciennes ou rares, prêtes à enrichir la recherche et l'enseignement, ou même à devenir elles-mêmes des objets de recherche!",
+
+  "collspec.accueil.intro.para1": "Parcourir les différents fonds, c'est découvrir le passé à travers nos livres rares et anciens, nos artefacts et nos collections d'images — entre pièces remarquables et numérisations récentes, explorez notre sélection thématique de documents et objets issus de nos fonds.",
+
+  "collspec.accueil.intro.para2": "Entre pièces remarquables et numérisations récentes, explorez notre sélection thématique de documents et objets issus de nos fonds.",
+
+  "collspec.accueil.vedette.error": "Aucun contenu en vedette disponible",
 }
