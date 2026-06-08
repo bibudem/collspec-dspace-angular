@@ -683,94 +683,54 @@ a.lead {
 ------------------------------------------------------- */
 .hero-section {
   position: relative;
-  min-height: 95vh;
-  height: auto;
+  height: 95vh;
+  min-height: 500px;
   display: flex;
   justify-content: center;
-  align-items: stretch;
+  align-items: center;
+  text-align: center;
   background: url('/assets/collspec/images/bibImage-home.jpg') no-repeat center center;
   background-size: cover;
   margin-top: -20rem;
 }
 
 .hero-overlay {
-  background: rgba(0, 0, 0, 0.45);
-  padding: 2rem 2rem 4rem;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+  border-radius: 1rem;
   color: white;
   width: 100%;
-  min-height: 95vh;
+  height: 95vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .hero-section h1 {
   text-align: left;
-  font-size: 5rem;
+  font-size: 90px;
+  width: 100%;
   color: white;
   font-weight: 500;
-  font-family: $font-family-serif !important;
+  font-family: $font-family-serif!important;
+  margin-top: 40vh;
   margin-left: 5%;
-  margin-bottom: 0;
+  margin-bottom: 5%;
   padding-left: 20px;
-  line-height: 1.05;
-  letter-spacing: -0.01em;
-}
-
-.hero-section h1::after {
-  content: '';
-  display: block;
-  margin-bottom: 1.75rem;
-}
-
-/* Conteneur commun text + barre de recherche */
-.hero-content {
-  width: 70%;
-  margin-left: 5%;
-  padding-left: 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Texte intro dans le hero */
-.hero-intro {
-  width: 100%;
-  margin-bottom: 1.5rem;
-}
-
-.hero-intro__lead {
-  font-size: 1.1rem;
-  font-family: $font-family-serif !important;
-  font-weight: 500;
-  line-height: 1.75;
-  color: #fff;
-  margin-bottom: 0.85rem;
-  width: 100%;
-  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.75), 0 2px 20px rgba(0, 0, 0, 0.5);
-}
-
-.hero-intro__body p {
-  font-size: 0.875rem;
-  font-family: $font-family-serif !important;
-  font-weight: 400;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.78);
-  margin-bottom: 0;
-  width: 100%;
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
+  line-height: 100%;
 }
 
 /* Formulaire de recherche Hero */
 .hero-section .hero-overlay ds-base-search-form form .input-group {
-  width: 90% !important;
-  margin-left: 0;
-  padding-left: 0;
+  width: 70% !important;
+  margin-left: 5%;
+  padding-left: 20px;
 }
 
 .hero-section .hero-overlay ds-base-search-form form .input-group .form-control {
   position: relative !important;
   flex: none;
-  width: 80% !important;
+  width: 75% !important;
   height: 50px !important;
   background: transparent !important;
   border-radius: 1rem 0 0 1rem !important;
@@ -782,7 +742,7 @@ a.lead {
 }
 
 .hero-section .hero-overlay ds-base-search-form form .input-group .form-control {
-  color: white !important;
+  color: white!important;
 }
 
 .hero-section .hero-overlay ds-base-search-form form .input-group .form-control::placeholder {
@@ -797,64 +757,47 @@ a.lead {
 /* Tablettes (768px - 1024px) */
 @media (max-width: 1024px) {
   .hero-section h1 {
-    font-size: 4.5rem;
-    margin-left: 3%;
-    padding-left: 15px;
-  }
-
-  .hero-content {
-    width: 82%;
+    font-size: 7rem;
+    margin-top: 35vh;
     margin-left: 3%;
     padding-left: 15px;
   }
 
   .hero-section .hero-overlay ds-base-search-form form .input-group {
-    width: 100% !important;
-    margin-left: 0;
-    padding-left: 0;
+    width: 80% !important;
+    margin-left: 3%;
+    padding-left: 15px;
   }
 
   .hero-overlay {
-    padding: 1.5rem 1.5rem 3rem;
+    padding: 1.5rem;
   }
 }
 
 /* Tablettes petites (600px - 768px) */
 @media (max-width: 768px) {
   .hero-section {
-    min-height: 85vh;
+    height: 85vh;
+    min-height: 450px;
   }
 
   .hero-overlay {
-    min-height: 85vh;
-    padding: 1rem 1rem 2.5rem;
+    height: 85vh;
+    padding: 1rem;
   }
 
   .hero-section h1 {
-    font-size: 3rem;
+    font-size: 4.5rem;
+    margin-top: 30vh;
     margin-left: 2%;
     padding-left: 10px;
-  }
-
-  .hero-content {
-    width: 88%;
-    margin-left: 2%;
-    padding-left: 10px;
-  }
-
-  .hero-intro__lead {
-    font-size: 0.95rem;
-    font-weight: 400!important;
-  }
-
-  .hero-intro__body p {
-    font-size: 0.82rem;
+    line-height: 110%;
   }
 
   .hero-section .hero-overlay ds-base-search-form form .input-group {
-    width: 100% !important;
-    margin-left: 0;
-    padding-left: 0;
+    width: 90% !important;
+    margin-left: 2%;
+    padding-left: 10px;
   }
 
   .hero-section .hero-overlay ds-base-search-form form .input-group .form-control {
@@ -866,47 +809,31 @@ a.lead {
 /* Mobiles (425px - 600px) */
 @media (max-width: 600px) {
   .hero-section {
-    min-height: 80vh;
+    height: 80vh;
+    min-height: 400px;
     margin-top: -15rem;
   }
 
   .hero-overlay {
-    min-height: 80vh;
-    padding: 0.5rem 0.5rem 2rem;
+    height: 80vh;
+    padding: 0.5rem;
     border-radius: 0.5rem;
     margin-top: -15rem;
   }
 
   .hero-section h1 {
-    font-size: 2.5rem;
+    font-size: 4.5rem;
+    margin-top: 25vh;
     margin-left: 0;
     padding-left: 15px;
-  }
-
-  .hero-content {
-    width: 92%;
-    margin-left: 0;
-    padding-left: 15px;
-  }
-
-  .hero-intro {
-    margin-bottom: 1.25rem;
-  }
-
-  .hero-intro__lead {
-    font-size: 0.9rem;
-    margin-bottom: 0.6rem;
-  }
-
-  .hero-intro__body p {
-    font-size: 0.78rem;
-    line-height: 1.55;
+    text-align: left;
+    line-height: 120%;
   }
 
   .hero-section .hero-overlay ds-base-search-form form .input-group {
-    width: 100% !important;
+    width: 95% !important;
     margin-left: 0;
-    padding-left: 0;
+    padding-left: 15px;
     justify-content: center;
   }
 
@@ -920,33 +847,23 @@ a.lead {
 /* Petits mobiles (jusqu'à 425px) */
 @media (max-width: 425px) {
   .hero-section {
-    min-height: 75vh;
+    height: 75vh;
+    min-height: 350px;
     margin-top: -5rem;
   }
 
   .hero-overlay {
-    min-height: 75vh;
-    padding: 0.5rem 0.5rem 1.5rem;
+    height: 75vh;
+    padding: 0.5rem;
     margin-top: -5rem;
   }
 
   .hero-section h1 {
-    font-size: 2.2rem;
+    font-size: 3.5rem;
+    margin-top: 0;
+    margin-bottom: 8%;
     padding-left: 10px;
-  }
-
-  .hero-section h1::after {
-    margin-top: 0.85rem;
-    margin-bottom: 1.1rem;
-    width: 2rem;
-  }
-
-  .hero-intro__lead {
-    font-size: 0.85rem;
-  }
-
-  .hero-intro__body {
-    display: none;
+    line-height: 120%;
   }
 
   .hero-section .hero-overlay ds-base-search-form form .input-group {
@@ -970,31 +887,20 @@ a.lead {
 /* Très grands écrans (au-dessus de 1440px) */
 @media (min-width: 1441px) {
   .hero-section {
-    min-height: 100vh;
+    height: 100vh;
   }
 
   .hero-overlay {
-    min-height: 100vh;
+    height: 100vh;
   }
 
   .hero-section h1 {
-    font-size: 5.5rem;
-  }
-
-  .hero-content {
-    width: 70%;
-  }
-
-  .hero-intro__lead {
-    font-size: 1.3rem;
-  }
-
-  .hero-intro__body p {
-    font-size: 0.95rem;
+    font-size: 100px;
+    margin-top: 45vh;
   }
 
   .hero-section .hero-overlay ds-base-search-form form .input-group {
-    width: 100% !important;
+    width: 60% !important;
   }
 
   .hero-section .hero-overlay ds-base-search-form form .input-group .form-control {
@@ -1005,24 +911,18 @@ a.lead {
 /* Orientation paysage sur mobiles */
 @media (max-height: 600px) and (orientation: landscape) {
   .hero-section {
-    min-height: 100vh;
+    height: 100vh;
+    min-height: 400px;
   }
 
   .hero-overlay {
-    min-height: 100vh;
-    padding-bottom: 2rem;
+    height: 100vh;
   }
 
   .hero-section h1 {
-    font-size: 2.8rem;
-  }
-
-  .hero-section h1::after {
-    display: none;
-  }
-
-  .hero-intro {
-    display: none;
+    font-size: 4.5rem;
+    margin-top: 20vh;
+    margin-bottom: 3%;
   }
 
   .hero-section .hero-overlay ds-base-search-form form .input-group .form-control {
