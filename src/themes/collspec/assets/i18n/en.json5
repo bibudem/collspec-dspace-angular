@@ -80,6 +80,7 @@
   "browse.comcol.by.date": "Date",
   "browse.comcol.by.datecreated": "Date Created",
   "browse.search-form.placeholder": "Search in collections",
+  "browse.metadata.date.bread": "Browse by Date",
   
   "dso-selector.set-scope.community.button": "Search all Special Collections",
   "menu.section.browse_global": "All Special Collections",
@@ -89,7 +90,7 @@
   "dso-selector.placeholder": "Search for a collection",
   
   "search.filters.filter.language.head": "Language",
-  "search.filters.filter.dateIssued.head": "Date Issued",
+  "search.filters.filter.dateIssued.head": "Date",
   "search.filters.filter.dateCreated.head": "Date Created",
   
   "search.filters.applied.f.dateCreated.max": "End date",

@@ -4672,7 +4672,7 @@
 
   "search.filters.filter.creativeWorkPublisher.label": "Recherche d'un éditeur",
 
-  "search.filters.filter.dateIssued.head": "Date de publication",
+  "search.filters.filter.dateIssued.head": "Date",
 
   "search.filters.filter.dateIssued.max.placeholder": "Depuis",
 
@@ -7501,4 +7501,6 @@
   "collspec.accueil.vedette.error": "Aucun contenu en vedette disponible",
 
   "browse.comcol.by.date": "Date",
+
+  "browse.metadata.date.bread": "Parcourir par Date",
 }
