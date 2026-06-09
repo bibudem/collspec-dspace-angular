@@ -1520,23 +1520,14 @@ p.full-text-op {
     border-bottom: 1px solid #E7EBEE;
 
     h1 {
-      margin-bottom: 1rem;
       color: $darkblue !important;
     }
-  }
-
-  .about-intro-lead {
-    color: $gray !important;
-    font-size: 1.05rem !important;
-    font-family: $font-family-sans-serif !important;
-    margin: 0;
-    line-height: 1.6;
-    max-width: 680px;
   }
 
   // Sections avec séparateur
   .about-section {
     padding: 2.5rem 0;
+    border-top: 1px solid #E7EBEE;
 
     &:first-of-type {
       border-top: none;
@@ -1551,34 +1542,6 @@ p.full-text-op {
       margin-bottom: 1rem;
       font-size: 1.05rem !important;
       line-height: 1.75 !important;
-    }
-  }
-
-  // Lien "En savoir plus" avec flèche animée
-  .about-link-more {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    margin-top: 0.5rem;
-    color: $blue !important;
-    font-weight: 600;
-    font-family: $font-family-sans-serif !important;
-    text-decoration: none !important;
-    font-size: 0.9rem;
-    transition: color 0.2s ease;
-
-    &::after {
-      content: '→';
-      display: inline-block;
-      transition: transform 0.2s ease;
-    }
-
-    &:hover {
-      color: $autreblue !important;
-
-      &::after {
-        transform: translateX(4px);
-      }
     }
   }
 
