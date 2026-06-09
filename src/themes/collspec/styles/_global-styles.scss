@@ -1509,6 +1509,251 @@ p.full-text-op {
 }
 
 /* =============================================
+   PAGE FONDS ET COLLECTIONS
+   ============================================= */
+
+.collections-page {
+
+  .collections-intro {
+    padding: 0 0 1rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #E7EBEE;
+
+    h1 { color: $darkblue !important; }
+  }
+
+  .collections-section {
+    padding: 0.5rem 0;
+
+    &:first-of-type { border-top: none; padding-top: 0; }
+
+    .bib-description { font-size: 1.05rem !important; line-height: 1.75 !important; }
+  }
+
+  .collections-loading {
+    display: flex;
+    justify-content: center;
+    padding: 3rem 0;
+  }
+
+  .collections-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .collections-search-input {
+    flex: 1 1 380px;
+    max-width: 620px;
+    border-radius: 8px;
+    border: 1px solid #C5D0D8;
+    padding: 0.55rem 1rem;
+    font-family: $font-family-sans-serif;
+    font-size: 0.95rem;
+
+    &:focus {
+      border-color: $blue;
+      box-shadow: 0 0 0 3px rgba($blue, 0.15);
+      outline: none;
+    }
+  }
+
+  .collections-count {
+    font-size: 0.85rem;
+    color: $gray;
+    font-family: $font-family-sans-serif;
+    white-space: nowrap;
+  }
+
+  .collections-scroll-container { position: relative; }
+
+  // Flèches ‹ › dans la toolbar (haut gauche)
+  .collections-nav-arrows {
+    display: flex;
+    gap: 4px;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  .collections-nav-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1.5px solid #C5D0D8;
+    background: #fff;
+    color: $darkblue;
+    font-size: 1.15rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+
+    &:not([disabled]):hover {
+      background: $darkblue;
+      border-color: $darkblue;
+      color: #fff;
+    }
+
+    &[disabled] { opacity: 0.3; cursor: default; }
+  }
+
+  // Wrapper : scroll horizontal intégré + ombre + coins arrondis
+  .collections-table-wrapper {
+    overflow-x: auto;
+    overflow-y: visible;
+
+    // Indicateur de scroll discret sur mobile
+    background:
+      linear-gradient(to right, white 30%, rgba(255,255,255,0)),
+      linear-gradient(to left,  white 30%, rgba(255,255,255,0)) 100% 0,
+      radial-gradient(farthest-side at 0   50%, rgba(11,17,58,0.12), transparent),
+      radial-gradient(farthest-side at 100% 50%, rgba(11,17,58,0.12), transparent) 100% 0;
+    background-repeat: no-repeat;
+    background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%;
+    background-attachment: local, local, scroll, scroll;
+  }
+
+  .collections-table {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+    margin: 0;
+
+    .collections-th {
+      background: $darkblue;
+      color: #fff;
+      font-family: $font-family-sans-serif;
+      font-weight: 600;
+      font-size: 0.8rem;
+      padding: 0.85rem 1rem;
+      text-align: center;
+      vertical-align: middle;
+      white-space: nowrap;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+
+      // Première colonne : sticky à gauche aussi
+      &.collections-th--first {
+        text-align: left;
+        position: sticky;
+        left: 0;
+        z-index: 3;
+        min-width: 240px;
+        max-width: 340px;
+        border-right: 2px solid rgba(255, 255, 255, 0.25);
+        box-shadow: 3px 0 8px rgba(11, 17, 58, 0.18);
+      }
+
+      &.collections-th--sortable {
+        cursor: pointer;
+        user-select: none;
+        transition: background 0.15s;
+        &:hover { background: lighten($darkblue, 7%); }
+      }
+
+      &.collections-th--sorted { background: $autreblue; }
+
+      .collections-th-inner {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .collections-sort-icon {
+        font-size: 0.65rem;
+        opacity: 0.7;
+      }
+    }
+
+    .collections-row {
+      transition: background 0.1s;
+
+      &:nth-child(even) {
+        background: $extralightblue;
+        .collections-td--first { background: $extralightblue; }
+      }
+
+      &:nth-child(odd) .collections-td--first { background: #fff; }
+
+      &:hover {
+        background: #cfe2f3;
+        .collections-td--first { background: #cfe2f3; }
+      }
+    }
+
+    .collections-td {
+      padding: 0.75rem 1rem;
+      font-size: 0.875rem;
+      vertical-align: middle;
+      border-bottom: 1px solid #E7EBEE;
+      text-align: center;
+      white-space: nowrap;
+
+      // Première colonne : sticky à gauche, texte normal
+      &.collections-td--first {
+        text-align: left;
+        font-weight: 600;
+        color: $darkblue;
+        position: sticky;
+        left: 0;
+        background: #fff; // défaut lignes impaires — surchargé par .collections-row
+        z-index: 1;
+        min-width: 240px;
+        max-width: 340px;
+        white-space: normal;
+        word-break: break-word;
+        border-right: 2px solid #B8C5D0;
+        box-shadow: 3px 0 8px rgba(11, 17, 58, 0.06);
+      }
+
+      .collections-link {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.75rem;
+        white-space: nowrap;
+      }
+
+      .collections-check {
+        color: $autreblue;
+        font-weight: 700;
+        font-size: 1rem;
+      }
+
+      .collections-dash {
+        color: #C5D0D8;
+        font-size: 0.9rem;
+      }
+    }
+
+    .collections-no-results {
+      color: $gray;
+      font-style: italic;
+      font-size: 0.95rem;
+      text-align: center;
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  .collections-page {
+    .collections-intro h1    { font-size: 2rem !important; }
+    .collections-section     { padding: 1.75rem 0; }
+    .collections-search-input { max-width: 100%; }
+
+    .collections-table {
+      .collections-th,
+      .collections-td { padding: 0.6rem 0.75rem; font-size: 0.8rem; }
+
+      .collections-th--first,
+      .collections-td--first { min-width: 180px; }
+    }
+  }
+}
+
+/* =============================================
    PAGE À PROPOS
    ============================================= */
 
@@ -1528,7 +1773,6 @@ p.full-text-op {
   // Sections avec séparateur
   .about-section {
     padding: 2.5rem 0;
-    border-top: 1px solid #E7EBEE;
 
     &:first-of-type {
       border-top: none;

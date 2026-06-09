@@ -7503,4 +7503,20 @@
   "browse.comcol.by.date": "Date",
 
   "browse.metadata.date.bread": "Parcourir par Date",
+
+  "collspec.menu.fonds-collections": "Nos fonds et collections",
+
+  "collspec.collections.title": "Nos fonds et collections",
+
+  "collspec.collections.intro": "Plusieurs collections et fonds ont été confiés aux bibliothèques de l'UdeM à travers les années. Couvrant plus de 4000 ans, les documents sont pour la plupart répertoriés dans Sofia.",
+
+  "collspec.collections.search": "Rechercher dans le répertoire...",
+
+  "collspec.collections.error": "Le répertoire des fonds et collections n'est pas disponible pour le moment.",
+
+  "collspec.collections.no-results": "Aucun résultat pour cette recherche.",
+
+  "collspec.collections.col-fonds": "Fonds / Collection",
+
+  "collspec.collections.col-liens": "Liens",
 }

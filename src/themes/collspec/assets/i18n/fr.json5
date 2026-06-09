@@ -2,10 +2,19 @@
   "collspec.cookies.consent.content-notice.description": "Vos données personnelles sont collectées et utilisées aux fins suivantes : <strong>authentification, préférences, consentement et statistiques</strong>.<br>Pour plus d’informations, veuillez consulter la <a href=\"https://vie-privee.umontreal.ca/confidentialite\">politique de protection de la vie privée</a>.",
 
   "collspec.menu.a-propos": "À propos",
+  "collspec.menu.fonds-collections": "Nos fonds et collections",
   "collspec.menu.guide": "Guide des collections",
   "collspec.menu.blrcs": "BLRCS",
   "collspec.menu.contact": "Nous joindre",
   "collspec.menu.catalogues": "Catalogues",
+
+  "collspec.collections.title": "Nos fonds et collections",
+  "collspec.collections.intro": "Plusieurs collections et fonds ont été confiés aux bibliothèques de l'UdeM à travers les années. Couvrant plus de 4000 ans, les documents sont pour la plupart répertoriés dans Sofia.",
+  "collspec.collections.search": "Rechercher dans le répertoire...",
+  "collspec.collections.error": "Le répertoire des fonds et collections n'est pas disponible pour le moment.",
+  "collspec.collections.no-results": "Aucun résultat pour cette recherche.",
+  "collspec.collections.col-fonds": "Fonds / Collection",
+  "collspec.collections.col-liens": "Liens",
 
   // "repository.title.prefix": "DSpace Angular :: ",
   "repository.title.prefix": "Collections spéciales :: ",
