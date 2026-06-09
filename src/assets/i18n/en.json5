@@ -4672,7 +4672,7 @@
 
   "search.filters.filter.creativeWorkPublisher.label": "Search publisher",
 
-  "search.filters.filter.dateIssued.head": "Date Issued",
+  "search.filters.filter.dateIssued.head": "Date",
 
   "search.filters.filter.dateIssued.max.placeholder": "Maximum Date",
 
@@ -7487,4 +7487,6 @@
   "collspec.accueil.vedette.error": "No featured items available",
 
   "browse.comcol.by.date": "Date",
+
+  "browse.metadata.date.bread": "Browse by Date",
 }
