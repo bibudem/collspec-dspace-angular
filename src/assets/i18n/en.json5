@@ -7489,4 +7489,20 @@
   "browse.comcol.by.date": "Date",
 
   "browse.metadata.date.bread": "Browse by Date",
+
+  "collspec.menu.fonds-collections": "Our Fonds and Collections",
+
+  "collspec.collections.title": "Our Fonds and Collections",
+
+  "collspec.collections.intro": "Several collections and fonds have been entrusted to the UdeM libraries over the years. Spanning more than 4,000 years, most documents are listed in Sofia.",
+
+  "collspec.collections.search": "Search the directory...",
+
+  "collspec.collections.error": "The fonds and collections directory is not currently available.",
+
+  "collspec.collections.no-results": "No results found.",
+
+  "collspec.collections.col-fonds": "Fonds / Collection",
+
+  "collspec.collections.col-liens": "Links",
 }

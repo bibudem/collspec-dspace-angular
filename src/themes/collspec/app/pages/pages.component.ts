@@ -6,6 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { AboutComponent } from "./about/about.component";
 import { CommonModule } from '@angular/common';
 import { PageblrcsComponent } from './blrcs/page-blrcs.component';
+import { CollectionsComponent } from './collections/collections.component';
 
 @Component({
   selector: 'ds-pages',
@@ -18,15 +19,16 @@ import { PageblrcsComponent } from './blrcs/page-blrcs.component';
     RouterModule,
     NgbModule,
     PageblrcsComponent,
-    AboutComponent
+    AboutComponent,
+    CollectionsComponent
   ],
 })
 export class PagesComponent implements OnInit {
   currentComponent: any;
   private readonly componentMap: { [key: string]: any } = {
+    'fonds-collections': CollectionsComponent,
     'a-propos': AboutComponent,
     'blrcs': PageblrcsComponent,
-
   };
 
   constructor(
