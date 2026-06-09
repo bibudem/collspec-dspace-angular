@@ -1507,3 +1507,139 @@ p.full-text-op {
   margin-left: 3rem!important;
 }
 
+/* =============================================
+   PAGE À PROPOS
+   ============================================= */
+
+.about-page {
+
+  // En-tête typographique avec barre bleue décorative
+  .about-intro {
+    padding: 0 0 1rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #E7EBEE;
+
+    h1 {
+      margin-bottom: 1rem;
+      color: $darkblue !important;
+    }
+  }
+
+  .about-intro-lead {
+    color: $gray !important;
+    font-size: 1.05rem !important;
+    font-family: $font-family-sans-serif !important;
+    margin: 0;
+    line-height: 1.6;
+    max-width: 680px;
+  }
+
+  // Sections avec séparateur
+  .about-section {
+    padding: 2.5rem 0;
+
+    &:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    h2 {
+      margin-bottom: 1.25rem;
+    }
+
+    .bib-description {
+      margin-bottom: 1rem;
+      font-size: 1.05rem !important;
+      line-height: 1.75 !important;
+    }
+  }
+
+  // Lien "En savoir plus" avec flèche animée
+  .about-link-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 0.5rem;
+    color: $blue !important;
+    font-weight: 600;
+    font-family: $font-family-sans-serif !important;
+    text-decoration: none !important;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+
+    &::after {
+      content: '→';
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+
+    &:hover {
+      color: $autreblue !important;
+
+      &::after {
+        transform: translateX(4px);
+      }
+    }
+  }
+
+  // Boîte citation — bordure bleue accent
+  .about-cite-box {
+    background: $extralightblue;
+    border-left: 4px solid $blue;
+    padding: 1.25rem 1.5rem;
+    border-radius: 0 8px 8px 0;
+    margin-top: 1.5rem;
+  }
+
+  .about-cite-title {
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: $font-family-sans-serif;
+    color: $darkblue;
+    margin: 0 0 0.5rem;
+  }
+
+  .about-cite-text {
+    margin-bottom: 0 !important;
+  }
+
+  // Section "Nous soutenir" mise en valeur
+  .about-section-support {
+    background: $extralightblue;
+    padding: 2.5rem !important;
+    border-radius: 12px;
+    border-top: none !important;
+    margin-top: 1rem;
+  }
+
+  .about-support-title {
+    color: $darkblue;
+  }
+
+  .about-support-btn {
+    margin-top: 1rem;
+  }
+}
+
+// Responsive — réduire les paddings sur mobile
+@media (max-width: 767.98px) {
+  .about-page {
+    .about-intro {
+      padding: 1.75rem 1.25rem 1.5rem;
+      margin-bottom: 2rem;
+
+      h1 {
+        font-size: 2rem !important;
+      }
+    }
+
+    .about-section {
+      padding: 1.75rem 0;
+    }
+
+    .about-section-support {
+      padding: 1.75rem !important;
+    }
+  }
+}
+
