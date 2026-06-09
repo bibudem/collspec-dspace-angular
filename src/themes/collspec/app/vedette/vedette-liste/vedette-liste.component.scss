@@ -22,11 +22,11 @@
   font-family: $font-family-serif;
   font-variant-numeric: lining-nums tabular-nums;
   font-feature-settings: 'liga' off, 'clig' off;
-  margin-bottom: 0;
+  margin-bottom: 10px;
   color: $darkblue !important;
   text-align: left;
   margin-top: 0;
-  margin-left: 0;
+  margin-left: 10px;
   padding-left: 0;
   width: auto;
 
@@ -244,7 +244,7 @@ p {
 
       h4 {
         margin-left: 0;
-        font-size: 1.1rem;
+        font-size: 1.125rem;
       }
     }
 
@@ -256,13 +256,13 @@ p {
 
   .vedette-header {
     margin-left: 0;
-    padding-left: 2.5rem;
+    padding-left: 0.5rem;
   }
 
   p {
     margin-left: 0;
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
     font-size: 15px;
   }
 }
@@ -292,7 +292,7 @@ p {
 
       h4 {
         margin-left: 0;
-        font-size: 0.9rem;
+        font-size: 1rem;
       }
     }
 
@@ -315,13 +315,13 @@ p {
 
   .vedette-header {
     margin-left: 0;
-    padding-left: 2rem;
+    padding-left: 0.5rem;
   }
 
   p {
     margin-left: 0;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
     font-size: 15px;
   }
 }
@@ -356,21 +356,21 @@ p {
 
   .vedette-header {
     margin-left: 0;
-    padding-left: 1.5rem;
+    padding-left: 0.5rem;
     margin-top: 1rem;
 
     i { font-size: 1.8rem; }
   }
 
   .bib-title {
-    font-size: 1.75rem;
+    font-size: 2rem;
   }
 
   p {
     margin-left: 0;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    font-size: 0.9rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    font-size: 1rem;
   }
 }
 
@@ -405,7 +405,7 @@ p {
   }
 
   .bib-title {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 }
 
