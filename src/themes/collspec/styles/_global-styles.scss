@@ -1819,10 +1819,8 @@ p.full-text-op {
       .collections-th,
       .collections-td { padding: 0.6rem 0.75rem; font-size: 0.78rem; }
 
-      // Première colonne : plus de sticky sur mobile — trop encombrant
       .collections-th--first {
-        position: sticky; // sticky vertical (top) conservé pour l'en-tête
-        left: unset;
+        position: static;
         box-shadow: none;
         border-right: 1px solid rgba(255, 255, 255, 0.1);
         min-width: 160px;
@@ -1866,10 +1864,8 @@ p.full-text-op {
       .collections-th,
       .collections-td { padding: 0.4rem 0.5rem; font-size: 0.7rem; }
 
-      // Première colonne : pas de sticky du tout sur très petits écrans
       .collections-th--first {
-        position: sticky; // sticky top uniquement
-        left: unset;
+        position: static;
         box-shadow: none;
         border-right: 1px solid rgba(255, 255, 255, 0.1);
         min-width: 110px;

@@ -18,14 +18,14 @@
                 <!-- Cas Claude Gingras -->
                 <a *ngIf="isClaudeGingras(souscommunitie)"
                   href="https://claude-gingras.bib.umontreal.ca/"
-                  class="btn btn-darkblue ml-2">
+                  class="btn btn-darkblue ml-2 mt-3">
                   {{ 'collspec.collection.decouvrir' | translate }}
                 </a>
 
                 <!-- Autres collections -->
                 <a *ngIf="!isClaudeGingras(souscommunitie)"
                   [routerLink]="['/communities/', souscommunitie.id]"
-                  class="btn btn-darkblue ml-2">
+                  class="btn btn-darkblue ml-2 mt-3">
                   {{ 'collspec.collection.decouvrir' | translate }}
                 </a>
               </div>

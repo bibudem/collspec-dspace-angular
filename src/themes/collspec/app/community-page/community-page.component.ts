@@ -1,7 +1,9 @@
 import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
+  inject,
 } from '@angular/core';
 import {
   RouterModule,
@@ -56,22 +58,24 @@ import { VedetteUUIDComponent } from '../vedette/vedette-uuid/vedette-uuid.compo
 export class CommunityPageComponent extends BaseComponent {
   handleCopied = false;
   private copyTimer: ReturnType<typeof setTimeout> | null = null;
+  private readonly cdr = inject(ChangeDetectorRef);
 
   copyHandle(url: string): void {
+    if (this.copyTimer) {
+      clearTimeout(this.copyTimer);
+      this.copyTimer = null;
+    }
+    this.handleCopied = false;
+    this.cdr.markForCheck();
+
     navigator.clipboard.writeText(url).then(() => {
-      if (this.copyTimer) {
-        clearTimeout(this.copyTimer);
-        this.copyTimer = null;
+      this.handleCopied = true;
+      this.cdr.markForCheck();
+      this.copyTimer = setTimeout(() => {
         this.handleCopied = false;
-      }
-      // micro-délai pour forcer la re-détection du changement et relancer l'animation CSS
-      setTimeout(() => {
-        this.handleCopied = true;
-        this.copyTimer = setTimeout(() => {
-          this.handleCopied = false;
-          this.copyTimer = null;
-        }, 2000);
-      }, 20);
-    });
+        this.copyTimer = null;
+        this.cdr.markForCheck();
+      }, 2000);
+    }).catch(() => {});
   }
 }
