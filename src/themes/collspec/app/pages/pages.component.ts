@@ -5,8 +5,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { TranslateModule } from '@ngx-translate/core';
 import { AboutComponent } from "./about/about.component";
 import { CommonModule } from '@angular/common';
-import { PageblrcsComponent } from './blrcs/page-blrcs.component';
-import { CollectionsComponent } from './collections/collections.component';
+import { PageFondsComponent } from './page-fonds/page-fonds.component';
 
 @Component({
   selector: 'ds-pages',
@@ -18,17 +17,15 @@ import { CollectionsComponent } from './collections/collections.component';
     TranslateModule,
     RouterModule,
     NgbModule,
-    PageblrcsComponent,
     AboutComponent,
-    CollectionsComponent
+    PageFondsComponent
   ],
 })
 export class PagesComponent implements OnInit {
   currentComponent: any;
   private readonly componentMap: { [key: string]: any } = {
-    'fonds-collections': CollectionsComponent,
+    'fonds-collections': PageFondsComponent,
     'a-propos': AboutComponent,
-    'blrcs': PageblrcsComponent,
   };
 
   constructor(
