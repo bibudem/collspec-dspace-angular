@@ -23,7 +23,6 @@
   display: flex;
   align-items: flex-start;
   gap: 1.25rem;
-  padding-bottom: 1rem;
   border-bottom: 1.5px solid $lightblue;
   margin-bottom: 0.75rem;
 }
@@ -31,15 +30,15 @@
 // Logo compact avec bordure subtile
 .community-logo-panel {
   flex-shrink: 0;
-  width: 90px;
+  width: 140px;
 
   ::ng-deep img {
-    width: 90px;
-    height: 90px;
+    width: 140px;
+    height: auto;
     object-fit: contain;
     border-radius: 10px;
     background: #fff;
-    padding: 8px;
+    padding: 0;
     border: 1px solid $lightblue;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     display: block;
@@ -66,15 +65,12 @@
   align-items: baseline;
   gap: 0.25rem 0.6rem;
   margin-bottom: 0.75rem;
-  padding-left: 0.65rem;
-  border-left: 2px solid $lightblue;
 }
 
 .handle-label {
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600;
   color: $gray-600;
-  font-style: italic;
 
   i {
     font-style: normal;
@@ -162,24 +158,30 @@
   }
 
   ::ng-deep .slider__caption {
-    padding: 40px 18px 12px;
-    h4 { font-size: 1.1rem; }
+    padding: 60px 18px 14px;
+
+    h4 {
+      font-size: 1.05rem;
+      line-height: 1.45;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+    }
   }
 }
 
 // ── Tablette (768px – 991px) ─────────────────────────────────────────────────
 @media (max-width: 991.98px) {
   .community-logo-panel {
-    width: 80px;
+    width: 110px;
 
-    ::ng-deep img { width: 80px; height: 80px; }
+    ::ng-deep img { width: 110px; height: auto; }
   }
 
   .community-carousel-wrapper {
     ::ng-deep .slider__slide       { height: 175px; }
     ::ng-deep .slider__slide img   { height: 175px; }
-    ::ng-deep .slider__caption     { padding: 32px 14px 10px; }
-    ::ng-deep .slider__caption h4  { font-size: 1rem; }
+    ::ng-deep .slider__caption     { padding: 48px 14px 10px; }
+    ::ng-deep .slider__caption h4  { font-size: 0.95rem; line-height: 1.4; }
   }
 }
 
@@ -191,9 +193,9 @@
   }
 
   .community-logo-panel {
-    width: 68px;
+    width: 90px;
 
-    ::ng-deep img { width: 68px; height: 68px; padding: 6px; }
+    ::ng-deep img { width: 90px; height: auto; }
   }
 
   .community-description-panel ::ng-deep p { font-size: 0.9rem; }
@@ -201,8 +203,8 @@
   .community-carousel-wrapper {
     ::ng-deep .slider__slide       { height: 150px; border-radius: 8px; }
     ::ng-deep .slider__slide img   { height: 150px; }
-    ::ng-deep .slider__caption     { padding: 26px 12px 8px; }
-    ::ng-deep .slider__caption h4  { font-size: 0.9rem; }
+    ::ng-deep .slider__caption     { padding: 40px 12px 8px; }
+    ::ng-deep .slider__caption h4  { font-size: 0.88rem; line-height: 1.4; }
   }
 }
 
@@ -211,26 +213,25 @@
   .community-title-row { margin: 1rem 0 0.75rem; }
 
   .community-meta-row {
-    flex-direction: column;
     gap: 0.75rem;
     padding-bottom: 1rem;
   }
 
   .community-logo-panel {
-    width: auto; // pleine largeur en colonne
-    max-width: 70px;
+    flex-shrink: 0;
+    width: 75px;
 
-    ::ng-deep img { width: 70px; height: 70px; padding: 6px; border-radius: 8px; }
+    ::ng-deep img { width: 75px; height: auto; border-radius: 8px; }
   }
 
   .community-description-panel ::ng-deep p { font-size: 0.875rem; line-height: 1.55; }
 
-  .handle-link { max-width: 200px; }
+  .handle-link { max-width: 160px; }
 
   .community-carousel-wrapper {
     ::ng-deep .slider__slide       { height: 130px; border-radius: 8px; }
     ::ng-deep .slider__slide img   { height: 130px; }
-    ::ng-deep .slider__caption     { padding: 22px 10px 8px; }
-    ::ng-deep .slider__caption h4  { font-size: 0.8rem; }
+    ::ng-deep .slider__caption     { padding: 34px 10px 8px; }
+    ::ng-deep .slider__caption h4  { font-size: 0.8rem; line-height: 1.35; }
   }
 }

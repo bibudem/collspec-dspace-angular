@@ -55,11 +55,23 @@ import { VedetteUUIDComponent } from '../vedette/vedette-uuid/vedette-uuid.compo
  */
 export class CommunityPageComponent extends BaseComponent {
   handleCopied = false;
+  private copyTimer: ReturnType<typeof setTimeout> | null = null;
 
   copyHandle(url: string): void {
     navigator.clipboard.writeText(url).then(() => {
-      this.handleCopied = true;
-      setTimeout(() => (this.handleCopied = false), 2000);
+      if (this.copyTimer) {
+        clearTimeout(this.copyTimer);
+        this.copyTimer = null;
+        this.handleCopied = false;
+      }
+      // micro-délai pour forcer la re-détection du changement et relancer l'animation CSS
+      setTimeout(() => {
+        this.handleCopied = true;
+        this.copyTimer = setTimeout(() => {
+          this.handleCopied = false;
+          this.copyTimer = null;
+        }, 2000);
+      }, 20);
     });
   }
 }
