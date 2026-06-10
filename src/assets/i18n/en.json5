@@ -7505,4 +7505,8 @@
   "collspec.collections.col-fonds": "Fonds / Collection",
 
   "collspec.collections.col-liens": "Links",
+
+  "collspec.handle.copy": "Copy URL",
+
+  "collspec.handle.copied": "URL copied!",
 }

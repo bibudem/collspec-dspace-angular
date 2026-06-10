@@ -12,6 +12,7 @@
           <li class="slider__slide">
             <a [routerLink]="['/items', slide.id]">
               <img [src]="slide.imageUrl" [alt]="slide.title" loading="lazy">
+              <div class="slider__overlay"></div>
               <div class="slider__caption">
                 <h4>{{ slide.title }}</h4>
               </div>
