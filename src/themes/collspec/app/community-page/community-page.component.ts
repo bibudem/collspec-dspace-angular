@@ -15,7 +15,6 @@ import { ThemedCommunityPageSubCommunityListComponent } from '../../../../app/co
 import { fadeInOut } from '../../../../app/shared/animations/fade';
 import { ThemedComcolPageBrowseByComponent } from '../../../../app/shared/comcol/comcol-page-browse-by/themed-comcol-page-browse-by.component';
 import { ThemedComcolPageContentComponent } from '../../../../app/shared/comcol/comcol-page-content/themed-comcol-page-content.component';
-import { ThemedComcolPageHandleComponent } from '../../../../app/shared/comcol/comcol-page-handle/themed-comcol-page-handle.component';
 import { ComcolPageHeaderComponent } from '../../../../app/shared/comcol/comcol-page-header/comcol-page-header.component';
 import { ComcolPageLogoComponent } from '../../../../app/shared/comcol/comcol-page-logo/comcol-page-logo.component';
 import { DsoEditMenuComponent } from '../../../../app/shared/dso-page/dso-edit-menu/dso-edit-menu.component';
@@ -42,7 +41,6 @@ import { VedetteUUIDComponent } from '../vedette/vedette-uuid/vedette-uuid.compo
     ThemedCollectionPageSubCollectionListComponent,
     ThemedComcolPageBrowseByComponent,
     DsoEditMenuComponent,
-    ThemedComcolPageHandleComponent,
     ComcolPageLogoComponent,
     ComcolPageHeaderComponent,
     AsyncPipe,
@@ -56,4 +54,12 @@ import { VedetteUUIDComponent } from '../vedette/vedette-uuid/vedette-uuid.compo
  * This component represents a detail page for a single community
  */
 export class CommunityPageComponent extends BaseComponent {
+  handleCopied = false;
+
+  copyHandle(url: string): void {
+    navigator.clipboard.writeText(url).then(() => {
+      this.handleCopied = true;
+      setTimeout(() => (this.handleCopied = false), 2000);
+    });
+  }
 }

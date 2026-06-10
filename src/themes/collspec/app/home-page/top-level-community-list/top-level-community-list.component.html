@@ -8,9 +8,9 @@
       <ng-container *ngIf="communitiesRD?.hasSucceeded">
         <ng-container *ngIf="allSouscommunities.length > 0; else loadingContent">
           <ng-container *ngFor="let souscommunitie of allSouscommunities">
-            <div class="card" *ngIf="souscommunitie?.vedette">
+            <div class="card">
               <div class="card-img-body">
-                <img class="card-img" [src]="souscommunitie.vedette" alt="Item {{ souscommunitie.title }}">
+                <img class="card-img" [src]="souscommunitie.logoUrl || 'assets/collspec/images/imageDefaultcollspec.jpg'" alt="Logo {{ souscommunitie.title }}">
               </div>
               <div class="card-body">
                 <h4 class="card-title mt-5 text-start">{{ souscommunitie.title }}</h4>

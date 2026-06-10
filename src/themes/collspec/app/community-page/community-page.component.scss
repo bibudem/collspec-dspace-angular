@@ -1,0 +1,236 @@
+@import 'src/themes/collspec/styles/_variables.scss';
+
+// ── Titre pleine largeur ────────────────────────────────────────────────────
+.community-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 1.25rem 0 1rem;
+
+  ::ng-deep h1 {
+    margin: 0 !important;
+    color: $darkblue;
+    font-weight: 600;
+    line-height: 1.15;
+    word-break: break-word;
+  }
+}
+
+// ── Logo + description (rangée sous le titre) ───────────────────────────────
+.community-meta-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1.5px solid $lightblue;
+  margin-bottom: 0.75rem;
+}
+
+// Logo compact avec bordure subtile
+.community-logo-panel {
+  flex-shrink: 0;
+  width: 90px;
+
+  ::ng-deep img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    border-radius: 10px;
+    background: #fff;
+    padding: 8px;
+    border: 1px solid $lightblue;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    display: block;
+  }
+}
+
+// Panneau description
+.community-description-panel {
+  flex: 1;
+  min-width: 0;
+
+  ::ng-deep p {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: $gray;
+    margin-bottom: 0;
+  }
+}
+
+// ── Handle URI inline ───────────────────────────────────────────────────────
+.handle-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.6rem;
+  margin-bottom: 0.75rem;
+  padding-left: 0.65rem;
+  border-left: 2px solid $lightblue;
+}
+
+.handle-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: $gray-600;
+  font-style: italic;
+
+  i {
+    font-style: normal;
+    margin-right: 0.3rem;
+    font-size: 0.75rem;
+  }
+}
+
+.handle-url-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.handle-link {
+  font-size: 0.8rem;
+  color: $blue;
+  font-family: 'Courier New', 'Lucida Console', monospace;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: min(420px, 100%); // ne dépasse jamais le conteneur
+  display: inline-block;
+  vertical-align: middle;
+  text-decoration: none;
+
+  &:hover { text-decoration: underline !important; }
+}
+
+.handle-copy-btn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  border: 1px solid $lightblue;
+  background: transparent;
+  color: $gray-500;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.18s, color 0.18s, border-color 0.18s;
+
+  i { font-size: 0.68rem; }
+
+  &:hover {
+    background: $extralightblue;
+    color: $darkblue;
+    border-color: #a8c8e8;
+  }
+
+  &.copied {
+    background: #e8f8ee;
+    border-color: $greensecondary;
+    color: $darkgreen;
+    animation: pop 0.2s ease;
+  }
+}
+
+@keyframes pop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+
+// ── Carousel compact (bande panoramique) ────────────────────────────────────
+.community-carousel-wrapper {
+  margin-bottom: 0.5rem;
+
+  // Pleine largeur du container, plus de 70vw centré
+  ::ng-deep .slider__section {
+    width: 100%;
+    padding-block: 0 0.5rem;
+  }
+
+  // Bande fixe 280px — annule l'aspect-ratio 16/9
+  ::ng-deep .slider__slide {
+    aspect-ratio: unset;
+    height: 280px;
+    border-radius: 10px;
+
+    img { height: 280px; }
+  }
+
+  ::ng-deep .slider__caption {
+    padding: 40px 18px 12px;
+    h4 { font-size: 1.1rem; }
+  }
+}
+
+// ── Tablette (768px – 991px) ─────────────────────────────────────────────────
+@media (max-width: 991.98px) {
+  .community-logo-panel {
+    width: 80px;
+
+    ::ng-deep img { width: 80px; height: 80px; }
+  }
+
+  .community-carousel-wrapper {
+    ::ng-deep .slider__slide       { height: 175px; }
+    ::ng-deep .slider__slide img   { height: 175px; }
+    ::ng-deep .slider__caption     { padding: 32px 14px 10px; }
+    ::ng-deep .slider__caption h4  { font-size: 1rem; }
+  }
+}
+
+// ── Grand mobile (576px – 767px) ─────────────────────────────────────────────
+@media (max-width: 767.98px) {
+  .community-meta-row {
+    gap: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .community-logo-panel {
+    width: 68px;
+
+    ::ng-deep img { width: 68px; height: 68px; padding: 6px; }
+  }
+
+  .community-description-panel ::ng-deep p { font-size: 0.9rem; }
+
+  .community-carousel-wrapper {
+    ::ng-deep .slider__slide       { height: 150px; border-radius: 8px; }
+    ::ng-deep .slider__slide img   { height: 150px; }
+    ::ng-deep .slider__caption     { padding: 26px 12px 8px; }
+    ::ng-deep .slider__caption h4  { font-size: 0.9rem; }
+  }
+}
+
+// ── Mobile portrait (≤ 575px) ────────────────────────────────────────────────
+@media (max-width: 575.98px) {
+  .community-title-row { margin: 1rem 0 0.75rem; }
+
+  .community-meta-row {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-bottom: 1rem;
+  }
+
+  .community-logo-panel {
+    width: auto; // pleine largeur en colonne
+    max-width: 70px;
+
+    ::ng-deep img { width: 70px; height: 70px; padding: 6px; border-radius: 8px; }
+  }
+
+  .community-description-panel ::ng-deep p { font-size: 0.875rem; line-height: 1.55; }
+
+  .handle-link { max-width: 200px; }
+
+  .community-carousel-wrapper {
+    ::ng-deep .slider__slide       { height: 130px; border-radius: 8px; }
+    ::ng-deep .slider__slide img   { height: 130px; }
+    ::ng-deep .slider__caption     { padding: 22px 10px 8px; }
+    ::ng-deep .slider__caption h4  { font-size: 0.8rem; }
+  }
+}
