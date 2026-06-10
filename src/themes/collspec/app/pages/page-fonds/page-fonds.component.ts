@@ -20,13 +20,13 @@ interface CollectionEntry {
 }
 
 @Component({
-  selector: 'ds-collections',
-  templateUrl: './collections.component.html',
-  styleUrls: ['./collections.component.scss'],
+  selector: 'ds-fonds',
+  templateUrl: './page-fonds.component.html',
+  styleUrls: ['./page-fonds.component.scss'],
   standalone: true,
   imports: [CommonModule, TranslateModule, RouterModule],
 })
-export class CollectionsComponent implements OnInit, AfterViewInit {
+export class PageFondsComponent implements OnInit, AfterViewInit {
   @ViewChild('tableWrapper') tableWrapper!: ElementRef<HTMLElement>;
 
   headers: string[] = [];

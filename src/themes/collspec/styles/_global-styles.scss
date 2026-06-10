@@ -1819,8 +1819,23 @@ p.full-text-op {
       .collections-th,
       .collections-td { padding: 0.6rem 0.75rem; font-size: 0.78rem; }
 
-      .collections-th--first,
-      .collections-td--first  { min-width: 175px; max-width: 260px; }
+      // Première colonne : plus de sticky sur mobile — trop encombrant
+      .collections-th--first {
+        position: sticky; // sticky vertical (top) conservé pour l'en-tête
+        left: unset;
+        box-shadow: none;
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+        min-width: 160px;
+        max-width: 240px;
+      }
+
+      .collections-td--first {
+        position: static;
+        box-shadow: none;
+        border-right: 1px solid rgba(231, 235, 238, 0.6);
+        min-width: 160px;
+        max-width: 240px;
+      }
 
       .collections-th--period-group { font-size: 0.72rem; letter-spacing: 0.03em; }
       .collections-th--period-sub   { font-size: 0.66rem; }
@@ -1835,7 +1850,6 @@ p.full-text-op {
   .collections-page {
     .collections-intro h1 { font-size: 1.65rem !important; }
 
-    // Barre d'outils : recherche pleine largeur, compteur+flèches en dessous
     .collections-toolbar    { gap: 0.5rem; }
     .collections-search-input {
       flex-basis: 100%;
@@ -1847,15 +1861,29 @@ p.full-text-op {
     .collections-nav-btn    { width: 26px; height: 26px; font-size: 1rem; }
 
     .collections-table {
-      min-width: 460px; // réduit le seuil de déclenchement du scroll
+      min-width: 460px;
 
       .collections-th,
       .collections-td { padding: 0.4rem 0.5rem; font-size: 0.7rem; }
 
-      .collections-th--first,
-      .collections-td--first  { min-width: 120px; max-width: 180px; }
+      // Première colonne : pas de sticky du tout sur très petits écrans
+      .collections-th--first {
+        position: sticky; // sticky top uniquement
+        left: unset;
+        box-shadow: none;
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+        min-width: 110px;
+        max-width: 160px;
+      }
 
-      // Icônes de tri trop encombrantes sur très petits écrans
+      .collections-td--first {
+        position: static;
+        box-shadow: none;
+        border-right: 1px solid rgba(231, 235, 238, 0.6);
+        min-width: 110px;
+        max-width: 160px;
+      }
+
       .collections-sort-icon  { display: none; }
 
       .collections-th--period-group { font-size: 0.62rem; letter-spacing: 0.02em; }
