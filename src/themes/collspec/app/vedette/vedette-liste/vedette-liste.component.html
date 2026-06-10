@@ -1,19 +1,17 @@
 <div class="carousel-bib-home">
   <div class="container-fluid font-blue">
-    @if (loading) {
-    <!-- Affichage du composant de chargement -->
-    <ds-loading ></ds-loading>
-    }  @else {
-    <section class="slider__section">
-
-      <!-- Titre et description de la section vedette -->
+    <!-- Titre et description de la section vedette -->
       <div class="carousel-bib-title">
         <div class="vedette-header">
           <h2 class="fw-bold bib-title">{{ 'collspec.accueil.vedette.titre' | translate }}</h2>
         </div>
         <p [innerHTML]="'collspec.accueil.vedette.description' | translate"></p>
       </div>
-
+    @if (loading) {
+    <!-- Affichage du composant de chargement -->
+    <ds-loading ></ds-loading>
+    }  @else {
+    <section class="slider__section">
       @if (hasSlidesToDisplay) {
       <div class="slider__wrapper" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
         <div class="slider__column">
