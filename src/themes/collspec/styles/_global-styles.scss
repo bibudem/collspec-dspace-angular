@@ -1819,18 +1819,19 @@ p.full-text-op {
       .collections-th,
       .collections-td { padding: 0.6rem 0.75rem; font-size: 0.78rem; }
 
-      .collections-th--first {
-        position: static;
-        box-shadow: none;
-        border-right: 1px solid rgba(255, 255, 255, 0.1);
+      // Annule le sticky horizontal — spécificité + !important pour battre le sélecteur composé de base
+      .collections-th.collections-th--first {
+        left: unset !important;
+        z-index: 2 !important;
+        box-shadow: none !important;
         min-width: 160px;
         max-width: 240px;
       }
 
-      .collections-td--first {
-        position: static;
-        box-shadow: none;
-        border-right: 1px solid rgba(231, 235, 238, 0.6);
+      .collections-td.collections-td--first {
+        position: static !important;
+        left: unset !important;
+        box-shadow: none !important;
         min-width: 160px;
         max-width: 240px;
       }
@@ -1864,18 +1865,18 @@ p.full-text-op {
       .collections-th,
       .collections-td { padding: 0.4rem 0.5rem; font-size: 0.7rem; }
 
-      .collections-th--first {
-        position: static;
-        box-shadow: none;
-        border-right: 1px solid rgba(255, 255, 255, 0.1);
+      .collections-th.collections-th--first {
+        left: unset !important;
+        z-index: 2 !important;
+        box-shadow: none !important;
         min-width: 110px;
         max-width: 160px;
       }
 
-      .collections-td--first {
-        position: static;
-        box-shadow: none;
-        border-right: 1px solid rgba(231, 235, 238, 0.6);
+      .collections-td.collections-td--first {
+        position: static !important;
+        left: unset !important;
+        box-shadow: none !important;
         min-width: 110px;
         max-width: 160px;
       }
