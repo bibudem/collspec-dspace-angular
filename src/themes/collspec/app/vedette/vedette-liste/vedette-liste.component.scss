@@ -13,8 +13,9 @@
   gap: 0.6rem;
   margin-left: 0;
   padding-left: 0;
-  margin-top: 1rem;
   margin-bottom: 0.5rem;
+  padding-top: 3rem;
+  padding-left: 6rem;
 }
 
 .bib-title {
@@ -38,9 +39,9 @@
 p {
   text-align: left;
   margin-left: 8%;
-  padding-left: 5px;
+  padding-left: 4rem;
   padding-right: 15%;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   color: $colltitre;
   font-variant-numeric: lining-nums tabular-nums;
   font-feature-settings: 'liga' off, 'clig' off;
@@ -309,10 +310,6 @@ p {
     }
   }
 
-  .carousel-bib-home {
-    padding: 0 0.5rem;
-  }
-
   .vedette-header {
     margin-left: 0;
     padding-left: 0.5rem;
@@ -415,4 +412,8 @@ p {
   text-align: center;
   padding: 2rem;
   color: #666;
+}
+
+.carousel-bib-home{
+  margin-bottom: 3.5rem;
 }

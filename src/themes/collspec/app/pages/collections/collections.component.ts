@@ -11,8 +11,9 @@ const COL_TYPE      = 'Type';
 const COL_MERGED    = 'Fonds / Collection';
 const COLS_IGNORE   = ['Canadiana'];
 
-const PRESENCE_VALUES = new Set(['x', 'oui', 'yes', '1']);
-const ABSENT_VALUES   = new Set(['non', 'no', '0', '-']);
+const PRESENCE_VALUES   = new Set(['x', 'oui', 'yes', '1']);
+const ABSENT_VALUES     = new Set(['non', 'no', '0', '-']);
+const COLS_INTERNAL_LINK = ['Numérisations'];
 
 interface CollectionEntry {
   [key: string]: string;
@@ -37,6 +38,8 @@ export class CollectionsComponent implements OnInit, AfterViewInit {
   sortDir: 'asc' | 'desc' = 'asc';
   canScrollLeft  = false;
   canScrollRight = false;
+  periodGroup: { label: string; columns: string[] } | null = null;
+  hasTwoHeaderRows = false;
 
   constructor(
     private http: HttpClient,
@@ -67,7 +70,8 @@ export class CollectionsComponent implements OnInit, AfterViewInit {
         const { headers, rows } = this.transform(normalized);
         this.headers = headers;
         this.rows = rows;
-        this.filteredRows = [...rows];
+        this.detectSubHeaders();
+        this.filteredRows = [...this.rows];
         this.loading = false;
         this.cdRef.detectChanges();
         // Vérifie le scroll après rendu du tableau
@@ -121,6 +125,49 @@ export class CollectionsComponent implements OnInit, AfterViewInit {
     return { headers, rows };
   }
 
+  private detectSubHeaders(): void {
+    if (this.rows.length === 0) return;
+
+    const firstRow = this.rows[0];
+    const mergedVal = (firstRow[COL_MERGED] ?? '').trim();
+    if (mergedVal) return;
+
+    const periodeIdx = this.headers.indexOf('Période couverte');
+    if (periodeIdx < 0) return;
+
+    const keyRenames = new Map<string, string>();
+    const periodColumnKeys: string[] = [];
+
+    for (let i = periodeIdx; i < this.headers.length; i++) {
+      const h = this.headers[i];
+      const subVal = (firstRow[h] ?? '').trim();
+      if (!subVal || this.isUrl(subVal)) break;
+      keyRenames.set(h, subVal);
+      periodColumnKeys.push(subVal);
+    }
+
+    if (periodColumnKeys.length === 0) return;
+
+    this.headers = this.headers.map(h => keyRenames.get(h) ?? h);
+    this.rows = this.rows.slice(1).map(row => {
+      const out: CollectionEntry = {};
+      for (const h of Object.keys(row)) {
+        out[keyRenames.get(h) ?? h] = row[h];
+      }
+      return out;
+    });
+    this.periodGroup = { label: 'Période couverte', columns: periodColumnKeys };
+    this.hasTwoHeaderRows = true;
+  }
+
+  isPeriodColumn(h: string): boolean {
+    return !!this.periodGroup?.columns.includes(h);
+  }
+
+  isFirstPeriodColumn(h: string): boolean {
+    return !!this.periodGroup && h === this.periodGroup.columns[0];
+  }
+
   onScroll(event: Event): void {
     this.ngZone.run(() => this.checkScrollFromEl(event.target as HTMLElement));
   }
@@ -168,6 +215,11 @@ export class CollectionsComponent implements OnInit, AfterViewInit {
 
   isUrl(value: string): boolean {
     return /^https?:\/\//.test(value);
+  }
+
+  isInternalLink(colName: string): boolean {
+    const norm = (s: string) => s.normalize('NFC').trim().toLowerCase();
+    return COLS_INTERNAL_LINK.some(c => norm(c) === norm(colName));
   }
 
   isPresence(value: string): boolean {

@@ -1622,7 +1622,7 @@ p.full-text-op {
     margin: 0;
 
     .collections-th {
-      background: $darkblue;
+      background: $autreblue;
       color: #fff;
       font-family: $font-family-sans-serif;
       font-weight: 600;
@@ -1634,8 +1634,9 @@ p.full-text-op {
       position: sticky;
       top: 0;
       z-index: 2;
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
 
-      // Première colonne : sticky à gauche aussi
+      // Première colonne : sticky à gauche aussi, fond légèrement plus foncé
       &.collections-th--first {
         text-align: left;
         position: sticky;
@@ -1643,8 +1644,37 @@ p.full-text-op {
         z-index: 3;
         min-width: 240px;
         max-width: 340px;
-        border-right: 2px solid rgba(255, 255, 255, 0.25);
-        box-shadow: 3px 0 8px rgba(11, 17, 58, 0.18);
+        background: darken($autreblue, 6%);
+        border-right: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 3px 0 10px rgba(11, 17, 58, 0.22);
+
+        .collections-th-label { text-align: left; }
+      }
+
+      // Colonne Catégorie (et autres colonnes étroites)
+      &.collections-th--col-sm {
+        min-width: 150px;
+        max-width: 200px;
+        white-space: normal;
+      }
+
+      // En-tête de groupe (ex. "Période couverte" qui span N colonnes)
+      &.collections-th--period-group {
+        text-align: center;
+        background: darken($autreblue, 10%);
+        border-bottom: 0.5px solid rgba(255, 255, 255, 0.35);
+        letter-spacing: 0.06em;
+        font-size: 0.85rem;
+        font-weight: 700;
+        border-right: none;
+      }
+
+      // Sous-en-têtes des colonnes de période (rangée 2)
+      &.collections-th--period-sub {
+        font-size: 0.73rem;
+        font-weight: 500;
+        letter-spacing: 0.03em;
+        border-top: 0.5px solid rgba(255, 255, 255, 0.18);
       }
 
       &.collections-th--sortable {
@@ -1654,17 +1684,26 @@ p.full-text-op {
         &:hover { background: lighten($darkblue, 7%); }
       }
 
-      &.collections-th--sorted { background: $autreblue; }
+      &.collections-th--sorted { background: darken($blue, 10%); }
 
       .collections-th-inner {
-        display: inline-flex;
+        display: flex;
         align-items: center;
-        gap: 5px;
+        width: 100%;
+        gap: 0;
+      }
+
+      .collections-th-label {
+        flex: 1;
+        text-align: center;
       }
 
       .collections-sort-icon {
-        font-size: 0.65rem;
-        opacity: 0.7;
+        flex-shrink: 0;
+        font-size: 0.55rem;
+        opacity: 0.45;
+        line-height: 1;
+        margin-left: 3px;
       }
     }
 
@@ -1679,8 +1718,8 @@ p.full-text-op {
       &:nth-child(odd) .collections-td--first { background: #fff; }
 
       &:hover {
-        background: #cfe2f3;
-        .collections-td--first { background: #cfe2f3; }
+        background: $lightblue;
+        .collections-td--first { background: $lightblue; }
       }
     }
 
@@ -1688,9 +1727,11 @@ p.full-text-op {
       padding: 0.75rem 1rem;
       font-size: 0.875rem;
       vertical-align: middle;
-      border-bottom: 1px solid #E7EBEE;
+      border-bottom: 1px solid rgba(231, 235, 238, 0.6);
+      border-right: 1px solid rgba(231, 235, 238, 0.6);
       text-align: center;
       white-space: nowrap;
+      color: $darkblue;
 
       // Première colonne : sticky à gauche, texte normal
       &.collections-td--first {
@@ -1705,14 +1746,26 @@ p.full-text-op {
         max-width: 340px;
         white-space: normal;
         word-break: break-word;
-        border-right: 2px solid #B8C5D0;
-        box-shadow: 3px 0 8px rgba(11, 17, 58, 0.06);
+        border-right: 1px solid #B8C5D0;
+      }
+
+      &.collections-td--col-sm {
+        max-width: 160px;
+        white-space: normal;
+        word-break: break-word;
+        font-size: 0.82rem;
+        color: $darkblue;
       }
 
       .collections-link {
         font-size: 0.75rem;
-        padding: 0.25rem 0.75rem;
+        padding: 0.25rem 1rem 0.25rem 0.5rem;
         white-space: nowrap;
+        transition: background-color 0.15s, color 0.15s; // annule la transition padding du parent
+
+        &::after { right: 0.45rem; }
+        &:hover  { padding-right: 1rem; } // padding fixe — aucun shift de colonne
+        &:hover::after { right: 0.2rem; }
       }
 
       .collections-check {
@@ -1736,18 +1789,79 @@ p.full-text-op {
   }
 }
 
-@media (max-width: 767.98px) {
+// ── Tablette & petit bureau (768px – 1199px) ─────────────────────────────
+@media (min-width: 768px) and (max-width: 1199.98px) {
   .collections-page {
-    .collections-intro h1    { font-size: 2rem !important; }
-    .collections-section     { padding: 1.75rem 0; }
+    .collections-intro h1     { font-size: 2.25rem !important; }
     .collections-search-input { max-width: 100%; }
 
     .collections-table {
       .collections-th,
-      .collections-td { padding: 0.6rem 0.75rem; font-size: 0.8rem; }
+      .collections-td { padding: 0.7rem 0.85rem; font-size: 0.82rem; }
 
       .collections-th--first,
-      .collections-td--first { min-width: 180px; }
+      .collections-td--first  { min-width: 200px; }
+
+      .collections-th--period-group { font-size: 0.76rem; }
+      .collections-th--period-sub   { font-size: 0.7rem; }
+    }
+  }
+}
+
+// ── Mobile (≤ 767px) ──────────────────────────────────────────────────────
+@media (max-width: 767.98px) {
+  .collections-page {
+    .collections-intro h1    { font-size: 2rem !important; }
+    .collections-section     { padding: 1.25rem 0; }
+    .collections-search-input { max-width: 100%; }
+
+    .collections-table {
+      .collections-th,
+      .collections-td { padding: 0.6rem 0.75rem; font-size: 0.78rem; }
+
+      .collections-th--first,
+      .collections-td--first  { min-width: 175px; max-width: 260px; }
+
+      .collections-th--period-group { font-size: 0.72rem; letter-spacing: 0.03em; }
+      .collections-th--period-sub   { font-size: 0.66rem; }
+
+      .collections-link { font-size: 0.7rem; padding: 0.2rem 0.6rem; }
+    }
+  }
+}
+
+// ── Très petits écrans (≤ 575px) ──────────────────────────────────────────
+@media (max-width: 575.98px) {
+  .collections-page {
+    .collections-intro h1 { font-size: 1.65rem !important; }
+
+    // Barre d'outils : recherche pleine largeur, compteur+flèches en dessous
+    .collections-toolbar    { gap: 0.5rem; }
+    .collections-search-input {
+      flex-basis: 100%;
+      max-width: 100%;
+      font-size: 0.875rem;
+      padding: 0.45rem 0.85rem;
+    }
+    .collections-count      { font-size: 0.78rem; }
+    .collections-nav-btn    { width: 26px; height: 26px; font-size: 1rem; }
+
+    .collections-table {
+      min-width: 460px; // réduit le seuil de déclenchement du scroll
+
+      .collections-th,
+      .collections-td { padding: 0.4rem 0.5rem; font-size: 0.7rem; }
+
+      .collections-th--first,
+      .collections-td--first  { min-width: 120px; max-width: 180px; }
+
+      // Icônes de tri trop encombrantes sur très petits écrans
+      .collections-sort-icon  { display: none; }
+
+      .collections-th--period-group { font-size: 0.62rem; letter-spacing: 0.02em; }
+      .collections-th--period-sub   { font-size: 0.58rem; }
+
+      .collections-link { font-size: 0.62rem; padding: 0.15rem 0.45rem; }
     }
   }
 }
