@@ -201,10 +201,10 @@
   .community-description-panel ::ng-deep p { font-size: 0.9rem; }
 
   .community-carousel-wrapper {
-    ::ng-deep .slider__slide       { height: 150px; border-radius: 8px; }
-    ::ng-deep .slider__slide img   { height: 150px; }
-    ::ng-deep .slider__caption     { padding: 40px 12px 8px; }
-    ::ng-deep .slider__caption h4  { font-size: 0.88rem; line-height: 1.4; }
+    ::ng-deep .slider__slide       { height: 200px; border-radius: 8px; }
+    ::ng-deep .slider__slide img   { height: 200px; }
+    ::ng-deep .slider__caption     { padding: 52px 14px 12px; }
+    ::ng-deep .slider__caption h4  { font-size: 0.95rem; line-height: 1.4; }
   }
 }
 
@@ -229,9 +229,9 @@
   .handle-link { max-width: 160px; }
 
   .community-carousel-wrapper {
-    ::ng-deep .slider__slide       { height: 130px; border-radius: 8px; }
-    ::ng-deep .slider__slide img   { height: 130px; }
-    ::ng-deep .slider__caption     { padding: 34px 10px 8px; }
-    ::ng-deep .slider__caption h4  { font-size: 0.8rem; line-height: 1.35; }
+    ::ng-deep .slider__slide       { height: 170px; border-radius: 8px; }
+    ::ng-deep .slider__slide img   { height: 170px; }
+    ::ng-deep .slider__caption     { padding: 44px 10px 10px; }
+    ::ng-deep .slider__caption h4  { font-size: 0.88rem; line-height: 1.4; }
   }
 }

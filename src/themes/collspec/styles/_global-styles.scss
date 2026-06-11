@@ -1762,10 +1762,13 @@ p.full-text-op {
         font-size: 0.75rem;
         padding: 0.25rem 1rem 0.25rem 0.5rem;
         white-space: nowrap;
-        transition: background-color 0.15s, color 0.15s; // annule la transition padding du parent
+        background-color: $autreblue !important;
+        border-color: $autreblue !important;
+        color: #fff !important;
+        transition: background-color 0.15s, border-color 0.15s;
 
+        &:hover  { background-color: darken($autreblue, 8%) !important; border-color: darken($autreblue, 8%) !important; padding-right: 1rem; }
         &::after { right: 0.45rem; }
-        &:hover  { padding-right: 1rem; } // padding fixe — aucun shift de colonne
         &:hover::after { right: 0.2rem; }
       }
 
@@ -1820,18 +1823,19 @@ p.full-text-op {
       .collections-th,
       .collections-td { padding: 0.6rem 0.75rem; font-size: 0.78rem; }
 
-      .collections-th--first {
-        position: static;
-        box-shadow: none;
-        border-right: 1px solid rgba(255, 255, 255, 0.1);
+      // Annule le sticky horizontal — spécificité + !important pour battre le sélecteur composé de base
+      .collections-th.collections-th--first {
+        left: unset !important;
+        z-index: 2 !important;
+        box-shadow: none !important;
         min-width: 160px;
         max-width: 240px;
       }
 
-      .collections-td--first {
-        position: static;
-        box-shadow: none;
-        border-right: 1px solid rgba(231, 235, 238, 0.6);
+      .collections-td.collections-td--first {
+        position: static !important;
+        left: unset !important;
+        box-shadow: none !important;
         min-width: 160px;
         max-width: 240px;
       }
@@ -1865,18 +1869,18 @@ p.full-text-op {
       .collections-th,
       .collections-td { padding: 0.4rem 0.5rem; font-size: 0.7rem; }
 
-      .collections-th--first {
-        position: static;
-        box-shadow: none;
-        border-right: 1px solid rgba(255, 255, 255, 0.1);
+      .collections-th.collections-th--first {
+        left: unset !important;
+        z-index: 2 !important;
+        box-shadow: none !important;
         min-width: 110px;
         max-width: 160px;
       }
 
-      .collections-td--first {
-        position: static;
-        box-shadow: none;
-        border-right: 1px solid rgba(231, 235, 238, 0.6);
+      .collections-td.collections-td--first {
+        position: static !important;
+        left: unset !important;
+        box-shadow: none !important;
         min-width: 110px;
         max-width: 160px;
       }
