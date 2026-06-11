@@ -166,25 +166,25 @@ p, span, a {
   color: $gray-100;
   font-size: 13px;
   position: relative;
-  padding-right: 2rem;
-  transition: padding-right 0.3s ease-in-out;
-  
+  padding-right: 2.2rem; // fixe — l'arrow n'affecte pas la largeur du bouton
+
   &::after {
     content: '➝';
     position: absolute;
+    right: 0.55rem;
+    top: 50%;
+    transform: translateY(-50%) translateX(-6px);
     opacity: 0;
-    right: 1rem;
-    transition: opacity 0.3s, right 0.3s;
+    transition: opacity 0.25s ease, transform 0.25s ease;
   }
-  
+
   &:hover {
-    padding-right: 2.5rem;
     background-color: $hoverdarkblue;
     color: #FFFFFF;
-    
+
     &::after {
       opacity: 1;
-      right: 0.5rem;
+      transform: translateY(-50%) translateX(0);
     }
   }
 }
@@ -697,7 +697,6 @@ a.lead {
 .hero-overlay {
   background: rgba(0, 0, 0, 0.2);
   padding: 2rem;
-  border-radius: 1rem;
   color: white;
   width: 100%;
   height: 95vh;
@@ -817,8 +816,6 @@ a.lead {
   .hero-overlay {
     height: 80vh;
     padding: 0.5rem;
-    border-radius: 0.5rem;
-    margin-top: -15rem;
   }
 
   .hero-section h1 {
@@ -855,7 +852,6 @@ a.lead {
   .hero-overlay {
     height: 75vh;
     padding: 0.5rem;
-    margin-top: -5rem;
   }
 
   .hero-section h1 {
@@ -1508,6 +1504,9 @@ p.full-text-op {
   margin-left: 3rem!important;
 }
 
+.ml-10{
+  margin-left: 10rem!important;;
+}
 /* =============================================
    PAGE FONDS ET COLLECTIONS
    ============================================= */
@@ -1570,59 +1569,59 @@ p.full-text-op {
     white-space: nowrap;
   }
 
-  .collections-scroll-container { position: relative; }
-
-  // Flèches ‹ › dans la toolbar (haut gauche)
-  .collections-nav-arrows {
+  // Filtre par période : select inline dans la toolbar
+  .collections-period-select-wrap {
     display: flex;
-    gap: 4px;
-    margin-left: auto;
+    align-items: center;
+    gap: 0.5rem;
     flex-shrink: 0;
   }
 
-  .collections-nav-btn {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    border: 1.5px solid #C5D0D8;
-    background: #fff;
+  .collections-period-select-label {
+    font-size: 0.85rem;
+    font-weight: 600;
     color: $darkblue;
-    font-size: 1.15rem;
-    line-height: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background 0.15s, border-color 0.15s, color 0.15s;
-
-    &:not([disabled]):hover {
-      background: $darkblue;
-      border-color: $darkblue;
-      color: #fff;
-    }
-
-    &[disabled] { opacity: 0.3; cursor: default; }
+    font-family: $font-family-sans-serif;
+    white-space: nowrap;
   }
 
-  // Wrapper : scroll horizontal intégré + ombre + coins arrondis
+  .collections-period-select {
+    border-radius: 8px;
+    border: 1px solid #C5D0D8;
+    font-family: $font-family-sans-serif;
+    font-size: 0.875rem;
+    color: $darkblue;
+    padding: 0.5rem 2.4rem 0.5rem 0.9rem;
+    background-color: #fff;
+    cursor: pointer;
+    min-width: 175px;
+    max-width: 220px;
+    transition: border-color 0.15s, box-shadow 0.15s, background-color 0.15s;
+
+    &:focus {
+      border-color: $blue;
+      box-shadow: 0 0 0 3px rgba($blue, 0.15);
+      outline: none;
+    }
+
+    // Filtre actif : légère mise en avant bleue
+    &.is-active {
+      border-color: $autreblue;
+      background-color: $extralightblue;
+      color: $autreblue;
+      font-weight: 600;
+    }
+  }
+
+  // Scroll horizontal uniquement si le tableau déborde (mobile)
   .collections-table-wrapper {
     overflow-x: auto;
     overflow-y: visible;
-
-    // Indicateur de scroll discret sur mobile
-    background:
-      linear-gradient(to right, white 30%, rgba(255,255,255,0)),
-      linear-gradient(to left,  white 30%, rgba(255,255,255,0)) 100% 0,
-      radial-gradient(farthest-side at 0   50%, rgba(11,17,58,0.12), transparent),
-      radial-gradient(farthest-side at 100% 50%, rgba(11,17,58,0.12), transparent) 100% 0;
-    background-repeat: no-repeat;
-    background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%;
-    background-attachment: local, local, scroll, scroll;
+    -webkit-overflow-scrolling: touch;
   }
 
   .collections-table {
     width: 100%;
-    min-width: 600px;
     border-collapse: collapse;
     margin: 0;
 
@@ -1641,45 +1640,29 @@ p.full-text-op {
       z-index: 2;
       border-right: 1px solid rgba(255, 255, 255, 0.1);
 
-      // Première colonne : sticky à gauche aussi, fond légèrement plus foncé
       &.collections-th--first {
         text-align: left;
-        position: sticky;
-        left: 0;
-        z-index: 3;
-        min-width: 240px;
-        max-width: 340px;
+        min-width: 220px;
+        max-width: 320px;
         background: darken($autreblue, 6%);
         border-right: 1px solid rgba(255, 255, 255, 0.3);
-        box-shadow: 3px 0 10px rgba(11, 17, 58, 0.22);
 
         .collections-th-label { text-align: left; }
       }
 
-      // Colonne Catégorie (et autres colonnes étroites)
       &.collections-th--col-sm {
-        min-width: 150px;
-        max-width: 200px;
+        min-width: 170px;
+        max-width: 240px;
         white-space: normal;
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
       }
 
-      // En-tête de groupe (ex. "Période couverte" qui span N colonnes)
-      &.collections-th--period-group {
-        text-align: center;
-        background: darken($autreblue, 10%);
-        border-bottom: 0.5px solid rgba(255, 255, 255, 0.35);
-        letter-spacing: 0.06em;
-        font-size: 0.85rem;
-        font-weight: 700;
-        border-right: none;
-      }
-
-      // Sous-en-têtes des colonnes de période (rangée 2)
-      &.collections-th--period-sub {
-        font-size: 0.73rem;
-        font-weight: 500;
-        letter-spacing: 0.03em;
-        border-top: 0.5px solid rgba(255, 255, 255, 0.18);
+      // Colonne "Périodique couvert" — largeur adaptée pour la liste de tags
+      &.collections-th--period {
+        min-width: 180px;
+        max-width: 260px;
+        white-space: normal;
       }
 
       &.collections-th--sortable {
@@ -1715,17 +1698,9 @@ p.full-text-op {
     .collections-row {
       transition: background 0.1s;
 
-      &:nth-child(even) {
-        background: $extralightblue;
-        .collections-td--first { background: $extralightblue; }
-      }
+      &:nth-child(even) { background: $extralightblue; }
 
-      &:nth-child(odd) .collections-td--first { background: #fff; }
-
-      &:hover {
-        background: $lightblue;
-        .collections-td--first { background: $lightblue; }
-      }
+      &:hover { background: $lightblue; }
     }
 
     .collections-td {
@@ -1738,42 +1713,49 @@ p.full-text-op {
       white-space: nowrap;
       color: $darkblue;
 
-      // Première colonne : sticky à gauche, texte normal
       &.collections-td--first {
         text-align: left;
         font-weight: 600;
         color: $darkblue;
-        position: sticky;
-        left: 0;
-        background: #fff; // défaut lignes impaires — surchargé par .collections-row
-        z-index: 1;
-        min-width: 240px;
-        max-width: 340px;
+        min-width: 220px;
+        max-width: 320px;
         white-space: normal;
         word-break: break-word;
         border-right: 1px solid #B8C5D0;
       }
 
       &.collections-td--col-sm {
-        max-width: 160px;
+        min-width: 170px;
+        max-width: 240px;
         white-space: normal;
         word-break: break-word;
         font-size: 0.82rem;
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
         color: $darkblue;
+      }
+
+      // Cellule "Périodique couvert" — contient une liste de tags
+      &.collections-td--period {
+        text-align: left;
+        white-space: normal;
+        vertical-align: top;
+        padding: 0.6rem 1rem;
       }
 
       .collections-link {
         font-size: 0.75rem;
-        padding: 0.25rem 1rem 0.25rem 0.5rem;
+        padding: 0.3rem 2rem 0.3rem 0.85rem;
         white-space: nowrap;
         background-color: $autreblue !important;
         border-color: $autreblue !important;
         color: #fff !important;
         transition: background-color 0.15s, border-color 0.15s;
 
-        &:hover  { background-color: darken($autreblue, 8%) !important; border-color: darken($autreblue, 8%) !important; padding-right: 1rem; }
-        &::after { right: 0.45rem; }
-        &:hover::after { right: 0.2rem; }
+        &:hover {
+          background-color: darken($autreblue, 8%) !important;
+          border-color: darken($autreblue, 8%) !important;
+        }
       }
 
       .collections-check {
@@ -1795,6 +1777,36 @@ p.full-text-op {
       text-align: center;
     }
   }
+
+  // Liste de périodes dans la cellule "Périodique couvert"
+  .collections-period-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .collections-period-tag {
+    background: $extralightblue;
+    color: $autreblue;
+    border: 1px solid rgba($autreblue, 0.25);
+    border-radius: 12px;
+    padding: 2px 10px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    white-space: nowrap;
+    font-family: $font-family-sans-serif;
+  }
+}
+
+// ── Grand bureau (≥ 1400px) ───────────────────────────────────────────────
+@media (min-width: 1400px) {
+  .collections-page {
+    .collections-search-input { max-width: 700px; }
+    .collections-period-select { min-width: 200px; }
+  }
 }
 
 // ── Tablette & petit bureau (768px – 1199px) ─────────────────────────────
@@ -1805,97 +1817,90 @@ p.full-text-op {
 
     .collections-table {
       .collections-th,
-      .collections-td { padding: 0.7rem 0.85rem; font-size: 0.82rem; }
-
+      .collections-td          { padding: 0.7rem 0.85rem; font-size: 0.82rem; }
+      .collections-th--col-sm,
+      .collections-td--col-sm  { min-width: 140px; padding-left: 1rem; padding-right: 1rem; }
       .collections-th--first,
-      .collections-td--first  { min-width: 200px; }
-
-      .collections-th--period-group { font-size: 0.76rem; }
-      .collections-th--period-sub   { font-size: 0.7rem; }
+      .collections-td--first   { min-width: 180px; max-width: 280px; }
+      .collections-th--period,
+      .collections-td--period  { min-width: 160px; }
+      .collections-link        { font-size: 0.72rem; padding: 0.25rem 1.8rem 0.25rem 0.7rem; }
     }
   }
 }
 
-// ── Mobile (≤ 767px) ──────────────────────────────────────────────────────
+// ── Mobile paysage & tablette portrait (576px – 767px) ───────────────────
 @media (max-width: 767.98px) {
   .collections-page {
-    .collections-intro h1    { font-size: 2rem !important; }
-    .collections-section     { padding: 1.25rem 0; }
-    .collections-search-input { max-width: 100%; }
+    .collections-intro h1   { font-size: 2rem !important; }
+    .collections-section    { padding: 1.25rem 0; }
+
+    // Toolbar : recherche + select + compteur s'empilent proprement
+    .collections-toolbar {
+      gap: 0.6rem;
+    }
+    .collections-search-input {
+      flex: 1 1 100%;
+      max-width: 100%;
+    }
+    .collections-period-select-wrap {
+      flex: 1 1 auto;
+    }
+    .collections-period-select {
+      width: 100%;
+      min-width: 0;
+      font-size: 0.82rem;
+    }
+    .collections-period-select-label { font-size: 0.8rem; }
+    .collections-count               { margin-left: auto; }
 
     .collections-table {
       .collections-th,
-      .collections-td { padding: 0.6rem 0.75rem; font-size: 0.78rem; }
-
-      // Annule le sticky horizontal — spécificité + !important pour battre le sélecteur composé de base
-      .collections-th.collections-th--first {
-        left: unset !important;
-        z-index: 2 !important;
-        box-shadow: none !important;
-        min-width: 160px;
-        max-width: 240px;
-      }
-
-      .collections-td.collections-td--first {
-        position: static !important;
-        left: unset !important;
-        box-shadow: none !important;
-        min-width: 160px;
-        max-width: 240px;
-      }
-
-      .collections-th--period-group { font-size: 0.72rem; letter-spacing: 0.03em; }
-      .collections-th--period-sub   { font-size: 0.66rem; }
-
-      .collections-link { font-size: 0.7rem; padding: 0.2rem 0.6rem; }
+      .collections-td         { padding: 0.6rem 0.75rem; font-size: 0.78rem; }
+      .collections-th--col-sm,
+      .collections-td--col-sm { min-width: 120px; padding-left: 0.75rem; padding-right: 0.75rem; }
+      .collections-th--first,
+      .collections-td--first  { min-width: 130px; max-width: 200px; }
+      .collections-th--period,
+      .collections-td--period { min-width: 140px; }
+      .collections-link       { font-size: 0.7rem; padding: 0.2rem 1.6rem 0.2rem 0.6rem; }
     }
+
+    .collections-period-tag { font-size: 0.7rem; padding: 2px 8px; }
   }
 }
 
-// ── Très petits écrans (≤ 575px) ──────────────────────────────────────────
+// ── Mobile portrait (≤ 575px) ─────────────────────────────────────────────
 @media (max-width: 575.98px) {
   .collections-page {
     .collections-intro h1 { font-size: 1.65rem !important; }
 
-    .collections-toolbar    { gap: 0.5rem; }
+    .collections-toolbar  { gap: 0.5rem; }
     .collections-search-input {
       flex-basis: 100%;
-      max-width: 100%;
       font-size: 0.875rem;
       padding: 0.45rem 0.85rem;
     }
-    .collections-count      { font-size: 0.78rem; }
-    .collections-nav-btn    { width: 26px; height: 26px; font-size: 1rem; }
+    .collections-period-select-wrap { flex: 1 1 100%; }
+    .collections-period-select-label { display: none; } // label caché, l'option "Toutes les périodes" suffit
+    .collections-period-select { width: 100%; font-size: 0.82rem; }
+    .collections-count { font-size: 0.78rem; }
 
     .collections-table {
-      min-width: 460px;
-
       .collections-th,
-      .collections-td { padding: 0.4rem 0.5rem; font-size: 0.7rem; }
-
-      .collections-th.collections-th--first {
-        left: unset !important;
-        z-index: 2 !important;
-        box-shadow: none !important;
-        min-width: 110px;
-        max-width: 160px;
-      }
-
-      .collections-td.collections-td--first {
-        position: static !important;
-        left: unset !important;
-        box-shadow: none !important;
-        min-width: 110px;
-        max-width: 160px;
-      }
-
-      .collections-sort-icon  { display: none; }
-
-      .collections-th--period-group { font-size: 0.62rem; letter-spacing: 0.02em; }
-      .collections-th--period-sub   { font-size: 0.58rem; }
-
-      .collections-link { font-size: 0.62rem; padding: 0.15rem 0.45rem; }
+      .collections-td          { padding: 0.45rem 0.6rem; font-size: 0.72rem; }
+      .collections-th--col-sm,
+      .collections-td--col-sm  { min-width: 100px; padding-left: 0.6rem; padding-right: 0.6rem; }
+      .collections-th--first,
+      .collections-td--first   { min-width: 110px; max-width: 160px; }
+      .collections-th--period,
+      .collections-td--period  { min-width: 120px; }
+      .collections-sort-icon   { display: none; }
+      .collections-link        { font-size: 0.65rem; padding: 0.18rem 1.5rem 0.18rem 0.5rem; }
     }
+
+    .collections-period-tag  { font-size: 0.65rem; padding: 1px 6px; }
+    .collections-period-list { gap: 3px; }
   }
 }
 

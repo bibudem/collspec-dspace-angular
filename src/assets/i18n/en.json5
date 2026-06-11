@@ -7511,4 +7511,12 @@
   "collspec.handle.copied": "URL copied!",
 
   "collspec.collections.table-title": "Directory of Special Fonds and Collections of the Rare Books and Special Collections Library",
+
+  "collspec.collections.filter-period": "Period:",
+
+  "collspec.collections.filter-period-all": "All periods",
+
+  "collspec.menu.ressources": "About",
+
+  "collspec.menu.parcourir": "Our Collections",
 }

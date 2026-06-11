@@ -11,13 +11,21 @@
           <span class="logo-title">Collections spéciales</span>
         </a>
       <!-- Menu desktop - visible seulement sur écrans XL et plus -->
-      <nav class="navbar navbar-expand p-0 align-items-stretch align-self-stretch d-none d-xl-block ml-3" id="desktop-navbar" [attr.aria-label]="'nav.main.description' | translate">
+      <nav class="navbar navbar-expand p-0 align-items-stretch align-self-stretch d-none d-xl-flex ml-10" id="desktop-navbar" [attr.aria-label]="'nav.main.description' | translate">
         <ul class="navbar-nav mr-auto menu-collspec">
-          <!--<li class="nav-item"><a role="menuitem" class="ds-menu-item" href="/community-list">{{'collspec.menu.catalogues'| translate}}</a></li>-->
-          <li class="nav-item"><a role="menuitem" class="ds-menu-item" href="/page/fonds-collections">{{'collspec.menu.fonds-collections'| translate}}</a></li>
-          <li class="nav-item"><a role="menuitem" class="ds-menu-item" href="/page/a-propos">{{'collspec.menu.a-propos'| translate}}</a></li>
-          <!--<li class="nav-item"><a role="menuitem" class="ds-menu-item" href="/page/blrcs">{{'collspec.menu.blrcs'| translate}}</a></li>-->
-          <li class="nav-item"><a role="menuitem" class="ds-menu-item" href="https://bib.umontreal.ca/nous-joindre/#lrcs">{{'collspec.menu.contact'| translate}}</a></li>
+          <!-- Nos ressources -->
+          <li class="nav-item dropdown dropdown-hover">
+            <a class="ds-menu-item dropdown-toggle-custom" role="button" aria-haspopup="true" aria-expanded="false" tabindex="0">
+              {{'collspec.menu.ressources' | translate}}
+              <span class="menu-caret" aria-hidden="true">&#9660;</span>
+            </a>
+            <ul class="dropdown-menu-custom" role="menu">
+              <li role="none"><a role="menuitem" class="dropdown-item-custom" href="/page/a-propos">{{'collspec.menu.a-propos' | translate}}</a></li>
+              <li role="none"><a role="menuitem" class="dropdown-item-custom" href="/page/fonds-collections">{{'collspec.menu.fonds-collections' | translate}}</a></li>
+            </ul>
+          </li>
+          <!-- Nous joindre -->
+          <li class="nav-item"><a role="menuitem" class="ds-menu-item" href="https://bib.umontreal.ca/nous-joindre/#lrcs">{{'collspec.menu.contact' | translate}}</a></li>
         </ul>
       </nav>
     </div>
@@ -28,7 +36,9 @@
            <ds-search-navbar ></ds-search-navbar>
         }
       <ds-lang-switch></ds-lang-switch>
-      <ds-auth-nav-menu *ngIf="isAuthenticated | async"></ds-auth-nav-menu>
+      @if (isAuthenticated | async) {
+        <ds-auth-nav-menu></ds-auth-nav-menu>
+      }
       
       <!-- Bouton Donate desktop -->
       <a [href]="'collspec.donate.link' | translate"
@@ -53,10 +63,24 @@
     <div class="w-100 order-last d-xl-none">
       <nav id="collapsible-mobile-navbar" class="collapse" [ngClass]="{'show': !(isNavBarCollapsed$ | async)}">
         <ul class="navbar-nav mr-auto menu-collspec text-start">
-          <!--<li class="nav-item"><a role="menuitem" class="ds-menu-item" href="/communities">{{'collspec.menu.catalogues'| translate}}</a></li>-->
-          <!--<li class="nav-item"><a role="menuitem" class="ds-menu-item" href="/page/blrcs">{{'collspec.menu.blrcs'| translate}}</a></li>-->
-          <li class="nav-item"><a role="menuitem" class="ds-menu-item" href="/page/fonds-collections">{{'collspec.menu.fonds-collections'| translate}}</a></li>
-          <li class="nav-item"><a role="menuitem" class="ds-menu-item" href="/page/a-propos">{{'collspec.menu.a-propos'| translate}}</a></li>
+          <!-- Nos ressources (dépliable) -->
+          <li class="nav-item nav-item-browse-toggle">
+            <button type="button" class="ds-menu-item btn-browse-mobile w-100 text-start d-flex justify-content-between align-items-center"
+                    (click)="toggleMobileRessources()"
+                    [attr.aria-expanded]="isMobileRessourcesOpen">
+              {{'collspec.menu.ressources' | translate}}
+              <span class="menu-caret-mobile" [class.open]="isMobileRessourcesOpen" aria-hidden="true">&#9660;</span>
+            </button>
+          </li>
+          @if (isMobileRessourcesOpen) {
+            <li class="nav-item nav-item-browse-sub">
+              <a role="menuitem" class="ds-menu-item ds-menu-item-sub" href="/page/a-propos">{{'collspec.menu.a-propos' | translate}}</a>
+            </li>
+            <li class="nav-item nav-item-browse-sub">
+              <a role="menuitem" class="ds-menu-item ds-menu-item-sub" href="/page/fonds-collections">{{'collspec.menu.fonds-collections' | translate}}</a>
+            </li>
+          }
+          <!-- Nous joindre -->
           <li class="nav-item"><a role="menuitem" class="ds-menu-item" href="https://bib.umontreal.ca/nous-joindre/#lrcs">{{'collspec.menu.contact'| translate}}</a></li>
           <!-- Bouton Donate mobile -->
           <li class="nav-item nav-item-donate">

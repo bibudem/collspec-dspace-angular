@@ -7525,4 +7525,12 @@
   "collspec.handle.copied": "URL copiée !",
 
   "collspec.collections.table-title": "Répertoire des fonds et collections spéciales de la Bibliothèque des livres rares et collections spéciales",
+
+  "collspec.collections.filter-period": "Période :",
+
+  "collspec.collections.filter-period-all": "Toutes les périodes",
+
+  "collspec.menu.ressources": "À propos",
+
+  "collspec.menu.parcourir": "Nos collections",
 }

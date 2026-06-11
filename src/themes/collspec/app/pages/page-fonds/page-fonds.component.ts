@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, ChangeDetectorRef, NgZone } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
@@ -9,6 +9,7 @@ const COL_NOM       = 'Nom';
 const COL_PRECISION = 'Précision';
 const COL_TYPE      = 'Type';
 const COL_MERGED    = 'Fonds / Collection';
+const COL_PERIOD    = 'Périodique couvert';
 const COLS_IGNORE   = ['Canadiana'];
 
 const PRESENCE_VALUES   = new Set(['x', 'oui', 'yes', '1']);
@@ -26,9 +27,7 @@ interface CollectionEntry {
   standalone: true,
   imports: [CommonModule, TranslateModule, RouterModule],
 })
-export class PageFondsComponent implements OnInit, AfterViewInit {
-  @ViewChild('tableWrapper') tableWrapper!: ElementRef<HTMLElement>;
-
+export class PageFondsComponent implements OnInit {
   headers: string[] = [];
   rows: CollectionEntry[] = [];
   filteredRows: CollectionEntry[] = [];
@@ -36,23 +35,17 @@ export class PageFondsComponent implements OnInit, AfterViewInit {
   error = false;
   sortColumn = '';
   sortDir: 'asc' | 'desc' = 'asc';
-  canScrollLeft  = false;
-  canScrollRight = false;
-  periodGroup: { label: string; columns: string[] } | null = null;
-  hasTwoHeaderRows = false;
+  allPeriods: string[] = [];
+  selectedPeriod: string | null = null;
+  private searchTerm = '';
 
   constructor(
     private http: HttpClient,
-    private cdRef: ChangeDetectorRef,
-    private ngZone: NgZone
+    private cdRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
     this.loadExcel();
-  }
-
-  ngAfterViewInit(): void {
-    this.checkScroll();
   }
 
   loadExcel(): void {
@@ -74,8 +67,6 @@ export class PageFondsComponent implements OnInit, AfterViewInit {
         this.filteredRows = [...this.rows];
         this.loading = false;
         this.cdRef.detectChanges();
-        // Vérifie le scroll après rendu du tableau
-        setTimeout(() => this.checkScroll(), 0);
       },
       error: (err) => {
         console.error('Erreur chargement du répertoire', err);
@@ -148,7 +139,7 @@ export class PageFondsComponent implements OnInit, AfterViewInit {
 
     if (periodColumnKeys.length === 0) return;
 
-    this.headers = this.headers.map(h => keyRenames.get(h) ?? h);
+    // Renomme les clés de colonnes de période dans les lignes et supprime la ligne sous-en-tête
     this.rows = this.rows.slice(1).map(row => {
       const out: CollectionEntry = {};
       for (const h of Object.keys(row)) {
@@ -156,46 +147,55 @@ export class PageFondsComponent implements OnInit, AfterViewInit {
       }
       return out;
     });
-    this.periodGroup = { label: 'Période couverte', columns: periodColumnKeys };
-    this.hasTwoHeaderRows = true;
+
+    // Remplace les N colonnes de période par une seule colonne COL_PERIOD
+    // insérée à la même position qu'occupait "Période couverte" dans l'Excel
+    const renamedHeaders = this.headers.map(h => keyRenames.get(h) ?? h);
+    const nonPeriodHeaders = renamedHeaders.filter(h => !periodColumnKeys.includes(h));
+    this.headers = [
+      ...nonPeriodHeaders.slice(0, periodeIdx),
+      COL_PERIOD,
+      ...nonPeriodHeaders.slice(periodeIdx),
+    ];
+
+    this.allPeriods = periodColumnKeys;
   }
 
-  isPeriodColumn(h: string): boolean {
-    return !!this.periodGroup?.columns.includes(h);
+  getActivePeriods(row: CollectionEntry): string[] {
+    return this.allPeriods.filter(p => this.isPresence(row[p] ?? ''));
   }
 
-  isFirstPeriodColumn(h: string): boolean {
-    return !!this.periodGroup && h === this.periodGroup.columns[0];
+  isPeriodCol(col: string): boolean {
+    return col === COL_PERIOD;
   }
 
-  onScroll(event: Event): void {
-    this.ngZone.run(() => this.checkScrollFromEl(event.target as HTMLElement));
-  }
-
-  private checkScroll(): void {
-    if (this.tableWrapper?.nativeElement) {
-      this.checkScrollFromEl(this.tableWrapper.nativeElement);
-    }
-  }
-
-  private checkScrollFromEl(el: HTMLElement): void {
-    this.canScrollLeft  = el.scrollLeft > 4;
-    this.canScrollRight = el.scrollLeft < el.scrollWidth - el.clientWidth - 4;
-    this.cdRef.detectChanges();
+  setPeriodFilter(period: string): void {
+    this.selectedPeriod = period || null;
+    this.applyFilters();
   }
 
   filter(term: string): void {
-    const lower = term.toLowerCase().trim();
-    this.filteredRows = lower
-      ? this.rows.filter(row =>
-          Object.values(row).some(v => v.toLowerCase().includes(lower))
-        )
-      : [...this.rows];
+    this.searchTerm = term.toLowerCase().trim();
+    this.applyFilters();
+  }
+
+  private applyFilters(): void {
+    let result = this.rows;
+    if (this.searchTerm) {
+      result = result.filter(row =>
+        Object.values(row).some(v => v.toLowerCase().includes(this.searchTerm))
+      );
+    }
+    if (this.selectedPeriod) {
+      const p = this.selectedPeriod;
+      result = result.filter(row => this.isPresence(row[p] ?? ''));
+    }
+    this.filteredRows = [...result];
     this.applySort();
   }
 
   sortBy(col: string): void {
-    if (this.isUrl(this.rows.find(r => r[col])?.[col] ?? '')) return;
+    if (!this.isSortable(col)) return;
     this.sortDir = this.sortColumn === col && this.sortDir === 'asc' ? 'desc' : 'asc';
     this.sortColumn = col;
     this.applySort();
@@ -210,6 +210,7 @@ export class PageFondsComponent implements OnInit, AfterViewInit {
   }
 
   isSortable(col: string): boolean {
+    if (col === COL_PERIOD) return false;
     return !this.isUrl(this.rows.find(r => r[col])?.[col] ?? '');
   }
 

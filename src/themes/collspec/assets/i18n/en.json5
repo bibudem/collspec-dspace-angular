@@ -4,6 +4,8 @@
   "collspec.handle.copy": "Copy URL",
   "collspec.handle.copied": "URL copied!",
 
+  "collspec.menu.ressources": "About",
+  "collspec.menu.parcourir": "Our Collections",
   "collspec.menu.a-propos": "About",
   "collspec.menu.fonds-collections": "Our Fonds and Collections",
   "collspec.menu.guide": "Collections guide",
