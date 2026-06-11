@@ -217,6 +217,10 @@ p {
 
 // ── Tablette (≤ 992px) ───────────────────────────────────
 @media (max-width: 992px) {
+  .vedette-header {
+    padding-top: 2rem;
+  }
+
   .slider {
     &__section {
       padding-block: 1rem;
@@ -270,6 +274,10 @@ p {
 
 // ── Mobile paysage (≤ 768px) ─────────────────────────────
 @media (max-width: 768px) {
+  .vedette-header {
+    padding-top: 1.25rem;
+  }
+
   .slider {
     &__section {
       padding-block: 0.5rem;
@@ -325,6 +333,10 @@ p {
 
 // ── Mobile portrait (≤ 576px) ────────────────────────────
 @media (max-width: 576px) {
+  .vedette-header {
+    padding-top: 0.75rem;
+  }
+
   .slider {
     &__column {
       padding: 0 1.5rem;
@@ -354,7 +366,6 @@ p {
   .vedette-header {
     margin-left: 0;
     padding-left: 0.5rem;
-    margin-top: 1rem;
 
     i { font-size: 1.8rem; }
   }

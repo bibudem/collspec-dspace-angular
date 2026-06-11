@@ -697,7 +697,6 @@ a.lead {
 .hero-overlay {
   background: rgba(0, 0, 0, 0.2);
   padding: 2rem;
-  border-radius: 1rem;
   color: white;
   width: 100%;
   height: 95vh;
@@ -817,8 +816,6 @@ a.lead {
   .hero-overlay {
     height: 80vh;
     padding: 0.5rem;
-    border-radius: 0.5rem;
-    margin-top: -15rem;
   }
 
   .hero-section h1 {
@@ -855,7 +852,6 @@ a.lead {
   .hero-overlay {
     height: 75vh;
     padding: 0.5rem;
-    margin-top: -5rem;
   }
 
   .hero-section h1 {
@@ -1507,6 +1503,9 @@ p.full-text-op {
   margin-left: 3rem!important;
 }
 
+.ml-10{
+  margin-left: 10rem!important;;
+}
 /* =============================================
    PAGE FONDS ET COLLECTIONS
    ============================================= */
