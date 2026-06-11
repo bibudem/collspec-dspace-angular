@@ -1761,10 +1761,13 @@ p.full-text-op {
         font-size: 0.75rem;
         padding: 0.25rem 1rem 0.25rem 0.5rem;
         white-space: nowrap;
-        transition: background-color 0.15s, color 0.15s; // annule la transition padding du parent
+        background-color: $autreblue !important;
+        border-color: $autreblue !important;
+        color: #fff !important;
+        transition: background-color 0.15s, border-color 0.15s;
 
+        &:hover  { background-color: darken($autreblue, 8%) !important; border-color: darken($autreblue, 8%) !important; padding-right: 1rem; }
         &::after { right: 0.45rem; }
-        &:hover  { padding-right: 1rem; } // padding fixe — aucun shift de colonne
         &:hover::after { right: 0.2rem; }
       }
 
