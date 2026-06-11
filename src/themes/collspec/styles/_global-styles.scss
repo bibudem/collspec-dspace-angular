@@ -1535,6 +1535,10 @@ p.full-text-op {
     padding: 3rem 0;
   }
 
+  .collections-table-title {
+    margin-bottom: 1rem;
+  }
+
   .collections-toolbar {
     display: flex;
     align-items: center;
@@ -1913,7 +1917,7 @@ p.full-text-op {
 
   // Sections avec séparateur
   .about-section {
-    padding: 2.5rem 0;
+    padding: 1.5rem 0;
 
     &:first-of-type {
       border-top: none;
@@ -1931,13 +1935,27 @@ p.full-text-op {
     }
   }
 
-  // Boîte citation — bordure bleue accent
+  // Boîte citation — avis avec icône SVG
   .about-cite-box {
-    background: $extralightblue;
-    border-left: 4px solid $blue;
+    background: $white;
+    border-left: 4px solid $yellow;
     padding: 1.25rem 1.5rem;
     border-radius: 0 8px 8px 0;
     margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .about-cite-icon {
+    color: darken($yellow, 20%);
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .about-cite-content {
+    flex: 1;
   }
 
   .about-cite-title {
@@ -1983,7 +2001,7 @@ p.full-text-op {
     }
 
     .about-section {
-      padding: 1.75rem 0;
+      padding: 1.1rem 0;
     }
 
     .about-section-support {
