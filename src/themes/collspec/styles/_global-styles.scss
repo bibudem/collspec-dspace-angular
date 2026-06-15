@@ -1603,11 +1603,11 @@ p.full-text-op {
       outline: none;
     }
 
-    // Filtre actif : légère mise en avant bleue
+    // Filtre actif : mise en avant grise cohérente avec le tableau
     &.is-active {
-      border-color: $autreblue;
-      background-color: $extralightblue;
-      color: $autreblue;
+      border-color: $gray;
+      background-color: $ligthblue;
+      color: $gray;
       font-weight: 600;
     }
   }
@@ -1625,7 +1625,7 @@ p.full-text-op {
     margin: 0;
 
     .collections-th {
-      background: $autreblue;
+      background: $gray;
       color: #fff;
       font-family: $font-family-sans-serif;
       font-weight: 600;
@@ -1637,14 +1637,14 @@ p.full-text-op {
       position: sticky;
       top: 0;
       z-index: 2;
-      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      border-right: 1px solid rgba(255, 255, 255, 0.12);
 
       &.collections-th--first {
         text-align: left;
         min-width: 220px;
         max-width: 320px;
-        background: darken($autreblue, 6%);
-        border-right: 1px solid rgba(255, 255, 255, 0.3);
+        background: darken($gray, 5%);
+        border-right: 1px solid rgba(255, 255, 255, 0.2);
 
         .collections-th-label { text-align: left; }
       }
@@ -1668,10 +1668,10 @@ p.full-text-op {
         cursor: pointer;
         user-select: none;
         transition: background 0.15s;
-        &:hover { background: lighten($darkblue, 7%); }
+        &:hover { background: lighten($gray, 8%); }
       }
 
-      &.collections-th--sorted { background: darken($blue, 10%); }
+      &.collections-th--sorted { background: darken($gray, 10%); }
 
       .collections-th-inner {
         display: flex;
@@ -1697,20 +1697,20 @@ p.full-text-op {
     .collections-row {
       transition: background 0.1s;
 
-      &:nth-child(even) { background: $extralightblue; }
+      &:nth-child(even) { background: #F4F5F6; }
 
-      &:hover { background: $lightblue; }
+      &:hover { background: $ligthblue; }
     }
 
     .collections-td {
       padding: 0.75rem 1rem;
       font-size: 0.875rem;
       vertical-align: middle;
-      border-bottom: 1px solid rgba(231, 235, 238, 0.6);
-      border-right: 1px solid rgba(231, 235, 238, 0.6);
+      border-bottom: 1px solid rgba(200, 206, 212, 0.65);
+      border-right: 1px solid rgba(200, 206, 212, 0.65);
       text-align: center;
       white-space: nowrap;
-      color: $darkblue;
+      color: $gray;
 
       &.collections-td--first {
         text-align: left;
@@ -1720,7 +1720,7 @@ p.full-text-op {
         max-width: 320px;
         white-space: normal;
         word-break: break-word;
-        border-right: 1px solid #B8C5D0;
+        border-right: 1px solid #C8CDD3;
       }
 
       &.collections-td--col-sm {
@@ -1758,13 +1758,13 @@ p.full-text-op {
       }
 
       .collections-check {
-        color: $autreblue;
+        color: $gray-500;
         font-weight: 700;
         font-size: 1rem;
       }
 
       .collections-dash {
-        color: #C5D0D8;
+        color: #B8BEC5;
         font-size: 0.9rem;
       }
     }
@@ -1788,9 +1788,9 @@ p.full-text-op {
   }
 
   .collections-period-tag {
-    background: $extralightblue;
-    color: $autreblue;
-    border: 1px solid rgba($autreblue, 0.25);
+    background: $ligthblue;
+    color: $gray;
+    border: 1px solid rgba($gray, 0.2);
     border-radius: 12px;
     padding: 2px 10px;
     font-size: 0.75rem;
