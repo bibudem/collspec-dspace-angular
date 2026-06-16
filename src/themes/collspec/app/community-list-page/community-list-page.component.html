@@ -52,8 +52,11 @@
                 
                 <!-- Ajout du mt-auto pour pousser le bouton en bas -->
                 <div class="mt-auto">
-                    <a [routerLink]="getSubcommunityUrl(subcommunity)" class="btn bib-left-arrow">
-                        {{ 'collspec.collection.decouvrir' | translate }}
+                    <a [routerLink]="getSubcommunityUrl(subcommunity)"
+                       class="btn bib-left-arrow btn-collection"
+                       [attr.aria-label]="('collspec.collection.decouvrir' | translate) + ' ' + subcommunity.title">
+                        <span class="btn-collection-label" aria-hidden="true">{{ 'collspec.collection.decouvrir' | translate }}</span>
+                        <span class="btn-collection-title" aria-hidden="true">{{ subcommunity.title }}</span>
                     </a>
                 </div>
             </div>
