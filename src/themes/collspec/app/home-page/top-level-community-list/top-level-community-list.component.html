@@ -18,19 +18,15 @@
                 <!-- Cas Claude Gingras -->
                 <a *ngIf="isClaudeGingras(souscommunitie)"
                   href="https://claude-gingras.bib.umontreal.ca/"
-                  class="btn btn-darkblue btn-collection ml-2 mt-3"
-                  [attr.aria-label]="('collspec.collection.decouvrir' | translate) + ' ' + souscommunitie.title">
-                  <span class="btn-collection-label" aria-hidden="true">{{ 'collspec.collection.decouvrir' | translate }}</span>
-                  <span class="btn-collection-title" aria-hidden="true">{{ souscommunitie.title }}</span>
+                  class="btn btn-darkblue ml-2 mt-3">
+                  {{ 'collspec.collection.decouvrir' | translate }}
                 </a>
 
                 <!-- Autres collections -->
                 <a *ngIf="!isClaudeGingras(souscommunitie)"
                   [routerLink]="['/communities/', souscommunitie.id]"
-                  class="btn btn-darkblue btn-collection ml-2 mt-3"
-                  [attr.aria-label]="('collspec.collection.decouvrir' | translate) + ' ' + souscommunitie.title">
-                  <span class="btn-collection-label" aria-hidden="true">{{ 'collspec.collection.decouvrir' | translate }}</span>
-                  <span class="btn-collection-title" aria-hidden="true">{{ souscommunitie.title }}</span>
+                  class="btn btn-darkblue ml-2 mt-3">
+                  {{ 'collspec.collection.decouvrir' | translate }}
                 </a>
               </div>
             </div>
