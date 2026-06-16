@@ -32,8 +32,9 @@
 }
 
 .btn-darkblue {
-  width: 15rem;
-  font-size: 1rem;
+  width: auto;
+  min-width: 11rem;
+  max-width: 16rem;
   /* Extra small devices (phones portrait, moins de 576px) */
     @media (max-width: 575.98px) {
       .btn-darkblue {

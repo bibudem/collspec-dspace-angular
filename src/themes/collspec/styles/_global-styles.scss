@@ -164,9 +164,8 @@ p, span, a {
 .btn-darkblue {
   background-color: $darkblue;
   color: $gray-100;
-  font-size: 13px;
   position: relative;
-  padding-right: 2.2rem; // fixe — l'arrow n'affecte pas la largeur du bouton
+  padding: 0.65rem 2.2rem 0.65rem 1rem;
 
   &::after {
     content: '➝';
@@ -186,6 +185,36 @@ p, span, a {
       opacity: 1;
       transform: translateY(-50%) translateX(0);
     }
+  }
+}
+
+// Bouton deux lignes : label générique + titre de la collection
+.btn-collection {
+  text-align: left;
+
+  .btn-collection-label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    margin-bottom: 0.15rem;
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+  }
+
+  .btn-collection-title {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 400;
+    opacity: 0.65;
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
   }
 }
 
