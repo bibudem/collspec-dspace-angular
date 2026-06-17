@@ -26,6 +26,9 @@
 
   "collspec.onglet-fichier": "Document",
   "collspec.onglet-notice": "Full record",
+  "collspec.item.handle": "Permanent link",
+  "collspec.item.handle-copy": "Copy permanent link",
+  "collspec.item.handle-copied": "Link copied!",
   "collspec.return": "Back",
   "collspec.consulter": "View",
 

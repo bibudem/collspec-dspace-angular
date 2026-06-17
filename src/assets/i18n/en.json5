@@ -7519,4 +7519,10 @@
   "collspec.menu.ressources": "About",
 
   "collspec.menu.parcourir": "Our Collections",
+
+  "collspec.item.handle": "Permanent link",
+
+  "collspec.item.handle-copy": "Copy permanent link",
+
+  "collspec.item.handle-copied": "Link copied!",
 }
