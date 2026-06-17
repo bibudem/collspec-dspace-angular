@@ -12,10 +12,25 @@
               [name]="dsoNameService.getName(collection)">
             </ds-comcol-page-header>
             <!-- Handle -->
-            <ds-comcol-page-handle
-              [content]="collection.handle"
-              [title]="'collection.page.handle'">
-            </ds-comcol-page-handle>
+            @if (collection.handle) {
+            <div class="handle-wrapper">
+              <span class="handle-label">
+                <i class="fas fa-link"></i>{{ 'collection.page.handle' | translate }}:
+              </span>
+              <div class="handle-url-row">
+                <a [href]="collection.handle" target="_blank" rel="noopener noreferrer"
+                   class="handle-link">{{ collection.handle }}</a>
+                <button class="handle-copy-btn"
+                        type="button"
+                        (click)="copyHandle(collection.handle)"
+                        [class.copied]="handleCopied"
+                        [title]="handleCopied ? ('collspec.handle.copied' | translate) : ('collspec.handle.copy' | translate)"
+                        [attr.aria-label]="handleCopied ? ('collspec.handle.copied' | translate) : ('collspec.handle.copy' | translate)">
+                  <i class="fas" [ngClass]="handleCopied ? 'fa-check' : 'fa-copy'"></i>
+                </button>
+              </div>
+            </div>
+            }
 
             <!-- add Udem : Image vedette de la collection -->
             <!--<ds-vedette-uuid [uuid]="collection.uuid"></ds-vedette-uuid>-->
