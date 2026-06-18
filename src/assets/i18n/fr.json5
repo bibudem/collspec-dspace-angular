@@ -4672,7 +4672,7 @@
 
   "search.filters.filter.creativeWorkPublisher.label": "Recherche d'un éditeur",
 
-  "search.filters.filter.dateIssued.head": "Date",
+  "search.filters.filter.dateIssued.head": "Date de publication",
 
   "search.filters.filter.dateIssued.max.placeholder": "Depuis",
 
@@ -4940,7 +4940,7 @@
 
   "sorting.dc.date.issued.ASC": "Date de publication (croissante)",
 
-  "sorting.dc.date.issued.DESC": "Date de création (décroissante)",
+  "sorting.dc.date.issued.DESC": "Date de publication (décroissante)",
 
   "sorting.dc.date.accessioned.ASC": "Date de dépôt (croissante)",
 
@@ -7539,4 +7539,6 @@
   "collspec.item.handle-copy": "Copier le lien permanent",
 
   "collspec.item.handle-copied": "Lien copié !",
+
+  "sorting.dcterms.created.DESC": "Date de création (décroissante)",
 }

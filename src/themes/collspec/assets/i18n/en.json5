@@ -108,7 +108,7 @@
   "dso-selector.placeholder": "Search for a collection",
   
   "search.filters.filter.language.head": "Language",
-  "search.filters.filter.dateIssued.head": "Date",
+  "search.filters.filter.dateIssued.head": "Date Published",
   "search.filters.filter.dateCreated.head": "Date Created",
   
   "search.filters.applied.f.dateCreated.max": "End date",
@@ -120,7 +120,8 @@
   "search.filters.filter.dateCreated.min.label": "Start",
   
   "sorting.dcterms.created.ASC": "Date Created Ascending",
-  "sorting.dc.date.issued.DESC": "Date Created Descending",
+  "sorting.dcterms.created.DESC": "Date Created Descending",
+  "sorting.dc.date.issued.DESC": "Date Published Descending",
   
   "community.subcoms-cols.breadcrumbs": "Collections and sub-collections",
   "community.all-lists.head": "Collections and sub-collections",
