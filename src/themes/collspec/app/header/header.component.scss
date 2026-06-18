@@ -329,15 +329,15 @@
   #collapsible-mobile-navbar {
     display: none !important;
   }
-  
+
   #mobile-navbar-toggler {
     display: none !important;
   }
-  
+
   .btn-donate {
     display: inline-flex !important;
   }
-  
+
   #header-left {
     justify-content: space-between !important;
   }
@@ -346,15 +346,33 @@
     display: flex !important;
     align-items: center;
     align-self: stretch;
-    margin-right: 10rem;
+    margin-right: 2rem;
   }
-  .logo-brand-group{
+
+  // Empêche le header de passer sur deux lignes
+  #main-site-header-container {
+    flex-wrap: nowrap !important;
+  }
+
+  .logo-brand-group {
     margin-left: -3rem;
   }
-  .logo-title{
+
+  .logo-title {
     white-space: normal;
     margin-top: 10px;
     font-size: 14px;
+  }
+}
+
+// 1200–1399px : marges latérales réduites pour tenir sur une ligne
+@media (min-width: 1200px) and (max-width: 1399px) {
+  #main-site-header {
+    margin: 1rem 2rem;
+  }
+
+  #desktop-navbar {
+    margin-right: 1rem;
   }
 }
 
