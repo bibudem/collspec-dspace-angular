@@ -7533,4 +7533,10 @@
   "collspec.menu.ressources": "À propos",
 
   "collspec.menu.parcourir": "Nos collections",
+
+  "collspec.item.handle": "Lien permanent",
+
+  "collspec.item.handle-copy": "Copier le lien permanent",
+
+  "collspec.item.handle-copied": "Lien copié !",
 }

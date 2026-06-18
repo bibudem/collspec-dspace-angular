@@ -1,12 +1,28 @@
 @if (showBackButton$ | async) {
 <ds-results-back-button [back]="back"></ds-results-back-button>
 }
-<div class="d-flex flex-row align-items-center">
+<div class="d-flex flex-row align-items-center" [class.collspec-handle-bar]="iiifEnabled">
+  @if (iiifEnabled && handleUrl) {
+    <i class="fas fa-link collspec-handle-icon" aria-hidden="true"></i>
+    <span class="collspec-handle-label">{{ 'collspec.item.handle' | translate }}</span>
+    <div class="collspec-handle-url-group">
+      <a [href]="handleUrl" target="_blank" rel="noopener noreferrer"
+         class="collspec-handle-link"
+         [attr.aria-label]="'collspec.item.handle' | translate">{{ handleUrl }}</a>
+      <button class="collspec-handle-copy"
+              (click)="copyToClipboard(handleUrl)"
+              [title]="copiedUri === handleUrl ? ('collspec.item.handle-copied' | translate) : ('collspec.item.handle-copy' | translate)"
+              [attr.aria-label]="copiedUri === handleUrl ? ('collspec.item.handle-copied' | translate) : ('collspec.item.handle-copy' | translate)">
+        <i class="fas" [ngClass]="copiedUri === handleUrl ? 'fa-check' : 'fa-copy'"></i>
+      </button>
+    </div>
+  }
   @if (iiifEnabled) {
-  <button class="btn btn-notice-toggle ms-auto me-2" (click)="toggleNotice()">
-    {{'collspec.onglet-notice' | translate}}
-    <i class="fas" [ngClass]="noticeOpen ? 'fa-chevron-right' : 'fa-chevron-left'" style="font-size:0.7rem;"></i>
-  </button>
+    <button class="btn btn-notice-toggle ms-auto me-0" (click)="toggleNotice()"
+            [attr.aria-label]="'collspec.onglet-notice' | translate">
+      {{'collspec.onglet-notice' | translate}}
+      <i class="fas" [ngClass]="noticeOpen ? 'fa-chevron-right' : 'fa-chevron-left'" style="font-size:0.7rem;"></i>
+    </button>
   }
   <ds-dso-edit-menu></ds-dso-edit-menu>
 </div>

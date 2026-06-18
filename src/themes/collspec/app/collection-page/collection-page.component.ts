@@ -1,8 +1,11 @@
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgClass } from '@angular/common';
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
+  inject,
 } from '@angular/core';
+
 import { RouterOutlet } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -13,7 +16,6 @@ import {
 } from '../../../../app/shared/animations/fade';
 import { ThemedComcolPageBrowseByComponent } from '../../../../app/shared/comcol/comcol-page-browse-by/themed-comcol-page-browse-by.component';
 import { ThemedComcolPageContentComponent } from '../../../../app/shared/comcol/comcol-page-content/themed-comcol-page-content.component';
-import { ThemedComcolPageHandleComponent } from '../../../../app/shared/comcol/comcol-page-handle/themed-comcol-page-handle.component';
 import { ComcolPageHeaderComponent } from '../../../../app/shared/comcol/comcol-page-header/comcol-page-header.component';
 import { ComcolPageLogoComponent } from '../../../../app/shared/comcol/comcol-page-logo/comcol-page-logo.component';
 import { DsoEditMenuComponent } from '../../../../app/shared/dso-page/dso-edit-menu/dso-edit-menu.component';
@@ -44,9 +46,9 @@ import { VedetteUUIDComponent } from '../vedette/vedette-uuid/vedette-uuid.compo
     TranslateModule,
     VarDirective,
     AsyncPipe,
+    NgClass,
     ComcolPageHeaderComponent,
     ComcolPageLogoComponent,
-    ThemedComcolPageHandleComponent,
     DsoEditMenuComponent,
     ThemedComcolPageBrowseByComponent,
     ObjectCollectionComponent,
@@ -57,4 +59,27 @@ import { VedetteUUIDComponent } from '../vedette/vedette-uuid/vedette-uuid.compo
 /**
  * This component represents a detail page for a single collection
  */
-export class CollectionPageComponent extends BaseComponent {}
+export class CollectionPageComponent extends BaseComponent {
+  handleCopied = false;
+  private copyTimer: ReturnType<typeof setTimeout> | null = null;
+  private readonly cdr = inject(ChangeDetectorRef);
+
+  copyHandle(url: string): void {
+    if (this.copyTimer) {
+      clearTimeout(this.copyTimer);
+      this.copyTimer = null;
+    }
+    this.handleCopied = false;
+    this.cdr.markForCheck();
+
+    navigator.clipboard.writeText(url).then(() => {
+      this.handleCopied = true;
+      this.cdr.markForCheck();
+      this.copyTimer = setTimeout(() => {
+        this.handleCopied = false;
+        this.copyTimer = null;
+        this.cdr.markForCheck();
+      }, 2000);
+    }).catch(() => {});
+  }
+}
