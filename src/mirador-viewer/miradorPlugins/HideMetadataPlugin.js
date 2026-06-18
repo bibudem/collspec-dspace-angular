@@ -77,6 +77,10 @@ const COLLECTION_RULES = {
     hideLabels: ['description', 'Sujet(s)', 'Autre(s) Titre(s)'],
   },
   
+  '535845d1-36bf-4096-b40d-aea1f735377a': {
+    hideLabels: ['description'],
+  },
+  
 };
 
 function labelToText(label) {
