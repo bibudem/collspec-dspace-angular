@@ -4672,7 +4672,7 @@
 
   "search.filters.filter.creativeWorkPublisher.label": "Search publisher",
 
-  "search.filters.filter.dateIssued.head": "Date",
+  "search.filters.filter.dateIssued.head": "Date Published",
 
   "search.filters.filter.dateIssued.max.placeholder": "Maximum Date",
 
@@ -4940,7 +4940,7 @@
 
   "sorting.dc.date.issued.ASC": "Date Issued Ascending",
 
-  "sorting.dc.date.issued.DESC": "Date Created Descending",
+  "sorting.dc.date.issued.DESC": "Date Published Descending",
 
   "sorting.dc.date.accessioned.ASC": "Accessioned Date Ascending",
 
@@ -7525,4 +7525,6 @@
   "collspec.item.handle-copy": "Copy permanent link",
 
   "collspec.item.handle-copied": "Link copied!",
+
+  "sorting.dcterms.created.DESC": "Date Created Descending",
 }
