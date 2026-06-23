@@ -298,6 +298,9 @@ fetch(manifest)
             allowClose: true,
             imageToolsEnabled: notMobile ? true: false,
             imageToolsOpen: false,
+		  osdConfig: {
+			  crossOriginPolicy: "Anonymous"
+		  },
           textOverlay: {
             enabled: true,
             visible: false,
@@ -307,9 +310,9 @@ fetch(manifest)
 			selectionTextColor: '#218a59',
 			selectionBackgroundColor: '#21428a',
             skipEmptyLines: true,
-            opacity: 0.5,
+            opacity: 1,
             color: '#6BA5D1',
-            overlayFont: "'EB Garamond', Garamond, Tahoma, Calibri, 'Courier New', monospace, Arial, Helvetica, sans-serif",
+            overlayFont: "Helvetica, Arial, monospace, 'EB Garamond', Garamond, Tahoma, Calibri, 'Courier New', sans-serif",
 			optionsRenderMode: 'simple',
             correction: {
             enabled: true,
