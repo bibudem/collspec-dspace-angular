@@ -12,8 +12,8 @@ import Mirador from 'mirador/dist/es/src/index';
 
 // You can add or remove plugins. When adding new plugins be sure to also
 // import them into the project via your package.json dependencies.
-import miradorShareDialogPlugin from 'mirador-share-plugin/es/MiradorShareDialog';
-import miradorSharePlugin from 'mirador-share-plugin/es/miradorSharePlugin';
+//import miradorShareDialogPlugin from 'mirador-share-plugin/es/MiradorShareDialog';
+//import miradorSharePlugin from 'mirador-share-plugin/es/miradorSharePlugin';
 import miradorDownloadPlugin from 'mirador-dl-plugin/es/miradorDownloadPlugin';
 import miradorDownloadDialog from 'mirador-dl-plugin/es/MiradorDownloadDialog';
 import { miradorImageToolsPlugin } from 'mirador-image-tools';
@@ -21,10 +21,10 @@ import textOverlayPlugin from 'mirador-textoverlay/es';
 //import ocrHelperPlugin from '@4eyes/mirador-ocr-helper';
 import annotationPlugins from 'mirador-annotations';
 import LocalStorageAdapter from 'mirador-annotations/es/LocalStorageAdapter';
-import imageCropperPlugin from 'mirador-imagecropper/lib';
+import imageCropperPlugin from './miradorPlugins/mirador-imagecropper/es';
+import canvasLinkPlugin from './miradorPlugins/mirador-canvaslink/es';
 // NIMA 2026-05-25 : plugin maison pour gérer l'affichage de différents types d'item selon la communauté.
 import HideMetadataPlugin from './miradorPlugins/HideMetadataPlugin';
-
 // import AnnototAdapter from 'mirador-annotations/es/AnnototAdapter';
 // Import your custom component
 //import CustomMiradorDownloadDialog from "./CustomMiradorDownloadDialog";
@@ -86,10 +86,13 @@ window.miradorInstance = null;
 })();
 
 const plugins = [
-  miradorShareDialogPlugin,
-  miradorSharePlugin,
+  //miradorShareDialogPlugin,
+  //miradorSharePlugin,
   miradorDownloadDialog,
   miradorDownloadPlugin,
+  HideMetadataPlugin,
+  canvasLinkPlugin,
+  
 ];
 
 if (notMobile) {
@@ -99,11 +102,8 @@ if (notMobile) {
     annotationPlugins,
     textOverlayPlugin,
 	imageCropperPlugin,
-	HideMetadataPlugin,
   );
 }
-
-
 
 // Create a custom plugin to override the CanvasDownloadLinks component
 /*const customPlugin = {
@@ -271,26 +271,6 @@ fetch(manifest)
           windows: [
             windowSettings
           ],
-          miradorSharePlugin: {
-            dragAndDropInfoLink: 'https://iiif.io',
-            embedOption: {
-              enabled: true,
-              embedUrlReplacePattern: [
-                /.*\.edu\/(\w+)\/iiif\/manifest/,
-                manifest
-              ],
-              syncIframeDimensions: {
-                height: {param: 'maxheight'},
-              },
-            },
-            shareLink: {
-              enabled: true,
-              manifestIdReplacePattern: [
-                /\/iiif\/manifest/,
-                '',
-              ],
-            },
-          },
           miradorDownloadPlugin: {
             restrictDownloadOnSizeDefinition: false
           },
@@ -327,6 +307,67 @@ fetch(manifest)
 	        roundingPrecision: 5,
 	        showRightsInformation: false,
 	      },
+		  canvasLink: {
+		  enabled: true,
+		  dialogOpen: false,
+		  showRightsInformation: true,
+		  singleCanvasOnly: false,
+
+		  iiifInfoLink: 'https://iiif.io',
+
+		  shareLink: {
+			enabled: true,
+			manifestIdReplacePattern: [
+			  /\/iiif\/manifest/,
+			  '',
+			],
+		  },
+
+		  embedOption: {
+			enabled: true,
+			embedUrlReplacePattern: [
+			  /.*\.edu\/(\w+)\/iiif\/manifest/,
+			  manifest,
+			],
+			embedIframeAttributes: 'allowfullscreen frameborder="0"',
+			embedIframeTitle: 'Image viewer',
+		  },
+
+		  syncIframeDimensions: {
+			height: { param: 'maxheight' },
+		  },
+
+		  getCanvasLink: ({ visibleCanvases, canvases }) => {
+			const viewerUrl = new URL(window.location.href);
+			const manifestUrl = viewerUrl.searchParams.get('manifest') || '';
+
+			const uuidMatch = manifestUrl.match(
+			  /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i
+			);
+			const itemUuid = uuidMatch ? uuidMatch[0] : null;
+
+			const visibleIds = (visibleCanvases || [])
+			  .map((canvas) => (typeof canvas === 'string' ? canvas : canvas?.id))
+			  .filter(Boolean);
+
+			const pages = visibleIds
+			  .map((id) => {
+				const index = (canvases || []).findIndex((canvas) => canvas?.id === id);
+				return index >= 0 ? String(index + 1) : null;
+			  })
+			  .filter(Boolean);
+
+			if (!itemUuid) {
+			  return viewerUrl.toString();
+			}
+
+			const pageParam = pages.length
+			  ? `?page=${encodeURIComponent(pages.join(','))}`
+			  : '';
+
+			return `${viewerUrl.origin}/items/${itemUuid}${pageParam}`;
+		  },
+		},
             defaultSideBarPanel: 'info',
             sideBarOpenByDefault: false,
             allowFullscreen: true,
