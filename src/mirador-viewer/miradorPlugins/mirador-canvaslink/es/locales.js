@@ -9,16 +9,12 @@ export default {
 
       share: {
         envelope: "Share via mail",
-        facebook: "Share on Facebook",
-        pinterest: "Share on Pinterest",
-        whatsapp: "Share via WhatsApp",
-        x: "Share on X"
       },
 
       dialogTitle: "Share",
       shareLink: "Share link to this page",
-      shareLinkLabel: "Share link",
-      shareLinkAriaLabel: "Share link URL",
+      shareLinkLabel: "IIIF Manifest share link",
+      shareLinkAriaLabel: "IIIF Manifest share link URL",
 
       copy: "Copy",
 
@@ -45,16 +41,12 @@ export default {
 
       share: {
         envelope: "Partager par courriel",
-        facebook: "Partager sur Facebook",
-        pinterest: "Partager sur Pinterest",
-        whatsapp: "Partager via WhatsApp",
-        x: "Partager sur X"
       },
 
       dialogTitle: "Partager",
       shareLink: "Partager le lien vers cette page",
-      shareLinkLabel: "Lien de partage",
-      shareLinkAriaLabel: "URL du lien de partage",
+      shareLinkLabel: "Lien de partage du manifeste IIIF",
+      shareLinkAriaLabel: "URL du lien de partage du manifeste IIIF",
 
       copy: "Copier",
 

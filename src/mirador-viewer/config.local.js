@@ -14,8 +14,9 @@ import Mirador from 'mirador/dist/es/src/index';
 // import them into the project via your package.json dependencies.
 //import miradorShareDialogPlugin from 'mirador-share-plugin/es/MiradorShareDialog';
 //import miradorSharePlugin from 'mirador-share-plugin/es/miradorSharePlugin';
-import miradorDownloadPlugin from 'mirador-dl-plugin/es/miradorDownloadPlugin';
-import miradorDownloadDialog from 'mirador-dl-plugin/es/MiradorDownloadDialog';
+//import miradorDownloadPlugin from './miradorPlugins/mirador-dl-plugin/es/miradorDownloadPlugin';
+//import miradorDownloadDialog from './miradorPlugins/mirador-dl-plugin/es/MiradorDownloadDialog';
+import downloadDialogPlugin from './miradorPlugins/mirador-downloaddialog/es';
 import { miradorImageToolsPlugin } from 'mirador-image-tools';
 import textOverlayPlugin from 'mirador-textoverlay/es';
 //import ocrHelperPlugin from '@4eyes/mirador-ocr-helper';
@@ -88,10 +89,11 @@ window.miradorInstance = null;
 const plugins = [
   //miradorShareDialogPlugin,
   //miradorSharePlugin,
-  miradorDownloadDialog,
-  miradorDownloadPlugin,
+  //miradorDownloadDialog,
+  //miradorDownloadPlugin,
   HideMetadataPlugin,
   canvasLinkPlugin,
+  downloadDialogPlugin,
   
 ];
 
