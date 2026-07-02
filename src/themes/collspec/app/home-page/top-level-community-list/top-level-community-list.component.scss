@@ -32,32 +32,18 @@
 }
 
 .btn-darkblue {
-  width: 15rem;
-  font-size: 1rem;
-  /* Extra small devices (phones portrait, moins de 576px) */
-    @media (max-width: 575.98px) {
-      .btn-darkblue {
-        width: 100%;
-        font-size: 14px;
-        padding: 10px 20px;
-      }
-    }
+  width: auto;
+  max-width: 100%;
+  white-space: nowrap;
+  align-self: flex-start;
+  font-size: 0.9rem;
 
-    /* Small devices (phones landscape, 576px et plus) */
-    @media (min-width: 576px) and (max-width: 767.98px) {
-      .btn-darkblue {
-        width: 50%;
-        font-size: 15px;
-      }
-    }
-
-    /* Medium devices (tablettes, 768px et plus) */
-    @media (min-width: 768px) and (max-width: 991.98px) {
-      .btn-darkblue {
-        width: 40%;
-        font-size: 16px;
-      }
-    }
+  @media (max-width: 575.98px) {
+    font-size: 0.85rem;
+    white-space: normal;
+    align-self: stretch;
+    width: 100%;
+  }
 }
 
 .vgr-cards {

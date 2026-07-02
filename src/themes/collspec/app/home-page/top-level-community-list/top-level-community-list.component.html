@@ -15,18 +15,18 @@
               <div class="card-body">
                 <h4 class="card-title mt-5 text-start">{{ souscommunitie.title }}</h4>
                 <div class="card-text ml-2" [innerHTML]="souscommunitie.description"></div>
-                <!-- Cas Claude Gingras -->
+                <!-- Cas Claude Gingras : application externe, même onglet -->
                 <a *ngIf="isClaudeGingras(souscommunitie)"
                   href="https://claude-gingras.bib.umontreal.ca/"
                   class="btn btn-darkblue ml-2 mt-3">
-                  {{ 'collspec.collection.decouvrir' | translate }}
+                  {{ getButtonLabel(souscommunitie.title) }}
                 </a>
 
-                <!-- Autres collections -->
+                <!-- Autres collections : navigation interne -->
                 <a *ngIf="!isClaudeGingras(souscommunitie)"
                   [routerLink]="['/communities/', souscommunitie.id]"
                   class="btn btn-darkblue ml-2 mt-3">
-                  {{ 'collspec.collection.decouvrir' | translate }}
+                  {{ getButtonLabel(souscommunitie.title) }}
                 </a>
               </div>
             </div>
