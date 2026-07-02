@@ -37,10 +37,10 @@ export class TopLevelCommunityListComponent extends BaseComponent implements OnI
   private loadedIds = new Set<string>();
 
   constructor(
-    private cdsCollspec: CommunityDataService,
+    cdsCollspec: CommunityDataService,
     private collService: CollectionDataService,
     @Inject(APP_CONFIG) public appConfig: AppConfig,
-    private paginationServiceCollspec: PaginationService,
+    paginationServiceCollspec: PaginationService,
     private cdr: ChangeDetectorRef,
   ) {
     super(appConfig, cdsCollspec, paginationServiceCollspec);
@@ -126,6 +126,28 @@ export class TopLevelCommunityListComponent extends BaseComponent implements OnI
     const targetId = 'bb619460-d68f-45d0-aad9-e8faaf0ed73f';
     const title = souscommunitie.title?.toLowerCase().trim();
     return souscommunitie.id === targetId || title === 'collection claude gingras';
+  }
+
+  private static readonly BUTTON_LABELS: Record<string, string> = {
+    'art, aménagement et musique':                      'Explorer Art, aménagement et musique',
+    'art, aménagement, musique':                        'Explorer Art, aménagement et musique',
+    'canadiana et americana':                           'Explorer Canadiana et Americana',
+    'collection claude gingras':                        'Explorer la collection Claude Gingras',
+    'droit':                                            'Explorer Droit',
+    'éducation':                                        'Explorer Éducation',
+    'fac-similés':                                      'Explorer Fac-similés',
+    'iconographie (gravures, estampes, cartes, plans, affiches)': 'Explorer Iconographie',
+    'incunables':                                       'Explorer Incunables',
+    'manuscrits':                                       'Explorer Manuscrits',
+    'sciences et médecine':                             'Explorer Sciences et médecine',
+    'sciences humaines et lettres':                     'Explorer Sciences humaines et lettres',
+    'sciences politiques, économiques et sociales':     'Explorer Sc. politiques, économiques et sociales',
+    'théologie et philosophie':                         'Explorer Théologie et philosophie',
+  };
+
+  getButtonLabel(title: string): string {
+    const key = title?.replace(/\*+$/, '').trim().toLowerCase();
+    return TopLevelCommunityListComponent.BUTTON_LABELS[key] ?? `Explorer ${title?.trim()}`;
   }
 
   ngOnDestroy() {
