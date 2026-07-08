@@ -1,16 +1,8 @@
 export default {
-  de: {
-    close: "Schließen",
-    downloadOptions: "Download-Optionen",
-    iiifManifest: "IIIF-Manifest",
-    image: "Einzelbild",
-    otherDownloadOptions: "Andere Download-Optionen",
-    pixels: "Pixel",
-    showDownloadOptions: "Download-Optionen anzeigen"
-  },
   en: {
     close: "Close",
     downloadOptions: "Download options",
+	downloadPdf: "Download the full document (PDF)",
     iiifManifest: "IIIF manifest",
     image: "Single image",
     otherDownloadOptions: "Other download options",
@@ -20,7 +12,8 @@ export default {
   fr: {
     close: "Fermer",
     downloadOptions: "Options de téléchargement",
-    iiifManifest: "Manifeste IIIF",
+	downloadPdf: "Télécharger le document intégral (PDF)",
+    iiifManifest: "Manifeste IIIF (format JSON)",
     image: "Image",
     otherDownloadOptions: "Autres liens de téléchargement",
     pixels: "pixels",

@@ -1,7 +1,7 @@
 import { updateWindow } from "mirador/dist/es/src/state/actions";
 import { getContainerId } from "mirador/dist/es/src/state/selectors";
 import { getCanvasLabel, getVisibleCanvases, selectInfoResponse } from "mirador/dist/es/src/state/selectors/canvases";
-import { getManifestRelatedContent, getManifestUrl } from "mirador/dist/es/src/state/selectors/manifests";
+import { getManifestRelatedContent, getManifestRenderings, getManifestUrl } from "mirador/dist/es/src/state/selectors/manifests";
 import DownloadButton from "./components/DownloadButton";
 import DownloadDialog from "./components/DownloadDialog";
 import translations from "./locales";
@@ -74,6 +74,9 @@ export default [{
       seeAlso: getManifestRelatedContent(state, {
         windowId: windowId
       }),
+	  renderings: getManifestRenderings(state, {
+	    windowId: windowId
+	  }),
       visibleCanvases: getVisibleCanvases(state, {
         windowId: windowId
       })
