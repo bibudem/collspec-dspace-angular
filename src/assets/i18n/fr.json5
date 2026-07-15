@@ -7541,4 +7541,6 @@
   "collspec.item.handle-copied": "Lien copié !",
 
   "sorting.dcterms.created.DESC": "Date de création (décroissante)",
+
+  "collspec.menu.iiif": "Guide IIIF",
 }
