@@ -2,6 +2,7 @@ import { getInfoModulePath } from '../app-routing-paths';
 
 export const END_USER_AGREEMENT_PATH = 'end-user-agreement';
 export const PRIVACY_PATH = 'privacy';
+export const IIIF_GUIDE_PATH = 'iiif';
 export const FEEDBACK_PATH = 'feedback';
 export const COAR_NOTIFY_SUPPORT = 'coar-notify-support';
 export const ACCESSIBILITY_SETTINGS_PATH = 'accessibility';

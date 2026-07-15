@@ -7527,4 +7527,6 @@
   "collspec.item.handle-copied": "Link copied!",
 
   "sorting.dcterms.created.DESC": "Date Created Descending",
+
+  "collspec.menu.iiif": "IIIF Guide",
 }

@@ -1,0 +1,144 @@
+<div class="iiif-guide-page">
+
+  <!-- ===== Page title ===== -->
+  <div class="iiif-intro">
+    <h1>Utiliser IIIF avec les Collections spéciales</h1>
+    <p class="bib-description">
+      Cette page explique comment utiliser le standard IIIF pour explorer, comparer et réutiliser
+      les documents numérisés des Collections spéciales, dans des visionneuses comme Mirador et dans
+      d’autres outils compatibles.
+    </p>
+  </div>
+
+  <!-- ===== Section A : Qu’est-ce que IIIF ? ===== -->
+  <section class="iiif-section">
+    <h2 class="h2-bib-titre">Qu’est-ce que IIIF&nbsp;?</h2>
+    <p class="bib-description">
+      IIIF (International Image Interoperability Framework) est un ensemble de standards ouverts
+      pour la diffusion d’images et de documents numériques de haute qualité sur le web. Il permet
+      aux bibliothèques et aux archives de publier leurs contenus de manière interopérable, afin
+      qu’ils puissent être visualisés et réutilisés dans une variété d’outils.
+    </p>
+    <p class="bib-description">
+      Sur cette plateforme, IIIF vous donne accès à des images zoomables, comparables et annotables,
+      que vous pouvez intégrer dans des projets de recherche, des travaux universitaires ou des
+      activités d’enseignement.
+    </p>
+  </section>
+
+  <!-- ===== Section B : Repérer IIIF sur les pages de documents ===== -->
+  <section class="iiif-section">
+    <h2 class="h2-bib-titre">Repérer IIIF sur les pages de documents</h2>
+    <p class="bib-description">
+      Plusieurs documents des Collections spéciales sont accompagnés d’un lien ou d’une icône IIIF
+      sur leur page de notice. Ce lien mène vers un manifeste IIIF, c’est-à-dire un fichier de
+      description qui contient la structure du document (pages, séquences), ses métadonnées et les
+      liens vers les images numériques.
+    </p>
+
+    <h3 class="h3-bib-soustitre">Étape&nbsp;1&nbsp;: Trouver le lien ou le logo IIIF</h3>
+    <p class="bib-description">
+      Sur la page d’un document, cherchez le logo IIIF ou un lien intitulé «&nbsp;Manifeste IIIF&nbsp;»,
+      «&nbsp;IIIF manifest&nbsp;» ou «&nbsp;Ouvrir dans une visionneuse IIIF&nbsp;», généralement près
+      de la zone d’affichage des images.
+    </p>
+
+    <h3 class="h3-bib-soustitre">Étape&nbsp;2&nbsp;: Copier l’URL du manifeste</h3>
+    <p class="bib-description">
+      En cliquant sur ce lien, votre navigateur affiche un fichier texte au format JSON. Vous n’avez
+      pas besoin de comprendre ce code&nbsp;: l’élément important est l’adresse dans la barre
+      d’URL. Copiez cette adresse&nbsp;: c’est l’URL du manifeste IIIF que vous pourrez coller dans
+      une visionneuse ou un autre outil compatible.
+    </p>
+  </section>
+
+  <!-- ===== Section C : Visualiser les documents avec Mirador ===== -->
+  <section class="iiif-section">
+    <h2 class="h2-bib-titre">Visualiser les documents avec Mirador</h2>
+    <p class="bib-description">
+      Mirador est une visionneuse IIIF libre qui permet d’afficher et de comparer plusieurs documents
+      côte à côte, de zoomer dans les détails et, selon la configuration, d’annoter les images.
+      Il est largement utilisé dans les bibliothèques de recherche et les humanités numériques.
+    </p>
+
+    <h3 class="h3-bib-soustitre">Ouvrir un manifeste IIIF dans Mirador</h3>
+    <p class="bib-description">
+      Pour explorer un document des Collections spéciales dans Mirador&nbsp;:
+    </p>
+    <ul class="bib-description">
+      <li>Copiez l’URL du manifeste IIIF depuis la page du document.</li>
+      <li>Ouvrez votre instance Mirador (locale ou en ligne).</li>
+      <li>Cliquez sur le bouton pour ajouter une ressource (par ex. «&nbsp;+ Add Resource&nbsp;»).</li>
+      <li>Collez l’URL du manifeste IIIF et validez.</li>
+    </ul>
+    <p class="bib-description">
+      Le document s’affiche alors dans Mirador. Vous pouvez ajouter d’autres manifestes IIIF pour
+      comparer plusieurs documents, changer le mode d’affichage (page, livre, galerie) ou utiliser
+      les outils intégrés pour annoter et analyser les images.
+    </p>
+  </section>
+
+  <!-- ===== Section D : Enseignement et récits numériques ===== -->
+  <section class="iiif-section">
+    <h2 class="h2-bib-titre">Enseignement et récits numériques</h2>
+    <p class="bib-description">
+      Les enseignants et enseignantes peuvent utiliser IIIF pour préparer des séances de cours en
+      plaçant plusieurs images sur un même écran, en zoomant sur des détails significatifs et en
+      invitant les étudiantes et étudiants à comparer des documents provenant de différentes
+      institutions.
+    </p>
+    <p class="bib-description">
+      Des plateformes de narration numérique compatibles IIIF permettent également de créer des
+      expositions virtuelles, des essais illustrés ou des parcours thématiques à partir de documents
+      des Collections spéciales, tout en respectant leur contexte et leurs métadonnées.
+    </p>
+  </section>
+
+  <!-- ===== Section E : Informations techniques pour développeurs ===== -->
+  <section class="iiif-section">
+    <h2 class="h2-bib-titre">Informations techniques pour développeurs</h2>
+    <p class="bib-description">
+      Un manifeste IIIF est un fichier JSON structuré qui décrit un objet numérique&nbsp;: séquences
+      de pages (canvases), images associées, métadonnées descriptives et liens vers d’autres
+      ressources. Les manifestes publiés par cette plateforme suivent le format défini par la
+      spécification IIIF Presentation API.
+    </p>
+    <p class="bib-description">
+      Pour les développeurs et développeuses, les manifestes peuvent être intégrés dans des outils
+      d’annotation, de visualisation comparative, de recadrage (cropping) ou dans des applications
+      web personnalisées. Pour en savoir plus, consultez la documentation et les recettes du site
+      officiel IIIF (<a href="https://iiif.io" target="_blank" rel="noopener">iiif.io</a>).
+    </p>
+  </section>
+
+  <!-- ===== Section F : Citer et réutiliser les documents ===== -->
+  <section class="iiif-section">
+    <h2 class="h2-bib-titre">Citer et réutiliser les documents</h2>
+    <p class="bib-description">
+      Lorsque vous utilisez des images ou des documents issus des Collections spéciales dans des
+      travaux, des publications ou des projets numériques, vous devez toujours citer la source,
+      incluant la mention des bibliothèques de l’Université de Montréal et l’URL de la notice du
+      document sur cette plateforme.
+    </p>
+    <p class="bib-description">
+      Les conditions d’utilisation, licences et mentions de droits indiquées sur la page de chaque
+      document s’appliquent également aux contenus IIIF. Toute utilisation commerciale ou diffusion
+      massive doit faire l’objet d’une autorisation spécifique.
+    </p>
+  </section>
+
+  <!-- ===== Section G : Essayer IIIF avec des exemples ===== -->
+  <section class="iiif-section iiif-section-examples">
+    <h2 class="h2-bib-titre">Essayer IIIF avec des exemples</h2>
+    <p class="bib-description">
+      Pour vous familiariser avec IIIF, vous pouvez commencer par quelques documents de démonstration.
+      Copiez l’URL de leur manifeste IIIF, ouvrez une visionneuse compatible (comme Mirador) et
+      explorez les images, les métadonnées et les différentes vues possibles.
+    </p>
+    <p class="bib-description">
+      Bientôt, cette section proposera une sélection d’exemples issus des Collections spéciales pour
+      vous permettre de tester les fonctionnalités IIIF et de les intégrer à vos projets.
+    </p>
+  </section>
+
+</div>
