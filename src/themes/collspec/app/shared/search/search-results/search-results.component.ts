@@ -43,8 +43,9 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
   ],
 })
 export class SearchResultsComponent extends BaseComponent {
-  collectionId: string;
-  query: string ;
+  collectionId: string | null = null;
+  query: string = 'all';
+  hidePaginationDetail = false;
 
   constructor(private modalService: NgbModal,
               private router: Router,
@@ -60,13 +61,13 @@ export class SearchResultsComponent extends BaseComponent {
   }
 
   private initializeSearchParameters(): void {
-    // Récupérer l'ID de l'élément à partir de l'URL
-    this.collectionId = this.route.snapshot.paramMap.get('id') || null;
+    this.collectionId = this.route.snapshot.paramMap.get('id');
 
-    // Observer les changements d'URL et extraire les paramètres
     this.route.queryParams.subscribe((params) => {
       this.query = params['query'] || 'all';
     });
+
+    this.hidePaginationDetail = this.collectionId === '463625e1-602d-4844-a94f-5df83c681054';
   }
 
   redirectToAiSearch(): void {
