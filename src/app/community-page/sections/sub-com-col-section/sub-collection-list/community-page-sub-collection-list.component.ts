@@ -12,7 +12,7 @@ import {
   combineLatest as observableCombineLatest,
   Subscription,
 } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 
 import {
   SortDirection,
@@ -71,9 +71,15 @@ export class CommunityPageSubCollectionListComponent implements OnInit, OnDestro
   sortConfig: SortOptions;
 
   /**
+   * UUID of the collection to hide from the parent community page list
+   */
+  private hiddenCollectionUuid = '463625e1-602d-4844-a94f-5df83c681054';
+
+  /**
    * A list of remote data objects of communities' collections
    */
-  subCollectionsRDObs: BehaviorSubject<RemoteData<PaginatedList<Collection>>> = new BehaviorSubject<RemoteData<PaginatedList<Collection>>>({} as any);
+  subCollectionsRDObs: BehaviorSubject<RemoteData<PaginatedList<Collection>>> =
+    new BehaviorSubject<RemoteData<PaginatedList<Collection>>>({} as any);
 
   subscriptions: Subscription[] = [];
 
@@ -93,7 +99,10 @@ export class CommunityPageSubCollectionListComponent implements OnInit, OnDestro
       this.config.pageSize = this.route.snapshot.queryParams[this.pageId + '.rpp'] ?? this.config.pageSize;
     }
     this.config.currentPage = this.route.snapshot.queryParams[this.pageId + '.page'] ?? 1;
-    this.sortConfig = new SortOptions('dc.title', SortDirection[this.route.snapshot.queryParams[this.pageId + '.sd']] ?? SortDirection.ASC);
+    this.sortConfig = new SortOptions(
+      'dc.title',
+      SortDirection[this.route.snapshot.queryParams[this.pageId + '.sd']] ?? SortDirection.ASC,
+    );
     this.initPage();
   }
 
@@ -104,22 +113,31 @@ export class CommunityPageSubCollectionListComponent implements OnInit, OnDestro
     const pagination$ = this.paginationService.getCurrentPagination(this.config.id, this.config);
     const sort$ = this.paginationService.getCurrentSort(this.config.id, this.sortConfig);
 
-    this.subscriptions.push(observableCombineLatest([pagination$, sort$]).pipe(
-      switchMap(([currentPagination, currentSort]) => {
-        return this.cds.findByParent(this.community.id, {
-          currentPage: currentPagination.currentPage,
-          elementsPerPage: currentPagination.pageSize,
-          sort: { field: currentSort.field, direction: currentSort.direction },
-        });
+    this.subscriptions.push(
+      observableCombineLatest([pagination$, sort$]).pipe(
+        switchMap(([currentPagination, currentSort]) => {
+          return this.cds.findByParent(this.community.id, {
+            currentPage: currentPagination.currentPage,
+            elementsPerPage: currentPagination.pageSize,
+            sort: { field: currentSort.field, direction: currentSort.direction },
+          });
+        }),
+        map((results: RemoteData<PaginatedList<Collection>>) => {
+          if (results?.hasSucceeded && results.payload?.page) {
+            results.payload.page = results.payload.page.filter(
+              (collection: Collection) => collection.id !== this.hiddenCollectionUuid,
+            );
+          }
+          return results;
+        }),
+      ).subscribe((results) => {
+        this.subCollectionsRDObs.next(results);
       }),
-    ).subscribe((results) => {
-      this.subCollectionsRDObs.next(results);
-    }));
+    );
   }
 
   ngOnDestroy(): void {
     this.paginationService.clearPagination(this.config?.id);
     this.subscriptions.map((subscription: Subscription) => subscription.unsubscribe());
   }
-
 }
