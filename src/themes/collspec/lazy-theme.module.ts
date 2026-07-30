@@ -27,6 +27,7 @@ import { ItemPageComponent } from './app/item-page/simple/item-page.component';
 import { RootComponent } from './app/root/root.component';
 import { BrowseByComponent } from './app/shared/browse-by/browse-by.component';
 import { SearchResultsComponent } from './app/shared/search/search-results/search-results.component';
+import { CommunityPageSubCollectionListComponent } from './app/community-page/sections/sub-com-col-section/sub-collection-list/community-page-sub-collection-list.component';
 // collspec modules
 
 import { VedetteUUIDComponent } from './app/vedette/vedette-uuid/vedette-uuid.component';
@@ -46,7 +47,8 @@ const DECLARATIONS = [
   SearchResultsComponent,
   DsoEditMetadataComponent,
   BrowseByComponent,
-  SearchResultsSkeletonComponent
+  SearchResultsSkeletonComponent,
+  CommunityPageSubCollectionListComponent,
 ];
 
 @NgModule({
