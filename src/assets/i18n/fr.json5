@@ -7543,4 +7543,20 @@
   "sorting.dcterms.created.DESC": "Date de création (décroissante)",
 
   "collspec.menu.iiif": "Guide IIIF",
+
+  "collspec.menu.mirador": "Guide Mirador",
+
+  "info.mirador-guide.title": "Guide Mirador",
+
+  "info.mirador-guide": "Guide Mirador",
+
+  "collspec.menu.guides": "Guides et tutoriels",
+
+  "info.diame.title": "Collection d'images d'aménagement",
+
+  "info.diame.description": "Descriprion",
+
+  "info.diame.button": "Explorer la collection",
+
+  "info.diame.lead": "Collection d'images d'aménagement",
 }

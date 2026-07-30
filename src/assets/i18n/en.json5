@@ -7529,4 +7529,20 @@
   "sorting.dcterms.created.DESC": "Date Created Descending",
 
   "collspec.menu.iiif": "IIIF Guide",
+
+  "collspec.menu.mirador": "Mirador Guide",
+
+  "info.mirador-guide.title": "Mirador Guide",
+
+  "info.mirador-guide": "Mirador Guide",
+
+  "collspec.menu.guides": "Guides & Tutorials",
+
+  "info.diame.title": "Images d'aménagement Collection",
+
+  "info.diame.description": "Descriprion",
+
+  "info.diame.button": "Explore the collection",
+
+  "info.diame.lead": "Images d'aménagement Collection",
 }

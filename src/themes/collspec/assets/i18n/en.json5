@@ -151,6 +151,11 @@
   "search.filters.language.lat": "Latin",
   "search.filters.language.alg": "Algonquian languages",
   
+  "collspec.menu.guides": "Guides & Tutorials",
   "collspec.menu.iiif": "IIIF Guide",
+  "collspec.menu.mirador": "Mirador Guide",
+  
+  "info.mirador-guide.title": "Mirador Guide",
+  "info.mirador-guide": "Mirador Guide",
   
 }
