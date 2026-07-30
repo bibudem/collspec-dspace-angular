@@ -160,6 +160,11 @@
   "search.filters.language.lat": "Latin",
   "search.filters.language.alg": "Langues algonquiennes",
   
+  "collspec.menu.guides": "Guides et tutoriels",
   "collspec.menu.iiif": "Guide IIIF",
+  "collspec.menu.mirador": "Guide Mirador",
+  
+  "info.mirador-guide.title": "Guide Mirador",
+  "info.mirador-guide": "Guide Mirador",
   
 }
