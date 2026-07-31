@@ -1,0 +1,166 @@
+{
+  "collspec.cookies.consent.content-notice.description": "Your personal data is collected and used for the following purposes: <strong>authentication, preferences, consent, and statistics</strong>.<br>For more information, please refer to the <a href=\"https://vie-privee.umontreal.ca/confidentialite\">privacy policy</a>.",
+
+  "collspec.handle.copy": "Copy URL",
+  "collspec.handle.copied": "URL copied!",
+
+  "collspec.menu.ressources": "About",
+  "collspec.menu.parcourir": "Our Collections",
+  "collspec.menu.a-propos": "About",
+  "collspec.menu.fonds-collections": "Our Fonds and Collections",
+  "collspec.menu.guide": "Collections guide",
+  "collspec.menu.contact": "Contact us",
+  "collspec.menu.catalogues": "Catalogues",
+  "collspec.menu.blrcs": "BLRCS",
+
+  "collspec.collections.title": "Our Fonds and Collections",
+  "collspec.collections.intro": "Several collections and fonds have been entrusted to the UdeM libraries over the years. Spanning more than 4,000 years, most documents are listed in Sofia.",
+  "collspec.collections.search": "Search the directory...",
+  "collspec.collections.error": "The fonds and collections directory is not currently available.",
+  "collspec.collections.no-results": "No results found.",
+  "collspec.collections.col-fonds": "Fonds / Collection",
+  "collspec.collections.col-liens": "Links",
+  "collspec.collections.table-title": "Directory of Special Fonds and Collections of the Rare Books and Special Collections Library",
+
+  "repository.title.prefix": "Special Collections :: ",
+
+  "collspec.onglet-fichier": "Document",
+  "collspec.onglet-notice": "Full record",
+  "collspec.item.handle": "Permanent link",
+  "collspec.item.handle-copy": "Copy permanent link",
+  "collspec.item.handle-copied": "Link copied!",
+  "collspec.return": "Back",
+  "collspec.consulter": "View",
+
+  "collspec.ai-titre": "Search using AI",
+  "collspec.ai-explication": "Explanation ...",
+  "collspec.ai-annuler": "Cancel",
+  "collspec.ai-lien": "Get started",
+  "collspec.ai-search-title": "Find similar images with AI",
+  "collspec.ai-search-description": "Explore visually similar items from our collection in a single click",
+  "collspec.ai-charger": "Load more",
+  "collspec.ai-img-selection": "Selected image",
+  "collspec.ai-title-notification": "AI search title",
+  "collspec.ai-content-notification": "Here is a message for the AI search",
+
+  "collspec.page-udem.breadcrumbs": "Read more",
+  "collspec.voir.plus": "Consult",
+  "collspec.ai-search.breadcrumbs": "AI search",
+
+  "collspec.accueil.titre": "Special <br> Collections",
+
+  "collspec.accueil.intro.lead": "Our special collections are filled with unique, old, and rare items, ready to enrich research and teaching, or even become objects of research themselves!",
+  "collspec.accueil.intro.para1": "Browsing the different fonds means discovering the past through our rare and ancient books, artifacts, and image collections — from remarkable pieces to recent digitizations, explore our thematic selection of documents and objects from our fonds.",
+
+  "collspec.accueil.vedette.titre": "Discover our unique pieces",
+
+  "collspec.accueil.vedette.description": "Our special collections are filled with unique, old, and rare items, ready to enrich research and teaching, or even become objects of research themselves!<br>Browsing the different fonds means discovering the past through our rare and ancient books, artifacts, and image collections.From remarkable pieces to recent digitizations, explore our thematic selection of documents and objects from our fonds.",
+
+  "collspec.faq.titre": "FAQ – Your Questions, Answered",
+  "collspec.faq.description": "Quickly find essential information to better navigate our site",
+
+  "collspec.droits.titre": "Copyright and usage",
+  "collspec.droits.description": "Notice regarding the use of digital collection items",
+
+  "collspec.collection.decouvrir": "Explore the collection",
+
+  "collspec.footer.bibliotheque": "Les bibliothèques de l’Université de Montréal",
+  "collspec.footer.emergency": "Emergency 514 343-7771",
+  "collspec.footer.contact.titre": "Contact us",
+  "collspec.footer.contact.clavarder": "Chat with the library team",
+  "collspec.footer.infos.titre": "Information",
+  "collspec.footer.infos.a_propos": "About",
+  "collspec.footer.infos.a_propos.description": "This portal allows you to explore a selection of items from the Special Collections of Les bibliothèques de l’Université de Montréal. These documents, preserved for their historical, academic, or cultural value, are available for consultation and research.",
+  "collspec.footer.liens.confidentialite": "Privacy",
+  "collspec.footer.liens.accord_utilisateur": "Terms of Use",
+  "collspec.footer.copyright": "© Université de Montréal, {{year}}. All rights reserved",
+  "collspec.footer.sofia": "Sofia Catalogue",
+  "collspec.footer.data-base": "A–Z Databases",
+  "collspec.footer.contact.site-bib": "Library website",
+  "collspec.footer.param.confidentiel": "Privacy settings",
+
+
+  "collspec.donate.text": "Donate",
+  "collspec.donate.link": "https://bib.umontreal.ca/nous-soutenir/",
+  "collspec.donate.aria-label": "Make a donation",
+  "collspec.accueil.vedette.error": "No featured items available",
+  "collspec.footer.based_on_dspace": "Application based on <a href='http://www.dspace.org/' target='_blank' class='link-footer'>DSpace</a>, open source software.",
+  
+  "home.search-form.placeholder": "Search in collections ...",
+  "search.search-form.placeholder": "Search in collections ...",
+  
+  "community.page.handle": "Permanent URI for this collection",
+  
+  "browse.comcol.by.type": "By Type",
+  "browse.comcol.by.language": "By Language",
+  "browse.comcol.by.publisher": "By Publisher",
+  "browse.comcol.by.contributor": "Contributor",
+  "browse.comcol.by.date": "Date",
+  "browse.comcol.by.datecreated": "Date Created",
+  "browse.search-form.placeholder": "Search in collections",
+  "browse.metadata.date.bread": "Browse by Date",
+  
+  "dso-selector.set-scope.community.button": "Search all Special Collections",
+  "menu.section.browse_global": "All Special Collections",
+  "nav.browse.header": "All Special Collections",
+  "search.form.scope.all": "All Special Collections",
+  "dso-selector.set-scope.community.input-header": "Search for a collection",
+  "dso-selector.placeholder": "Search for a collection",
+  
+  "search.filters.filter.language.head": "Language",
+  "search.filters.filter.dateIssued.head": "Date Published",
+  "search.filters.filter.dateCreated.head": "Date Created",
+  
+  "search.filters.applied.f.dateCreated.max": "End date",
+  "search.filters.applied.f.dateCreated.min": "Start date",
+  
+  "search.filters.filter.dateCreated.max.placeholder": "Maximum Date",
+  "search.filters.filter.dateCreated.max.label": "End",
+  "search.filters.filter.dateCreated.min.placeholder": "Minimum Date",
+  "search.filters.filter.dateCreated.min.label": "Start",
+  
+  "sorting.dcterms.created.ASC": "Date Created Ascending",
+  "sorting.dcterms.created.DESC": "Date Created Descending",
+  "sorting.dc.date.issued.DESC": "Date Published Descending",
+  
+  "community.subcoms-cols.breadcrumbs": "Collections and sub-collections",
+  "community.all-lists.head": "Collections and sub-collections",
+  "home.top-level-communities.head": "Collections in Special Collections",
+  "home.top-level-communities.help": "Select a collection to browse its sub-collections.",
+  "loading.community": "Loading collection...",
+  "loading.sub-communities": "Loading sub-collections...",
+  "loading.top-level-communities": "Loading top-level collections....",
+  "menu.section.browse_community": "This collection",
+  "menu.section.browse_global_communities_and_collections": "Collections and sub-collections",
+  "subscriptions.community": "Subscriptions for collections",
+  "community.sub-collection-list.head": "Collections in this collection",
+  "community.sub-community-list.head": "Sub-collections in this collection",
+ 
+  "collspec.page-udem": "About",
+  
+  "search.filters.language.fra": "French",
+  "search.filters.language.fre": "French",
+  "search.filters.language.frm": "Middle French",
+  "search.filters.language.fro": "Old French",
+  "search.filters.language.eng": "English",
+  "search.filters.language.enm": "Middle English",
+  "search.filters.language.deu": "German",
+  "search.filters.language.spa": "Spanish",
+  "search.filters.language.ita": "Italian",
+  "search.filters.language.por": "Portuguese",
+  "search.filters.language.lat": "Latin",
+  "search.filters.language.alg": "Algonquian languages",
+  
+  "collspec.menu.guides": "Guides & Tutorials",
+  "collspec.menu.iiif": "IIIF Guide",
+  "collspec.menu.mirador": "Mirador Guide",
+  
+  "info.mirador-guide.title": "Mirador Guide",
+  "info.mirador-guide": "Mirador Guide",
+  
+  "info.diame.title": "Images d'aménagement Collection",
+  "info.diame.lead": "Images d'aménagement Collection",
+  "info.diame.description": "Descriprion",
+  "info.diame.button": "Explore the collection",
+  
+}

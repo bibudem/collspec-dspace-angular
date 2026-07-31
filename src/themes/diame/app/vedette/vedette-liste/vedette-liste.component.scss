@@ -1,0 +1,429 @@
+/* -------------------------------------------------------
+   Variables pour le thème collspec
+------------------------------------------------------- */
+@import 'src/themes/collspec/styles/_variables.scss';
+
+/* -------------------------------------------------------
+   Composant principal : Carrousel vedette
+------------------------------------------------------- */
+
+.vedette-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-left: 0;
+  padding-left: 0;
+  margin-bottom: 0.5rem;
+  padding-top: 4rem;
+  padding-left: 7rem;
+}
+
+.bib-title {
+  font-weight: 500 !important;
+  font-family: $font-family-serif;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: 'liga' off, 'clig' off;
+  margin-bottom: 10px;
+  color: $darkblue !important;
+  text-align: left;
+  margin-top: 0;
+  margin-left: 10px;
+  padding-left: 0;
+  width: auto;
+
+  &:hover {
+    color: white;
+  }
+}
+
+p {
+  text-align: left;
+  margin-left: 8%;
+  padding-left: 5rem;
+  padding-right: 15%;
+  margin-bottom: 1rem;
+  color: $colltitre;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: $font-family-sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 150%;
+}
+
+.slider {
+  &__section {
+    margin-inline: auto;
+    padding-block: 2.5rem;
+    margin-left: 5.5rem;
+  }
+
+  &__wrapper {
+    max-width: 100vw;
+    margin-inline: auto;
+    position: relative;
+  }
+
+  &__column {
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__track {
+    overflow: hidden;
+    width: 100%;
+    margin-left: 8%;
+    padding-left: 15px;
+  }
+
+  &__list {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    will-change: transform;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    gap: 1rem;
+  }
+
+  &__slide {
+    flex: 0 0 calc(100% / 1.5);
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-left: 0;
+
+    img {
+      width: 100%;
+      height: 460px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover img {
+      transform: scale(1.03);
+    }
+  }
+
+  &__caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 100%);
+    color: white;
+    padding: 1.5rem 1rem;
+
+    h4 {
+      margin: 0;
+      margin-left: 1.5rem;
+      font-size: 1.5rem;
+      font-weight: 500;
+      font-family: $font-family-serif;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: white;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    a {
+      color: white !important;
+    }
+  }
+
+  &__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(11, 17, 58, 0.3);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+
+    i {
+      font-size: 1.2rem;
+      line-height: 1;
+      display: flex;
+    }
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    &--prev { left: 0; }
+    &--next { right: 0; }
+  }
+
+  &__indicators {
+    position: absolute;
+    bottom: 0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    z-index: 20;
+  }
+
+  &__indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.25s ease;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: -8px;
+    }
+
+    &.active {
+      background: #ffffff;
+      transform: scale(1.4);
+    }
+
+    &:hover:not(.active) {
+      background: rgba(255, 255, 255, 0.8);
+    }
+  }
+}
+
+// ── Grand écran (≤ 1200px) ───────────────────────────────
+@media (max-width: 1200px) {
+  .slider {
+    &__section {
+      margin-left: 2rem;
+    }
+  }
+}
+
+// ── Tablette (≤ 992px) ───────────────────────────────────
+@media (max-width: 992px) {
+  .vedette-header {
+    padding-top: 2rem;
+  }
+
+  .slider {
+    &__section {
+      padding-block: 1rem;
+      margin-left: 0;
+    }
+
+    &__track {
+      margin-left: 0;
+      padding-left: 0;
+    }
+
+    &__column {
+      padding: 0 2.5rem;
+    }
+
+    &__slide {
+      flex: 0 0 100%;
+
+      img {
+        height: 360px;
+      }
+    }
+
+    &__caption {
+      padding: 1rem 0.8rem;
+
+      h4 {
+        margin-left: 0;
+        font-size: 1.125rem;
+      }
+    }
+
+    &__arrow {
+      &--prev { left: 0.25rem; }
+      &--next { right: 0.25rem; }
+    }
+  }
+
+  .vedette-header {
+    margin-left: 0;
+    padding-left: 0.5rem;
+  }
+
+  p {
+    margin-left: 0;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    font-size: 15px;
+  }
+}
+
+// ── Mobile paysage (≤ 768px) ─────────────────────────────
+@media (max-width: 768px) {
+  .vedette-header {
+    padding-top: 1.25rem;
+  }
+
+  .slider {
+    &__section {
+      padding-block: 0.5rem;
+      margin-left: 0;
+    }
+
+    &__column {
+      padding: 0 2rem;
+    }
+
+    &__slide {
+      flex: 0 0 100%;
+
+      img {
+        height: 270px;
+      }
+    }
+
+    &__caption {
+      padding: 0.8rem 0.6rem;
+
+      h4 {
+        margin-left: 0;
+        font-size: 1rem;
+      }
+    }
+
+    &__arrow {
+      width: 30px;
+      height: 30px;
+
+      i {
+        font-size: 0.9rem;
+      }
+
+      &--prev { left: 0.2rem; }
+      &--next { right: 0.2rem; }
+    }
+  }
+
+  .vedette-header {
+    margin-left: 0;
+    padding-left: 0.5rem;
+  }
+
+  p {
+    margin-left: 0;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    font-size: 15px;
+  }
+}
+
+// ── Mobile portrait (≤ 576px) ────────────────────────────
+@media (max-width: 576px) {
+  .vedette-header {
+    padding-top: 0.75rem;
+  }
+
+  .slider {
+    &__column {
+      padding: 0 1.5rem;
+    }
+
+    &__slide {
+      flex: 0 0 100%;
+
+      img {
+        height: 220px;
+      }
+    }
+
+    &__list {
+      gap: 0.5rem;
+    }
+
+    &__caption {
+      padding: 0.6rem 0.5rem;
+
+      h4 {
+        font-size: 0.8rem;
+      }
+    }
+  }
+
+  .vedette-header {
+    margin-left: 0;
+    padding-left: 0.5rem;
+
+    i { font-size: 1.8rem; }
+  }
+
+  .bib-title {
+    font-size: 2rem;
+  }
+
+  p {
+    margin-left: 0;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    font-size: 1rem;
+  }
+}
+
+// ── Très petit écran (≤ 480px) ───────────────────────────
+@media (max-width: 480px) {
+  .slider {
+    &__column {
+      padding: 0 1rem;
+    }
+
+    &__slide img {
+      height: 180px;
+    }
+
+    &__caption h4 {
+      font-size: 0.75rem;
+    }
+
+    &__arrow {
+      width: 26px;
+      height: 26px;
+
+      i {
+        font-size: 0.75rem;
+      }
+    }
+
+    &__indicator {
+      width: 7px;
+      height: 7px;
+    }
+  }
+
+  .bib-title {
+    font-size: 2rem;
+  }
+}
+
+.loading-indicator,
+.error-message,
+.no-images-message {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}
+
+.carousel-bib-home{
+  margin-bottom: 3.5rem;
+}

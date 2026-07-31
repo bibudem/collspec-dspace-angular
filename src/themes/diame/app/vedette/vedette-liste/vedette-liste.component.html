@@ -1,0 +1,61 @@
+<div class="carousel-bib-home" id="nos-collections">
+  <div class="container-fluid font-blue">
+    <!-- Titre et description de la section vedette -->
+      <div class="carousel-bib-title">
+        <div class="vedette-header">
+          <h2 class="fw-bold bib-title">{{ 'collspec.accueil.vedette.titre' | translate }}</h2>
+        </div>
+        <p [innerHTML]="'collspec.accueil.vedette.description' | translate"></p>
+      </div>
+    @if (loading) {
+    <!-- Affichage du composant de chargement -->
+    <ds-loading ></ds-loading>
+    }  @else {
+    <section class="slider__section">
+      @if (hasSlidesToDisplay) {
+      <div class="slider__wrapper" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
+        <div class="slider__column">
+          <div class="slider__track">
+            <ul class="slider__list" #track>
+              <!-- Boucle sur chaque diapositive dupliquée -->
+              @for (slide of displaySlides; track trackByFn($index, slide)) {
+              <li class="slider__slide">
+                <!-- Lien vers la fiche de l'item vedette -->
+                <a [routerLink]="['/items', slide.id]">
+                  <!-- Image de l'item vedette -->
+                  <img [src]="slide.imageUrl" [alt]="slide.title" loading="lazy" />
+                  <div class="slider__caption">
+                    <h4>{{ slide.title }}</h4>
+                  </div>
+                </a>
+              </li>
+              }
+            </ul>
+          </div>
+          <!-- Flèches de navigation du carrousel -->
+          <button class="slider__arrow slider__arrow--prev" (click)="prevSlide()"><i class="fas fa-chevron-left"></i></button>
+          <button class="slider__arrow slider__arrow--next" (click)="nextSlide()"><i class="fas fa-chevron-right"></i></button>
+
+          @if (slides.length > 1) {
+          <div class="slider__indicators">
+            @for (slide of slides; track slide.id) {
+            <button
+              class="slider__indicator"
+              [class.active]="activeIndicator === $index"
+              (click)="goToSlide($index)"
+              [attr.aria-label]="'Slide ' + ($index + 1)">
+            </button>
+            }
+          </div>
+          }
+        </div>
+      </div>
+      } @else {
+      <!-- Message affiché s'il n'y a aucune diapositive -->
+      <div class="no-images-message">{{ 'collspec.accueil.vedette.error' | translate }}</div>
+      }
+
+    </section>
+    }
+  </div>
+</div>

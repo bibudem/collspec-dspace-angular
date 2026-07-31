@@ -317,14 +317,49 @@ themes:
   # - name: BASE_THEME_NAME
   #
 
-  - name: collspec
-    #extends: dspace
+  - name: diame
+    regex: '^/diame$'
     headTags:
       - tagName: link
         attributes:
           rel: icon
-          href: assets/collspec/images/favicons/favicon.ico
+          href: assets/diame/images/favicons/favicon.ico
           sizes: any
+      - tagName: link
+        attributes:
+          rel: icon
+          href: assets/diame/images/favicons/favicon.svg
+          type: image/svg+xml
+      - tagName: link
+        attributes:
+          rel: apple-touch-icon
+          href: assets/diame/images/favicons/apple-touch-icon.png
+      - tagName: link
+        attributes:
+          rel: manifest
+          href: assets/diame/images/favicons/manifest.webmanifest
+  
+  - name: diame
+    uuid: 4dd0bfb5-2283-4414-a4e2-5e493dbdf561
+    headTags:
+      - tagName: link
+        attributes:
+          rel: icon
+          href: assets/diame/images/favicons/favicon.ico
+          sizes: any
+      - tagName: link
+        attributes:
+          rel: icon
+          href: assets/diame/images/favicons/favicon.svg
+          type: image/svg+xml
+      - tagName: link
+        attributes:
+          rel: apple-touch-icon
+          href: assets/diame/images/favicons/apple-touch-icon.png
+      - tagName: link
+        attributes:
+          rel: manifest
+          href: assets/diame/images/favicons/manifest.webmanifest
 
   - name: collspec
     headTags:
