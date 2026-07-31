@@ -1,0 +1,54 @@
+<section class="slider__section">
+  @if (hasSlidesToDisplay) {
+  <div class="slider__wrapper"
+       [class.slider--few]="isFewSlides"
+       (mouseenter)="onMouseEnter()"
+       (mouseleave)="onMouseLeave()">
+
+    <div class="slider__column">
+      <div class="slider__track" #track>
+        <ul class="slider__list">
+          @for (slide of slides; track trackByFn($index, slide)) {
+          <li class="slider__slide">
+            <a [routerLink]="['/items', slide.id]">
+              <img [src]="slide.imageUrl" [alt]="slide.title" loading="lazy">
+              <div class="slider__overlay"></div>
+              <div class="slider__caption">
+                <h4>{{ slide.title }}</h4>
+              </div>
+            </a>
+          </li>
+          }
+        </ul>
+      </div>
+
+      @if (showArrows) {
+      <button
+        class="slider__arrow slider__arrow--prev"
+        (click)="prevSlide()"
+        [disabled]="isPrevDisabled">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+
+      <button
+        class="slider__arrow slider__arrow--next"
+        (click)="nextSlide()"
+        [disabled]="isNextDisabled">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+
+      <div class="slider__indicators">
+        @for (slide of slides; track trackByFn($index, slide)) {
+        <button
+          class="slider__indicator"
+          [class.active]="currentIndex === $index"
+          (click)="goToSlide($index)"
+          [attr.aria-label]="'Slide ' + ($index + 1)">
+        </button>
+        }
+      </div>
+      }
+    </div>
+  </div>
+  }
+</section>

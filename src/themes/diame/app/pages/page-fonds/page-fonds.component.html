@@ -1,0 +1,151 @@
+<div class="container">
+  <div class="collections-page">
+
+    <div class="collections-intro">
+      <h1>{{ 'collspec.collections.title' | translate }}</h1>
+    </div>
+
+    <section class="collections-section">
+      <p class="bib-description">{{ 'collspec.collections.intro' | translate }}</p>
+    </section>
+
+    @if (loading) {
+      <div class="collections-loading">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Chargement...</span>
+        </div>
+      </div>
+    }
+
+    @if (error) {
+      <div class="alert alert-warning mt-4">
+        {{ 'collspec.collections.error' | translate }}
+      </div>
+    }
+
+    @if (!loading && !error && rows.length > 0) {
+      <section class="collections-section">
+
+        <h3 class="mb-3">{{ 'collspec.collections.table-title' | translate }}</h3>
+
+        <!-- Barre de recherche + filtre période -->
+        <div class="collections-toolbar">
+          <input
+            type="search"
+            class="form-control collections-search-input"
+            [attr.aria-label]="'collspec.collections.search' | translate"
+            [placeholder]="'collspec.collections.search' | translate"
+            (input)="filter($any($event.target).value)"
+          />
+
+          @if (allPeriods.length > 0) {
+            <div class="collections-period-select-wrap">
+              <label class="collections-period-select-label" for="collections-period-filter">
+                {{ 'collspec.collections.filter-period' | translate }}
+              </label>
+              <select
+                id="collections-period-filter"
+                class="form-select collections-period-select"
+                [class.is-active]="selectedPeriod"
+                (change)="setPeriodFilter($any($event.target).value)"
+              >
+                <option value="">{{ 'collspec.collections.filter-period-all' | translate }}</option>
+                @for (p of allPeriods; track p) {
+                  <option [value]="p" [selected]="selectedPeriod === p">{{ p }}</option>
+                }
+              </select>
+            </div>
+          }
+
+          <span class="collections-count">{{ filteredRows.length }}&thinsp;/&thinsp;{{ rows.length }}</span>
+        </div>
+
+        <!-- Tableau (sans scroll horizontal) -->
+        <div class="collections-table-wrapper mt-3">
+          <table class="collections-table">
+            <thead>
+              <tr>
+                @for (h of headers; track h) {
+                  <th
+                    scope="col"
+                    class="collections-th"
+                    [class.collections-th--sortable]="isSortable(h)"
+                    [class.collections-th--sorted]="sortColumn === h"
+                    [class.collections-th--first]="$first"
+                    [class.collections-th--col-sm]="h === 'Catégorie'"
+                    [class.collections-th--period]="isPeriodCol(h)"
+                    (click)="sortBy(h)"
+                  >
+                    <span class="collections-th-inner">
+                      <span class="collections-th-label">{{ h }}</span>
+                      @if (isSortable(h)) {
+                        <span class="collections-sort-icon" aria-hidden="true">
+                          {{ sortColumn === h ? (sortDir === 'asc' ? '▲' : '▼') : '⇅' }}
+                        </span>
+                      }
+                    </span>
+                  </th>
+                }
+              </tr>
+            </thead>
+            <tbody>
+              @for (row of filteredRows; track $index) {
+                <tr class="collections-row">
+                  @for (h of headers; track h) {
+                    <td
+                      class="collections-td"
+                      [class.collections-td--first]="$first"
+                      [class.collections-td--center]="!$first && !isUrl(row[h]) && !isPeriodCol(h)"
+                      [class.collections-td--col-sm]="h === 'Catégorie'"
+                      [class.collections-td--period]="isPeriodCol(h)"
+                    >
+                      @if (isPeriodCol(h)) {
+                        @let activePeriods = getActivePeriods(row);
+                        @if (activePeriods.length > 0) {
+                          <ul class="collections-period-list">
+                            @for (p of activePeriods; track p) {
+                              <li class="collections-period-tag">{{ p }}</li>
+                            }
+                          </ul>
+                        } @else {
+                          <span class="collections-dash">—</span>
+                        }
+                      } @else if (isUrl(row[h])) {
+                        @if (isInternalLink(h)) {
+                          <a [href]="row[h]"
+                             class="btn btn-darkblue btn-sm collections-link">
+                            {{ 'collspec.voir.plus' | translate }}
+                          </a>
+                        } @else {
+                          <a [href]="row[h]" target="_blank" rel="noopener"
+                             class="btn btn-darkblue btn-sm collections-link">
+                            {{ 'collspec.voir.plus' | translate }}
+                          </a>
+                        }
+                      } @else if (isPresence(row[h])) {
+                        <span class="collections-check" aria-label="Oui">✓</span>
+                      } @else if (isAbsent(row[h])) {
+                        <span class="collections-dash">—</span>
+                      } @else {
+                        {{ row[h] }}
+                      }
+                    </td>
+                  }
+                </tr>
+              }
+              @if (filteredRows.length === 0) {
+                <tr>
+                  <td [attr.colspan]="headers.length" class="text-center py-4 collections-no-results">
+                    {{ 'collspec.collections.no-results' | translate }}
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+
+      </section>
+    }
+
+  </div>
+</div>

@@ -1,0 +1,310 @@
+<div class="iiif-guide-page">
+
+  <!-- ================================================= -->
+  <!-- INTRODUCTION -->
+  <!-- ================================================= -->
+
+  <div class="iiif-intro">
+
+    <h1>
+      Comprendre IIIF et utiliser les ressources des Collections spéciales
+    </h1>
+
+    <p class="bib-description">
+      Les Collections spéciales utilisent le
+      <strong>International Image Interoperability Framework (IIIF)</strong>,
+      un ensemble de normes ouvertes permettant de diffuser des documents
+      numériques en haute résolution sur le Web. Grâce à IIIF, il est possible
+      de consulter des images patrimoniales avec une excellente qualité,
+      d'accéder rapidement aux différentes pages d'un document et d'utiliser
+      une grande variété de visionneuses et d'outils compatibles.
+    </p>
+
+    <p class="bib-description">
+      Ce guide présente les principaux concepts de IIIF, explique comment
+      trouver un manifeste IIIF dans les Collections spéciales et montre
+      comment réutiliser ces ressources dans d'autres applications compatibles.
+      Que vous soyez étudiant, chercheur, enseignant ou développeur,
+      IIIF offre de nombreuses possibilités pour explorer et exploiter les
+      collections numériques.
+    </p>
+
+  </div>
+
+
+
+  <!-- ================================================= -->
+  <!-- TABLE DES MATIERES -->
+  <!-- ================================================= -->
+
+  <section class="iiif-section iiif-toc">
+
+    <h2 class="h2-bib-titre">
+      Guide rapide
+    </h2>
+
+    <ul class="bib-description">
+
+      <li>
+        <a href="#what-is-iiif">
+          Qu'est-ce que IIIF ?
+        </a>
+      </li>
+
+      <li>
+        <a href="#advantages">
+          Pourquoi utiliser IIIF ?
+        </a>
+      </li>
+
+      <li>
+        <a href="#manifest">
+          Trouver un manifeste IIIF
+        </a>
+      </li>
+
+      <li>
+        <a href="#viewers">
+          Utiliser un manifeste dans une visionneuse
+        </a>
+      </li>
+
+      <li>
+        <a href="#tools">
+          Outils compatibles IIIF
+        </a>
+      </li>
+
+      <li>
+        <a href="#developers">
+          Informations techniques
+        </a>
+      </li>
+
+      <li>
+        <a href="#faq">
+          Foire aux questions
+        </a>
+      </li>
+
+    </ul>
+
+  </section>
+
+
+
+  <!-- ================================================= -->
+  <!-- QU'EST-CE QUE IIIF -->
+  <!-- ================================================= -->
+
+  <section
+      id="what-is-iiif"
+      class="iiif-section">
+
+    <h2 class="h2-bib-titre">
+      Qu'est-ce que IIIF ?
+    </h2>
+
+    <p class="bib-description">
+      Le <strong>International Image Interoperability Framework (IIIF)</strong>
+      est un ensemble de normes ouvertes permettant aux bibliothèques,
+      archives, musées et autres institutions patrimoniales de diffuser
+      leurs collections numériques de façon interopérable.
+    </p>
+
+    <p class="bib-description">
+      Contrairement à une simple image publiée sur un site Web, une ressource
+      IIIF peut être consultée dans de nombreuses visionneuses compatibles,
+      comparée avec des documents provenant d'autres institutions et intégrée
+      dans différents outils de recherche ou d'enseignement.
+    </p>
+
+    <p class="bib-description">
+      Aujourd'hui, IIIF est utilisé par des milliers d'institutions dans le
+      monde afin de faciliter le partage et la consultation de leurs
+      collections numériques.
+    </p>
+
+
+
+    <div class="iiif-video-placeholder">
+
+      <h3 class="h3-bib-soustitre">
+        Introduction vidéo à IIIF
+      </h3>
+
+      <!-- Ajouter une vidéo d'introduction -->
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ================================================= -->
+  <!-- POURQUOI IIIF -->
+  <!-- ================================================= -->
+
+  <section
+      id="advantages"
+      class="iiif-section">
+
+    <h2 class="h2-bib-titre">
+      Pourquoi utiliser IIIF ?
+    </h2>
+
+    <p class="bib-description">
+      IIIF ne constitue pas seulement une technologie destinée aux
+      développeurs. Il offre également plusieurs avantages concrets pour
+      la consultation et l'étude des documents patrimoniaux.
+    </p>
+
+
+    <h3 class="h3-bib-soustitre">
+      Images en haute résolution
+    </h3>
+
+    <p class="bib-description">
+      Les images sont chargées progressivement selon le niveau de zoom.
+      Vous pouvez ainsi examiner des détails très fins sans devoir télécharger
+      un fichier volumineux.
+    </p>
+
+
+    <h3 class="h3-bib-soustitre">
+      Consultation rapide
+    </h3>
+
+    <p class="bib-description">
+      Seules les parties de l'image nécessaires à l'affichage sont
+      transférées vers votre navigateur, ce qui améliore la vitesse
+      d'affichage même pour des documents de très grande taille.
+    </p>
+
+
+    <h3 class="h3-bib-soustitre">
+      Interopérabilité
+    </h3>
+
+    <p class="bib-description">
+      Un même document peut être ouvert dans différentes visionneuses
+      compatibles IIIF, sans dépendre d'une plateforme particulière.
+    </p>
+
+
+    <h3 class="h3-bib-soustitre">
+      Comparaison de documents
+    </h3>
+
+    <p class="bib-description">
+      IIIF permet d'afficher simultanément plusieurs documents provenant
+      de différentes bibliothèques afin de comparer des éditions,
+      des manuscrits ou des illustrations.
+    </p>
+
+
+    <h3 class="h3-bib-soustitre">
+      Recherche et enseignement
+    </h3>
+
+    <p class="bib-description">
+      Les ressources IIIF peuvent être intégrées dans des plateformes
+      pédagogiques, des expositions virtuelles, des publications numériques
+      et des projets de recherche.
+    </p>
+
+  </section>
+
+
+
+  <!-- ================================================= -->
+  <!-- MANIFESTE -->
+  <!-- ================================================= -->
+
+  <section
+      id="manifest"
+      class="iiif-section">
+
+    <h2 class="h2-bib-titre">
+      Trouver un manifeste IIIF
+    </h2>
+
+    <p class="bib-description">
+      Chaque document compatible IIIF possède un
+      <strong>manifeste</strong>.
+      Il s'agit d'un fichier JSON décrivant la structure complète du document :
+      les pages, les images, les métadonnées ainsi que les différentes
+      ressources associées.
+    </p>
+
+    <p class="bib-description">
+      Le manifeste est utilisé par les visionneuses compatibles IIIF pour
+      afficher correctement le document.
+      Vous n'avez pas besoin de comprendre son contenu pour l'utiliser :
+      il suffit d'en copier l'adresse Web.
+    </p>
+
+
+
+    <h3 class="h3-bib-soustitre">
+      Étape 1 — Repérer le logo IIIF
+    </h3>
+
+    <p class="bib-description">
+      Sur la page descriptive d'un document des Collections spéciales,
+      recherchez le logo ou le lien IIIF.
+      Celui-ci permet d'accéder au manifeste du document.
+    </p>
+
+
+    <div class="iiif-image-placeholder">
+
+      <!-- Capture écran :
+           emplacement du logo IIIF -->
+
+    </div>
+
+
+
+    <h3 class="h3-bib-soustitre">
+      Étape 2 — Ouvrir le manifeste
+    </h3>
+
+    <p class="bib-description">
+      En cliquant sur le lien IIIF, votre navigateur ouvre un document
+      JSON contenant le manifeste.
+      Bien que ce contenu puisse sembler technique, il constitue simplement
+      une description normalisée du document numérique.
+    </p>
+
+
+    <div class="iiif-image-placeholder">
+
+      <!-- Capture écran :
+           manifeste JSON -->
+
+    </div>
+
+
+
+    <h3 class="h3-bib-soustitre">
+      Étape 3 — Copier l'adresse du manifeste
+    </h3>
+
+    <p class="bib-description">
+      Copiez l'adresse affichée dans la barre d'adresse de votre navigateur.
+      Cette URL pourra ensuite être utilisée dans une visionneuse IIIF ou
+      dans différents outils compatibles.
+    </p>
+
+
+
+    <h3 class="h3-bib-soustitre">
+      Exemple d'adresse de manifeste
+    </h3>
+
+    <pre>{{ manifestExample }}</pre>
+
+  </section>
+
+  <!-- Suite : Utiliser un manifeste dans une visionneuse -->
