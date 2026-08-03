@@ -94,6 +94,7 @@ const plugins = [
   HideMetadataPlugin,
   canvasLinkPlugin,
   downloadDialogPlugin,
+  textOverlayPlugin,
   
 ];
 
@@ -102,7 +103,6 @@ if (notMobile) {
     miradorImageToolsPlugin,
     //ocrHelperPlugin,
     annotationPlugins,
-    textOverlayPlugin,
 	imageCropperPlugin,
   );
 }
