@@ -46,6 +46,7 @@ import { provideSubmissionState } from './submission/provide-submission-state';
 import { SUGGESTION_MODULE_PATH } from './suggestions-page/suggestions-page-routing-paths';
 import {PagesComponent} from "../themes/collspec/app/pages/pages.component";
 import {i18nBreadcrumbResolver} from "./core/breadcrumbs/i18n-breadcrumb.resolver";
+import { DiameLandingComponent } from '../themes/diame/app/diame-landing/diame-landing.component';
 
 export const APP_ROUTES: Route[] = [
   { path: INTERNAL_SERVER_ERROR, component: ThemedPageInternalServerErrorComponent },
@@ -298,6 +299,13 @@ export const APP_ROUTES: Route[] = [
         loadChildren: () => import('./external-login-email-confirmation-page/external-login-email-confirmation-page-routes')
           .then((m) => m.ROUTES),
         canActivate: [notAuthenticatedGuard],
+      },
+	  {
+		path: 'diame',
+		component: DiameLandingComponent,
+		data: {
+	    title: 'info.diame.title'
+		}
       },
       { path: '**', pathMatch: 'full', component: ThemedPageNotFoundComponent },
     ],
