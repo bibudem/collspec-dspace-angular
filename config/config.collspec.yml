@@ -317,7 +317,7 @@ themes:
   # - name: BASE_THEME_NAME
   #
 
-  - name: diame
+  - name: 'diame'
     regex: '^/diame$'
     headTags:
       - tagName: link
@@ -339,8 +339,8 @@ themes:
           rel: manifest
           href: assets/diame/images/favicons/manifest.webmanifest
   
-  - name: diame
-    uuid: 463625e1-602d-4844-a94f-5df83c681054
+  - name: 'diame'
+    uuid: '463625e1-602d-4844-a94f-5df83c681054'
     headTags:
       - tagName: link
         attributes:
