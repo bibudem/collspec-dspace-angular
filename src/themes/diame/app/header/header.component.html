@@ -31,47 +31,7 @@
         [attr.aria-label]="'nav.main.description' | translate"
       >
         <ul class="navbar-nav mr-auto menu-collspec">
-          <!-- Guide IIIF tab, BESIDE the dropdown, not inside it -->
-          <!-- New dropdown BESIDE Nos ressources -->
-		<li class="nav-item dropdown dropdown-hover">
-		  <a
-			class="ds-menu-item dropdown-toggle-custom"
-			role="button"
-			aria-haspopup="true"
-			aria-expanded="false"
-			tabindex="0"
-		  >
-			{{ 'collspec.menu.guides' | translate }}
-			<span
-			  class="menu-caret"
-			  aria-hidden="true"
-			>
-			  &#9660;
-			</span>
-		  </a>
-
-		  <ul class="dropdown-menu-custom" role="menu">
-			<li role="none">
-			  <a
-				role="menuitem"
-				class="dropdown-item-custom"
-				href="/info/iiif"
-			  >
-				{{ 'collspec.menu.iiif' | translate }}
-			  </a>
-			</li>
-
-			<li role="none">
-			  <a
-				role="menuitem"
-				class="dropdown-item-custom"
-				href="/info/mirador"
-			  >
-				{{ 'collspec.menu.mirador' | translate }}
-			  </a>
-			</li>
-		  </ul>
-		</li>
+          
 
           <!-- Nos ressources / About dropdown -->
           <li class="nav-item dropdown dropdown-hover">
@@ -131,14 +91,6 @@
       id="header-right"
       class="h-100 d-flex flex-row flex-nowrap justify-content-end align-items-center gapx-1 ms-auto"
     >
-      @if ((isMobile$ | async) !== true) {
-        <ds-search-navbar></ds-search-navbar>
-      }
-      <ds-lang-switch></ds-lang-switch>
-      @if (isAuthenticated | async) {
-        <ds-auth-nav-menu></ds-auth-nav-menu>
-      }
-
       <!-- Bouton Donate desktop -->
       <a
         [href]="'collspec.donate.link' | translate"
@@ -219,47 +171,6 @@
               </a>
             </li>
           }
-
-          <!-- TOP-LEVEL: Guide IIIF (mobile), outside the @if block -->
-          <!-- Guide IIIF dropdown mobile -->
-			<li class="nav-item nav-item-browse-toggle">
-			  <button
-				type="button"
-				class="ds-menu-item btn-browse-mobile w-100 text-start d-flex justify-content-between align-items-center"
-				(click)="toggleMobileIiif()"
-				[attr.aria-expanded]="isMobileIiifOpen"
-			  >
-				{{ 'collspec.menu.iiif' | translate }}
-
-				<span
-				  class="menu-caret-mobile"
-				  [class.open]="isMobileIiifOpen"
-				  aria-hidden="true"
-				>
-				  &#9660;
-				</span>
-			  </button>
-			</li>
-
-			@if (isMobileIiifOpen) {
-			  <li class="nav-item nav-item-browse-sub">
-				<a
-				  class="ds-menu-item ds-menu-item-sub"
-				  href="/info/iiif"
-				>
-				  Guide IIIF
-				</a>
-			  </li>
-
-			  <li class="nav-item nav-item-browse-sub">
-				<a
-				  class="ds-menu-item ds-menu-item-sub"
-				  href="/page/iiif-utilisation"
-				>
-				  Utiliser les ressources IIIF
-				</a>
-			  </li>
-			}
 
           <!-- Nous joindre -->
           <li class="nav-item">

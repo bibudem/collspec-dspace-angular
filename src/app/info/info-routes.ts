@@ -20,7 +20,6 @@ import {
 } from './info-routing-paths';
 import { NotifyInfoComponent } from './notify-info/notify-info.component';
 import { ThemedPrivacyComponent } from './privacy/themed-privacy.component';
-import { IiifGuideComponent } from '../../themes/collspec/app/pages/iiif-guide/iiif-guide.component';
 import { IIIF_GUIDE_PATH } from './info-routing-paths';
 
 
@@ -37,16 +36,6 @@ export const ROUTES: Routes = [
     component: AccessibilitySettingsComponent,
     resolve: { breadcrumb: i18nBreadcrumbResolver },
     data: { title: 'info.accessibility-settings.title', breadcrumbKey: 'info.accessibility-settings' },
-  },
-  // >>> NEW IIIF GUIDE ROUTE <<<
-  {
-    path: IIIF_GUIDE_PATH,
-    component: IiifGuideComponent,
-    resolve: { breadcrumb: i18nBreadcrumbResolver },
-    data: {
-      title: 'info.iiif-guide.title',
-      breadcrumbKey: 'info.iiif-guide',
-    },
   },
   environment.info.enableEndUserAgreement ? {
     path: END_USER_AGREEMENT_PATH,
