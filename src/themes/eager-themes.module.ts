@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { EagerThemeModule as DSpaceEagerThemeModule } from './dspace/eager-theme.module';
 // import { EagerThemeModule as CustomEagerThemeModule } from './custom/eager-theme.module';
-import { EagerThemeModule as CalypsoEagerThemeModule } from './collspec/eager-theme.module';
+import { EagerThemeModule as CollspecEagerThemeModule } from './collspec/eager-theme.module';
 import { EagerThemeModule as DiameEagerThemeModule } from './diame/eager-theme.module';
 
 /**
@@ -16,7 +16,7 @@ import { EagerThemeModule as DiameEagerThemeModule } from './diame/eager-theme.m
   imports: [
     DSpaceEagerThemeModule,
     // CustomEagerThemeModule,
-    CalypsoEagerThemeModule,
+    CollspecEagerThemeModule,
 	DiameEagerThemeModule,
   ],
 })
