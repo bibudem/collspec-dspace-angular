@@ -36,7 +36,7 @@ import {FullFileSectionComponent} from "../../../../../../../app/item-page/full/
 /**
  * Component that represents an untyped Item page
  */
-@listableObjectComponent(Item, ViewMode.StandalonePage, Context.Any, 'collspec')
+@listableObjectComponent(Item, ViewMode.StandalonePage, Context.Any, 'diame')
 @Component({
   selector: 'ds-untyped-item',
   styleUrls: ['./untyped-item.component.scss'],
