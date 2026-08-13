@@ -6,6 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { AboutComponent } from "./about/about.component";
 import { CommonModule } from '@angular/common';
 import { PageFondsComponent } from './page-fonds/page-fonds.component';
+import { MiradorGuideComponent } from './mirador-guide/mirador-guide.component';
 
 @Component({
   selector: 'ds-pages',
@@ -18,7 +19,8 @@ import { PageFondsComponent } from './page-fonds/page-fonds.component';
     RouterModule,
     NgbModule,
     AboutComponent,
-    PageFondsComponent
+    PageFondsComponent,
+	MiradorGuideComponent,
   ],
 })
 export class PagesComponent implements OnInit {
@@ -26,6 +28,7 @@ export class PagesComponent implements OnInit {
   private readonly componentMap: { [key: string]: any } = {
     'fonds-collections': PageFondsComponent,
     'a-propos': AboutComponent,
+    'mirador-guide': MiradorGuideComponent,
   };
 
   constructor(

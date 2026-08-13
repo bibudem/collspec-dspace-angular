@@ -616,5 +616,60 @@ resizeObserver.observe(miradorContainer);
     watchForOSD();
   }
 </script>
+<script>
+/* -----------------------------------------------------------------------------
+  NIMA - 2026-08-11 Add Guide Button after Fullscreen in Workspace Control Panel
+-------------------------------------------------------------------------------- */
+function addGuideButton() {
+  // Find the workspace control panel button container
+  const controlPanel = document.querySelector('.mirador-workspace-control-panel .mirador6');
+  if (!controlPanel) {
+    setTimeout(addGuideButton, 500);
+    return;
+  }
+
+  // Check if button already exists
+  if (document.getElementById('guideBtn')) return;
+
+  // Find the div.mirador8 that contains the icon buttons
+  const buttonContainer = controlPanel.querySelector('.mirador8');
+  if (!buttonContainer) return;
+
+  // Create the guide button
+  const guideBtn = document.createElement('button');
+  guideBtn.className = 'MuiButtonBase-root MuiIconButton-root';
+  guideBtn.id = 'guideBtn';
+  guideBtn.type = 'button';
+  guideBtn.setAttribute('aria-label', 'Guide IIIF et Mirador');
+  guideBtn.setAttribute('title', 'Guide IIIF et Mirador');
+  guideBtn.tabIndex = 0;
+
+  // Add the help icon SVG (same style as other buttons)
+  guideBtn.innerHTML = '<span class="MuiIconButton-label"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"></path></svg></span><span class="MuiTouchRipple-root"></span>';
+
+  // Add click handler
+  guideBtn.onclick = function() {
+    window.open('/page/mirador-guide', '_blank');
+  };
+
+  // Find the fullscreen button and insert after it
+  const fullscreenBtn = buttonContainer.querySelector('button[aria-label*="Plein écran"], button[aria-label*="Full screen"]');
+  
+  if (fullscreenBtn && fullscreenBtn.parentNode === buttonContainer) {
+    // Insert after fullscreen button
+    buttonContainer.insertBefore(guideBtn, fullscreenBtn.nextSibling);
+  } else {
+    // Fallback: add to end
+    buttonContainer.appendChild(guideBtn);
+  }
+}
+
+// Run after Mirador loads
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', addGuideButton);
+} else {
+  setTimeout(addGuideButton, 1000);
+}
+</script>
 </body>
 </html>
