@@ -1,0 +1,736 @@
+<div class="mirador-guide">
+
+  <!-- ================================================= -->
+  <!-- INTRODUCTION -->
+  <!-- ================================================= -->
+
+  <div class="iiif-intro">
+
+    <h1>
+      Utiliser Mirador pour consulter les documents numériques des Collections spéciales
+    </h1>
+
+    <p class="bib-description">
+      <strong>Mirador</strong> est une visionneuse IIIF permettant de consulter
+      des documents numériques en haute résolution directement dans un navigateur Web.
+      Elle est particulièrement adaptée aux collections patrimoniales comme les
+      manuscrits, livres anciens, estampes, cartes et documents d'archives.
+    </p>
+
+    <p class="bib-description">
+      Dans les Collections spéciales, Mirador permet d'explorer les documents
+      numérisés, de naviguer entre les pages, d'effectuer des agrandissements
+      précis, de comparer plusieurs documents et, lorsque disponible, d'utiliser
+      les données OCR pour rechercher du texte à l'intérieur des documents.
+    </p>
+
+    <p class="bib-description">
+      Ce guide présente les principales fonctionnalités de Mirador et explique
+      comment utiliser cette visionneuse avec les ressources IIIF des Collections
+      spéciales.
+    </p>
+
+  </div>
+
+  <!-- ================================================= -->
+  <!-- TABLE DES MATIERES -->
+  <!-- ================================================= -->
+
+  <section class="iiif-section iiif-toc">
+
+    <h2 class="h2-bib-titre">
+      Guide rapide
+    </h2>
+
+    <ul class="bib-description">
+
+      <li>
+        <a href="#what-is-iiif">
+          Qu'est-ce que IIIF ?
+        </a>
+      </li>
+
+      <li>
+        <a href="#what-is-mirador">
+          Qu'est-ce que Mirador ?
+        </a>
+      </li>
+
+      <li>
+        <a href="#navigate-item">
+          Comment utiliser Mirador pour naviguer dans un document
+        </a>
+      </li>
+
+      <li>
+        <a href="#use-manifest">
+          Copier et utiliser un manifeste IIIF
+        </a>
+      </li>
+
+      <li>
+        <a href="#search-mirador">
+          Recherche dans Mirador avec surbrillance
+        </a>
+      </li>
+
+      <li>
+        <a href="#ocr-textoverlay">
+          Affichage OCR avec texte en surimpression
+        </a>
+      </li>
+
+    </ul>
+
+  </section>
+
+  <!-- ================================================= -->
+  <!-- QU'EST-CE QUE IIIF -->
+  <!-- ================================================= -->
+
+  <section
+      id="what-is-iiif"
+      class="iiif-section">
+
+    <h2 class="h2-bib-titre">
+      Qu'est-ce que IIIF ?
+    </h2>
+
+    <p class="bib-description">
+      <strong>IIIF</strong> (International Image Interoperability Framework) est
+      un ensemble de standards ouverts développés par et pour les institutions
+      culturelles (bibliothèques, musées, archives) afin de permettre la diffusion
+      d'images de haute qualité sur le Web, l'interopérabilité entre les collections
+      numériques de différentes institutions, la comparaison côte à côte de documents
+      et l'annotation et le partage de recherches.
+    </p>
+
+    <p class="bib-description">
+      Pour en savoir plus, consultez le site officiel :
+      <a href="https://iiif.io" target="_blank" rel="noopener">https://iiif.io</a>.
+    </p>
+
+  </section>
+
+  <!-- ================================================= -->
+  <!-- QU'EST-CE QUE MIRADOR -->
+  <!-- ================================================= -->
+
+  <section
+      id="what-is-mirador"
+      class="iiif-section">
+
+    <h2 class="h2-bib-titre">
+      Qu'est-ce que Mirador ?
+    </h2>
+
+    <p class="bib-description">
+      <strong>Mirador</strong> est une visionneuse IIIF développée pour les
+      bibliothèques, archives, musées et institutions de recherche.
+      Elle utilise les standards IIIF afin d'afficher des documents numériques
+      provenant de différentes sources de façon uniforme.
+    </p>
+
+    <p class="bib-description">
+      Contrairement à une visionneuse traditionnelle liée à une seule plateforme,
+      Mirador peut ouvrir tout manifeste IIIF compatible. Un même document peut
+      donc être consulté dans différentes applications, indépendamment de
+      l'institution qui l'héberge.
+    </p>
+
+    <p class="bib-description">
+      Dans les Collections spéciales, Mirador est intégré directement aux notices
+      des documents numériques afin d'offrir une expérience de consultation
+      adaptée aux documents patrimoniaux.
+    </p>
+
+    <!-- One image block for "What is Mirador" -->
+    <div class="iiif-image-placeholder">
+      <img
+        src="/assets/collspec/images/guides/mirador/mirador-1.png"
+        alt="Aperçu de l'interface Mirador"
+        style="max-width:100%; height:auto; border:1px solid #ddd; border-radius:6px;"
+      />
+    </div>
+
+  </section>
+
+  <!-- ================================================= -->
+  <!-- COMMENT UTILISER MIRADOR POUR NAVIGUER DANS UN DOCUMENT -->
+  <!-- ================================================= -->
+
+  <section
+      id="navigate-item"
+      class="iiif-section">
+
+    <h2 class="h2-bib-titre">
+      Comment utiliser Mirador pour naviguer dans un document
+    </h2>
+
+    <p class="bib-description">
+      Mirador offre plusieurs zones et outils pour explorer un document :
+      le panneau d'information (métadonnées, transcription, voir aussi, autres
+      formats), l'espace de travail Mirador (fenêtres, disposition) et la barre
+      supérieure (titre, plugins).
+    </p>
+
+    <!-- Info pane -->
+    <h3 class="h3-bib-soustitre">
+      Panneau d'information (métadonnées, transcription, voir aussi, autres formats)
+    </h3>
+
+    <p class="bib-description">
+      Le panneau d'information permet d'accéder aux métadonnées descriptives,
+      aux transcriptions, aux liens « Voir aussi » et aux autres formats disponibles
+      pour le document.
+    </p>
+
+    <div id="miradorInfoPaneCarousel"
+         class="carousel slide"
+         data-bs-ride="carousel">
+
+      <!-- Indicators -->
+      <div class="carousel-indicators">
+        <button type="button"
+                data-bs-target="#miradorInfoPaneCarousel"
+                data-bs-slide-to="0"
+                class="active"
+                aria-label="Slide 1">
+        </button>
+        <button type="button"
+                data-bs-target="#miradorInfoPaneCarousel"
+                data-bs-slide-to="1"
+                aria-label="Slide 2">
+        </button>
+      </div>
+
+      <!-- Slides -->
+      <div class="carousel-inner">
+
+        <div class="carousel-item active">
+          <img src="/assets/collspec/images/guides/mirador/mirador-info-closed.png"
+               class="d-block w-100"
+               alt="Panneau d'information : métadonnées">
+          <div class="carousel-caption">
+            <p>Métadonnées descriptives du document.</p>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <img src="/assets/collspec/images/guides/mirador/mirador-info-open.png"
+               class="d-block w-100"
+               alt="Panneau d'information : transcription et voir aussi">
+          <div class="carousel-caption">
+            <p>Transcription, liens « Voir aussi » et autres formats.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Controls -->
+      <button class="carousel-control-prev"
+              type="button"
+              data-bs-target="#miradorInfoPaneCarousel"
+              data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+
+      <button class="carousel-control-next"
+              type="button"
+              data-bs-target="#miradorInfoPaneCarousel"
+              data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+
+    </div>
+
+    <!-- Outer pane (workspace) -->
+    <h3 class="h3-bib-soustitre">
+      Espace de travail Mirador (fenêtres, disposition)
+    </h3>
+
+    <p class="bib-description">
+      L'espace de travail Mirador permet d'organiser plusieurs fenêtres de
+      consultation, de comparer des documents et d'ajuster la disposition
+      selon vos besoins.
+    </p>
+
+    <div id="miradorWorkspaceCarousel"
+         class="carousel slide"
+         data-bs-ride="carousel">
+
+      <!-- Indicators -->
+      <div class="carousel-indicators">
+        <button type="button"
+                data-bs-target="#miradorWorkspaceCarousel"
+                data-bs-slide-to="0"
+                class="active"
+                aria-label="Slide 1">
+        </button>
+        <button type="button"
+                data-bs-target="#miradorWorkspaceCarousel"
+                data-bs-slide-to="1"
+                aria-label="Slide 2">
+        </button>
+      </div>
+
+      <!-- Slides -->
+      <div class="carousel-inner">
+
+        <div class="carousel-item active">
+          <img src="/assets/collspec/images/guides/mirador/mirador-panes.png"
+               class="d-block w-100"
+               alt="Espace de travail Mirador : vue générale">
+          <div class="carousel-caption">
+            <p>Vue générale de l'espace de travail Mirador.</p>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <img src="/assets/collspec/images/guides/mirador/mirador-links.png"
+               class="d-block w-100"
+               alt="Espace de travail Mirador : comparaison de documents">
+          <div class="carousel-caption">
+            <p>Comparaison de plusieurs documents dans l'espace de travail.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Controls -->
+      <button class="carousel-control-prev"
+              type="button"
+              data-bs-target="#miradorWorkspaceCarousel"
+              data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+
+      <button class="carousel-control-next"
+              type="button"
+              data-bs-target="#miradorWorkspaceCarousel"
+              data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+
+    </div>
+
+    <!-- Top bar -->
+    <h3 class="h3-bib-soustitre">
+      Barre supérieure (titre, plugins)
+    </h3>
+
+    <p class="bib-description">
+      La barre supérieure affiche le titre du document et donne accès à des
+      plugins et options avancées.
+    </p>
+
+    <div id="miradorTopBarCarousel"
+         class="carousel slide"
+         data-bs-ride="carousel">
+
+      <!-- Indicators -->
+      <div class="carousel-indicators">
+        <button type="button"
+                data-bs-target="#miradorTopBarCarousel"
+                data-bs-slide-to="0"
+                class="active"
+                aria-label="Slide 1">
+        </button>
+        <button type="button"
+                data-bs-target="#miradorTopBarCarousel"
+                data-bs-slide-to="1"
+                aria-label="Slide 2">
+        </button>
+      </div>
+
+      <!-- Slides -->
+      <div class="carousel-inner">
+
+        <div class="carousel-item active">
+          <img src="/assets/collspec/images/guides/mirador/mirador-plugins-bar.png"
+               class="d-block w-100"
+               alt="Barre supérieure : titre du document">
+          <div class="carousel-caption">
+            <p>Titre du document dans la barre supérieure.</p>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <img src="/assets/collspec/images/guides/mirador/mirador-image-tolls.png"
+               class="d-block w-100"
+               alt="Barre supérieure : plugins et options">
+          <div class="carousel-caption">
+            <p>Accès aux plugins et options avancées.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Controls -->
+      <button class="carousel-control-prev"
+              type="button"
+              data-bs-target="#miradorTopBarCarousel"
+              data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+
+      <button class="carousel-control-next"
+              type="button"
+              data-bs-target="#miradorTopBarCarousel"
+              data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+
+    </div>
+
+    <!-- Where to display transcriptions -->
+    <h3 class="h3-bib-soustitre">
+      Où afficher les transcriptions dans la fenêtre Mirador
+    </h3>
+
+    <p class="bib-description">
+      Les transcriptions peuvent être affichées dans le panneau d'information
+      en cliquant sur l'icône dédiée.
+    </p>
+
+    <div id="miradorTranscriptionCarousel"
+         class="carousel slide"
+         data-bs-ride="carousel">
+
+      <!-- Indicators -->
+      <div class="carousel-indicators">
+        <button type="button"
+                data-bs-target="#miradorTranscriptionCarousel"
+                data-bs-slide-to="0"
+                class="active"
+                aria-label="Slide 1">
+        </button>
+        <button type="button"
+                data-bs-target="#miradorTranscriptionCarousel"
+                data-bs-slide-to="1"
+                aria-label="Slide 2">
+        </button>
+      </div>
+
+      <!-- Slides -->
+      <div class="carousel-inner">
+
+        <div class="carousel-item active">
+          <img src="/assets/collspec/images/guides/mirador/mirador-transcriptions-1.png"
+               class="d-block w-100"
+               alt="Icône pour afficher les transcriptions">
+          <div class="carousel-caption">
+            <p>Cliquez sur l'icône de transcription dans la fenêtre Mirador.</p>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <img src="/assets/collspec/images/guides/mirador/mirador-transcription-2.png"
+               class="d-block w-100"
+               alt="Panneau de transcription affiché">
+          <div class="carousel-caption">
+            <p>Le panneau de transcription s'affiche dans le panneau d'information.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Controls -->
+      <button class="carousel-control-prev"
+              type="button"
+              data-bs-target="#miradorTranscriptionCarousel"
+              data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+
+      <button class="carousel-control-next"
+              type="button"
+              data-bs-target="#miradorTranscriptionCarousel"
+              data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- ================================================= -->
+  <!-- COPIER ET UTILISER UN MANIFESTE IIIF -->
+  <!-- ================================================= -->
+
+  <section
+      id="use-manifest"
+      class="iiif-section">
+
+    <h2 class="h2-bib-titre">
+      Copier et utiliser un manifeste IIIF
+    </h2>
+
+    <p class="bib-description">
+      Vous pouvez copier l'adresse du manifeste IIIF d'un document pour le
+      comparer avec d'autres ressources ou l'ouvrir dans un autre panneau
+      Mirador.
+    </p>
+
+    <div id="miradorManifestCarousel"
+         class="carousel slide"
+         data-bs-ride="carousel">
+
+      <!-- Indicators -->
+      <div class="carousel-indicators">
+        <button type="button"
+                data-bs-target="#miradorManifestCarousel"
+                data-bs-slide-to="0"
+                class="active"
+                aria-label="Slide 1">
+        </button>
+        <button type="button"
+                data-bs-target="#miradorManifestCarousel"
+                data-bs-slide-to="1"
+                aria-label="Slide 2">
+        </button>
+        <button type="button"
+                data-bs-target="#miradorManifestCarousel"
+                data-bs-slide-to="2"
+                aria-label="Slide 3">
+        </button>
+      </div>
+
+      <!-- Slides -->
+      <div class="carousel-inner">
+
+        <div class="carousel-item active">
+          <img src="/assets/collspec/images/guides/mirador/mirador-manifest-1.png"
+               class="d-block w-100"
+               alt="Copier l'adresse du manifeste IIIF">
+          <div class="carousel-caption">
+            <p>Copiez l'adresse du manifeste IIIF depuis la notice du document.</p>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <img src="/assets/collspec/images/guides/mirador/mirador-manifest-2.png"
+               class="d-block w-100"
+               alt="Ajouter un manifeste dans Mirador">
+          <div class="carousel-caption">
+            <p>Ajoutez le manifeste dans un nouveau panneau Mirador.</p>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <img src="/assets/collspec/images/guides/mirador/mirador-manifest-3.png"
+               class="d-block w-100"
+               alt="Comparer plusieurs documents avec des manifestes IIIF">
+          <div class="carousel-caption">
+            <p>Comparez plusieurs documents à l'aide de leurs manifestes IIIF.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Controls -->
+      <button class="carousel-control-prev"
+              type="button"
+              data-bs-target="#miradorManifestCarousel"
+              data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+
+      <button class="carousel-control-next"
+              type="button"
+              data-bs-target="#miradorManifestCarousel"
+              data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- ================================================= -->
+  <!-- RECHERCHE DANS MIRADOR AVEC SURBRILLANCE -->
+  <!-- ================================================= -->
+
+  <section
+      id="search-mirador"
+      class="iiif-section">
+
+    <h2 class="h2-bib-titre">
+      Recherche dans Mirador avec surbrillance
+    </h2>
+
+    <p class="bib-description">
+      Mirador permet de rechercher un terme dans le texte d'un document lorsque
+      des données OCR sont disponibles. Les résultats sont surlignés directement
+      dans les pages.
+    </p>
+
+    <div id="miradorSearchCarousel"
+         class="carousel slide"
+         data-bs-ride="carousel">
+
+      <!-- Indicators -->
+      <div class="carousel-indicators">
+        <button type="button"
+                data-bs-target="#miradorSearchCarousel"
+                data-bs-slide-to="0"
+                class="active"
+                aria-label="Slide 1">
+        </button>
+        <button type="button"
+                data-bs-target="#miradorSearchCarousel"
+                data-bs-slide-to="1"
+                aria-label="Slide 2">
+        </button>
+        <button type="button"
+                data-bs-target="#miradorSearchCarousel"
+                data-bs-slide-to="2"
+                aria-label="Slide 3">
+        </button>
+      </div>
+
+      <!-- Slides -->
+      <div class="carousel-inner">
+
+        <div class="carousel-item active">
+          <img src="/assets/collspec/images/guides/mirador/mirador-search-1.png"
+               class="d-block w-100"
+               alt="Outil de recherche dans Mirador">
+          <div class="carousel-caption">
+            <p>Ouvrez l'outil de recherche dans Mirador.</p>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <img src="/assets/collspec/images/guides/mirador/mirador-search-2.png"
+               class="d-block w-100"
+               alt="Recherche d'un terme dans le document">
+          <div class="carousel-caption">
+            <p>Entrez un terme ou une expression à rechercher.</p>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <img src="/assets/collspec/images/guides/mirador/mirador-search-3.png"
+               class="d-block w-100"
+               alt="Résultats de recherche surlignés dans les pages">
+          <div class="carousel-caption">
+            <p>Les occurrences du terme sont surlignées dans les pages correspondantes.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Controls -->
+      <button class="carousel-control-prev"
+              type="button"
+              data-bs-target="#miradorSearchCarousel"
+              data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+
+      <button class="carousel-control-next"
+              type="button"
+              data-bs-target="#miradorSearchCarousel"
+              data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- ================================================= -->
+  <!-- AFFICHAGE OCR AVEC TEXTE EN SURIMPRESSION -->
+  <!-- ================================================= -->
+
+  <section
+      id="ocr-textoverlay"
+      class="iiif-section">
+
+    <h2 class="h2-bib-titre">
+      Affichage OCR avec texte en surimpression
+    </h2>
+
+    <p class="bib-description">
+      Lorsque des données OCR sont disponibles, Mirador peut afficher le texte
+      reconnu en surimpression sur l'image, ce qui facilite la lecture et la
+      vérification des résultats.
+    </p>
+
+    <div id="miradorOcrCarousel"
+         class="carousel slide"
+         data-bs-ride="carousel">
+
+      <!-- Indicators -->
+      <div class="carousel-indicators">
+        <button type="button"
+                data-bs-target="#miradorOcrCarousel"
+                data-bs-slide-to="0"
+                class="active"
+                aria-label="Slide 1">
+        </button>
+        <button type="button"
+                data-bs-target="#miradorOcrCarousel"
+                data-bs-slide-to="1"
+                aria-label="Slide 2">
+        </button>
+        <button type="button"
+                data-bs-target="#miradorOcrCarousel"
+                data-bs-slide-to="2"
+                aria-label="Slide 3">
+        </button>
+      </div>
+
+      <!-- Slides -->
+      <div class="carousel-inner">
+
+        <div class="carousel-item active">
+          <img src="/assets/collspec/images/guides/mirador/mirador-ocr-1.png"
+               class="d-block w-100"
+               alt="Activation de l'affichage OCR">
+          <div class="carousel-caption">
+            <p>Activez l'affichage OCR dans les options de la fenêtre.</p>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <img src="/assets/collspec/images/guides/mirador/mirador-ocr-2.png"
+               class="d-block w-100"
+               alt="Texte OCR en surimpression sur l'image">
+          <div class="carousel-caption">
+            <p>Le texte OCR s'affiche en surimpression sur l'image.</p>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <img src="/assets/collspec/images/guides/mirador/mirador-ocr-3.png"
+               class="d-block w-100"
+               alt="Détail du texte OCR en surimpression">
+          <div class="carousel-caption">
+            <p>Détail du texte OCR en surimpression, facilitant la lecture.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Controls -->
+      <button class="carousel-control-prev"
+              type="button"
+              data-bs-target="#miradorOcrCarousel"
+              data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+
+      <button class="carousel-control-next"
+              type="button"
+              data-bs-target="#miradorOcrCarousel"
+              data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+
+    </div>
+
+  </section>
+
+</div>
