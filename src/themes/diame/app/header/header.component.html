@@ -91,6 +91,12 @@
       id="header-right"
       class="h-100 d-flex flex-row flex-nowrap justify-content-end align-items-center gapx-1 ms-auto"
     >
+	@if ((isMobile$ | async) !== true) {
+	  <ds-lang-switch></ds-lang-switch>
+	}
+	@if (isAuthenticated | async) {
+	  <ds-auth-nav-menu></ds-auth-nav-menu>
+	}
       <!-- Bouton Donate desktop -->
       <a
         [href]="'collspec.donate.link' | translate"
