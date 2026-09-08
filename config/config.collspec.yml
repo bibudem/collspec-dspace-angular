@@ -316,6 +316,7 @@ themes:
   # # This theme will use the default bootstrap styling for DSpace components
   # - name: BASE_THEME_NAME
   #
+  #theme add UdeM
 
   - name: diame
     regex: '^/diame$'
