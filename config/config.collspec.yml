@@ -360,6 +360,28 @@ themes:
         attributes:
           rel: manifest
           href: assets/diame/images/favicons/manifest.webmanifest
+          
+  - name: diame
+    uuid: b9047ea9-57cb-4833-af4a-b8ab68dfea52
+    headTags:
+      - tagName: link
+        attributes:
+          rel: icon
+          href: assets/diame/images/favicons/favicon.ico
+          sizes: any
+      - tagName: link
+        attributes:
+          rel: icon
+          href: assets/diame/images/favicons/favicon.svg
+          type: image/svg+xml
+      - tagName: link
+        attributes:
+          rel: apple-touch-icon
+          href: assets/diame/images/favicons/apple-touch-icon.png
+      - tagName: link
+        attributes:
+          rel: manifest
+          href: assets/diame/images/favicons/manifest.webmanifest
 
   - name: collspec
     headTags:

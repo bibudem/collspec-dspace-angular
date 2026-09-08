@@ -46,6 +46,14 @@ export class SearchResultsComponent extends BaseComponent {
   collectionId: string | null = null;
   query: string = 'all';
   hidePaginationDetail = false;
+  
+  /**
+   * UUIDs of collections for which pagination detail should be hidden
+   */
+  private hiddenPaginationDetailUuids = [
+    '463625e1-602d-4844-a94f-5df83c681054',
+    'b9047ea9-57cb-4833-af4a-b8ab68dfea52',
+  ];
 
   constructor(private modalService: NgbModal,
               private router: Router,
@@ -67,7 +75,7 @@ export class SearchResultsComponent extends BaseComponent {
       this.query = params['query'] || 'all';
     });
 
-    this.hidePaginationDetail = this.collectionId === '463625e1-602d-4844-a94f-5df83c681054';
+    this.hidePaginationDetail = this.hiddenPaginationDetailUuids.includes(this.collectionId);
   }
 
   redirectToAiSearch(): void {
