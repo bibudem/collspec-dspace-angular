@@ -1,3 +1,6 @@
+#  Ces paramètres sont mis dans le .gitignore pour permettre une configuration
+#  locale différente par environnement (dev, serveur, etc.) sans provoquer de
+#  conflits Git.
 rest:
   ssl: false
   host: localhost
