@@ -71,9 +71,13 @@ export class CommunityPageSubCollectionListComponent implements OnInit, OnDestro
   sortConfig: SortOptions;
 
   /**
-   * UUID of the collection to hide from the parent community page list
+   * UUID of the collections to hide from the parent community page list
    */
-  private hiddenCollectionUuid = '463625e1-602d-4844-a94f-5df83c681054';
+  private hiddenCollectionUuids = [
+    '463625e1-602d-4844-a94f-5df83c681054',
+    'b9047ea9-57cb-4833-af4a-b8ab68dfea52',
+    'e4a7d3ab-2a62-46f9-8d71-c66ebf9cdbe3',
+  ];
 
   /**
    * A list of remote data objects of communities' collections
@@ -126,7 +130,7 @@ export class CommunityPageSubCollectionListComponent implements OnInit, OnDestro
           if (results?.hasSucceeded && results.payload?.page) {
             // Filter out the hidden collection from the page
             results.payload.page = results.payload.page.filter(
-              (collection: Collection) => collection.id !== this.hiddenCollectionUuid,
+              (collection: Collection) => !this.hiddenCollectionUuids.includes(collection.id),
             );
 
             // Adjust totalElements to match the filtered page length
