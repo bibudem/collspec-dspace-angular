@@ -20,12 +20,13 @@ ui:
 # The REST API server settings
 # NOTE: these settings define which (publicly available) REST API to use. They are usually
 # 'synced' with the 'dspace.server.url' setting in your backend's local.cfg.
-rest:
-  ssl: false
-  host: localhost
-  port: 8080
-  # NOTE: Space is capitalized because 'namespace' is a reserved string in TypeScript
-  nameSpace: /server
+# Deplacer rest.host dans config.yml, config.collspec.yml ne garde que l'override localhost de FE
+#rest:
+#  ssl: false
+#  host: localhost
+#  port: 8080
+#  # NOTE: Space is capitalized because 'namespace' is a reserved string in TypeScript
+#  nameSpace: /server
 
 # Caching settings
 cache:
