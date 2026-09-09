@@ -45,6 +45,7 @@ junit.xml
 
 /src/mirador-viewer/config.local.js
 /src/themes/collspec/config/config.ts
+# Ignorer config.yml
 /config/config.yml
 
 
