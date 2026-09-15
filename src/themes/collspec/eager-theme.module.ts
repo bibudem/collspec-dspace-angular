@@ -11,6 +11,8 @@ import {HeaderComponent} from "./app/header/header.component";
 import { AdminSidebarComponent } from './app/admin/admin-sidebar/admin-sidebar.component';
 import { LoginPageComponent } from './app/login-page/login-page.component';
 import { LogoutPageComponent } from './app/logout-page/logout-page.component';
+import { JournalComponent } from './app/entity-groups/journal-entities/item-pages/journal/journal.component';
+import { JournalVolumeComponent } from './app/entity-groups/journal-entities/item-pages/journal-volume/journal-volume.component';
 
 /**
  * Add components that use a custom decorator to ENTRY_COMPONENTS as well as DECLARATIONS.
@@ -20,6 +22,8 @@ const ENTRY_COMPONENTS = [
 
   UntypedItemComponent,
   TopLevelCommunityListComponent,
+  JournalComponent,
+  JournalVolumeComponent,
 ];
 
 const DECLARATIONS = [
