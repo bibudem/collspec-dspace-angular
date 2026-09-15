@@ -170,4 +170,6 @@
   "journal.page.uri": "Permalien",
   "journal.page.date": "Date de publication",
   
+  "relationships.JournalIssue.isJournalOfIssue.Journal": "Revues",
+  
 }

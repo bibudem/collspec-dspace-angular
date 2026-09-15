@@ -7549,4 +7549,6 @@
   "journal.page.uri": "Permalink",
 
   "journal.page.date": "Publication Date",
+
+  "relationships.JournalIssue.isJournalOfIssue.Journal": "Journals",
 }
