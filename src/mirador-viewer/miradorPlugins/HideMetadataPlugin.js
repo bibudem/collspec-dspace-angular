@@ -81,6 +81,14 @@ const COLLECTION_RULES = {
     hideLabels: ['description'],
   },
   
+  '08d97b80-89d7-4858-b80d-5bda0ea2af9b': {
+    hideLabels: ['description', 'identifient', 'Couverture', 'Autre(s) Titre(s)'],
+  },
+  
+  '70790cf8-532b-4b9b-84fc-6703a0ddcd49': {
+    hideLabels: ['description', 'identifient', 'Couverture', 'Autre(s) Titre(s)'],
+  },
+  
 };
 
 function labelToText(label) {
