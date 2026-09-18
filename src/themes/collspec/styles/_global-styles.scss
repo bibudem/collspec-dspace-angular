@@ -749,6 +749,11 @@ a.lead {
   opacity: 1 !important;
 }
 
+/* NIMA - 2026-09-18: masquer le contenu des divs de classe « list-hide » dans l’affichage en liste des communautés */
+ds-themed-top-level-community-list .list-hide {
+    display: none !important;
+}
+
 /* -------------------------------------------------------
    Media Queries - Responsive Design
 ------------------------------------------------------- */
@@ -2233,5 +2238,5 @@ p.full-text-op {
 
   .mirador-guide h2 {
     font-size: 1.3rem;
-  }
+  } 
 }
