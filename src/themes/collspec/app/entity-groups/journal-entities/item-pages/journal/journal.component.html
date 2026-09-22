@@ -18,7 +18,19 @@
       <ds-thumbnail [thumbnail]="object?.thumbnail | async"></ds-thumbnail>
     </ds-metadata-field-wrapper>
 
-    <ds-generic-item-page-field
+    <ds-related-items
+      [parentItem]="object"
+      [relationType]="'isContinuedBy'"
+      [label]="'journal.page.continued-by' | translate">
+    </ds-related-items>
+	
+	<ds-related-items
+	  [parentItem]="object"
+	  [relationType]="'continues'"
+	  [label]="'journal.page.continues' | translate">
+	</ds-related-items>
+	
+	<ds-generic-item-page-field
       class="item-page-fields"
       [item]="object"
       [fields]="['creativeworkseries.issn']"
@@ -83,9 +95,10 @@
   </div>
 
   <!-- Right column: Volumes and Journal description -->
-  <div class="col-12 col-md-6">
-    <ds-generic-item-page-field
-      class="item-page-fields"
+  <div class="col-12 col-md-8">
+    
+	<ds-generic-item-page-field
+      class="item-page-fields" id="journaldescription"
       [item]="object"
       [fields]="['dc.description']"
       [label]="'journal.page.description'">

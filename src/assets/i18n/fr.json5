@@ -7565,4 +7565,14 @@
   "journal.page.date": "Date de publication",
 
   "relationships.JournalIssue.isJournalOfIssue.Journal": "Revues",
+
+  "journal.page.continued-by": "Titre continué par",
+
+  "journal.page.continues": "Fait suite à",
+
+  "relationships.Journal.isIssueOfJournal.JournalIssue": "Numéro de revue",
+
+  "relationships.Journal.isContinuedBy.Journal": "Titre continué par",
+
+  "relationships.Journal.continues.Journal": "Fait suite à",
 }

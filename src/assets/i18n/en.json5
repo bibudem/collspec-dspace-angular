@@ -7551,4 +7551,14 @@
   "journal.page.date": "Publication Date",
 
   "relationships.JournalIssue.isJournalOfIssue.Journal": "Journals",
+
+  "journal.page.continued-by": "Continued by",
+
+  "journal.page.continues": "Continues",
+
+  "relationships.Journal.isIssueOfJournal.JournalIssue": "Journal Issue",
+
+  "relationships.Journal.isContinuedBy.Journal": "Continued by",
+
+  "relationships.Journal.continues.Journal": "Continues",
 }
