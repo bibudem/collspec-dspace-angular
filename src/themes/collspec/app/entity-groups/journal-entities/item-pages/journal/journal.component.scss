@@ -1,1 +1,9 @@
 @import '../../../../../../../styles/variables.scss';
+
+#journaldescription{
+  width: 100%;        // Make the description field take up the full width available
+  max-width: 100%;    // Ensure it doesn't get constrained by any parent width
+  word-wrap: break-word; // Make sure long words don't overflow
+  line-height: 1.6;   // Adjust line height for better readability
+  text-align: justify!important; // Justify text
+}
