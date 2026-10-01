@@ -99,13 +99,22 @@ export class UntypedItemComponent extends BaseComponent implements OnInit {
       (item) => {
         this.itemRD = item;
         // Accéder aux métadonnées de l'élément
-        const excludedFields = ['collspec.vedette', 'collspec.vedettecoll'];
-        this.metadata = Object.entries(item.payload.metadata)
-          .filter(([key]) => !excludedFields.includes(key))
-          .map(([key, value]) => ({
-            label: key,
-            value: this.extractMetadataValues(value),
-          }));
+        // Champs exacts à masquer
+		const excludedFields = [
+		  'dspace.iiif.enabled',
+		];
+
+		// Schémas complets à masquer (préfixe)
+		const excludedSchemas = ['collspec.'];
+
+		this.metadata = Object.entries(item.payload.metadata)
+		  .filter(([key]) =>
+			!excludedFields.includes(key) &&
+			!excludedSchemas.some(prefix => key.startsWith(prefix)))
+		  .map(([key, value]) => ({
+			label: key,
+			value: this.extractMetadataValues(value),
+		  }));
       },
       (error) => {
         console.error('Erreur lors de la récupération de l\'élément :', error);
