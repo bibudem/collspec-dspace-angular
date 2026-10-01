@@ -48,6 +48,10 @@ const COMMUNITY_RULES = {
     hideLabels: ['description', 'identifient', 'Couverture', 'Autre(s) Titre(s)'],
   },
   
+  '733afa69-08db-4b8b-9bb8-308ee1210a74': {
+    hideLabels: ['description'],
+  },
+  
   /*
   '9d327a20-d05d-4c63-bfd2-8723b6cf708c': {
     hideLabels: ['description', 'Sujet(s)', 'Autre(s) Titre(s)'],
