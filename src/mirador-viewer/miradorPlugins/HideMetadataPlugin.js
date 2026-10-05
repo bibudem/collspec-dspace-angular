@@ -52,6 +52,10 @@ const COMMUNITY_RULES = {
     hideLabels: ['description'],
   },
   
+  '62bde786-d4cf-452d-a4e5-3507f0102644': {
+    hideLabels: ['description', 'Sujet(s)', 'Autre(s) Titre(s)', 'Pays d'origine', 'Collection'],
+  },
+  
   /*
   '9d327a20-d05d-4c63-bfd2-8723b6cf708c': {
     hideLabels: ['description', 'Sujet(s)', 'Autre(s) Titre(s)'],
