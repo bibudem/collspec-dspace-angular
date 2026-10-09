@@ -24,82 +24,113 @@ const COLLECTION_FIELD_LABEL = 'coll_uuid';
 
 const COMMUNITY_RULES = {
   
+  /* Estampes et illustrations anciennes */
+  
   '5143566f-005d-4ef0-ae30-e4ea5c7c7296': {
     hideLabels: ['description'],
   },
+  
+  /* Manuscrits */
   
   'f86ec7f4-1c69-498d-8f69-83f5af2e4d05': {
     hideLabels: ['description'],
   },
   
+  /* Sciences humaines et lettres */
+  
   '45763db4-8b08-4191-99be-c24ad7f06acf': {
     hideLabels: ['description'],
   },
+  
+  /* Sciences et médecine */
   
   '38f7268d-96c8-474a-964b-925c7765fbec': {
     hideLabels: ['description'],
   },
   
+  /* Incunables */
+  
   '4ef1b8f9-1b03-4251-8f16-848437fd007a': {
     hideLabels: ['description', 'Couverture'],
   },
+  
+  /* Sciences et médecine -- Périodiques */
   
   '87ee4cf9-d330-445d-b586-3efd98d5102d': {
     hideLabels: ['description', 'identifient', 'Couverture', 'Autre(s) Titre(s)'],
   },
   
+  /* Art, aménagement, musique -- Aménagement */
+  
   '733afa69-08db-4b8b-9bb8-308ee1210a74': {
     hideLabels: ['description'],
   },
   
+  /* Estampes et illustrations anciennes */
+
   '62bde786-d4cf-452d-a4e5-3507f0102644': {
-    hideLabels: ['description', 'Sujet(s)', 'Autre(s) Titre(s)', 'Pays d’origine', 'Collection'],
+    hideLabels: ['description', 'Sujet(s)', 'Autre(s) Titre(s)', 'Pays d’origine', 'Collection', 'Résumé'],
   },
   
-  /*
-  '9d327a20-d05d-4c63-bfd2-8723b6cf708c': {
-    hideLabels: ['description', 'Sujet(s)', 'Autre(s) Titre(s)'],
-  },
-  */
 };
 
 const COLLECTION_RULES = {
+  
+  /* Théologie et philosophie -- Collection monographies */
   
   'ee737cff-446f-42e0-a4e3-bc86cb50606a': {
     hideLabels: ['description'],
   },
   
+  /* Droit -- Collection générale */
+  
   '2585cddd-7a80-4a3e-8140-741691aeadf9': {
     hideLabels: ['description'],
   },
+  
+  /* Éducation -- Collection monographies */
   
   '3dae11e2-ec28-4b64-a447-7ab421b1f274': {
     hideLabels: ['description'],
   },
   
+  /* Sciences politiques, économiques et sociales -- Collection monographies */
+  
   '9b47874b-a388-4615-9766-b2acf52cca1d': {
     hideLabels: ['description'],
   },
+  
+  /* Iconographie -- Affiches de guerre */
   
   '535a320b-cd79-4ed5-a4e0-e1fb9e501bf6': {
     hideLabels: ['description', 'Sujet(s)', 'Autre(s) Titre(s)'],
   },
   
+  /* Sciences et médecine -- Fonds Camille Laverdière */
+  
   '535845d1-36bf-4096-b40d-aea1f735377a': {
     hideLabels: ['description'],
   },
+  
+  /* Sciences et médecine -- Numéros de revue */
   
   '08d97b80-89d7-4858-b80d-5bda0ea2af9b': {
     hideLabels: ['description', 'identifient', 'Couverture', 'Autre(s) Titre(s)'],
   },
   
+  /* Théologie et philosophie -- Numéros de revue */
+  
   '70790cf8-532b-4b9b-84fc-6703a0ddcd49': {
     hideLabels: ['description', 'identifient', 'Couverture', 'Autre(s) Titre(s)'],
   },
   
+  /* Iconographie -- Estampes et illustrations anciennes -- Collection Bartin */
+  
   'd17cb258-74a2-47a5-be4f-e99a951f69fe': {
     hideLabels: ['description', 'Sujet(s)', 'Autre(s) Titre(s)', 'Pays d’origine', 'Collection'],
   },
+  
+  /* Iconographie -- Estampes et illustrations anciennes -- Les gestes admirables */
   
   'b0d4e717-4d28-466f-bab5-4b700a2c8bf6': {
     hideLabels: ['description', 'Sujet(s)', 'Autre(s) Titre(s)', 'Pays d’origine', 'Collection'],
