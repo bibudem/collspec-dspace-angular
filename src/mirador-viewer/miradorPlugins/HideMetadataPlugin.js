@@ -91,7 +91,7 @@ const COLLECTION_RULES = {
   /* Éducation -- Collection monographies */
   
   '3dae11e2-ec28-4b64-a447-7ab421b1f274': {
-    hideLabels: ['description'],
+    hideLabels: ['description', 'Couverture'],
   },
   
   /* Sciences politiques, économiques et sociales -- Collection monographies */
@@ -134,6 +134,12 @@ const COLLECTION_RULES = {
   
   'b0d4e717-4d28-466f-bab5-4b700a2c8bf6': {
     hideLabels: ['description', 'Sujet(s)', 'Autre(s) Titre(s)', 'Pays d’origine', 'Collection'],
+  },
+  
+  /*  -- Marques de provenance */
+  
+  '92541637-a41d-4b3a-a631-d198a44111d': {
+    hideLabels: ['description', 'Sujet(s)', 'Autre(s) Titre(s)', 'Pays d’origine', 'Collection', 'Source'],
   },
   
 };
