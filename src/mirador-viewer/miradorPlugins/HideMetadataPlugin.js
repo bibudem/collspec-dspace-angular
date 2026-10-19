@@ -142,6 +142,12 @@ const COLLECTION_RULES = {
     hideLabels: ['description', 'Sujet(s)', 'Autre(s) Titre(s)', 'Pays d’origine', 'Collection', 'Source'],
   },
   
+  /*  -- Images d'aménagement (/diame) */
+  
+  '463625e1-602d-4844-a94f-5df83c681054': {
+    hideLabels: ['description', 'Contributeur(s)', 'Collection', 'Source'],
+  },
+  
 };
 
 function labelToText(label) {
