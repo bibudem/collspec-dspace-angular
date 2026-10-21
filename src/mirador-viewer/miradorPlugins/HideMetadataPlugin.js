@@ -60,16 +60,16 @@ const COMMUNITY_RULES = {
     hideLabels: ['description', 'identifient', 'Couverture', 'Autre(s) Titre(s)'],
   },
   
-  /* Art, aménagement, musique -- Aménagement */
-  
-  '733afa69-08db-4b8b-9bb8-308ee1210a74': {
-    hideLabels: ['description'],
-  },
-  
   /* Estampes et illustrations anciennes */
 
   '62bde786-d4cf-452d-a4e5-3507f0102644': {
     hideLabels: ['description', 'Sujet(s)', 'Autre(s) Titre(s)', 'Pays d’origine', 'Collection', 'Résumé'],
+  },
+  
+   /* Sciences et médecine -- Fonds Camille Laverdière */
+  
+  '15be1e91-ec30-4ba0-88a9-2a167301537c': {
+    hideLabels: ['description', 'Contributeur(s)', 'Collection', 'Source'],
   },
   
 };
@@ -104,12 +104,6 @@ const COLLECTION_RULES = {
   
   '535a320b-cd79-4ed5-a4e0-e1fb9e501bf6': {
     hideLabels: ['description', 'Sujet(s)', 'Autre(s) Titre(s)'],
-  },
-  
-  /* Sciences et médecine -- Fonds Camille Laverdière */
-  
-  '535845d1-36bf-4096-b40d-aea1f735377a': {
-    hideLabels: ['description'],
   },
   
   /* Sciences et médecine -- Numéros de revue */

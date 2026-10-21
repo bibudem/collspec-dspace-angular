@@ -2240,3 +2240,33 @@ p.full-text-op {
     font-size: 1.3rem;
   } 
 }
+
+/* =============================================
+   Description de communautés et collections
+   ============================================= */
+   
+/* Image + légende */
+.diame-figure {
+  margin: 0;
+
+  .diame-cover {
+    width: 100%;
+    max-height: 450px;
+    object-fit: cover;
+  }
+
+  figcaption {
+    font-size: 0.75rem;
+  }
+}
+
+/* Encadré de mise en évidence */
+.diame-callout {
+  background-color: var(--bs-light);
+  border-left: 4px solid var(--bs-primary);
+}
+
+/* Liste de sous-collections (boutons de largeur égale) */
+.diame-subcollections {
+  max-width: 280px;
+}
