@@ -130,13 +130,13 @@ const COLLECTION_RULES = {
     hideLabels: ['description', 'Sujet(s)', 'Autre(s) Titre(s)', 'Pays d’origine', 'Collection'],
   },
   
-  /*  -- Marques de provenance */
+  /* Canadiana et Americana -- Marques de provenance */
   
   '92541637-a41d-4b3a-a631-d198a44111d': {
-    hideLabels: ['description', 'Sujet(s)', 'Autre(s) Titre(s)', 'Pays d’origine', 'Collection', 'Source'],
+    hideLabels: ['description', 'Auteur(s)', 'Sujet(s)', 'Autre(s) Titre(s)', 'Pays d’origine', 'Source', 'Identifiant'],
   },
   
-  /*  -- Images d'aménagement (/diame) */
+  /* Images d'aménagement (/diame) */
   
   '463625e1-602d-4844-a94f-5df83c681054': {
     hideLabels: ['description', 'Contributeur(s)', 'Collection', 'Source'],
