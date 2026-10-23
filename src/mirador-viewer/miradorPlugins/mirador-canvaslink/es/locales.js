@@ -15,6 +15,9 @@ export default {
       shareLink: "Share link to this page",
       shareLinkLabel: "IIIF Manifest share link",
       shareLinkAriaLabel: "IIIF Manifest share link URL",
+	  
+	  documentLink: "Share the link to this document",
+      documentLinkAriaLabel: "Share the link to this document",
 
       copy: "Copy",
 
@@ -45,8 +48,11 @@ export default {
 
       dialogTitle: "Partager",
       shareLink: "Partager le lien vers cette page",
-      shareLinkLabel: "Lien de partage du manifeste IIIF",
+      shareLinkLabel: "Partager le lien vers le manifeste IIIF de ce document",
       shareLinkAriaLabel: "URL du lien de partage du manifeste IIIF",
+	  
+	  documentLink: "Partager le lien vers ce document",
+      documentLinkAriaLabel: "Partager le lien vers ce document",
 
       copy: "Copier",
 

@@ -79,6 +79,7 @@ var ShareCanvasLinkDialog = function ShareCanvasLinkDialog(_ref) {
     config = _ref.config,
     containerId = _ref.containerId,
     manifestId = _ref.manifestId,
+    handleUrl = _ref.handleUrl,
     visibleCanvases = _ref.visibleCanvases,
     rights = _ref.rights,
     t = _ref.t,
@@ -92,7 +93,8 @@ var ShareCanvasLinkDialog = function ShareCanvasLinkDialog(_ref) {
     iiifInfoLink = config.iiifInfoLink,
     shareLink = config.shareLink || {},
     embedOption = config.embedOption || {},
-    syncIframeDimensions = config.syncIframeDimensions || {};
+    syncIframeDimensions = config.syncIframeDimensions || {},
+    handleLink = config.handleLink || {};
 
   var _useState = useState(false),
     copiedToClipboard = _useState[0],
@@ -224,6 +226,50 @@ var ShareCanvasLinkDialog = function ShareCanvasLinkDialog(_ref) {
           severity: "success"
         },
         t("canvasLink.copiedToClipboard")
+      ),
+      handleLink.enabled !== false && /*#__PURE__*/React.createElement(
+        React.Fragment,
+        null,
+        /*#__PURE__*/React.createElement(
+          Typography,
+          {
+            className: h3,
+            variant: "h6"
+          },
+          handleLink.label || t("canvasLink.documentLink")
+        ),
+        /*#__PURE__*/React.createElement(
+          "div",
+          {
+            className: inputContainer
+          },
+          /*#__PURE__*/React.createElement(TextField, {
+            fullWidth: true,
+            InputProps: {
+              readOnly: true
+            },
+            size: "small",
+            value: handleUrl || "",
+            variant: "outlined",
+            inputProps: {
+              "aria-label": handleLink.label || t("canvasLink.documentLinkAriaLabel"),
+              className: shareLinkInput
+            }
+          }),
+          /*#__PURE__*/React.createElement(
+            Button,
+            {
+              className: copyButton,
+              variant: "outlined",
+              color: "primary",
+              onClick: function onClick() {
+                return handleCopy(handleUrl || "");
+              }
+            },
+            t("canvasLink.copy")
+          )
+        ),
+        /*#__PURE__*/React.createElement(Divider, null)
       ),
       /*#__PURE__*/React.createElement(
         Typography,
@@ -443,6 +489,7 @@ var ShareCanvasLinkDialog = function ShareCanvasLinkDialog(_ref) {
 
 ShareCanvasLinkDialog.defaultProps = {
   canvases: [],
+  handleUrl: null,
   rights: [],
   visibleCanvases: []
 };
@@ -458,6 +505,10 @@ ShareCanvasLinkDialog.propTypes = process.env.NODE_ENV !== "production" ? {
     singleCanvasOnly: PropTypes.bool,
     getCanvasLink: PropTypes.func.isRequired,
     iiifInfoLink: PropTypes.string,
+    handleLink: PropTypes.shape({
+      enabled: PropTypes.bool,
+      label: PropTypes.string
+    }),
     shareLink: PropTypes.shape({
       enabled: PropTypes.bool,
       manifestIdReplacePattern: PropTypes.array
@@ -472,6 +523,7 @@ ShareCanvasLinkDialog.propTypes = process.env.NODE_ENV !== "production" ? {
   }).isRequired,
   containerId: PropTypes.string.isRequired,
   manifestId: PropTypes.string.isRequired,
+  handleUrl: PropTypes.string,
   rights: PropTypes.arrayOf(PropTypes.string),
   t: PropTypes.func.isRequired,
   updateConfig: PropTypes.func.isRequired,
