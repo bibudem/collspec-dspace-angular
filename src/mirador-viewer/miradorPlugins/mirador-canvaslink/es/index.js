@@ -12,6 +12,25 @@ import ShareControl from "./components/ShareControl";
 import translations from "./locales";
 import { getPluginConfig } from "./state/selectors";
 
+function getHandleUrlFromManifest(manifestJson) {
+  var metadata = manifestJson && manifestJson.metadata ? manifestJson.metadata : [];
+  if (!Array.isArray(metadata)) return null;
+
+  for (var i = 0; i < metadata.length; i += 1) {
+    var entry = metadata[i];
+    if (!entry) continue;
+
+    var label = entry.label;
+    var value = entry.value;
+
+    if ((label === "Permalien" || label === "dc.identifier.uri") && value) {
+      return Array.isArray(value) ? value[0] : value;
+    }
+  }
+
+  return null;
+}
+
 export default [{
   component: ShareControl,
   config: {
@@ -75,12 +94,15 @@ export default [{
         ? manifestJson["@id"] || manifestJson.id
         : windowManifestId;
 
+    var handleUrl = getHandleUrlFromManifest(manifestJson);
+
     return {
       canvases: getCanvases(state, {
         windowId: windowId
       }),
       containerId: getContainerId(state),
       manifestId: canonicalManifestId,
+      handleUrl: handleUrl,
       visibleCanvases: getVisibleCanvases(state, {
         windowId: windowId
       }),

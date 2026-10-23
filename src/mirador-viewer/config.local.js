@@ -324,6 +324,10 @@ fetch(manifest)
 			  '',
 			],
 		  },
+		  
+		  handleLink: {
+		    enabled: true,
+		  },
 
 		  embedOption: {
 			enabled: true,
