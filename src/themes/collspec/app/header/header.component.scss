@@ -264,8 +264,15 @@
     display: none !important;
   }
   
+  // Logo et menu sur la même ligne : base 0 pour que le logo ne force pas le retour à la ligne
+  #header-left {
+    flex: 1 1 0% !important;
+    min-width: 0;
+  }
+
   #header-right {
     flex-wrap: nowrap;
+    flex-shrink: 0;
     justify-content: flex-end;
   }
   
@@ -290,8 +297,8 @@
     display: block;
     margin-left: 1.5rem;
     margin-right: auto;
-    margin-bottom: 1rem;
-    margin-top: 2rem;
+    margin-bottom: 0;
+    margin-top: 0;
     max-height: 35px;
   }
   
@@ -309,11 +316,11 @@
   }
 
   .logo-brand-group{
-    margin-left: -2rem;
+    margin-left: -0.5rem;
   }
   .logo-title{
     white-space: normal!important;
-    margin-top: 10px;
+    margin-top: 0;
     font-size: 14px!important;
   }
   .menu-collspec{
@@ -354,8 +361,10 @@
     flex-wrap: nowrap !important;
   }
 
+  // Laisse respirer le logo par rapport au bord arrondi du header
   .logo-brand-group {
-    margin-left: -3rem;
+    margin-left: 0;
+    padding-left: 0.5rem;
   }
 
   .logo-title {

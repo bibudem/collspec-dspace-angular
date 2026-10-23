@@ -731,21 +731,29 @@ a.lead {
   flex: none;
   width: 75% !important;
   height: 50px !important;
-  background: transparent !important;
+  background: white !important;
+  border: 1px solid white !important;
   border-radius: 1rem 0 0 1rem !important;
 }
 
 .hero-section .hero-overlay ds-base-search-form form .input-group .btn-primary {
-  border: 1px solid white !important;
-  background: transparent;
+  border: 1px solid $darkblue !important;
+  background: $darkblue;
+  color: white;
+  border-radius: 0 1rem 1rem 0 !important;
+}
+
+.hero-section .hero-overlay ds-base-search-form form .input-group .btn-primary:hover {
+  border-color: $hoverdarkblue !important;
+  background: $hoverdarkblue;
 }
 
 .hero-section .hero-overlay ds-base-search-form form .input-group .form-control {
-  color: white!important;
+  color: $colltitre !important;
 }
 
 .hero-section .hero-overlay ds-base-search-form form .input-group .form-control::placeholder {
-  color: rgb(177, 178, 179) !important;
+  color: #6c757d !important;
   opacity: 1 !important;
 }
 

@@ -7372,7 +7372,7 @@
 
   "collspec.accueil.vedette.titre": "Discover our unique pieces",
 
-  "collspec.accueil.vedette.description": "Our special collections are filled with unique, old, and rare items, ready to enrich research and teaching, or even become objects of research themselves!<br>Browsing the different fonds means discovering the past through our rare and ancient books, artifacts, and image collections.From remarkable pieces to recent digitizations, explore our thematic selection of documents and objects from our fonds.",
+  "collspec.accueil.vedette.description": "Our special collections are filled with unique, old, and rare items, ready to enrich research and teaching, or even become objects of research themselves!",
 
   "collspec.faq.titre": "FAQ – Your Questions, Answered",
 
@@ -7561,4 +7561,6 @@
   "relationships.Journal.isContinuedBy.Journal": "Continued by",
 
   "relationships.Journal.continues.Journal": "Continues",
+
+  "collspec.accueil.vedette.description2": "Browsing the different fonds means discovering the past through our rare and ancient books, artifacts, and image collections. From remarkable pieces to recent digitizations, explore our thematic selection of documents and objects from our fonds.",
 }
