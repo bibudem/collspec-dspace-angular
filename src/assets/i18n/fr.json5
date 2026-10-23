@@ -7372,7 +7372,7 @@
 
   "collspec.accueil.vedette.titre": "Découvrez nos pièces uniques",
 
-  "collspec.accueil.vedette.description": "Nos collections spéciales regorgent de pièces uniques, anciennes ou rares, prêtes à enrichir la recherche et l’enseignement, ou même à devenir elles-mêmes des objets de recherche!<br>Parcourir les différents fonds, c’est découvrir le passé à travers nos livres rares et anciens, nos artefacts et nos collections d’images.Entre pièces remarquables et numérisations récentes, explorez notre sélection thématique de documents et objets issus de nos fonds.",
+  "collspec.accueil.vedette.description": "Nos collections spéciales regorgent de pièces uniques, anciennes ou rares, prêtes à enrichir la recherche et l’enseignement, ou même à devenir elles-mêmes des objets de recherche!",
 
   "collspec.faq.titre": "FAQ - Vos Questions, nos Réponses",
 
@@ -7575,4 +7575,6 @@
   "relationships.Journal.isContinuedBy.Journal": "Titre continué par",
 
   "relationships.Journal.continues.Journal": "Fait suite à",
+
+  "collspec.accueil.vedette.description2": "Parcourir les différents fonds, c’est découvrir le passé à travers nos livres rares et anciens, nos artefacts et nos collections d’images. Entre pièces remarquables et numérisations récentes, explorez notre sélection thématique de documents et objets issus de nos fonds.",
 }
