@@ -295,7 +295,7 @@
   
   #header-logo {
     display: block;
-    margin-left: 1.5rem;
+    margin-left: 0;
     margin-right: auto;
     margin-bottom: 0;
     margin-top: 0;
@@ -316,7 +316,7 @@
   }
 
   .logo-brand-group{
-    margin-left: -0.5rem;
+    margin-left: 0;
   }
   .logo-title{
     white-space: normal!important;
@@ -325,6 +325,26 @@
   }
   .menu-collspec{
     margin-left: 0!important;
+  }
+}
+
+// Petits téléphones (iPhone, etc.) : logo plus compact pour ne pas toucher le globe et le menu
+@media (max-width: 420px) {
+  #header-logo {
+    max-height: 28px;
+  }
+
+  .logo-divider {
+    height: 28px;
+    margin: 0 8px;
+  }
+
+  .logo-title {
+    font-size: 12px !important;
+  }
+
+  #mobile-navbar-toggler {
+    margin-left: 0.25rem !important;
   }
 }
 
@@ -388,12 +408,21 @@
 .logo-brand-group {
   display: flex;
   align-items: center;
+  min-width: 0;
   text-decoration: none;
 }
 
+// Autorise le logo à rétrécir au lieu de déborder sur le globe et le menu
 .logo-img-part {
   display: flex;
   align-items: center;
+  min-width: 0;
+  flex-shrink: 1;
+}
+
+#header-logo {
+  max-width: 100%;
+  height: auto;
 }
 
 .logo-divider {
@@ -412,6 +441,7 @@
   color: #192b33;
   line-height: 1;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 /* =============================================
