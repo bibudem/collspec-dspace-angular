@@ -90,9 +90,10 @@ export class TopLevelCommunityListComponent extends BaseComponent implements OnI
         if (!payload?.metadata) return;
 
         const id: string = payload.id;
-        if (this.loadedIds.has(id)) return;
+        if (this.loadedIds.has(id) || TopLevelCommunityListComponent.HIDDEN_UUIDS.has(id)) return;
 
         const title: string = payload.metadata['dc.title']?.[0]?.value ?? '';
+
         const description: string | null = payload.metadata['dc.description']?.[0]?.value ?? null;
         const subcommunity: Subcommunity = { title, description, id, logoUrl: null };
 
@@ -127,6 +128,12 @@ export class TopLevelCommunityListComponent extends BaseComponent implements OnI
     const title = souscommunitie.title?.toLowerCase().trim();
     return souscommunitie.id === targetId || title === 'collection claude gingras';
   }
+
+  /** UUID des communautés masquées de la page d'accueil */
+  private static readonly HIDDEN_UUIDS = new Set<string>([
+    'aeb901ef-166c-409d-9422-c94adb2e0f4f', // Art, aménagement et musique
+    'b26a0d38-5307-4ebd-a9e0-b6f1f95d5f5f', // Fac-similés
+  ]);
 
   private static readonly BUTTON_LABELS: Record<string, string> = {
     'art, aménagement et musique':                      'Explorer Art, aménagement et musique',
