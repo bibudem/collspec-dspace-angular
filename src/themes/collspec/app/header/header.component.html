@@ -30,9 +30,22 @@
         id="desktop-navbar"
         [attr.aria-label]="'nav.main.description' | translate"
       >
-        <ul class="navbar-nav mr-auto menu-collspec">
+	  
+	    <ul class="navbar-nav mr-auto menu-collspec">
+		  <li class="nav-item">
+			<a
+			  role="menuitem"
+			  class="ds-menu-item"
+			  href="/page/a-propos"
+			>
+			  {{ 'collspec.menu.a-propos' | translate }}
+			</a>
+		  </li>
+		</ul>
+		
+        <!-- <ul class="navbar-nav mr-auto menu-collspec">
 
-          <!-- Nos ressources / About dropdown -->
+          <!-- Nos ressources / About dropdown 
           <li class="nav-item dropdown dropdown-hover">
             <a
               class="ds-menu-item dropdown-toggle-custom"
@@ -80,8 +93,8 @@
             >
               {{ 'collspec.menu.contact' | translate }}
             </a>
-          </li> -->
-        </ul>
+          </li> 
+        </ul> -->
       </nav>
     </div>
 
@@ -141,7 +154,7 @@
         <ul class="navbar-nav mr-auto menu-collspec text-start">
           <!-- Nos ressources (dépliable) -->
           <li class="nav-item nav-item-browse-toggle">
-            <button
+           <!-- <button
               type="button"
               class="ds-menu-item btn-browse-mobile w-100 text-start d-flex justify-content-between align-items-center"
               (click)="toggleMobileRessources()"
@@ -155,10 +168,30 @@
               >
                 &#9660;
               </span>
-            </button>
-          </li>
+            </button> -->
+			
+			<button
+			  type="button"
+			  class="ds-menu-item btn-browse-mobile w-100 text-start"
+			  (click)="toggleMobileRessources()"
+			  [attr.aria-expanded]="isMobileRessourcesOpen"
+			>
+			  {{ 'collspec.menu.ressources' | translate }}
+			</button>
+            </li>
 
           @if (isMobileRessourcesOpen) {
+		    <li class="nav-item nav-item-browse-sub">
+			  <a
+			    role="menuitem"
+			    class="ds-menu-item ds-menu-item-sub"
+			    href="/page/a-propos"
+			  >
+			    {{ 'collspec.menu.a-propos' | translate }}
+			  </a>
+		    </li>
+}
+		  <!-- @if (isMobileRessourcesOpen) {
             <li class="nav-item nav-item-browse-sub">
               <a
                 role="menuitem"
