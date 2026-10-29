@@ -170,27 +170,14 @@
               </span>
             </button> -->
 			
-			<button
-			  type="button"
-			  class="ds-menu-item btn-browse-mobile w-100 text-start"
-			  (click)="toggleMobileRessources()"
-			  [attr.aria-expanded]="isMobileRessourcesOpen"
+			<a
+			  role="menuitem"
+			  class="ds-menu-item"
+			  href="/page/a-propos"
 			>
-			  {{ 'collspec.menu.ressources' | translate }}
-			</button>
+			  {{ 'collspec.menu.a-propos' | translate }}
+			</a>
             </li>
-
-          @if (isMobileRessourcesOpen) {
-		    <li class="nav-item nav-item-browse-sub">
-			  <a
-			    role="menuitem"
-			    class="ds-menu-item ds-menu-item-sub"
-			    href="/page/a-propos"
-			  >
-			    {{ 'collspec.menu.a-propos' | translate }}
-			  </a>
-		    </li>
-}
 		  <!-- @if (isMobileRessourcesOpen) {
             <li class="nav-item nav-item-browse-sub">
               <a
