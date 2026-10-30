@@ -132,7 +132,7 @@ const COLLECTION_RULES = {
   
   /* Canadiana et Americana -- Marques de provenance */
   
-  '92541637-a41d-4b3a-a631-d198a44111d': {
+  '92541637-a41d-4b3a-a631-d198a44111d3': {
     hideLabels: ['description', 'Auteur(s)', 'Sujet(s)', 'Autre(s) Titre(s)', 'Pays d’origine', 'Source', 'Identifiant'],
   },
   
