@@ -7577,4 +7577,62 @@
   "relationships.Journal.continues.Journal": "Fait suite à",
 
   "collspec.accueil.vedette.description2": "Le réseau des bibliothèques de l’Université de Montréal comprend la Bibliothèque des livres rares et collections spéciales, un laboratoire de recherche vivant où manuscrits, livres, images et autres formes d’expression ouvrent de nouvelles perspectives. Sur place, son équipe vous accompagne dans vos recherches, dans la consultation et l’exploitation des documents.",
+
+  "search.filters.itemtype.text": "Texte",
+
+  "search.filters.itemtype.book": "Livre",
+
+  "search.filters.itemtype.Text": "Texte",
+
+  "search.filters.itemtype.Book": "Monographie",
+
+  "search.filters.itemtype.Image": "Image",
+
+  "search.filters.itemtype.Manuscript": "Manuscrit",
+
+  "search.filters.itemtype.Poster": "Affiche",
+
+  "search.filters.itemtype.Engraving": "Gravure",
+
+  "search.filters.itemtype.Map": "Carte",
+
+  "search.filters.itemtype.Periodical": "Périodique",
+
+  "search.filters.itemtype.Musical Score": "Partition musicale",
+
+  "search.filters.itemtype.Video": "Vidéo",
+
+  "search.filters.itemtype.Animation": "Animation",
+
+  "search.filters.itemtype.Article": "Article",
+
+  "search.filters.itemtype.Book chapter": "Chapitre de livre",
+
+  "search.filters.itemtype.Dataset": "Jeu de données",
+
+  "search.filters.itemtype.Learning Object": "Objet d'apprentissage",
+
+  "search.filters.itemtype.Image, 3-D": "Image 3D",
+
+  "search.filters.itemtype.Plan or blueprint": "Plan ou schéma",
+
+  "search.filters.itemtype.Preprint": "Prépublication",
+
+  "search.filters.itemtype.Presentation": "Présentation",
+
+  "search.filters.itemtype.Recording, acoustical": "Enregistrement acoustique",
+
+  "search.filters.itemtype.Recording, musical": "Enregistrement musical",
+
+  "search.filters.itemtype.Recording, oral": "Enregistrement oral",
+
+  "search.filters.itemtype.Software": "Logiciel",
+
+  "search.filters.itemtype.Technical Report": "Rapport technique",
+
+  "search.filters.itemtype.Thesis": "Thèse",
+
+  "search.filters.itemtype.Working Paper": "Document de travail",
+
+  "search.filters.itemtype.Other": "Autre",
 }
