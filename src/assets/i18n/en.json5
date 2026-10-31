@@ -7563,4 +7563,62 @@
   "relationships.Journal.continues.Journal": "Continues",
 
   "collspec.accueil.vedette.description2": "The Université de Montréal Libraries network includes the Rare Books and Special Collections Library, a vibrant research laboratory where manuscripts, books, images, and other forms of expression open new avenues of discovery. On site, its team provides guidance for research as well as for accessing and working with the materials.",
+
+  "search.filters.itemtype.text": "Text",
+
+  "search.filters.itemtype.book": "Book",
+
+  "search.filters.itemtype.Text": "Text",
+
+  "search.filters.itemtype.Book": "Book",
+
+  "search.filters.itemtype.Image": "Image",
+
+  "search.filters.itemtype.Manuscript": "Manuscript",
+
+  "search.filters.itemtype.Poster": "Poster",
+
+  "search.filters.itemtype.Engraving": "Engraving",
+
+  "search.filters.itemtype.Map": "Map",
+
+  "search.filters.itemtype.Periodical": "Periodical",
+
+  "search.filters.itemtype.Musical Score": "Musical Score",
+
+  "search.filters.itemtype.Video": "Video",
+
+  "search.filters.itemtype.Animation": "Animation",
+
+  "search.filters.itemtype.Article": "Article",
+
+  "search.filters.itemtype.Book chapter": "Book chapter",
+
+  "search.filters.itemtype.Dataset": "Dataset",
+
+  "search.filters.itemtype.Learning Object": "Learning Object",
+
+  "search.filters.itemtype.Image, 3-D": "Image, 3-D",
+
+  "search.filters.itemtype.Plan or blueprint": "Plan or blueprint",
+
+  "search.filters.itemtype.Preprint": "Preprint",
+
+  "search.filters.itemtype.Presentation": "Presentation",
+
+  "search.filters.itemtype.Recording, acoustical": "Recording, acoustical",
+
+  "search.filters.itemtype.Recording, musical": "Recording, musical",
+
+  "search.filters.itemtype.Recording, oral": "Recording, oral",
+
+  "search.filters.itemtype.Software": "Software",
+
+  "search.filters.itemtype.Technical Report": "Technical Report",
+
+  "search.filters.itemtype.Thesis": "Thesis",
+
+  "search.filters.itemtype.Working Paper": "Working Paper",
+
+  "search.filters.itemtype.Other": "Other",
 }
