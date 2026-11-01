@@ -7629,4 +7629,8 @@
   "search.filters.itemtype.JournalVolume": "Journal Volume",
 
   "search.filters.itemtype.JournalIssue": "Journal Issue",
+
+  "search.filters.language.dut": "Dutch",
+
+  "search.filters.language.swe": "Swedish",
 }

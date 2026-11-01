@@ -7643,4 +7643,8 @@
   "search.filters.itemtype.JournalVolume": "Volume de revue",
 
   "search.filters.itemtype.JournalIssue": "Numéro de revue",
+
+  "search.filters.language.dut": "Hollandais",
+
+  "search.filters.language.swe": "Suédois",
 }
