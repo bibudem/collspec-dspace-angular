@@ -161,6 +161,8 @@
   "search.filters.language.por": "Portugais",
   "search.filters.language.lat": "Latin",
   "search.filters.language.alg": "Langues algonquiennes",
+  "search.filters.language.dut": "Hollandais",
+  "search.filters.language.swe": "Suédois",
   
   "search.filters.itemtype.Image": "Image",
   "search.filters.itemtype.Book": "Monographie",

@@ -152,6 +152,8 @@
   "search.filters.language.por": "Portuguese",
   "search.filters.language.lat": "Latin",
   "search.filters.language.alg": "Algonquian languages",
+  "search.filters.language.dut": "Dutch",
+  "search.filters.language.swe": "Swedish",
   
   "search.filters.itemtype.Image": "Image",
   "search.filters.itemtype.Book": "Book",
