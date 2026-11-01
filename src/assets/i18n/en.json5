@@ -7621,4 +7621,6 @@
   "search.filters.itemtype.Working Paper": "Working Paper",
 
   "search.filters.itemtype.Other": "Other",
+
+  "search.filters.entityType.Journal": "Journal",
 }

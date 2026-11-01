@@ -189,6 +189,9 @@
   "search.filters.itemtype.Thesis": "Thèse",
   "search.filters.itemtype.Working Paper": "Document de travail",
   "search.filters.itemtype.Other": "Autre",
+  "search.filters.entityType.Journal": "Revue",
+  "search.filters.entityType.JournalVolume": "Volume de revue",
+  "search.filters.entityType.JournalIssue": "Numéro de revue",
   
   
   "collspec.menu.guides": "Guides et tutoriels",

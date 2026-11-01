@@ -4810,7 +4810,7 @@
 
   "search.filters.entityType.JournalIssue": "Numéro de revue",
 
-  "search.filters.entityType.JournalVolume": "Volume de la revue",
+  "search.filters.entityType.JournalVolume": "Volume de revue",
 
   "search.filters.entityType.OrgUnit": "Structure organisationnelle",
 
@@ -7635,4 +7635,6 @@
   "search.filters.itemtype.Working Paper": "Document de travail",
 
   "search.filters.itemtype.Other": "Autre",
+
+  "search.filters.entityType.Journal": "Revue",
 }
