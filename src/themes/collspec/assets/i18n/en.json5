@@ -180,6 +180,9 @@
   "search.filters.itemtype.Thesis": "Thesis",
   "search.filters.itemtype.Working Paper": "Working Paper",
   "search.filters.itemtype.Other": "Other",
+  "search.filters.entityType.Journal": "Journal",
+  "search.filters.entityType.JournalVolume": "Journal Volume",
+  "search.filters.entityType.JournalIssue": "Journal Issue",
   
   "collspec.menu.guides": "Guides & Tutorials",
   "collspec.menu.iiif": "IIIF Guide",
