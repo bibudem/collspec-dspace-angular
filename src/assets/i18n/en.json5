@@ -7623,4 +7623,10 @@
   "search.filters.itemtype.Other": "Other",
 
   "search.filters.entityType.Journal": "Journal",
+
+  "search.filters.itemtype.Journal": "Journal",
+
+  "search.filters.itemtype.JournalVolume": "Journal Volume",
+
+  "search.filters.itemtype.JournalIssue": "Journal Issue",
 }

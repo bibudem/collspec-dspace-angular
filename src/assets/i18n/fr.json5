@@ -7637,4 +7637,10 @@
   "search.filters.itemtype.Other": "Autre",
 
   "search.filters.entityType.Journal": "Revue",
+
+  "search.filters.itemtype.Journal": "Revue",
+
+  "search.filters.itemtype.JournalVolume": "Volume de revue",
+
+  "search.filters.itemtype.JournalIssue": "Numéro de revue",
 }
