@@ -69,6 +69,11 @@
                 "inject": false,
                 "bundleName": "diame-theme"
               },
+			  {
+                "input": "src/themes/rech1/styles/theme.scss",
+                "inject": false,
+                "bundleName": "rech1-theme"
+              },
               "node_modules/leaflet/dist/leaflet.css",
               "node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css",
               "node_modules/leaflet.markercluster/dist/MarkerCluster.css"
