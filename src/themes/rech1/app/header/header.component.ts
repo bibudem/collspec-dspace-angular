@@ -132,8 +132,7 @@ export class HeaderComponent extends BaseComponent implements OnInit, OnDestroy 
       getFirstSucceededRemoteData(),
       map((rd: RemoteData<Collection>) => {
         if (hasValue(rd?.payload)) {
-          this.collectionName$.next(rd.payload.name);
-          this.collectionUuid$.next(rd.payload.uuid);
+          this.setCollection(rd.payload);
         } else {
           this.resetCollection();
         }
@@ -154,18 +153,33 @@ export class HeaderComponent extends BaseComponent implements OnInit, OnDestroy 
           return of(null);
         }
 
-        return itemRd.payload.owningCollection.pipe(
+        const item = itemRd.payload;
+
+        return item.owningCollection.pipe(
           getFirstSucceededRemoteData(),
           map((collectionRd: RemoteData<Collection>) => {
             if (hasValue(collectionRd?.payload)) {
-              this.collectionName$.next(collectionRd.payload.name);
-              this.collectionUuid$.next(collectionRd.payload.uuid);
+              this.setCollection(collectionRd.payload);
+              return;
+            }
+
+            const metadataUuid = this.getCollectionUuidFromMetadata(item);
+
+            if (metadataUuid) {
+              this.loadCollection(metadataUuid);
             } else {
               this.resetCollection();
             }
           }),
           catchError(() => {
-            this.resetCollection();
+            const metadataUuid = this.getCollectionUuidFromMetadata(item);
+
+            if (metadataUuid) {
+              this.loadCollection(metadataUuid);
+            } else {
+              this.resetCollection();
+            }
+
             return of(null);
           })
         );
@@ -175,6 +189,19 @@ export class HeaderComponent extends BaseComponent implements OnInit, OnDestroy 
         return of(null);
       })
     ).subscribe();
+  }
+
+  private getCollectionUuidFromMetadata(item: Item): string | null {
+    const values = item.metadata?.['collspec.collection.uuid'];
+
+    return hasValue(values) && values.length > 0
+      ? values[0].value
+      : null;
+  }
+
+  private setCollection(collection: Collection): void {
+    this.collectionName$.next(collection.name);
+    this.collectionUuid$.next(collection.uuid);
   }
 
   private resetCollection(): void {
