@@ -129,6 +129,7 @@ export class HeaderComponent extends BaseComponent implements OnInit, OnDestroy 
 
   private loadCollection(uuid: string): void {
     this.collectionService.findById(uuid).pipe(
+      getFirstSucceededRemoteData(),
       map((rd: RemoteData<Collection>) => {
         if (hasValue(rd?.payload)) {
           this.collectionName$.next(rd.payload.name);
@@ -146,6 +147,7 @@ export class HeaderComponent extends BaseComponent implements OnInit, OnDestroy 
 
   private loadOwningCollection(itemUuid: string): void {
     this.itemService.findById(itemUuid).pipe(
+      getFirstSucceededRemoteData(),
       switchMap((itemRd: RemoteData<Item>) => {
         if (!hasValue(itemRd?.payload)) {
           this.resetCollection();
@@ -153,6 +155,7 @@ export class HeaderComponent extends BaseComponent implements OnInit, OnDestroy 
         }
 
         return itemRd.payload.owningCollection.pipe(
+          getFirstSucceededRemoteData(),
           map((collectionRd: RemoteData<Collection>) => {
             if (hasValue(collectionRd?.payload)) {
               this.collectionName$.next(collectionRd.payload.name);
