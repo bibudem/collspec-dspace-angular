@@ -142,6 +142,12 @@ const COLLECTION_RULES = {
     hideLabels: ['description', 'Contributeur(s)', 'Collection', 'Source'],
   },
   
+  /* Archives patrimoniales et mur de visualisation – Illustrations inuit */
+  
+  '699d9a2c-27dd-4bc3-b74f-30d0a171c2ec': {
+    hideLabels: ['description'],
+  },
+  
 };
 
 function labelToText(label) {
