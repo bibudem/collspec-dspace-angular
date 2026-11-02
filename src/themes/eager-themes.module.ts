@@ -4,6 +4,7 @@ import { EagerThemeModule as DSpaceEagerThemeModule } from './dspace/eager-theme
 // import { EagerThemeModule as CustomEagerThemeModule } from './custom/eager-theme.module';
 import { EagerThemeModule as CollspecEagerThemeModule } from './collspec/eager-theme.module';
 import { EagerThemeModule as DiameEagerThemeModule } from './diame/eager-theme.module';
+import { EagerThemeModule as Rech1EagerThemeModule } from './rech1/eager-theme.module';
 
 /**
  * This module bundles the eager theme modules for all available themes.
@@ -18,6 +19,7 @@ import { EagerThemeModule as DiameEagerThemeModule } from './diame/eager-theme.m
     // CustomEagerThemeModule,
     CollspecEagerThemeModule,
 	DiameEagerThemeModule,
+	Rech1EagerThemeModule,
   ],
 })
 export class EagerThemesModule {
