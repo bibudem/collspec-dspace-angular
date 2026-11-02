@@ -154,32 +154,24 @@ export class HeaderComponent extends BaseComponent implements OnInit, OnDestroy 
         }
 
         const item = itemRd.payload;
+        const owningCollectionHref = item._links?.owningCollection?.href;
 
-        return item.owningCollection.pipe(
+        if (!hasValue(owningCollectionHref)) {
+          this.useMetadataFallback(item);
+          return of(null);
+        }
+
+        return this.collectionService.findByHref(owningCollectionHref).pipe(
           getFirstSucceededRemoteData(),
           map((collectionRd: RemoteData<Collection>) => {
             if (hasValue(collectionRd?.payload)) {
               this.setCollection(collectionRd.payload);
-              return;
-            }
-
-            const metadataUuid = this.getCollectionUuidFromMetadata(item);
-
-            if (metadataUuid) {
-              this.loadCollection(metadataUuid);
             } else {
-              this.resetCollection();
+              this.useMetadataFallback(item);
             }
           }),
           catchError(() => {
-            const metadataUuid = this.getCollectionUuidFromMetadata(item);
-
-            if (metadataUuid) {
-              this.loadCollection(metadataUuid);
-            } else {
-              this.resetCollection();
-            }
-
+            this.useMetadataFallback(item);
             return of(null);
           })
         );
@@ -189,6 +181,16 @@ export class HeaderComponent extends BaseComponent implements OnInit, OnDestroy 
         return of(null);
       })
     ).subscribe();
+  }
+
+  private useMetadataFallback(item: Item): void {
+    const metadataUuid = this.getCollectionUuidFromMetadata(item);
+
+    if (metadataUuid) {
+      this.loadCollection(metadataUuid);
+    } else {
+      this.resetCollection();
+    }
   }
 
   private getCollectionUuidFromMetadata(item: Item): string | null {
