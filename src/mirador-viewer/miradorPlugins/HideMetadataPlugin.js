@@ -136,6 +136,12 @@ const COLLECTION_RULES = {
     hideLabels: ['description', 'Auteur(s)', 'Sujet(s)', 'Autre(s) Titre(s)', 'Pays d’origine', 'Source', 'Identifiant'],
   },
   
+  /* Canadiana et Americana -- Melzack */
+  
+  '8f954656-7a19-4d4e-b82b-605310056b61': {
+    hideLabels: ['description', 'Pays d’origine', 'Identifiant'],
+  },
+  
   /* Images d'aménagement (/diame) */
   
   '463625e1-602d-4844-a94f-5df83c681054': {
