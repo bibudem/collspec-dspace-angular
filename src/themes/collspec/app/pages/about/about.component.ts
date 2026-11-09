@@ -1,59 +1,58 @@
-import { Component, ElementRef, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import {catchError, map } from 'rxjs/operators';
-import { ThemedLoadingComponent } from "../../../../../app/shared/loading/themed-loading.component";
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { RouterModule } from "@angular/router";
-import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { of, Subject } from 'rxjs';
+import { catchError, takeUntil } from 'rxjs/operators';
 
+/**
+ * Page « À propos » : charge le contenu HTML statique selon la langue courante
+ * (assets/collspec/bib-pages/about/{lang}-about.html). Les styles sont dans _global-styles.scss.
+ */
 @Component({
   selector: 'ds-about',
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss'],
   standalone: true,
-  imports: [
-    ThemedLoadingComponent,
-    TranslateModule,
-    RouterModule,
-    CommonModule,
-    NgbModule
-  ],
+  imports: [CommonModule],
 })
-export class AboutComponent implements OnInit {
-  contenuHtml: string = '';
-  currentLang: string;
+export class AboutComponent implements OnInit, OnDestroy {
+  contenuHtml = '';
+
+  private destroy$ = new Subject<void>();
 
   constructor(
     private http: HttpClient,
     private translate: TranslateService,
-    private cdRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef,
   ) {}
 
   ngOnInit(): void {
-    // Charge la langue actuelle ou la langue par défaut
-    this.currentLang = this.translate.currentLang || this.translate.getDefaultLang();
-    this.load(this.currentLang);
+    this.load(this.translate.currentLang || this.translate.getDefaultLang());
 
-    this.translate.onLangChange.subscribe(event => {
-      this.currentLang = event.lang;
-      this.load(this.currentLang);
-    });
+    this.translate.onLangChange
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(event => this.load(event.lang));
   }
 
-  load(lang: string): void {
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  private load(lang: string): void {
     const filePath = `/assets/collspec/bib-pages/about/${lang}-about.html`;
     this.http.get(filePath, { responseType: 'text' })
       .pipe(
         catchError(err => {
           console.error(`Erreur lors du chargement de ${filePath}`, err);
           return of('<p>Contenu non disponible.</p>');
-        })
+        }),
+        takeUntil(this.destroy$),
       )
       .subscribe(html => {
         this.contenuHtml = html;
-        this.cdRef.detectChanges(); // Force la mise à jour de la vue
+        this.cdRef.detectChanges();
       });
   }
 }
