@@ -1,7 +1,7 @@
 rest:
-  ssl: false
-  host: localhost
-  port: 8080
+  ssl: true
+  host: collections-speciales.bib.umontreal.ca
+  port: 443
   nameSpace: /server
 
 
