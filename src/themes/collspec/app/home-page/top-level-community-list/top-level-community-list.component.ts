@@ -133,6 +133,7 @@ export class TopLevelCommunityListComponent extends BaseComponent implements OnI
   private static readonly HIDDEN_UUIDS = new Set<string>([
     'aeb901ef-166c-409d-9422-c94adb2e0f4f', // Art, aménagement et musique
     'b26a0d38-5307-4ebd-a9e0-b6f1f95d5f5f', // Fac-similés
+	'040c86d8-87c0-42fc-823e-48eb321dfaf6', // Soutien à la recherche
   ]);
 
   private static readonly BUTTON_LABELS: Record<string, string> = {

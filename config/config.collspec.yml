@@ -363,49 +363,27 @@ themes:
           rel: manifest
           href: assets/diame/images/favicons/manifest.webmanifest
           
-  - name: diame
-    uuid: b9047ea9-57cb-4833-af4a-b8ab68dfea52
+  - name: rech1
+    uuid: 699d9a2c-27dd-4bc3-b74f-30d0a171c2ec
     headTags:
       - tagName: link
         attributes:
           rel: icon
-          href: assets/diame/images/favicons/favicon.ico
+          href: assets/rech1/images/favicons/favicon.ico
           sizes: any
       - tagName: link
         attributes:
           rel: icon
-          href: assets/diame/images/favicons/favicon.svg
+          href: assets/rech1/images/favicons/favicon.svg
           type: image/svg+xml
       - tagName: link
         attributes:
           rel: apple-touch-icon
-          href: assets/diame/images/favicons/apple-touch-icon.png
+          href: assets/rech1/images/favicons/apple-touch-icon.png
       - tagName: link
         attributes:
           rel: manifest
-          href: assets/diame/images/favicons/manifest.webmanifest
-          
-  - name: diame
-    uuid: e4a7d3ab-2a62-46f9-8d71-c66ebf9cdbe3
-    headTags:
-      - tagName: link
-        attributes:
-          rel: icon
-          href: assets/diame/images/favicons/favicon.ico
-          sizes: any
-      - tagName: link
-        attributes:
-          rel: icon
-          href: assets/diame/images/favicons/favicon.svg
-          type: image/svg+xml
-      - tagName: link
-        attributes:
-          rel: apple-touch-icon
-          href: assets/diame/images/favicons/apple-touch-icon.png
-      - tagName: link
-        attributes:
-          rel: manifest
-          href: assets/diame/images/favicons/manifest.webmanifest
+          href: assets/rech1/images/favicons/manifest.webmanifest
 
   - name: collspec
     headTags:

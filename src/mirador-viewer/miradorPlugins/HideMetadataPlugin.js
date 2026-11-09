@@ -132,14 +132,26 @@ const COLLECTION_RULES = {
   
   /* Canadiana et Americana -- Marques de provenance */
   
-  '92541637-a41d-4b3a-a631-d198a44111d': {
+  '92541637-a41d-4b3a-a631-d198a44111d3': {
     hideLabels: ['description', 'Auteur(s)', 'Sujet(s)', 'Autre(s) Titre(s)', 'Pays d’origine', 'Source', 'Identifiant'],
+  },
+  
+  /* Canadiana et Americana -- Melzack */
+  
+  '8f954656-7a19-4d4e-b82b-605310056b61': {
+    hideLabels: ['description', 'Pays d’origine', 'Contributeur(s)', 'Fonds', 'Identifiant'],
   },
   
   /* Images d'aménagement (/diame) */
   
   '463625e1-602d-4844-a94f-5df83c681054': {
     hideLabels: ['description', 'Contributeur(s)', 'Collection', 'Source'],
+  },
+  
+  /* Archives patrimoniales et mur de visualisation – Illustrations inuit */
+  
+  '699d9a2c-27dd-4bc3-b74f-30d0a171c2ec': {
+    hideLabels: ['description'],
   },
   
 };
