@@ -69,11 +69,12 @@ p {
     overflow: hidden;
   }
 
+  // Pas de padding à gauche : la zone visible commence au bord de l'image courante,
+  // l'image précédente (et son ombre) reste cachée dans l'espace entre les images
   &__track {
     overflow: hidden;
     width: 100%;
-    margin-left: 8%;
-    padding-left: 15px;
+    margin-left: calc(8% + 15px);
   }
 
   &__list {
@@ -114,7 +115,7 @@ p {
     right: 0;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 100%);
     color: white;
-    padding: 1.5rem 1rem;
+    padding: 1.5rem 1rem 2.75rem; // bas : place réservée aux points et au bouton pause
 
     h4 {
       margin: 0;
@@ -203,6 +204,47 @@ p {
       background: rgba(255, 255, 255, 0.8);
     }
   }
+
+  // Bouton pause / lecture du défilement automatique, à la suite des points
+  &__pause {
+    width: 22px;
+    height: 22px;
+    margin-left: 0.35rem;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: rgba(11, 17, 58, 0.45);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.25s ease;
+
+    i {
+      font-size: 0.6rem;
+      line-height: 1;
+    }
+
+    &:hover {
+      background: rgba(11, 17, 58, 0.75);
+    }
+  }
+
+  // Focus clavier visible sur les commandes du carrousel
+  &__arrow,
+  &__indicator,
+  &__pause {
+    &:focus-visible {
+      outline: 2px solid white;
+      outline-offset: 2px;
+    }
+  }
+
+  &__slide a:focus-visible {
+    outline: 3px solid $darkblue;
+    outline-offset: -3px;
+  }
 }
 
 // ── Grand écran (≤ 1200px) ───────────────────────────────
@@ -244,7 +286,7 @@ p {
     }
 
     &__caption {
-      padding: 1rem 0.8rem;
+      padding: 1rem 0.8rem 2.6rem;
 
       h4 {
         margin-left: 0;
@@ -295,12 +337,21 @@ p {
       }
     }
 
+    // Titre lisible sur petit écran : dégradé plus soutenu, place réservée
+    // sous le titre pour les points, et jusqu'à 2 lignes au lieu de couper
     &__caption {
-      padding: 0.8rem 0.6rem;
+      padding: 2rem 0.9rem 2.4rem;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.55) 55%, rgba(0, 0, 0, 0) 100%);
 
       h4 {
         margin-left: 0;
         font-size: 1rem;
+        line-height: 1.3;
+        white-space: normal;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
       }
     }
 
@@ -353,12 +404,8 @@ p {
       gap: 0.5rem;
     }
 
-    &__caption {
-      padding: 0.6rem 0.5rem;
-
-      h4 {
-        font-size: 0.8rem;
-      }
+    &__caption h4 {
+      font-size: 0.95rem;
     }
   }
 
@@ -393,7 +440,7 @@ p {
     }
 
     &__caption h4 {
-      font-size: 0.75rem;
+      font-size: 0.9rem;
     }
 
     &__arrow {

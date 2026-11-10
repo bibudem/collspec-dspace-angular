@@ -161,31 +161,33 @@ p, span, a {
   }
 }
 
+// Texte centré ; au survol/focus, seul le fond s'éclaircit légèrement (rien ne bouge)
 .btn-darkblue {
   background-color: $darkblue;
   color: $gray-100;
   font-size: 13px;
-  position: relative;
-  padding-right: 2.2rem; // fixe — l'arrow n'affecte pas la largeur du bouton
+  text-align: center;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  transition: background-color 0.2s ease;
 
-  &::after {
-    content: '➝';
-    position: absolute;
-    right: 0.55rem;
-    top: 50%;
-    transform: translateY(-50%) translateX(-6px);
-    opacity: 0;
-    transition: opacity 0.25s ease, transform 0.25s ease;
+  &:hover,
+  &:focus-visible {
+    background-color: lighten($darkblue, 12%);
+    color: #FFFFFF;
   }
 
-  &:hover {
-    background-color: $hoverdarkblue;
-    color: #FFFFFF;
+  &:active {
+    background-color: $darkblue;
+  }
 
-    &::after {
-      opacity: 1;
-      transform: translateY(-50%) translateX(0);
-    }
+  &:focus-visible {
+    outline: 2px solid $darkblue;
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
   }
 }
 
@@ -1948,11 +1950,6 @@ p.full-text-op {
       font-size: 1.05rem !important;
       line-height: 1.75 !important;
     }
-
-    // Paragraphe qui suit un bouton (ex. Sofia dans l'introduction)
-    .btn + .bib-description {
-      margin-top: 1.5rem;
-    }
   }
 
   // Sections texte + image : empilées sur mobile, côte à côte dès 992px
@@ -1972,7 +1969,7 @@ p.full-text-op {
       display: block;
       width: 100%;
       height: auto;
-      aspect-ratio: 3 / 2;
+      aspect-ratio: 16 / 9;
       object-fit: cover;
     }
   }
@@ -2031,7 +2028,7 @@ p.full-text-op {
     }
 
     .about-media img {
-      aspect-ratio: 4 / 5;
+      aspect-ratio: 4 / 3;
     }
   }
 }

@@ -61,6 +61,12 @@
   "collspec.faq.titre": "FAQ - Vos Questions, nos Réponses",
 
   "collspec.accueil.vedette.error": "Aucun contenu en vedette disponible",
+  "collspec.accueil.vedette.carousel": "Pièces en vedette",
+  "collspec.accueil.vedette.prev": "Image précédente",
+  "collspec.accueil.vedette.next": "Image suivante",
+  "collspec.accueil.vedette.goto": "Afficher l’image {{index}} sur {{total}}",
+  "collspec.accueil.vedette.pause": "Mettre le défilement en pause",
+  "collspec.accueil.vedette.play": "Reprendre le défilement",
 
   "collspec.faq.description": "Trouvez rapidement les informations essentielles pour mieux naviguer sur notre site",
 

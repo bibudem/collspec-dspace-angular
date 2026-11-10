@@ -86,6 +86,12 @@
   "collspec.donate.link": "https://bib.umontreal.ca/nous-soutenir/",
   "collspec.donate.aria-label": "Make a donation",
   "collspec.accueil.vedette.error": "No featured items available",
+  "collspec.accueil.vedette.carousel": "Featured items",
+  "collspec.accueil.vedette.prev": "Previous image",
+  "collspec.accueil.vedette.next": "Next image",
+  "collspec.accueil.vedette.goto": "Show image {{index}} of {{total}}",
+  "collspec.accueil.vedette.pause": "Pause the carousel",
+  "collspec.accueil.vedette.play": "Resume the carousel",
   "collspec.footer.based_on_dspace": "Application based on <a href='http://www.dspace.org/' target='_blank' class='link-footer'>DSpace</a>, open source software.",
   
   "home.search-form.placeholder": "Search in collections ...",

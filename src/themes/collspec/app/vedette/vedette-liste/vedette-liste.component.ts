@@ -4,6 +4,7 @@ import {
   DestroyRef,
   ElementRef,
   Inject,
+  NgZone,
   OnDestroy,
   OnInit,
   PLATFORM_ID,
@@ -18,6 +19,17 @@ import { ThemedLoadingComponent } from '../../../../../app/shared/loading/themed
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 
+const AUTO_SLIDE_DELAY_MS = 5000;
+const MAX_SLIDES = 8;
+const SWIPE_THRESHOLD_PX = 40;
+
+/**
+ * Carrousel des pièces en vedette (page d'accueil).
+ *
+ * Boucle infinie : la liste est affichée deux fois. L'index reste entre 0 et n
+ * (n = nombre d'images) ; les positions 0 et n montrent la même image, ce qui permet
+ * de sauter de l'une à l'autre sans animation, juste avant de défiler, sans que ça se voie.
+ */
 @Component({
   selector: 'ds-vedette-liste',
   templateUrl: './vedette-liste.component.html',
@@ -34,18 +46,36 @@ export class VedetteListeComponent implements OnInit, OnDestroy {
   slides: Vedette[] = [];
   displaySlides: Vedette[] = [];
   currentIndex = 0;
-  itemWidth = 0;
   loading = true;
   error = false;
-  autoSlideInterval: any;
   isBrowser: boolean;
-  private originalSlideCount = 0;
-  private resizeHandler = () => this.calculateItemWidth();
+
+  /** Pause demandée par le bouton (le carrousel défile par défaut) */
+  userPaused = false;
+
+  private step = 0;
+  private autoSlideInterval: ReturnType<typeof setInterval> | null = null;
+  private hovered = false;
+  private focused = false;
+  private touchStartX: number | null = null;
+  private resizeFrame: number | null = null;
+
+  private readonly onResize = () => {
+    if (this.resizeFrame !== null) return;
+    this.resizeFrame = requestAnimationFrame(() => {
+      this.resizeFrame = null;
+      this.measure();
+      this.applyPosition(false);
+    });
+  };
+
+  private readonly onVisibilityChange = () => this.updateAutoSlide();
 
   constructor(
     private vedetteService: VedetteService,
     private cdr: ChangeDetectorRef,
     private destroyRef: DestroyRef,
+    private ngZone: NgZone,
     @Inject(PLATFORM_ID) platformId: Object
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
@@ -55,27 +85,34 @@ export class VedetteListeComponent implements OnInit, OnDestroy {
     this.loadData();
   }
 
+  get originalSlideCount(): number {
+    return this.slides.length;
+  }
+
+  get activeIndicator(): number {
+    return this.currentIndex % (this.originalSlideCount || 1);
+  }
+
+  get hasSlidesToDisplay(): boolean {
+    return this.slides.length > 0;
+  }
+
+  // ───── Chargement ─────
+
   private loadData(): void {
     this.vedetteService.getImagesHome().pipe(
-      map(images => this.vedetteService.shuffleArray(images).slice(0, 8)),
+      map(images => this.vedetteService.shuffleArray(images).slice(0, MAX_SLIDES)),
       takeUntilDestroyed(this.destroyRef)
     ).subscribe({
       next: (images) => {
         this.slides = images;
-        this.originalSlideCount = images.length;
         this.displaySlides = [...images, ...images];
         this.loading = false;
         this.error = false;
-
-        if (this.isBrowser) {
-          setTimeout(() => {
-            this.initCarousel();
-            this.cdr.detectChanges();
-          });
-        }
+        this.cdr.detectChanges();
+        this.initCarousel();
       },
-      error: (err) => {
-        console.error('Erreur chargement vedettes :', err);
+      error: () => {
         this.error = true;
         this.loading = false;
         this.cdr.detectChanges();
@@ -84,118 +121,164 @@ export class VedetteListeComponent implements OnInit, OnDestroy {
   }
 
   private initCarousel(): void {
-    if (!this.isBrowser) return;
+    if (!this.isBrowser || !this.track) return;
 
-    this.calculateItemWidth();
-    this.updatePosition();
-    this.startAutoSlide();
+    this.measure();
+    this.applyPosition(false);
 
-    window.addEventListener('resize', this.resizeHandler);
-  }
-
-  calculateItemWidth(): void {
-    if (!this.isBrowser) return;
-
-    requestAnimationFrame(() => {
-      const firstSlide = this.track?.nativeElement?.querySelector('.slider__slide') as HTMLElement;
-      if (firstSlide) {
-        this.itemWidth = firstSlide.offsetWidth;
-        this.updatePosition();
-      }
+    this.ngZone.runOutsideAngular(() => {
+      window.addEventListener('resize', this.onResize, { passive: true });
+      document.addEventListener('visibilitychange', this.onVisibilityChange);
     });
+    this.updateAutoSlide();
   }
 
-  updatePosition(): void {
-    if (!this.track?.nativeElement || this.displaySlides.length === 0) return;
-    const offset = -this.currentIndex * (this.itemWidth + 20);
-    this.track.nativeElement.style.transform = `translateX(${offset}px)`;
+  // ───── Position ─────
+
+  /** Largeur d'une image + espace réel entre les images (lu dans le CSS) */
+  private measure(): void {
+    const list = this.track?.nativeElement;
+    const firstSlide = list?.querySelector<HTMLElement>('.slider__slide');
+    if (!list || !firstSlide) return;
+    const gap = parseFloat(getComputedStyle(list).columnGap) || 0;
+    this.step = firstSlide.offsetWidth + gap;
   }
+
+  private applyPosition(animate: boolean): void {
+    const list = this.track?.nativeElement;
+    if (!list) return;
+    list.style.transition = animate ? '' : 'none';
+    list.style.transform = `translateX(${-this.currentIndex * this.step}px)`;
+  }
+
+  /** Place la liste sur la copie identique (0 ↔ n) sans animation */
+  private jumpTo(index: number): void {
+    this.currentIndex = index;
+    this.applyPosition(false);
+    void this.track.nativeElement.offsetWidth; // force l'application avant la prochaine animation
+  }
+
+  // ───── Navigation ─────
 
   nextSlide(): void {
-    if (this.displaySlides.length <= 1) return;
-
+    if (this.originalSlideCount <= 1) return;
+    if (this.currentIndex >= this.originalSlideCount) this.jumpTo(this.currentIndex - this.originalSlideCount);
     this.currentIndex++;
-
-    if (this.currentIndex >= this.displaySlides.length) {
-      this.track.nativeElement.style.transition = 'none';
-      this.currentIndex = 0;
-      this.updatePosition();
-
-      setTimeout(() => {
-        this.track.nativeElement.style.transition = 'transform 0.5s ease-in-out';
-      }, 50);
-    } else {
-      if (!this.track.nativeElement.style.transition) {
-        this.track.nativeElement.style.transition = 'transform 0.5s ease-in-out';
-      }
-      this.updatePosition();
-    }
-  }
-
-  goToSlide(index: number): void {
-    this.currentIndex = index;
-    this.updatePosition();
-    this.stopAutoSlide();
-    this.startAutoSlide();
-  }
-
-  get activeIndicator(): number {
-    return this.currentIndex % (this.originalSlideCount || 1);
+    this.applyPosition(true);
   }
 
   prevSlide(): void {
-    if (this.displaySlides.length <= 1) return;
-
+    if (this.originalSlideCount <= 1) return;
+    if (this.currentIndex <= 0) this.jumpTo(this.originalSlideCount);
     this.currentIndex--;
+    this.applyPosition(true);
+  }
 
-    if (this.currentIndex < 0) {
-      this.track.nativeElement.style.transition = 'none';
-      this.currentIndex = this.originalSlideCount - 1;
-      this.updatePosition();
+  goToSlide(index: number): void {
+    if (index === this.currentIndex) return;
+    // Même image affichée depuis la copie (position n) : on revient sur l'originale sans animation
+    if (index === this.activeIndicator) {
+      this.jumpTo(index);
+      return;
+    }
+    this.currentIndex = index;
+    this.applyPosition(true);
+    this.restartAutoSlide();
+  }
 
-      setTimeout(() => {
-        this.track.nativeElement.style.transition = 'transform 0.5s ease-in-out';
-      }, 50);
+  onArrow(direction: 'prev' | 'next'): void {
+    direction === 'next' ? this.nextSlide() : this.prevSlide();
+    this.restartAutoSlide();
+  }
+
+  // ───── Défilement automatique ─────
+
+  togglePause(): void {
+    this.userPaused = !this.userPaused;
+    this.updateAutoSlide();
+  }
+
+  onMouseEnter(): void {
+    this.hovered = true;
+    this.updateAutoSlide();
+  }
+
+  onMouseLeave(): void {
+    this.hovered = false;
+    this.updateAutoSlide();
+  }
+
+  onFocusIn(): void {
+    this.focused = true;
+    this.updateAutoSlide();
+  }
+
+  onFocusOut(event: FocusEvent): void {
+    const wrapper = event.currentTarget as HTMLElement;
+    if (wrapper.contains(event.relatedTarget as Node)) return;
+    this.focused = false;
+    this.updateAutoSlide();
+  }
+
+  private get shouldAutoSlide(): boolean {
+    return this.isBrowser
+      && this.originalSlideCount > 1
+      && !this.userPaused
+      && !this.hovered
+      && !this.focused
+      && document.visibilityState === 'visible';
+  }
+
+  private updateAutoSlide(): void {
+    if (this.shouldAutoSlide) {
+      if (!this.autoSlideInterval) this.startAutoSlide();
     } else {
-      if (!this.track.nativeElement.style.transition) {
-        this.track.nativeElement.style.transition = 'transform 0.5s ease-in-out';
-      }
-      this.updatePosition();
+      this.stopAutoSlide();
     }
   }
 
-  startAutoSlide(): void {
+  private restartAutoSlide(): void {
     this.stopAutoSlide();
-    this.autoSlideInterval = setInterval(() => this.nextSlide(), 5000);
+    this.updateAutoSlide();
   }
 
-  stopAutoSlide(): void {
+  /** Hors de la zone Angular : seule la vue du carrousel est rafraîchie à chaque tour */
+  private startAutoSlide(): void {
+    this.ngZone.runOutsideAngular(() => {
+      this.autoSlideInterval = setInterval(() => {
+        this.nextSlide();
+        this.cdr.detectChanges();
+      }, AUTO_SLIDE_DELAY_MS);
+    });
+  }
+
+  private stopAutoSlide(): void {
     if (this.autoSlideInterval) {
       clearInterval(this.autoSlideInterval);
       this.autoSlideInterval = null;
     }
   }
 
-  onMouseEnter(): void {
-    this.stopAutoSlide();
+  // ───── Balayage tactile ─────
+
+  onTouchStart(event: TouchEvent): void {
+    this.touchStartX = event.touches[0]?.clientX ?? null;
   }
 
-  onMouseLeave(): void {
-    this.startAutoSlide();
-  }
-
-  trackByFn(index: number, item: Vedette): string {
-    return item.id + '-' + index;
-  }
-
-  get hasSlidesToDisplay(): boolean {
-    return this.slides.length > 0;
+  onTouchEnd(event: TouchEvent): void {
+    if (this.touchStartX === null) return;
+    const deltaX = (event.changedTouches[0]?.clientX ?? this.touchStartX) - this.touchStartX;
+    this.touchStartX = null;
+    if (Math.abs(deltaX) < SWIPE_THRESHOLD_PX) return;
+    this.onArrow(deltaX < 0 ? 'next' : 'prev');
   }
 
   ngOnDestroy(): void {
     this.stopAutoSlide();
     if (this.isBrowser) {
-      window.removeEventListener('resize', this.resizeHandler);
+      window.removeEventListener('resize', this.onResize);
+      document.removeEventListener('visibilitychange', this.onVisibilityChange);
+      if (this.resizeFrame !== null) cancelAnimationFrame(this.resizeFrame);
     }
   }
 }
