@@ -28,8 +28,6 @@ webpack.records.json
 
 morgan.log
 
-src/themes/collspec/config/config.ts
-
 # Yarn no longer used
 yarn.lock
 yarn-error.log
@@ -44,7 +42,6 @@ yarn-error.log
 junit.xml
 
 /src/mirador-viewer/config.local.js
-/src/themes/collspec/config/config.ts
 # Ignorer config.yml
 /config/config.yml
 
