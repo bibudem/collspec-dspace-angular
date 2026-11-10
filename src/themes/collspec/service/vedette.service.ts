@@ -1,7 +1,7 @@
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { EMPTY, Observable, of, throwError } from 'rxjs';
 import { catchError, map, shareReplay, tap } from 'rxjs/operators';
 import { Vedette } from '../models/Vedette';
 import { config } from '../config/config';
@@ -22,8 +22,8 @@ export class VedetteService {
   private readonly COLLECTION_LIMIT = 10;
   private readonly isBrowser: boolean;
 
-  private imagesHomeCache$?: Observable<Vedette[]>;
-  private imageCollCache$: Record<string, Observable<Vedette[]>> = {};
+  /** Requêtes en cours / résolues, partagées entre les abonnés (clé = clé localStorage) */
+  private readonly memoryCache = new Map<string, Observable<Vedette[]>>();
 
   constructor(
     private readonly http: HttpClient,
@@ -33,33 +33,14 @@ export class VedetteService {
   }
 
   getImagesHome(): Observable<Vedette[]> {
-    const cached = this.getFromLocalStorage<Vedette[]>(this.CACHE_KEY_HOME);
-    if (cached) return of(cached);
-
-    if (!this.imagesHomeCache$) {
-      this.imagesHomeCache$ = this.fetchImages(this.urlApiVedette).pipe(
-        tap((data) => {
-          this.saveToLocalStorage(this.CACHE_KEY_HOME, data);
-        }),
-        shareReplay(1)
-      );
-    }
-    return this.imagesHomeCache$;
+    return this.getCached(this.CACHE_KEY_HOME, this.urlApiVedette);
   }
 
   getImagesColl(id: string): Observable<Vedette[]> {
-    const cacheKey = `${this.CACHE_KEY_COLL_PREFIX}${id}`;
-    const cached = this.getFromLocalStorage<Vedette[]>(cacheKey);
-    if (cached) return of(cached);
-
-    if (!this.imageCollCache$[id]) {
-      const url = `${this.urlApiVedette}/${this.COLLECTION_LIMIT}/${id}`;
-      this.imageCollCache$[id] = this.fetchImages(url).pipe(
-        tap((data) => this.saveToLocalStorage(cacheKey, data)),
-        shareReplay(1)
-      );
-    }
-    return this.imageCollCache$[id];
+    return this.getCached(
+      `${this.CACHE_KEY_COLL_PREFIX}${id}`,
+      `${this.urlApiVedette}/${this.COLLECTION_LIMIT}/${id}`,
+    );
   }
 
   shuffleArray(array: Vedette[]): Vedette[] {
@@ -73,10 +54,35 @@ export class VedetteService {
     return shuffled;
   }
 
+  /**
+   * localStorage (5 min) puis cache mémoire, sinon appel HTTP.
+   * - Côté serveur (SSR) : aucun appel, le carrousel est chargé dans le navigateur
+   *   (évite de ralentir le rendu et un ordre aléatoire différent serveur/navigateur).
+   * - En cas d'erreur : rien n'est mis en cache, l'appel suivant réessaie.
+   */
+  private getCached(cacheKey: string, url: string): Observable<Vedette[]> {
+    if (!this.isBrowser) return EMPTY;
+
+    const stored = this.getFromLocalStorage<Vedette[]>(cacheKey);
+    if (stored) return of(stored);
+
+    if (!this.memoryCache.has(cacheKey)) {
+      this.memoryCache.set(cacheKey, this.fetchImages(url).pipe(
+        tap(data => this.saveToLocalStorage(cacheKey, data)),
+        catchError(error => {
+          this.memoryCache.delete(cacheKey);
+          console.error('[VedetteService] Erreur lors du fetch', error);
+          return throwError(() => error);
+        }),
+        shareReplay(1),
+      ));
+    }
+    return this.memoryCache.get(cacheKey);
+  }
+
   // ───── Cache localStorage ─────
 
   private saveToLocalStorage<T>(key: string, data: T): void {
-    if (!this.isBrowser) return;
     try {
       const entry: CacheEntry<T> = { data, expiresAt: Date.now() + this.CACHE_TTL_MS };
       localStorage.setItem(key, JSON.stringify(entry));
@@ -86,7 +92,6 @@ export class VedetteService {
   }
 
   private getFromLocalStorage<T>(key: string): T | null {
-    if (!this.isBrowser) return null;
     try {
       const raw = localStorage.getItem(key);
       if (!raw) return null;
@@ -94,8 +99,8 @@ export class VedetteService {
       const entry: CacheEntry<T> = JSON.parse(raw);
       if (Date.now() > entry.expiresAt) {
         localStorage.removeItem(key);
-        // Invalide aussi le cache mémoire pour forcer un nouveau fetch
-        this.imagesHomeCache$ = undefined;
+        // Invalide le cache mémoire de cette même clé pour forcer un nouveau fetch
+        this.memoryCache.delete(key);
         return null;
       }
       return entry.data;
@@ -110,7 +115,7 @@ export class VedetteService {
   private fetchImages(apiUrl: string): Observable<Vedette[]> {
     return this.http.get<{ items: any[] }>(apiUrl).pipe(
       map(({ items }) =>
-        items
+        (items ?? [])
           .filter((item) => item?.group?.image?.length > 0)
           .map(
             (item): Vedette => ({
@@ -121,10 +126,6 @@ export class VedetteService {
             })
           )
       ),
-      catchError((error) => {
-        console.error('[VedetteService] Erreur lors du fetch', error);
-        return of([]);
-      })
     );
   }
 }

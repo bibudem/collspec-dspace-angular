@@ -1,62 +1,84 @@
 <div class="carousel-bib-home" id="nos-collections">
   <div class="container-fluid font-blue">
     <!-- Titre et description de la section vedette -->
-      <div class="carousel-bib-title">
-        <div class="vedette-header">
-          <h2 class="fw-bold bib-title">{{ 'collspec.accueil.vedette.titre' | translate }}</h2>
-        </div>
-        <p [innerHTML]="'collspec.accueil.vedette.description' | translate"></p>
-        <p [innerHTML]="'collspec.accueil.vedette.description2' | translate"></p>
+    <div class="carousel-bib-title">
+      <div class="vedette-header">
+        <h2 class="fw-bold bib-title">{{ 'collspec.accueil.vedette.titre' | translate }}</h2>
       </div>
+      <p [innerHTML]="'collspec.accueil.vedette.description' | translate"></p>
+      <p [innerHTML]="'collspec.accueil.vedette.description2' | translate"></p>
+    </div>
+
     @if (loading) {
-    <!-- Affichage du composant de chargement -->
-    <ds-loading ></ds-loading>
-    }  @else {
-    <section class="slider__section">
-      @if (hasSlidesToDisplay) {
-      <div class="slider__wrapper" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
-        <div class="slider__column">
-          <div class="slider__track">
-            <ul class="slider__list" #track>
-              <!-- Boucle sur chaque diapositive dupliquée -->
-              @for (slide of displaySlides; track trackByFn($index, slide)) {
-              <li class="slider__slide">
-                <!-- Lien vers la fiche de l'item vedette -->
-                <a [routerLink]="['/items', slide.id]">
-                  <!-- Image de l'item vedette -->
-                  <img [src]="slide.imageUrl" [alt]="slide.title" loading="lazy" />
-                  <div class="slider__caption">
-                    <h4>{{ slide.title }}</h4>
-                  </div>
-                </a>
-              </li>
+      <ds-loading></ds-loading>
+    } @else {
+      <section class="slider__section"
+               aria-roledescription="carousel"
+               [attr.aria-label]="'collspec.accueil.vedette.carousel' | translate">
+        @if (hasSlidesToDisplay) {
+          <div class="slider__wrapper"
+               (mouseenter)="onMouseEnter()"
+               (mouseleave)="onMouseLeave()"
+               (focusin)="onFocusIn()"
+               (focusout)="onFocusOut($event)"
+               (touchstart)="onTouchStart($event)"
+               (touchend)="onTouchEnd($event)">
+            <div class="slider__column">
+              <div class="slider__track">
+                <ul class="slider__list" #track>
+                  <!-- Liste affichée deux fois pour la boucle infinie : la 2e copie est ignorée au clavier et par les lecteurs d'écran -->
+                  @for (slide of displaySlides; track slide.id + '-' + $index) {
+                    @let isClone = $index >= originalSlideCount;
+                    <li class="slider__slide" [attr.aria-hidden]="isClone ? 'true' : null">
+                      <a [routerLink]="['/items', slide.id]"
+                         [attr.tabindex]="isClone ? -1 : null"
+                         (focus)="goToSlide($index)">
+                        <img [src]="slide.imageUrl" [alt]="slide.title" loading="lazy" />
+                        <div class="slider__caption">
+                          <h4>{{ slide.title }}</h4>
+                        </div>
+                      </a>
+                    </li>
+                  }
+                </ul>
+              </div>
+
+              @if (slides.length > 1) {
+                <button type="button" class="slider__arrow slider__arrow--prev"
+                        [attr.aria-label]="'collspec.accueil.vedette.prev' | translate"
+                        (click)="onArrow('prev')">
+                  <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="slider__arrow slider__arrow--next"
+                        [attr.aria-label]="'collspec.accueil.vedette.next' | translate"
+                        (click)="onArrow('next')">
+                  <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                </button>
+
+                <div class="slider__indicators">
+                  @for (slide of slides; track slide.id) {
+                    <button type="button"
+                            class="slider__indicator"
+                            [class.active]="activeIndicator === $index"
+                            [attr.aria-current]="activeIndicator === $index ? 'true' : null"
+                            [attr.aria-label]="'collspec.accueil.vedette.goto' | translate: { index: $index + 1, total: slides.length }"
+                            (click)="goToSlide($index)">
+                    </button>
+                  }
+                  <button type="button" class="slider__pause"
+                          [attr.aria-label]="(userPaused ? 'collspec.accueil.vedette.play' : 'collspec.accueil.vedette.pause') | translate"
+                          (click)="togglePause()">
+                    <i class="fas" [class.fa-play]="userPaused" [class.fa-pause]="!userPaused" aria-hidden="true"></i>
+                  </button>
+                </div>
               }
-            </ul>
+            </div>
           </div>
-          <!-- Flèches de navigation du carrousel -->
-          <button class="slider__arrow slider__arrow--prev" (click)="prevSlide()"><i class="fas fa-chevron-left"></i></button>
-          <button class="slider__arrow slider__arrow--next" (click)="nextSlide()"><i class="fas fa-chevron-right"></i></button>
-
-          @if (slides.length > 1) {
-          <div class="slider__indicators">
-            @for (slide of slides; track slide.id) {
-            <button
-              class="slider__indicator"
-              [class.active]="activeIndicator === $index"
-              (click)="goToSlide($index)"
-              [attr.aria-label]="'Slide ' + ($index + 1)">
-            </button>
-            }
-          </div>
-          }
-        </div>
-      </div>
-      } @else {
-      <!-- Message affiché s'il n'y a aucune diapositive -->
-      <div class="no-images-message">{{ 'collspec.accueil.vedette.error' | translate }}</div>
-      }
-
-    </section>
+        } @else {
+          <!-- Message affiché s'il n'y a aucune diapositive (ou si l'API ne répond pas) -->
+          <div class="no-images-message">{{ 'collspec.accueil.vedette.error' | translate }}</div>
+        }
+      </section>
     }
   </div>
 </div>
