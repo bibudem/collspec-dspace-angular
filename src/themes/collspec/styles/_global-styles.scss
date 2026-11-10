@@ -1923,41 +1923,13 @@ p.full-text-op {
 
 .about-page {
 
-  // Bannière : image pleine largeur avec le titre en surimpression
-  .about-hero {
-    position: relative;
-    height: clamp(220px, 38vw, 420px);
-    margin: 0 0 2rem;
-    border-radius: 16px;
-    overflow: hidden;
+  // Titre de page : même style que « Nos fonds et collections »
+  .about-intro {
+    padding: 0 0 1rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #E7EBEE;
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 45%;
-      display: block;
-    }
-  }
-
-  .about-hero-overlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: flex-end;
-    padding: 2rem 2.5rem;
-    // Voile diagonal léger : plus soutenu sous le titre, presque transparent à l'opposé
-    background: linear-gradient(35deg, rgba(11, 17, 58, 0.6) 0%, rgba(11, 17, 58, 0.25) 40%, rgba(11, 17, 58, 0.05) 75%);
-
-    h1 {
-      margin: 0;
-      color: $white !important;
-      font-family: $font-family-serif !important;
-      font-size: clamp(2.25rem, 5vw, 4rem);
-      font-weight: 500;
-      line-height: 1.05;
-      text-shadow: 0 2px 12px rgba(11, 17, 58, 0.45);
-    }
+    h1 { color: $darkblue !important; }
   }
 
   .about-section {
@@ -2066,13 +2038,8 @@ p.full-text-op {
 
 @media (max-width: 767.98px) {
   .about-page {
-    .about-hero {
-      margin-bottom: 1.5rem;
-      border-radius: 12px;
-    }
-
-    .about-hero-overlay {
-      padding: 1.25rem;
+    .about-intro h1 {
+      font-size: 2rem !important;
     }
 
     .about-section {
