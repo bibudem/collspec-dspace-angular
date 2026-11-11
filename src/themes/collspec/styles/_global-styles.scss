@@ -691,13 +691,17 @@ a.lead {
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: url('/assets/collspec/images/bibImage-home.jpg') no-repeat center center;
+  background: url('/assets/collspec/images/livres-rares-4125_54022049527_o.jpg') no-repeat 65% 30%;
   background-size: cover;
   margin-top: -20rem;
 }
 
 .hero-overlay {
-  background: rgba(0, 0, 0, 0.2);
+  // Dégradé bicolore UdeM : bleu nuit (#002345, bleu UdeM assombri) sous le titre,
+  // fondu vers le bleu UdeM (#0057ac) puis transparent ; l'image reste naturelle à droite
+  background:
+    linear-gradient(to top, rgba(#002345, 0.45) 0%, rgba(#002345, 0) 35%),
+    linear-gradient(100deg, rgba(#002345, 0.62) 0%, rgba(#0057ac, 0.3) 45%, rgba(#0057ac, 0) 75%);
   padding: 2rem;
   color: white;
   width: 100%;
@@ -709,10 +713,12 @@ a.lead {
 
 .hero-section h1 {
   text-align: left;
-  font-size: 90px;
+  font-size: clamp(3.25rem, 2rem + 5vw, 6.25rem);
   width: 100%;
   color: white;
   font-weight: 500;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.65), 0 6px 30px rgba(0, 0, 0, 0.75);
   font-family: $font-family-serif!important;
   margin-top: 40vh;
   margin-left: 5%;
@@ -771,7 +777,6 @@ ds-themed-top-level-community-list .list-hide {
 /* Tablettes (768px - 1024px) */
 @media (max-width: 1024px) {
   .hero-section h1 {
-    font-size: 7rem;
     margin-top: 35vh;
     margin-left: 3%;
     padding-left: 15px;
@@ -801,7 +806,6 @@ ds-themed-top-level-community-list .list-hide {
   }
 
   .hero-section h1 {
-    font-size: 4.5rem;
     margin-top: 30vh;
     margin-left: 2%;
     padding-left: 10px;
@@ -831,10 +835,10 @@ ds-themed-top-level-community-list .list-hide {
   .hero-overlay {
     height: 80vh;
     padding: 0.5rem;
+    background: linear-gradient(to top, rgba(#002345, 0.7) 0%, rgba(#0057ac, 0.3) 55%, rgba(#0057ac, 0.05) 100%);
   }
 
   .hero-section h1 {
-    font-size: 4.5rem;
     margin-top: 25vh;
     margin-left: 0;
     padding-left: 15px;
@@ -870,7 +874,6 @@ ds-themed-top-level-community-list .list-hide {
   }
 
   .hero-section h1 {
-    font-size: 3.5rem;
     margin-top: 0;
     margin-bottom: 8%;
     padding-left: 10px;
@@ -906,7 +909,6 @@ ds-themed-top-level-community-list .list-hide {
   }
 
   .hero-section h1 {
-    font-size: 100px;
     margin-top: 45vh;
   }
 
@@ -931,7 +933,6 @@ ds-themed-top-level-community-list .list-hide {
   }
 
   .hero-section h1 {
-    font-size: 4.5rem;
     margin-top: 20vh;
     margin-bottom: 3%;
   }
