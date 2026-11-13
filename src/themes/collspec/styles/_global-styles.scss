@@ -171,10 +171,23 @@ p, span, a {
   padding-right: 1.6rem;
   transition: background-color 0.2s ease;
 
+  // Flèche diagonale fine (SVG) : taille du texte, centrée verticalement
+  .btn-icon {
+    width: 1em;
+    height: 1em;
+    margin-left: 0.4em;
+    vertical-align: -0.125em;
+    transition: transform 0.2s ease;
+  }
+
   &:hover,
   &:focus-visible {
     background-color: lighten($darkblue, 12%);
     color: #FFFFFF;
+
+    .btn-icon {
+      transform: translate(2px, -2px);
+    }
   }
 
   &:active {
