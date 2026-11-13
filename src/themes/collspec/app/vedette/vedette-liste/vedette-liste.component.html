@@ -5,8 +5,17 @@
       <div class="vedette-header">
         <h2 class="fw-bold bib-title">{{ 'collspec.accueil.vedette.titre' | translate }}</h2>
       </div>
-      <p [innerHTML]="'collspec.accueil.vedette.description' | translate"></p>
-      <p [innerHTML]="'collspec.accueil.vedette.description2' | translate"></p>
+      <!-- Un seul paragraphe : les deux textes se suivent avec un simple retour à la ligne -->
+      <p>
+        <span [innerHTML]="'collspec.accueil.vedette.description' | translate"></span><br>
+        <span [innerHTML]="'collspec.accueil.vedette.description2' | translate"></span>
+      </p>
+      <!-- Dans un <p> pour reprendre l'alignement des paragraphes à chaque taille d'écran -->
+      <p>
+        <a href="https://bib.umontreal.ca/espaces/blrcs/" class="btn btn-darkblue" target="_blank" rel="noopener">
+          {{ 'collspec.accueil.vedette.bouton' | translate }} <span aria-hidden="true">↗</span>
+        </a>
+      </p>
     </div>
 
     @if (loading) {

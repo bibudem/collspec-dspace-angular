@@ -54,9 +54,11 @@
 
   "collspec.accueil.vedette.titre": "Découvrez nos pièces uniques",
 
-  "collspec.accueil.vedette.description": "Nos collections spéciales regorgent de pièces uniques, anciennes ou rares, qui offrent de multiples possibilités pour la recherche, l’étude et l’enseignement. Parcourez les différents fonds et explorez ces riches collections à travers les numérisations disponibles sur cet espace.",
+  "collspec.accueil.vedette.description": "Les collections spéciales des bibliothèques de l’Université de Montréal regorgent de pièces uniques, anciennes ou rares, qui offrent de multiples possibilités pour la recherche, l’étude et l’enseignement. Parcourez les différents fonds et explorez ces riches collections à travers les numérisations disponibles sur cet espace numérique.",
 
-  "collspec.accueil.vedette.description2": "Le réseau des bibliothèques de l’Université de Montréal comprend la Bibliothèque des livres rares et collections spéciales, un laboratoire de recherche vivant où manuscrits, livres, images et autres formes d’expression ouvrent de nouvelles perspectives. Sur place, son équipe vous accompagne dans vos recherches, dans la consultation et l’exploitation des documents.",
+  "collspec.accueil.vedette.description2": "Au sein du réseau des bibliothèques UdeM, la <a href=\"https://bib.umontreal.ca/espaces/blrcs/\" target=\"_blank\" rel=\"noopener\">Bibliothèque des livres rares et collections spéciales</a> conserve une grande partie de ces collections. Véritable laboratoire de recherche vivant, elle réunit manuscrits, livres, images et autres formes d’expression qui ouvrent de nouvelles perspectives. Sur place, son équipe vous accompagne dans vos recherches, dans la consultation et l’exploitation des documents.",
+
+  "collspec.accueil.vedette.bouton": "Découvrir la bibliothèque",
 
   "collspec.faq.titre": "FAQ - Vos Questions, nos Réponses",
 
