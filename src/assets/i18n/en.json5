@@ -7372,7 +7372,7 @@
 
   "collspec.accueil.vedette.titre": "Discover our unique pieces",
 
-  "collspec.accueil.vedette.description": "Our special collections feature unique, historic, and rare materials with rich potential for research, study, and teaching. Browse the various collections and explore these exceptional resources through the digitized materials available on this site.",
+  "collspec.accueil.vedette.description": "The special collections of the Université de Montréal Libraries feature unique, historic and rare materials that offer many possibilities for research, study and teaching. Browse the various fonds and explore these rich collections through the digitized materials available in this digital space.",
 
   "collspec.faq.titre": "FAQ – Your Questions, Answered",
 
@@ -7562,7 +7562,7 @@
 
   "relationships.Journal.continues.Journal": "Continues",
 
-  "collspec.accueil.vedette.description2": "The Université de Montréal Libraries network includes the Rare Books and Special Collections Library, a vibrant research laboratory where manuscripts, books, images, and other forms of expression open new avenues of discovery. On site, its team provides guidance for research as well as for accessing and working with the materials.",
+  "collspec.accueil.vedette.description2": "Within the UdeM Libraries network, the <a href=\"https://bib.umontreal.ca/espaces/blrcs/\" target=\"_blank\" rel=\"noopener\">Rare Books and Special Collections Library</a> holds a large part of these collections. A true living research laboratory, it brings together manuscripts, books, images and other forms of expression that open up new perspectives. On site, its team supports you in your research and in consulting and working with the materials.",
 
   "search.filters.itemtype.text": "Text",
 
@@ -7633,4 +7633,18 @@
   "search.filters.language.dut": "Dutch",
 
   "search.filters.language.swe": "Swedish",
+
+  "collspec.accueil.vedette.bouton": "Discover the library",
+
+  "collspec.accueil.vedette.carousel": "Featured items",
+
+  "collspec.accueil.vedette.prev": "Previous image",
+
+  "collspec.accueil.vedette.next": "Next image",
+
+  "collspec.accueil.vedette.goto": "Show image {{index}} of {{total}}",
+
+  "collspec.accueil.vedette.pause": "Pause the carousel",
+
+  "collspec.accueil.vedette.play": "Resume the carousel",
 }
