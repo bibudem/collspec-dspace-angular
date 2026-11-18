@@ -74,7 +74,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    // Pas de marge sur les côtés : l'image touche le bord du conteneur comme le texte au-dessus
     padding: 10px 0;
     border-radius: 12px;
     @media (max-width: 576px) {
@@ -97,7 +96,7 @@
       max-height: none;
     }
 
-    // Mobile : toutes les images en 3:2, comme le carrousel au-dessus
+    // Mobile : même format 3:2 que le carrousel
     @media (max-width: 576px) {
       aspect-ratio: 3 / 2;
     }

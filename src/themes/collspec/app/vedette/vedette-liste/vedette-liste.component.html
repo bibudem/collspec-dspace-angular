@@ -1,4 +1,3 @@
-<!-- Fond clair sur toute la largeur ; contenu aligné sur le titre de la bannière (.collspec-inset) -->
 <div class="carousel-bib-home font-blue" id="nos-collections">
   <div class="collspec-inset">
     <!-- Titre et description de la section vedette -->
@@ -6,7 +5,6 @@
       <div class="vedette-header">
         <h2 class="fw-bold bib-title">{{ 'collspec.accueil.vedette.titre' | translate }}</h2>
       </div>
-      <!-- Présentation en deux paragraphes -->
       <p [innerHTML]="'collspec.accueil.vedette.description' | translate"></p>
       <p [innerHTML]="'collspec.accueil.vedette.description2' | translate"></p>
       <!-- Dans un <p> pour reprendre l'alignement des paragraphes à chaque taille d'écran -->
@@ -52,7 +50,7 @@
               </div>
 
               @if (slides.length > 1) {
-                <!-- Commandes regroupées en bas à droite de l'image active : points, pause, précédent, suivant -->
+                <!-- Commandes : points, pause, précédent, suivant -->
                 <div class="slider__controls">
                   <div class="slider__indicators">
                     @for (slide of slides; track slide.id) {

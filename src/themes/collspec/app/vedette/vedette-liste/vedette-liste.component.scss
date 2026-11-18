@@ -31,7 +31,6 @@
   }
 }
 
-// Pleine largeur du conteneur : bord droit aligné sur les thèmes sous le carrousel
 p {
   text-align: left;
   margin-bottom: 1rem;
@@ -45,8 +44,7 @@ p {
 }
 
 .slider {
-  // Bord gauche aligné sur le texte, côté droit jusqu'au bord de l'écran :
-  // la marge négative annule la marge latérale droite de .collspec-inset
+  // S'étend jusqu'au bord droit de l'écran
   &__section {
     padding-block: 2.5rem;
     margin-right: calc((100% - 100vw) / 2);
@@ -63,8 +61,6 @@ p {
     overflow: hidden;
   }
 
-  // La zone visible commence au bord de l'image courante (aligné sur le texte) :
-  // l'image précédente reste cachée, la suivante dépasse à droite
   &__track {
     overflow: hidden;
     width: 100%;
@@ -106,7 +102,6 @@ p {
     bottom: 0;
     left: 0;
     right: 0;
-    // Fondu gris foncé (#212529) : plus haut et plus doux qu'un noir
     background: linear-gradient(
       to top,
       rgba(#212529, 0.82) 0%,
@@ -115,7 +110,7 @@ p {
       rgba(#212529, 0) 100%
     );
     color: white;
-    // bas et droite : place réservée aux commandes, alignées avec le titre
+    // Place réservée aux commandes à droite
     padding: 4.5rem 15rem 1rem 1rem;
 
     h4 {
@@ -136,8 +131,7 @@ p {
     }
   }
 
-  // ── Commandes : en bas à droite de l'image active ──
-  // Sur grand écran l'image active fait 2/3 de la piste : on se cale sur son bord droit
+  // Commandes en bas à droite de l'image active (2/3 de la piste sur grand écran)
   &__controls {
     position: absolute;
     bottom: 1rem;
@@ -148,7 +142,6 @@ p {
     gap: 0.5rem;
   }
 
-  // Points discrets : petits, blancs translucides, légère ombre pour rester visibles sur fond clair
   &__indicators {
     display: flex;
     align-items: center;
@@ -168,7 +161,7 @@ p {
     transition: background 0.25s ease, transform 0.25s ease;
     position: relative;
 
-    // Zone cliquable agrandie (22 px) sans changer le visuel
+    // Zone cliquable agrandie
     &::after {
       content: '';
       position: absolute;
@@ -185,7 +178,6 @@ p {
     }
   }
 
-  // Pause / lecture discrète : icône seule, sans fond
   &__pause {
     position: relative;
     width: 24px;
@@ -212,7 +204,6 @@ p {
     }
   }
 
-  // Flèches : précédent en gris translucide, suivant en blanc plein ; flèche fine
   &__btn {
     position: relative;
     width: 36px;
@@ -248,7 +239,6 @@ p {
     color: $darkblue;
   }
 
-  // Focus clavier visible sur image claire comme foncée
   &__btn,
   &__pause,
   &__indicator {
@@ -272,7 +262,7 @@ p {
   }
 
   .slider {
-    // Une seule image visible : pas de débordement à droite, même marge des deux côtés
+    // Une seule image visible : pas de débordement à droite
     &__section {
       padding-block: 1rem;
       margin-right: 0;
@@ -286,7 +276,6 @@ p {
       }
     }
 
-    // L'image occupe toute la piste : commandes au bord droit, légende au-dessus d'elles
     &__controls {
       right: 1rem;
     }
@@ -343,7 +332,7 @@ p {
       }
     }
 
-    // Boutons un peu plus petits ; zone tactile agrandie à 44 px
+    // Zone tactile agrandie
     &__controls {
       bottom: 0.75rem;
       right: 0.75rem;
@@ -380,7 +369,7 @@ p {
   }
 
   .slider {
-    // Même proportion (3:2) que les images des thèmes en dessous
+    // Même format 3:2 que les images des thèmes
     &__slide {
       flex: 0 0 100%;
 
@@ -444,6 +433,6 @@ p {
 
 .carousel-bib-home{
   margin-bottom: 3.5rem;
-  // 100vw inclut la barre de défilement : on coupe ce petit excédent pour éviter un défilement horizontal
+  // Évite un défilement horizontal (100vw inclut la barre de défilement)
   overflow-x: clip;
 }

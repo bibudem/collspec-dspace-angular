@@ -7386,7 +7386,7 @@
 
   "collspec.footer.bibliotheque": "Les bibliothèques de l’Université de Montréal",
 
-  "collspec.footer.emergency": "Emergency 514 343-7771",
+  "collspec.footer.emergency": "UdeM emergency 514 343‑7771",
 
   "collspec.footer.contact.titre": "Contact us",
 
@@ -7647,4 +7647,36 @@
   "collspec.accueil.vedette.pause": "Pause the carousel",
 
   "collspec.accueil.vedette.play": "Resume the carousel",
+
+  "collspec.footer.aide.titre": "Need help?",
+
+  "collspec.footer.sites.titre": "Related sites",
+
+  "collspec.footer.sites.boite": "Toolbox",
+
+  "collspec.footer.sites.boite.fonction": "Guides for your research",
+
+  "collspec.footer.sites.bd": "Databases A to Z",
+
+  "collspec.footer.sites.bd.fonction": "Electronic resources by subject",
+
+  "collspec.footer.sites.studio": "Studio•bib",
+
+  "collspec.footer.sites.studio.fonction": "Computing and digital creation",
+
+  "collspec.footer.sites.papyrus": "Papyrus",
+
+  "collspec.footer.sites.papyrus.fonction": "Institutional repository",
+
+  "collspec.footer.sites.sofia": "Sofia",
+
+  "collspec.footer.sites.sofia.fonction": "Search tool",
+
+  "collspec.footer.sites.geoindex": "GéoIndex",
+
+  "collspec.footer.sites.geoindex.fonction": "Geospatial data",
+
+  "collspec.footer.youtube": "Libraries on YouTube",
+
+  "collspec.footer.instagram": "Université de Montréal on Instagram",
 }
