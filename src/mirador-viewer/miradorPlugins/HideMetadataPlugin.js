@@ -130,6 +130,12 @@ const COLLECTION_RULES = {
     hideLabels: ['description', 'Sujet(s)', 'Autre(s) Titre(s)', 'Pays d’origine', 'Collection'],
   },
   
+  /* Canadiana et Americana -- Collection de monographies */
+  
+  '820b932f-0c4a-44c5-a55b-f5c241e9dc13': {
+    hideLabels: ['description'],
+  },
+  
   /* Canadiana et Americana -- Marques de provenance */
   
   '92541637-a41d-4b3a-a631-d198a44111d3': {
@@ -142,6 +148,12 @@ const COLLECTION_RULES = {
     hideLabels: ['description', 'Pays d’origine', 'Contributeur(s)', 'Fonds', 'Identifiant'],
   },
   
+  /* Canadiana et Americana -- Archives Baby */
+  
+  'e7e05d12-f8bd-40be-b8ce-48ab3359de66': {
+    hideLabels: ['description', 'Pays d’origine', 'Contributeur(s)', 'Fonds', 'Identifiant'],
+  },
+  
   /* Images d'aménagement (/diame) */
   
   '463625e1-602d-4844-a94f-5df83c681054': {
@@ -151,7 +163,7 @@ const COLLECTION_RULES = {
   /* Archives patrimoniales et mur de visualisation – Illustrations inuit */
   
   '699d9a2c-27dd-4bc3-b74f-30d0a171c2ec': {
-    hideLabels: ['description'],
+    hideLabels: ['description', 'Pays d’origine'],
   },
   
 };
