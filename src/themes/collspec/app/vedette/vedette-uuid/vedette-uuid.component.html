@@ -1,16 +1,21 @@
-<section class="slider__section">
+<section class="slider__section"
+         aria-roledescription="carousel"
+         [attr.aria-label]="'collspec.accueil.vedette.carousel' | translate">
   @if (hasSlidesToDisplay) {
   <div class="slider__wrapper"
        [class.slider--few]="isFewSlides"
        (mouseenter)="onMouseEnter()"
-       (mouseleave)="onMouseLeave()">
+       (mouseleave)="onMouseLeave()"
+       (focusin)="onFocusIn()"
+       (focusout)="onFocusOut($event)">
 
     <div class="slider__column">
       <div class="slider__track" #track>
         <ul class="slider__list">
           @for (slide of slides; track trackByFn($index, slide)) {
           <li class="slider__slide">
-            <a [routerLink]="['/items', slide.id]">
+            <!-- Au clavier, le focus sur une image l'amène à l'écran -->
+            <a [routerLink]="['/items', slide.id]" (focus)="goToSlide($index)">
               <img [src]="slide.imageUrl" [alt]="slide.title" loading="lazy">
               <div class="slider__overlay"></div>
               <div class="slider__caption">
@@ -23,29 +28,34 @@
       </div>
 
       @if (showArrows) {
-      <button
-        class="slider__arrow slider__arrow--prev"
-        (click)="prevSlide()"
-        [disabled]="isPrevDisabled">
-        <i class="fas fa-chevron-left"></i>
-      </button>
-
-      <button
-        class="slider__arrow slider__arrow--next"
-        (click)="nextSlide()"
-        [disabled]="isNextDisabled">
-        <i class="fas fa-chevron-right"></i>
-      </button>
-
-      <div class="slider__indicators">
-        @for (slide of slides; track trackByFn($index, slide)) {
-        <button
-          class="slider__indicator"
-          [class.active]="currentIndex === $index"
-          (click)="goToSlide($index)"
-          [attr.aria-label]="'Slide ' + ($index + 1)">
+      <!-- Commandes regroupées en bas à droite, comme sur l'accueil : points, pause, précédent, suivant -->
+      <div class="slider__controls">
+        <div class="slider__indicators">
+          @for (slide of slides; track trackByFn($index, slide)) {
+          <button type="button"
+                  class="slider__indicator"
+                  [class.active]="currentIndex === $index"
+                  [attr.aria-current]="currentIndex === $index ? 'true' : null"
+                  [attr.aria-label]="'collspec.accueil.vedette.goto' | translate: { index: $index + 1, total: slides.length }"
+                  (click)="goToSlide($index)">
+          </button>
+          }
+        </div>
+        <button type="button" class="slider__pause"
+                [attr.aria-label]="(isPlaying ? 'collspec.accueil.vedette.pause' : 'collspec.accueil.vedette.play') | translate"
+                (click)="togglePause()">
+          <i class="fas" [class.fa-pause]="isPlaying" [class.fa-play]="!isPlaying" aria-hidden="true"></i>
         </button>
-        }
+        <button type="button" class="slider__btn slider__arrow--prev"
+                [attr.aria-label]="'collspec.accueil.vedette.prev' | translate"
+                (click)="prevSlide()">
+          <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M13 8H3M7 4L3 8l4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button type="button" class="slider__btn slider__arrow--next"
+                [attr.aria-label]="'collspec.accueil.vedette.next' | translate"
+                (click)="nextSlide()">
+          <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
       </div>
       }
     </div>
