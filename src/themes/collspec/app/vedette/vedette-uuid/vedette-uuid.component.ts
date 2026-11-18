@@ -44,7 +44,7 @@ export class VedetteUUIDComponent implements OnInit, AfterViewInit, OnDestroy {
   error = false;
   autoSlideInterval: any;
   isBrowser: boolean;
-  /** Pause demandée par l'utilisateur (bouton) : le survol et le focus ne relancent plus le défilement */
+  /** Pause demandée avec le bouton */
   userPaused = false;
 
   private resizeHandler: any;
@@ -98,7 +98,6 @@ export class VedetteUUIDComponent implements OnInit, AfterViewInit, OnDestroy {
     this.calculateItemWidth();
     this.updatePosition();
 
-    // Même comportement que le carrousel de l'accueil : défilement automatique, bouton pause pour l'arrêter
     if (this.slides.length > 1) {
       this.startAutoSlide();
     }
@@ -126,11 +125,11 @@ export class VedetteUUIDComponent implements OnInit, AfterViewInit, OnDestroy {
     this.track.nativeElement.style.transform = `translateX(${offset}px)`;
   }
 
-  // Défilement en boucle dans les deux sens, comme le carrousel de l'accueil
+  // Défilement en boucle
   nextSlide(): void {
     this.currentIndex = (this.currentIndex + 1) % this.slides.length;
     this.updatePosition();
-    this.cdr.markForCheck(); // la page communauté est en OnPush : on signale le changement
+    this.cdr.markForCheck(); // parent en OnPush
   }
 
   prevSlide(): void {
@@ -171,7 +170,7 @@ export class VedetteUUIDComponent implements OnInit, AfterViewInit, OnDestroy {
     this.resumeIfAllowed();
   }
 
-  /** Focus clavier dans le carrousel : on arrête le défilement pour ne pas déplacer le contenu sous le focus */
+  /** Arrête le défilement pendant la navigation au clavier */
   onFocusIn(): void {
     this.stopAutoSlide();
   }
@@ -198,7 +197,6 @@ export class VedetteUUIDComponent implements OnInit, AfterViewInit, OnDestroy {
     return !!this.autoSlideInterval;
   }
 
-  // Reprend seulement si l'utilisateur n'a pas mis le défilement en pause
   private resumeIfAllowed(): void {
     if (!this.userPaused && this.slides.length > 1) {
       this.startAutoSlide();

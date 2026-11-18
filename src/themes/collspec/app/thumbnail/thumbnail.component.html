@@ -1,5 +1,5 @@
 <div class="thumbnail" [class.limit-width]="limitWidth" [class.thumbnail--large]="isLargeLandscape()" [class.thumbnail--small]="isSmall()">
-  <!-- Fond flou (même image) : décoratif, visible seulement dans la vue « Mosaïque » -->
+  <!-- Fond flou décoratif (vue Mosaïque) -->
   @if (isLoading() === false) {
     <span class="thumbnail-backdrop" aria-hidden="true"
           [style.background-image]="'url(' + (src() ?? collspecDefaultImage) + ')'"></span>

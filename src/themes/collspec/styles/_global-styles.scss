@@ -585,16 +585,12 @@ nav#admin-sidebar a {
   }
 }
 
-/* Cartes DSpace personnalisées : vue « Mosaïque » des résultats (et grilles de communautés / collections)
-   Les vignettes générées par DSpace sont petites (≈ 175 × 150 px) : DSpace les étirait sur toute la
-   largeur de la carte (jusqu'à × 3,5) → floues. Ici elles gardent leur taille réelle, centrées dans
-   un cadre de hauteur fixe ; derrière, la même image floutée remplit le cadre (fond fourni par
-   le composant vignette du thème, app/thumbnail). Seules les grandes images sont réduites. */
+/* Cartes de la vue Mosaïque : vignettes non étirées (pour rester nettes), sur un fond flou de la même image */
 .card-columns .card {
   position: relative;
   display: flex;
   flex-direction: column;
-  height: 440px; // même hauteur pour toutes les cartes (contenu tronqué : titre 3 lignes, auteurs 2 lignes)
+  height: 440px; // hauteur commune à toutes les cartes
   margin-bottom: 20px;
   overflow: hidden;
   background: #ffffff !important;
@@ -614,15 +610,15 @@ nav#admin-sidebar a {
     }
   }
 
-  // Cadre de la vignette : hauteur fixe pour aligner les cartes, image centrée
+  // Cadre de la vignette
   .card-img-top {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative; // repère du fond flou
+    position: relative;
     height: 200px;
     padding: 1.25rem;
-    overflow: hidden; // fond flou et indicateur de chargement restent dans le cadre
+    overflow: hidden;
     background: #f4f6f8;
     border-bottom: 1px solid #e3e8ee;
 
@@ -637,23 +633,23 @@ nav#admin-sidebar a {
     }
   }
 
-  // Fond flou : la même image, agrandie et floutée, remplit tout le cadre (la basse résolution ne se voit pas)
+  // Fond flou
   .thumbnail-backdrop {
     display: block;
     position: absolute;
-    inset: -24px; // déborde pour éviter le liseré clair du flou sur les bords
+    inset: -24px; // évite un liseré clair sur les bords
     background-size: cover;
     background-position: center;
     filter: blur(16px) saturate(1.05) brightness(1.1);
-    opacity: 0.7; // laisse transparaître le fond clair du cadre : rendu plus lumineux
+    opacity: 0.7;
     transform: scale(1.12);
     transition: transform 0.4s ease;
     z-index: 0;
   }
 
-  // Vignette : jamais agrandie (annule width/min-width 100 % + object-fit: cover de la grille DSpace)
+  // Vignette jamais étirée (annule le width 100 % + object-fit: cover de la grille DSpace)
   div.thumbnail > img.thumbnail-content {
-    position: relative; // au-dessus du fond flou
+    position: relative;
     z-index: 1;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
     width: auto !important;
@@ -661,12 +657,12 @@ nav#admin-sidebar a {
     min-height: 0 !important;
     height: auto !important;
     max-width: 100% !important;
-    max-height: 160px !important; // hauteur du cadre (200 px) moins son padding
+    max-height: 160px !important;
     object-fit: contain !important;
     border-radius: 4px;
   }
 
-  // Grande image paysage (classe posée par la vignette du thème) : elle remplit tout le cadre, sans marge
+  // Grande image paysage : remplit le cadre
   div.thumbnail.thumbnail--large {
     .thumbnail-backdrop {
       display: none;
@@ -690,8 +686,7 @@ nav#admin-sidebar a {
     transform: scale(1.04);
   }
 
-  // Petite vignette DSpace (≤ 200 px) : agrandie de 20 % seulement — compromis entre taille et netteté.
-  // transform ne change pas la mise en page : l'image déborde dans le padding du cadre, sans être coupée.
+  // Petite vignette : légèrement agrandie (compromis taille / netteté)
   div.thumbnail.thumbnail--small > img.thumbnail-content {
     transform: scale(1.2);
   }
@@ -717,7 +712,6 @@ nav#admin-sidebar a {
       overflow: hidden !important;
     }
 
-    // Date / auteurs tronqués à 2 lignes
     .item-authors {
       font-size: 0.8rem !important;
       color: $gray-600 !important;
@@ -734,17 +728,16 @@ nav#admin-sidebar a {
         color: $darkblue;
       }
 
-      // Sans date, DSpace commence par « , Auteur » : on masque cette virgule (texte du premier span)
+      // Masque la virgule initiale quand il n'y a pas de date
       > span:first-child:not(.item-date) {
         font-size: 0;
 
         > span {
-          font-size: 1rem; // même taille que les autres auteurs (les span du thème sont à 1rem)
+          font-size: 1rem;
         }
       }
     }
 
-    // Description masquée pour les documents ; 3 lignes max pour communautés et collections
     .item-abstract {
       display: none !important;
     }
@@ -761,7 +754,7 @@ nav#admin-sidebar a {
       overflow: hidden;
     }
 
-    // Lien « Afficher » poussé en pied de carte (n'est plus en position absolue)
+    // Lien « Afficher » en bas de carte
     .text-center {
       margin-top: auto;
       padding-top: 1rem;
@@ -807,7 +800,6 @@ nav#admin-sidebar a {
   }
 }
 
-// Mobile : une seule colonne, hauteur selon le contenu
 @media (max-width: 575.98px) {
   .card-columns .card {
     height: auto;
@@ -878,7 +870,6 @@ a.lead {
 .hero-section h1 {
   text-align: left;
   font-size: clamp(3.25rem, 2rem + 5vw, 6.25rem);
-  // auto (et non 100 %) : avec la marge à gauche, 100 % dépassait de l'écran
   width: auto;
   color: white;
   font-weight: 500;
@@ -892,10 +883,8 @@ a.lead {
   line-height: 100%;
 }
 
-/* Marge latérale des sections de la page d'accueil = bord gauche du titre de la bannière.
-   Calcul : padding de .hero-overlay + margin-left (en %) et padding-left du h1.
-   Le % du h1 porte sur la largeur intérieure de .hero-overlay (largeur − 2 × padding),
-   d'où la petite soustraction. À garder en phase avec les règles du h1 ci-dessus et plus bas. */
+/* Marge latérale de l'accueil, alignée sur le titre de la bannière
+   (padding de .hero-overlay + marges du h1) : à ajuster si ces marges changent. */
 :root {
   --collspec-inset: calc(2rem + 20px + 5% - 0.2rem);       // padding 2rem, margin 5 %, padding 20px
 }
@@ -912,7 +901,7 @@ a.lead {
   :root { --collspec-inset: calc(0.5rem + 10px); }                // padding 0.5rem, margin 0, padding 10px
 }
 
-// Conteneur pleine largeur aligné sur le titre de la bannière (remplace .container sur l'accueil)
+// Conteneur aligné sur le titre de la bannière
 .collspec-inset {
   padding-inline: var(--collspec-inset);
 }
@@ -1113,8 +1102,7 @@ ds-themed-top-level-community-list .list-hide {
 
 /* Orientation paysage sur mobiles */
 @media (max-height: 600px) and (orientation: landscape) {
-  // La bannière remonte de 20rem sous l'en-tête (margin-top: -20rem) : on rajoute ces 20rem
-  // à la hauteur, sinon le titre passe sous l'en-tête sur un téléphone à l'horizontale
+  // Compense le margin-top: -20rem de la bannière
   .hero-section {
     height: auto;
     min-height: calc(100vh + 20rem);
@@ -1124,7 +1112,7 @@ ds-themed-top-level-community-list .list-hide {
     height: auto;
     min-height: calc(100vh + 20rem);
     justify-content: flex-end;
-    padding-top: calc(20rem + 6rem); // place de l'en-tête
+    padding-top: calc(20rem + 6rem);
   }
 
   .hero-section h1 {
@@ -1183,7 +1171,6 @@ ds-themed-top-level-community-list .list-hide {
   
   .footer-logo-bib {
     width: 175px;
-    // Ne dépasse pas sa colonne sur tablette (768 px)
     max-width: calc(100% - 20px);
     margin-left: 20px;
   }
@@ -1370,8 +1357,7 @@ a.collspec-menu {
       }
 }
 
-/* Onglets « Parcourir par » (pages communauté et collection) : sur tablette ils dépassaient de l'écran.
-   Ils restent sur une ligne et défilent horizontalement dans leur bandeau, sans faire défiler la page. */
+/* Onglets « Parcourir par » : défilement horizontal au lieu de déborder de l'écran */
 .comcol-browse .list-group-horizontal {
   flex-wrap: nowrap;
   overflow-x: auto;

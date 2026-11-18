@@ -9,11 +9,7 @@ import { SafeUrlPipe } from '../../../../app/shared/utils/safe-url-pipe';
 import { ThumbnailComponent as BaseComponent } from '../../../../app/thumbnail/thumbnail.component';
 
 /**
- * Vignette du thème collspec : identique à celle de DSpace, avec en plus un fond flou
- * (la même image, agrandie et floutée) derrière la vignette.
- * Ce fond n'est affiché que dans la vue « Mosaïque » (voir _global-styles.scss) : les vignettes
- * générées par DSpace sont petites, elles restent nettes à leur taille réelle et le fond flou
- * remplit le cadre sans montrer la basse résolution.
+ * Vignette DSpace avec un fond flou de la même image (utilisé dans la vue Mosaïque).
  */
 @Component({
   selector: 'ds-themed-thumbnail',
@@ -29,19 +25,16 @@ import { ThumbnailComponent as BaseComponent } from '../../../../app/thumbnail/t
   ],
 })
 export class ThumbnailComponent extends BaseComponent {
-  /** Image par défaut du thème, aussi utilisée pour le fond flou quand l'objet n'a pas de vignette */
+  /** Image par défaut du thème */
   readonly collspecDefaultImage = '/assets/collspec/images/imageDefaultcollspec.jpg';
 
-  /**
-   * Image paysage assez grande (≥ 400 px de large) : dans la Mosaïque elle peut remplir tout le
-   * cadre sans être agrandie au-delà de sa résolution, donc sans flou.
-   */
+  /** Grande image paysage : peut remplir le cadre sans perte de netteté */
   isLargeLandscape = signal(false);
 
-  /** Petite vignette générée par DSpace (≤ 200 px) : légèrement agrandie dans la Mosaïque */
+  /** Petite vignette générée par DSpace (≤ 200 px) */
   isSmall = signal(false);
 
-  /** Image chargée : traitement DSpace habituel, puis mesure de sa taille réelle */
+  /** Mesure la taille réelle de l'image une fois chargée */
   onImageLoad(img: HTMLImageElement): void {
     this.successHandler();
     const { naturalWidth: w, naturalHeight: h } = img;

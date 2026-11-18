@@ -14,7 +14,6 @@
         <ul class="slider__list">
           @for (slide of slides; track trackByFn($index, slide)) {
           <li class="slider__slide">
-            <!-- Au clavier, le focus sur une image l'amène à l'écran -->
             <a [routerLink]="['/items', slide.id]" (focus)="goToSlide($index)">
               <img [src]="slide.imageUrl" [alt]="slide.title" loading="lazy">
               <div class="slider__overlay"></div>
@@ -28,7 +27,7 @@
       </div>
 
       @if (showArrows) {
-      <!-- Commandes regroupées en bas à droite, comme sur l'accueil : points, pause, précédent, suivant -->
+      <!-- Commandes : points, pause, précédent, suivant -->
       <div class="slider__controls">
         <div class="slider__indicators">
           @for (slide of slides; track trackByFn($index, slide)) {

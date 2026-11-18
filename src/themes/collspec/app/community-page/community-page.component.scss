@@ -141,7 +141,7 @@
 
 // ── Carousel compact (bande panoramique) ────────────────────────────────────
 .community-carousel-wrapper {
-  margin-bottom: 1.5rem; // respiration avant « Parcourir par »
+  margin-bottom: 1.5rem;
 
   // Pleine largeur du container, plus de 70vw centré
   ::ng-deep .slider__section {
@@ -158,7 +158,7 @@
     img { height: 280px; }
   }
 
-  // Droite : place réservée aux commandes groupées en bas à droite
+  // Place réservée aux commandes du carrousel
   ::ng-deep .slider__caption {
     padding: 60px 15rem 14px 18px;
 
@@ -194,7 +194,7 @@
     padding-bottom: 1rem;
   }
 
-  // Logo + lien permanent sur une ligne, description en dessous sur toute la largeur (sans retrait à gauche)
+  // Mobile : logo et lien sur une ligne, description en dessous sur toute la largeur
   .community-meta-row {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
@@ -202,7 +202,6 @@
     row-gap: 0.75rem;
   }
 
-  // Le panneau s'efface : ses enfants (lien, textes) se placent directement dans la grille
   .community-description-panel {
     display: contents;
   }
