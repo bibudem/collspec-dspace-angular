@@ -594,7 +594,7 @@ nav#admin-sidebar a {
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 400px;
+  height: 440px; // même hauteur pour toutes les cartes (contenu tronqué : titre 3 lignes, auteurs 2 lignes)
   margin-bottom: 20px;
   overflow: hidden;
   background: #ffffff !important;
@@ -690,6 +690,12 @@ nav#admin-sidebar a {
     transform: scale(1.04);
   }
 
+  // Petite vignette DSpace (≤ 200 px) : agrandie de 20 % seulement — compromis entre taille et netteté.
+  // transform ne change pas la mise en page : l'image déborde dans le padding du cadre, sans être coupée.
+  div.thumbnail.thumbnail--small > img.thumbnail-content {
+    transform: scale(1.2);
+  }
+
   .card-body {
     flex: 1 1 auto;
     padding: 1rem 1.1rem 1.1rem !important;
@@ -726,6 +732,15 @@ nav#admin-sidebar a {
       .item-date {
         font-weight: 600;
         color: $darkblue;
+      }
+
+      // Sans date, DSpace commence par « , Auteur » : on masque cette virgule (texte du premier span)
+      > span:first-child:not(.item-date) {
+        font-size: 0;
+
+        > span {
+          font-size: 1rem; // même taille que les autres auteurs (les span du thème sont à 1rem)
+        }
       }
     }
 
@@ -792,10 +807,10 @@ nav#admin-sidebar a {
   }
 }
 
-// Mobile : une seule colonne, pas besoin d'égaliser les hauteurs
+// Mobile : une seule colonne, hauteur selon le contenu
 @media (max-width: 575.98px) {
   .card-columns .card {
-    min-height: 0;
+    height: auto;
   }
 }
 

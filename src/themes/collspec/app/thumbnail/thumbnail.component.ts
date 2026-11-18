@@ -38,10 +38,14 @@ export class ThumbnailComponent extends BaseComponent {
    */
   isLargeLandscape = signal(false);
 
+  /** Petite vignette générée par DSpace (≤ 200 px) : légèrement agrandie dans la Mosaïque */
+  isSmall = signal(false);
+
   /** Image chargée : traitement DSpace habituel, puis mesure de sa taille réelle */
   onImageLoad(img: HTMLImageElement): void {
     this.successHandler();
     const { naturalWidth: w, naturalHeight: h } = img;
     this.isLargeLandscape.set(w >= 400 && h > 0 && w / h >= 1.2);
+    this.isSmall.set(w > 0 && w <= 200 && h <= 200);
   }
 }
