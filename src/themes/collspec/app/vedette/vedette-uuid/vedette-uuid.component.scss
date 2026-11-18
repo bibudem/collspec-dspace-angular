@@ -66,7 +66,7 @@
   &__overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.18);
+    background: rgba(#212529, 0.08); // voile très léger, l'image reste naturelle
     z-index: 1;
     pointer-events: none;
   }
@@ -78,11 +78,13 @@
     left: 0;
     right: 0;
     z-index: 2;
+    // Fondu gris foncé (#212529), identique au carrousel de l’accueil
     background: linear-gradient(
       to top,
-      rgba(0, 0, 0, 0.78) 0%,
-      rgba(0, 0, 0, 0.48) 50%,
-      rgba(0, 0, 0, 0)    100%
+      rgba(#212529, 0.82) 0%,
+      rgba(#212529, 0.5) 40%,
+      rgba(#212529, 0.15) 75%,
+      rgba(#212529, 0) 100%
     );
     // droite : place réservée aux commandes (points, pause, flèches)
     padding: 80px 15rem 18px 22px;
@@ -100,7 +102,7 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
       letter-spacing: 0.01em;
-      text-shadow: 0 1px 5px rgba(0, 0, 0, 0.55);
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45), 0 2px 12px rgba(#212529, 0.6);
     }
 
     a { color: #fff !important; }

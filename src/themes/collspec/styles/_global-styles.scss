@@ -585,35 +585,125 @@ nav#admin-sidebar a {
   }
 }
 
-/* Cartes DSpace personnalisées */
+/* Cartes DSpace personnalisées : vue « Mosaïque » des résultats (et grilles de communautés / collections)
+   Les vignettes générées par DSpace sont petites (≈ 175 × 150 px) : DSpace les étirait sur toute la
+   largeur de la carte (jusqu'à × 3,5) → floues. Ici elles gardent leur taille réelle, centrées dans
+   un cadre de hauteur fixe ; derrière, la même image floutée remplit le cadre (fond fourni par
+   le composant vignette du thème, app/thumbnail). Seules les grandes images sont réduites. */
 .card-columns .card {
   position: relative;
-  height: auto;
-  min-height: 450px;
-  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.05),
-              0 2px 3px rgba(0, 0, 0, 0.05),
-              0 2px 1px rgba(0, 0, 0, 0.05) !important;
-  border-radius: 8px!important;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
   margin-bottom: 20px;
-  background-size: cover;
-  border: none !important;
-  padding-bottom: 1.5rem;
-  background: #e7ebee48!important;
+  overflow: hidden;
+  background: #ffffff !important;
+  border: 1px solid #e3e8ee !important;
+  border-radius: 12px !important;
+  box-shadow: 0 1px 2px rgba(11, 17, 58, 0.04) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+
+  &:hover,
+  &:focus-within {
+    transform: translateY(-3px);
+    border-color: #c9d6e3 !important;
+    box-shadow: 0 10px 24px rgba(11, 17, 58, 0.10) !important;
+
+    .thumbnail-backdrop {
+      transform: scale(1.18);
+    }
+  }
+
+  // Cadre de la vignette : hauteur fixe pour aligner les cartes, image centrée
+  .card-img-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; // repère du fond flou
+    height: 200px;
+    padding: 1.25rem;
+    overflow: hidden; // fond flou et indicateur de chargement restent dans le cadre
+    background: #f4f6f8;
+    border-bottom: 1px solid #e3e8ee;
+
+    > div,
+    ds-thumbnail,
+    .thumbnail {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  // Fond flou : la même image, agrandie et floutée, remplit tout le cadre (la basse résolution ne se voit pas)
+  .thumbnail-backdrop {
+    display: block;
+    position: absolute;
+    inset: -24px; // déborde pour éviter le liseré clair du flou sur les bords
+    background-size: cover;
+    background-position: center;
+    filter: blur(16px) saturate(1.05) brightness(1.1);
+    opacity: 0.7; // laisse transparaître le fond clair du cadre : rendu plus lumineux
+    transform: scale(1.12);
+    transition: transform 0.4s ease;
+    z-index: 0;
+  }
+
+  // Vignette : jamais agrandie (annule width/min-width 100 % + object-fit: cover de la grille DSpace)
+  div.thumbnail > img.thumbnail-content {
+    position: relative; // au-dessus du fond flou
+    z-index: 1;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
+    width: auto !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    height: auto !important;
+    max-width: 100% !important;
+    max-height: 160px !important; // hauteur du cadre (200 px) moins son padding
+    object-fit: contain !important;
+    border-radius: 4px;
+  }
+
+  // Grande image paysage (classe posée par la vignette du thème) : elle remplit tout le cadre, sans marge
+  div.thumbnail.thumbnail--large {
+    .thumbnail-backdrop {
+      display: none;
+    }
+
+    > img.thumbnail-content {
+      position: absolute;
+      inset: 0;
+      width: 100% !important;
+      height: 100% !important;
+      max-width: none !important;
+      max-height: none !important;
+      object-fit: cover !important;
+      border-radius: 0;
+      box-shadow: none;
+      transition: transform 0.4s ease;
+    }
+  }
+
+  &:hover div.thumbnail.thumbnail--large > img.thumbnail-content {
+    transform: scale(1.04);
+  }
 
   .card-body {
-    padding: 1rem !important;
+    flex: 1 1 auto;
+    padding: 1rem 1.1rem 1.1rem !important;
     display: flex !important;
     flex-direction: column !important;
 
     // Titre tronqué à 3 lignes
     .card-title {
       font-family: $font-family-serif !important;
-      font-size: 15px !important;
+      font-size: 1rem !important;
       font-weight: 600 !important;
       color: $darkblue !important;
       line-height: 1.4 !important;
-      margin-bottom: 6px !important;
+      margin-bottom: 0.4rem !important;
       display: -webkit-box !important;
       -webkit-line-clamp: 3 !important;
       line-clamp: 3 !important;
@@ -621,58 +711,104 @@ nav#admin-sidebar a {
       overflow: hidden !important;
     }
 
-    // Auteur / date tronqués à 2 lignes
+    // Date / auteurs tronqués à 2 lignes
     .item-authors {
-      font-size: 11px !important;
-      color: $gray-500 !important;
-      line-height: 1.2 !important;
+      font-size: 0.8rem !important;
+      color: $gray-600 !important;
+      line-height: 1.35 !important;
       margin-bottom: 0 !important;
       display: -webkit-box !important;
       -webkit-line-clamp: 2 !important;
       line-clamp: 2 !important;
       -webkit-box-orient: vertical !important;
       overflow: hidden !important;
-    }
-    // Cacher la description sur le vue Grid
-    .item-abstract {
-      display: none!important    }
 
-    // Bouton Afficher
-    a {
-      position: absolute;
-      top: 90%;
-      right: 5px;
-      color: #ffffff;
-      width: auto;
-      font-size: 14px;
-      border-radius: 60px !important;
-      background: $darkblue !important;
-      padding: 8px 20px !important;
+      .item-date {
+        font-weight: 600;
+        color: $darkblue;
+      }
+    }
+
+    // Description masquée pour les documents ; 3 lignes max pour communautés et collections
+    .item-abstract {
+      display: none !important;
+    }
+
+    p.card-text:not(.item-authors) {
+      font-size: 0.85rem;
+      line-height: 1.45;
+      color: $gray-700;
+      margin-bottom: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    // Lien « Afficher » poussé en pied de carte (n'est plus en position absolue)
+    .text-center {
+      margin-top: auto;
+      padding-top: 1rem;
+      text-align: left !important;
+    }
+
+    a.viewButton {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.875rem !important;
       font-weight: 500 !important;
+      line-height: 1.2;
+      color: #ffffff !important;
+      background: $darkblue !important;
+      border: none !important;
+      border-radius: 999px !important;
+      padding: 0.5rem 1.1rem !important;
       text-decoration: none !important;
-      transition: background 0.2s ease, padding-right 0.25s ease !important;
+      transition: background 0.2s ease, gap 0.2s ease;
 
       &::after {
-        content: '➝';
-        position: absolute;
-        opacity: 0;
-        right: 1rem;
-        transition: opacity 0.3s, right 0.3s;
+        content: '→';
+        transition: transform 0.2s ease;
       }
 
-      &:hover {
+      &:hover,
+      &:focus-visible {
         background: $hoverdarkblue !important;
         color: #ffffff !important;
-        padding-right: 2.4rem !important;
 
         &::after {
-          opacity: 1;
-          right: 0.9rem;
+          transform: translateX(3px);
         }
+      }
+
+      &:focus-visible {
+        outline: 2px solid $darkblue;
+        outline-offset: 2px;
       }
     }
   }
 }
+
+// Mobile : une seule colonne, pas besoin d'égaliser les hauteurs
+@media (max-width: 575.98px) {
+  .card-columns .card {
+    min-height: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-columns .card,
+  .card-columns .card:hover,
+  .card-columns .card .thumbnail-backdrop,
+  .card-columns .card div.thumbnail.thumbnail--large > img.thumbnail-content {
+    transform: none;
+    transition: none;
+  }
+}
+
 /* -------------------------------------------------------
    Éléments de liste
 ------------------------------------------------------- */
@@ -1524,29 +1660,6 @@ span.dont-break-out {
 /* Fenêtre Mirador */
 .mirador-window {
   min-width: 100vw;
-}
-
-.card-columns .card .card-body a {
-  background: #0b113a !important;
-  color: $extralightblue !important;
-  transition: padding 0.3s ease, color 0.3s ease;
-
-  &::after {
-    content: '➝';
-    position: absolute;
-    opacity: 0;
-    right: 1rem;
-    transition: opacity 0.3s ease, right 0.3s ease;
-  }
-
-  &:hover {
-    color: #ffffff !important;
-
-    &::after {
-      opacity: 1;
-      right: 0.5rem;
-    }
-  }
 }
 
 /* =============================================
