@@ -33,6 +33,7 @@ import { JournalVolumeComponent } from './app/entity-groups/journal-entities/ite
 // collspec modules
 
 import { VedetteUUIDComponent } from './app/vedette/vedette-uuid/vedette-uuid.component';
+import { ThumbnailComponent } from './app/thumbnail/thumbnail.component';
 
 
 const DECLARATIONS = [
@@ -53,6 +54,7 @@ const DECLARATIONS = [
   CommunityPageSubCollectionListComponent,
   JournalComponent,
   JournalVolumeComponent,
+  ThumbnailComponent,
 ];
 
 @NgModule({
