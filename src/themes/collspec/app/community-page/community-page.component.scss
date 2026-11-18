@@ -24,7 +24,8 @@
   align-items: flex-start;
   gap: 1.25rem;
   border-bottom: 1.5px solid $lightblue;
-  margin-bottom: 0.75rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 // Logo compact avec bordure subtile
@@ -140,7 +141,7 @@
 
 // ── Carousel compact (bande panoramique) ────────────────────────────────────
 .community-carousel-wrapper {
-  margin-bottom: 0.5rem;
+  margin-bottom: 1.5rem; // respiration avant « Parcourir par »
 
   // Pleine largeur du container, plus de 70vw centré
   ::ng-deep .slider__section {
@@ -157,8 +158,9 @@
     img { height: 280px; }
   }
 
+  // Droite : place réservée aux commandes groupées en bas à droite
   ::ng-deep .slider__caption {
-    padding: 60px 18px 14px;
+    padding: 60px 15rem 14px 18px;
 
     h4 {
       font-size: 1.05rem;
@@ -178,9 +180,9 @@
   }
 
   .community-carousel-wrapper {
-    ::ng-deep .slider__slide       { height: 175px; }
-    ::ng-deep .slider__slide img   { height: 175px; }
-    ::ng-deep .slider__caption     { padding: 48px 14px 10px; }
+    ::ng-deep .slider__slide       { height: 220px; }
+    ::ng-deep .slider__slide img   { height: 220px; }
+    ::ng-deep .slider__caption     { padding: 48px 15rem 10px 14px; }
     ::ng-deep .slider__caption h4  { font-size: 0.95rem; line-height: 1.4; }
   }
 }
@@ -190,6 +192,28 @@
   .community-meta-row {
     gap: 1rem;
     padding-bottom: 1rem;
+  }
+
+  // Logo + lien permanent sur une ligne, description en dessous sur toute la largeur (sans retrait à gauche)
+  .community-meta-row {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    row-gap: 0.75rem;
+  }
+
+  // Le panneau s'efface : ses enfants (lien, textes) se placent directement dans la grille
+  .community-description-panel {
+    display: contents;
+  }
+
+  .community-description-panel > ds-comcol-page-content {
+    grid-column: 1 / -1;
+  }
+
+  .handle-wrapper {
+    min-width: 0;
+    margin-bottom: 0;
   }
 
   .community-logo-panel {
@@ -203,7 +227,7 @@
   .community-carousel-wrapper {
     ::ng-deep .slider__slide       { height: 200px; border-radius: 8px; }
     ::ng-deep .slider__slide img   { height: 200px; }
-    ::ng-deep .slider__caption     { padding: 52px 14px 12px; }
+    ::ng-deep .slider__caption     { padding: 52px 14px 3.5rem; }
     ::ng-deep .slider__caption h4  { font-size: 0.95rem; line-height: 1.4; }
   }
 }
@@ -226,12 +250,12 @@
 
   .community-description-panel ::ng-deep p { font-size: 0.875rem; line-height: 1.55; }
 
-  .handle-link { max-width: 160px; }
+  .handle-link { max-width: 100%; }
 
   .community-carousel-wrapper {
     ::ng-deep .slider__slide       { height: 170px; border-radius: 8px; }
     ::ng-deep .slider__slide img   { height: 170px; }
-    ::ng-deep .slider__caption     { padding: 44px 10px 10px; }
+    ::ng-deep .slider__caption     { padding: 44px 10px 3.25rem; }
     ::ng-deep .slider__caption h4  { font-size: 0.88rem; line-height: 1.4; }
   }
 }

@@ -1,5 +1,6 @@
-<div class="carousel-bib-home" id="nos-collections">
-  <div class="container-fluid font-blue">
+<!-- Fond clair sur toute la largeur ; contenu aligné sur le titre de la bannière (.collspec-inset) -->
+<div class="carousel-bib-home font-blue" id="nos-collections">
+  <div class="collspec-inset">
     <!-- Titre et description de la section vedette -->
     <div class="carousel-bib-title">
       <div class="vedette-header">
@@ -51,31 +52,33 @@
               </div>
 
               @if (slides.length > 1) {
-                <button type="button" class="slider__arrow slider__arrow--prev"
-                        [attr.aria-label]="'collspec.accueil.vedette.prev' | translate"
-                        (click)="onArrow('prev')">
-                  <i class="fas fa-chevron-left" aria-hidden="true"></i>
-                </button>
-                <button type="button" class="slider__arrow slider__arrow--next"
-                        [attr.aria-label]="'collspec.accueil.vedette.next' | translate"
-                        (click)="onArrow('next')">
-                  <i class="fas fa-chevron-right" aria-hidden="true"></i>
-                </button>
-
-                <div class="slider__indicators">
-                  @for (slide of slides; track slide.id) {
-                    <button type="button"
-                            class="slider__indicator"
-                            [class.active]="activeIndicator === $index"
-                            [attr.aria-current]="activeIndicator === $index ? 'true' : null"
-                            [attr.aria-label]="'collspec.accueil.vedette.goto' | translate: { index: $index + 1, total: slides.length }"
-                            (click)="goToSlide($index)">
-                    </button>
-                  }
+                <!-- Commandes regroupées en bas à droite de l'image active : points, pause, précédent, suivant -->
+                <div class="slider__controls">
+                  <div class="slider__indicators">
+                    @for (slide of slides; track slide.id) {
+                      <button type="button"
+                              class="slider__indicator"
+                              [class.active]="activeIndicator === $index"
+                              [attr.aria-current]="activeIndicator === $index ? 'true' : null"
+                              [attr.aria-label]="'collspec.accueil.vedette.goto' | translate: { index: $index + 1, total: slides.length }"
+                              (click)="goToSlide($index)">
+                      </button>
+                    }
+                  </div>
                   <button type="button" class="slider__pause"
                           [attr.aria-label]="(userPaused ? 'collspec.accueil.vedette.play' : 'collspec.accueil.vedette.pause') | translate"
                           (click)="togglePause()">
                     <i class="fas" [class.fa-play]="userPaused" [class.fa-pause]="!userPaused" aria-hidden="true"></i>
+                  </button>
+                  <button type="button" class="slider__btn slider__arrow--prev"
+                          [attr.aria-label]="'collspec.accueil.vedette.prev' | translate"
+                          (click)="onArrow('prev')">
+                    <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M13 8H3M7 4L3 8l4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                  <button type="button" class="slider__btn slider__arrow--next"
+                          [attr.aria-label]="'collspec.accueil.vedette.next' | translate"
+                          (click)="onArrow('next')">
+                    <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   </button>
                 </div>
               }
