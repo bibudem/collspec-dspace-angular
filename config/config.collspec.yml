@@ -217,7 +217,7 @@ languages:
     active: true
   - code: en
     label: English
-    active: true
+    active: false
 
 
 # Browse-By Pages
