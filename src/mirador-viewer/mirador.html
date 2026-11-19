@@ -467,6 +467,33 @@
       }
     }
 
+    /* Colonne d'outils toujours entièrement visible, quelle que soit la hauteur
+       laissée à l'image (titre long sur plusieurs lignes, petit écran…) :
+       la taille des boutons suit la hauteur de la zone image (unité cqh).
+       10 boutons de 24 px + 2 × padding doivent tenir dans 100cqh - 20px,
+       d'où padding = 5cqh - 13px, entre 2 px et 12 px (valeur Mirador). */
+    @media (min-width: 960px) {
+      .mirador-osd-container:has(.MuiPaper-elevation4 > div > button[aria-label$="les outils"]),
+      .mirador-osd-container:has(.MuiPaper-elevation4 > div > button[aria-label$="image tools"]) {
+        container-type: size;
+        /* Priorité d'affichage : si la colonne dépasse malgré tout,
+           elle passe par-dessus les vignettes au lieu d'être cachée */
+        overflow: visible !important;
+        position: relative;
+        z-index: 1200;
+      }
+
+      .mirador-osd-container .MuiPaper-elevation4:has(> div > button[aria-label$="les outils"]),
+      .mirador-osd-container .MuiPaper-elevation4:has(> div > button[aria-label$="image tools"]) {
+        z-index: 1200 !important;
+      }
+
+      .mirador-osd-container .MuiPaper-elevation4:has(> div > button[aria-label$="les outils"]) .MuiIconButton-root,
+      .mirador-osd-container .MuiPaper-elevation4:has(> div > button[aria-label$="image tools"]) .MuiIconButton-root {
+        padding: clamp(2px, 5cqh - 13px, 12px) !important;
+      }
+    }
+
     /* -------------------------------------------------------
        Indicateur de chargement des pages (TileLoaderPlugin)
     ------------------------------------------------------- */
