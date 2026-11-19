@@ -883,7 +883,18 @@ a.lead {
   line-height: 100%;
 }
 
-/* Marge latérale de l'accueil, alignée sur le titre de la bannière
+/* Bord gauche du contenu d'un .container Bootstrap (grille native de DSpace) */
+:root {
+  --collspec-conteneur: 100%;
+  --collspec-grille: calc((100% - var(--collspec-conteneur)) / 2 + 0.75rem);
+  --collspec-bord: var(--collspec-grille); // bord utilisé par l'en-tête
+}
+// Sous 992 px, DSpace passe les pages d'item et de recherche en pleine largeur : on fait pareil
+@media (min-width: 992px)  { :root { --collspec-conteneur: 960px; } }
+@media (min-width: 1200px) { :root { --collspec-conteneur: 1140px; } }
+@media (min-width: 1400px) { :root { --collspec-conteneur: 1320px; } }
+
+/* Accueil : marge alignée sur le titre de la bannière
    (padding de .hero-overlay + marges du h1) : à ajuster si ces marges changent. */
 :root {
   --collspec-inset: calc(2rem + 20px + 5% - 0.2rem);       // padding 2rem, margin 5 %, padding 20px
@@ -899,6 +910,18 @@ a.lead {
 }
 @media (max-width: 425px) {
   :root { --collspec-inset: calc(0.5rem + 10px); }                // padding 0.5rem, margin 0, padding 10px
+}
+
+// Sur l'accueil, l'en-tête s'aligne sur le titre de la bannière
+body.collspec-accueil {
+  --collspec-bord: var(--collspec-inset);
+}
+
+// Fil d'Ariane : pleine largeur sous 992 px, comme le contenu des pages
+@media (max-width: 991.98px) {
+  .nav-breadcrumb ol.breadcrumb.container {
+    max-width: none;
+  }
 }
 
 // Conteneur aligné sur le titre de la bannière
@@ -1097,6 +1120,52 @@ ds-themed-top-level-community-list .list-hide {
 
   .hero-section .hero-overlay ds-base-search-form form .input-group .form-control {
     height: 55px !important;
+  }
+}
+
+/* Mobile (≤ 576px) : titre et recherche en bas de la bannière, recherche alignée sur le titre */
+@media (max-width: 576px) {
+  .hero-section,
+  .hero-overlay {
+    height: 70vh;
+    min-height: 420px;
+  }
+
+  .hero-overlay {
+    justify-content: flex-end;
+    padding-bottom: 2.25rem;
+  }
+
+  .hero-section h1 {
+    margin-top: 0;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-section .hero-overlay ds-base-search-form form .input-group {
+    width: 100% !important;
+    margin-left: 0;
+    padding-inline: calc(var(--collspec-inset) - 0.5rem);
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+  }
+
+  // Le champ prend toute la place restante : le texte d'aide n'est plus coupé
+  .hero-section .hero-overlay ds-base-search-form form .input-group .form-control {
+    flex: 1 1 auto;
+    width: auto !important;
+    min-width: 0;
+    height: 44px !important;
+    padding-inline: 0.75rem;
+    font-size: 0.875rem;
+    border-radius: 0.75rem 0 0 0.75rem !important;
+  }
+
+  .hero-section .hero-overlay ds-base-search-form form .input-group .btn-primary {
+    flex: 0 0 auto;
+    height: 44px;
+    padding: 0 0.875rem;
+    font-size: 0.875rem;
+    border-radius: 0 0.75rem 0.75rem 0 !important;
   }
 }
 
@@ -1683,6 +1752,90 @@ p.full-text-op {
 /* Cacher le deuxième élément du fil d'Ariane: Collections spéciales */
 .nav-breadcrumb ol.breadcrumb li:nth-child(2) {
   display: none;
+}
+
+/* Page d'item avec visionneuse */
+body.collspec-visionneuse {
+  // Fil d'Ariane sans fond
+  .nav-breadcrumb,
+  .nav-breadcrumb ol.breadcrumb {
+    background-color: transparent !important;
+  }
+
+  #mirador-viewer {
+    display: block;
+    border: 0;
+  }
+}
+
+// Bulle « C'est quoi IIIF ? » (ajoutée au body par ng-bootstrap)
+.popover.collspec-iiif-popover {
+  max-width: min(460px, calc(100vw - 2rem));
+  width: 460px;
+  border: 1px solid #d4dbe2;
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(11, 17, 58, 0.16);
+  font-family: 'Figtree', sans-serif;
+
+  .popover-header {
+    padding: 0.875rem 1.25rem 0.25rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #0b113a;
+    background: transparent;
+    border-bottom: 0;
+  }
+
+  .popover-body {
+    padding: 0.25rem 1.25rem 1.125rem;
+
+    p {
+      margin: 0 0 0.6rem;
+      font-size: 0.85rem;
+      line-height: 1.55;
+      color: #0b113a;
+    }
+
+    a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      white-space: nowrap;
+      color: #0059ab;
+
+      i {
+        font-size: 0.7rem;
+      }
+
+      &:hover {
+        color: #003d78;
+      }
+    }
+  }
+}
+
+// Mobile : la bulle devient un panneau en bas de l'écran
+@media (max-width: 575.98px) {
+  .popover.collspec-iiif-popover {
+    position: fixed !important;
+    inset: auto 1rem 1rem 1rem !important;
+    width: auto;
+    max-width: none;
+    transform: none !important;
+
+    .popover-arrow {
+      display: none;
+    }
+  }
+}
+
+// Sur grand écran, la visionneuse profite aussi de la hauteur disponible
+@media (min-width: 992px) {
+  body.collspec-visionneuse #mirador-viewer {
+    height: clamp(660px, 100vh - 220px, 960px);
+  }
 }
 
 .ml-4{

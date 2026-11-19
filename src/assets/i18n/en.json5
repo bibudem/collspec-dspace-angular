@@ -7679,4 +7679,66 @@
   "collspec.footer.youtube": "Libraries on YouTube",
 
   "collspec.footer.instagram": "Université de Montréal on Instagram",
+
+  "collspec.iiif.bouton": "What is IIIF?",
+
+  "collspec.iiif.texte": "IIIF (International Image Interoperability Framework, pronounced “triple-eye-eff”) is an open standard used by libraries, archives and museums around the world to share their digitized images. It lets you zoom deeply into a document, compare several side by side and open it in any other compatible viewer through its manifest.",
+
+  "collspec.iiif.lien": "Learn more about IIIF and Mirador",
+
+  "collspec.iiif.nouvel-onglet": "(opens in a new tab)",
+
+  "collspec.notice.champ.dc.contributor.author": "Author",
+
+  "collspec.notice.champ.dc.contributor": "Contributor",
+
+  "collspec.notice.champ.dc.creator": "Creator",
+
+  "collspec.notice.champ.dc.title": "Title",
+
+  "collspec.notice.champ.dc.title.alternative": "Other title",
+
+  "collspec.notice.champ.dc.date.issued": "Date issued",
+
+  "collspec.notice.champ.dc.date.created": "Date created",
+
+  "collspec.notice.champ.dc.date.copyright": "Copyright",
+
+  "collspec.notice.champ.dc.date.accessioned": "Date deposited",
+
+  "collspec.notice.champ.dc.date.available": "Date available",
+
+  "collspec.notice.champ.dc.identifier.uri": "Permanent link",
+
+  "collspec.notice.champ.dc.identifier": "Identifier",
+
+  "collspec.notice.champ.dc.type": "Type",
+
+  "collspec.notice.champ.dc.description": "Description",
+
+  "collspec.notice.champ.dc.description.abstract": "Abstract",
+
+  "collspec.notice.champ.dc.description.provenance": "Provenance",
+
+  "collspec.notice.champ.dc.subject": "Subjects",
+
+  "collspec.notice.champ.dc.language.iso": "Language",
+
+  "collspec.notice.champ.dc.language": "Language",
+
+  "collspec.notice.champ.dc.publisher": "Publisher",
+
+  "collspec.notice.champ.dc.rights": "Rights",
+
+  "collspec.notice.champ.dc.format.extent": "Extent",
+
+  "collspec.notice.champ.dc.format": "Format",
+
+  "collspec.notice.champ.dc.relation.ispartof": "Is part of",
+
+  "collspec.notice.champ.dc.coverage.spatial": "Place",
+
+  "collspec.notice.champ.dc.coverage.temporal": "Period",
+
+  "collspec.notice.champ.dc.source": "Source",
 }

@@ -433,6 +433,11 @@ p {
 
 .carousel-bib-home{
   margin-bottom: 3.5rem;
+
+  @media (max-width: 576px) {
+    margin-bottom: 1.5rem;
+  }
+
   // Évite un défilement horizontal (100vw inclut la barre de défilement)
   overflow-x: clip;
 }

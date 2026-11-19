@@ -1,11 +1,11 @@
-import {AsyncPipe, CommonModule} from '@angular/common';
+import {AsyncPipe, CommonModule, DOCUMENT} from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Component, OnInit,
+  Component, inject, OnDestroy, OnInit, Renderer2,
 } from '@angular/core';
 import {ActivatedRoute, Router, RouterLink} from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { Context } from '../../../../../../../app/core/shared/context.model';
 import { Item } from '../../../../../../../app/core/shared/item.model';
@@ -70,13 +70,15 @@ import {FullFileSectionComponent} from "../../../../../../../app/item-page/full/
     FullFileSectionComponent
   ],
 })
-export class UntypedItemComponent extends BaseComponent implements OnInit {
+export class UntypedItemComponent extends BaseComponent implements OnInit, OnDestroy {
   noticeOpen = false;
   metadata: any[] = [];
   itemRD: any;
   backendApi: string = config.backendApi;
   idItem: string;
   copiedUri: string | null = null;
+  private readonly document = inject(DOCUMENT);
+  private readonly translate = inject(TranslateService);
 
   constructor(
     protected routeService: RouteService,
@@ -84,13 +86,19 @@ export class UntypedItemComponent extends BaseComponent implements OnInit {
     protected route: ActivatedRoute,
     private itemDataService: ItemDataService,
     private modalService: NgbModal,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private renderer: Renderer2,
   ) {
     super(routeService, router);
   }
 
   ngOnInit() {
     super.ngOnInit();
+
+    // Mise en page élargie de la visionneuse (voir _global-styles.scss)
+    if (this.iiifEnabled) {
+      this.renderer.addClass(this.document.body, 'collspec-visionneuse');
+    }
 
     this.idItem = this.route.snapshot.paramMap.get('id');
 
@@ -122,8 +130,19 @@ export class UntypedItemComponent extends BaseComponent implements OnInit {
     );
   }
 
+  ngOnDestroy(): void {
+    this.renderer.removeClass(this.document.body, 'collspec-visionneuse');
+  }
+
   toggleNotice(): void {
     this.noticeOpen = !this.noticeOpen;
+  }
+
+  /** Libellé lisible d'un champ (ex. dc.title → Titre), sinon le nom technique */
+  fieldLabel(field: string): string {
+    const key = 'collspec.notice.champ.' + field;
+    const label = this.translate.instant(key);
+    return label !== key ? label : field;
   }
 
   get handleUrl(): string | null {
