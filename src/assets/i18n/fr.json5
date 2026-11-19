@@ -7436,7 +7436,7 @@
 
   "collspec.footer.dspace.copyright": "Logiciel DSpace, copyright © 2002-{{year}}",
 
-  "collspec.footer.based_on_dspace": "Application basée sur <a href='http://www.dspace.org/' target='_blank' class='link-footer'>DSpace</a>, logiciel open source.",
+  "collspec.footer.based_on_dspace": "Application basée sur <a href='http://www.dspace.org/' target='_blank' class='link-footer'>DSpace</a>, logiciel libre",
 
   "browse.comcol.by.type": "Type",
 
