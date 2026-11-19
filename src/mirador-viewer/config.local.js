@@ -26,6 +26,7 @@ import imageCropperPlugin from './miradorPlugins/mirador-imagecropper/es';
 import canvasLinkPlugin from './miradorPlugins/mirador-canvaslink/es';
 // NIMA 2026-05-25 : plugin maison pour gérer l'affichage de différents types d'item selon la communauté.
 import HideMetadataPlugin from './miradorPlugins/HideMetadataPlugin';
+import TileLoaderPlugin from './miradorPlugins/TileLoaderPlugin';
 // import AnnototAdapter from 'mirador-annotations/es/AnnototAdapter';
 // Import your custom component
 //import CustomMiradorDownloadDialog from "./CustomMiradorDownloadDialog";
@@ -92,6 +93,7 @@ const plugins = [
   //miradorDownloadDialog,
   //miradorDownloadPlugin,
   HideMetadataPlugin,
+  TileLoaderPlugin,
   canvasLinkPlugin,
   downloadDialogPlugin,
   textOverlayPlugin,
