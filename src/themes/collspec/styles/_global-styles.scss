@@ -2636,14 +2636,16 @@ body.collspec-visionneuse {
 // avec peu de résultats, elle débordait par-dessus le pied de page.
 // Quand elle est ouverte, on la remet dans le flux (la page s'allonge)
 // et c'est la colonne des résultats, masquée, qui sort du flux.
+// (Sans :has() : le build le réécrit et produit un sélecteur invalide.
+// DSpace met .invisible sur la barre fermée et sur les résultats masqués.)
 @media (max-width: 767.98px) {
-  .row-with-sidebar.row-offcanvas-left:has(> .sidebar-content:not(.invisible)) {
-    > .sidebar-content {
+  .row-with-sidebar.row-offcanvas-left {
+    > .sidebar-content:not(.invisible) {
       position: relative;
       left: -100%;
     }
 
-    > :not(.sidebar-content) {
+    > .invisible:not(.sidebar-content) {
       position: absolute;
       top: 0;
       left: 0;
