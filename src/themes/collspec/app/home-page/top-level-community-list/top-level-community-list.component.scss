@@ -143,7 +143,7 @@
     }
 
     .card-img-body {
-      flex: 0 0 96px;
+      flex: 0 0 80px;
     }
 
     .card-img {
@@ -163,13 +163,20 @@
       -webkit-box-orient: vertical;
     }
 
+    // Texte plus petit et marges internes réduites pour que les libellés
+    // longs (ex. « Explorer Art, aménagement et musique ») tiennent sur
+    // une ligne ; retour à la ligne seulement si l'écran est trop étroit.
     .btn-darkblue {
       margin-top: 0.25rem !important;
       align-self: flex-start;
       width: auto;
+      max-width: 100%;
       white-space: normal;
       text-align: left;
-      font-size: 0.8rem;
+      font-size: clamp(0.72rem, 3.1vw, 0.8rem);
+      line-height: 1.3;
+      letter-spacing: -0.005em;
+      padding: 0.4rem 0.6rem;
     }
   }
 }

@@ -20,10 +20,10 @@
   @if (iiifEnabled) {
     <button type="button" class="btn-iiif-info ms-auto"
             [ngbPopover]="iiifInfo" #iiifPop="ngbPopover" [popoverTitle]="'collspec.iiif.bouton' | translate"
-            popoverClass="collspec-iiif-popover" placement="bottom-end" container="body" autoClose="outside"
+            popoverClass="collspec-iiif-popover" [placement]="['bottom-end', 'bottom', 'bottom-start']" container="body" autoClose="outside"
             [attr.aria-expanded]="iiifPop.isOpen()"
             [attr.aria-label]="'collspec.iiif.bouton' | translate">
-      <i class="fas fa-circle-question" aria-hidden="true"></i>
+      <i class="fas fa-circle-info" aria-hidden="true"></i>
       <span class="btn-iiif-info__libelle">{{ 'collspec.iiif.bouton' | translate }}</span>
     </button>
     <ng-template #iiifInfo>
