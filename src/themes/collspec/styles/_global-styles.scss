@@ -1816,17 +1816,27 @@ body.collspec-visionneuse {
   }
 }
 
-// Mobile : la bulle devient un panneau en bas de l'écran
-@media (max-width: 575.98px) {
+// Mobile et tablette : la bulle devient un panneau en bas de l'écran,
+// toujours entièrement visible (le positionnement Popper est neutralisé)
+@media (max-width: 767.98px) {
   .popover.collspec-iiif-popover {
     position: fixed !important;
     inset: auto 1rem 1rem 1rem !important;
-    width: auto;
-    max-width: none;
+    left: 1rem !important;
+    right: 1rem !important;
+    top: auto !important;
+    bottom: 1rem !important;
+    width: auto !important;
+    max-width: none !important;
+    margin: 0 !important;
     transform: none !important;
 
     .popover-arrow {
       display: none;
+    }
+
+    .popover-body a {
+      white-space: normal;
     }
   }
 }
@@ -2620,4 +2630,24 @@ body.collspec-visionneuse {
 /* Liste de sous-collections (boutons de largeur égale) */
 .diame-subcollections {
   max-width: 280px;
+}
+// Mobile : barre de filtres (recherche) ouverte.
+// DSpace la place en position absolue, sa hauteur ne compte donc pas :
+// avec peu de résultats, elle débordait par-dessus le pied de page.
+// Quand elle est ouverte, on la remet dans le flux (la page s'allonge)
+// et c'est la colonne des résultats, masquée, qui sort du flux.
+@media (max-width: 767.98px) {
+  .row-with-sidebar.row-offcanvas-left:has(> .sidebar-content:not(.invisible)) {
+    > .sidebar-content {
+      position: relative;
+      left: -100%;
+    }
+
+    > :not(.sidebar-content) {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+  }
 }
