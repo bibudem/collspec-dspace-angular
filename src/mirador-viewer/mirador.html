@@ -344,23 +344,53 @@
        Panneau de navigation workspace (barre gauche)
     ------------------------------------------------------- */
     .mirador-workspace-control-panel {
-      background-color: #222930 !important;
+      background-color: #37424D !important;
     }
 
     .mirador-workspace-control-panel .MuiIconButton-root .MuiSvgIcon-root {
-      color: #CCE2F3 !important;
-    }
-
-    .mirador-workspace-control-panel .MuiIconButton-root:hover .MuiSvgIcon-root {
       color: #ffffff !important;
     }
 
+    .mirador-workspace-control-panel .MuiIconButton-root:hover {
+      background-color: rgba(255, 255, 255, 0.15) !important;
+    }
+
+    .mirador-workspace-control-panel .MuiIconButton-root:focus-visible {
+      outline: 2px solid #ffffff;
+      outline-offset: 2px;
+    }
+
+    /* Bouton « + » : blanc sur fond gris */
     .mirador-workspace-control-panel .MuiFab-primary {
-      background-color: #2380D1 !important;
+      background-color: #ffffff !important;
+      color: #37424D !important;
+    }
+
+    .mirador-workspace-control-panel .MuiFab-primary .MuiSvgIcon-root {
+      color: #37424D !important;
     }
 
     .mirador-workspace-control-panel .MuiFab-primary:hover {
-      background-color: #0c144d !important;
+      background-color: #E7EBEE !important;
+    }
+
+    /* Compteur de fenêtres : pastille blanche lisible sur le gris */
+    .mirador-workspace-control-panel .MuiBadge-badge {
+      min-width: 18px;
+      height: 18px;
+      padding: 0 5px;
+      border-radius: 9px;
+      background-color: #ffffff !important;
+      color: #37424D !important;
+      font-family: 'Figtree', -apple-system, sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      box-shadow: 0 0 0 2px #37424D;
+    }
+
+    /* Bordure de la fenêtre active : même gris que la barre */
+    .mirador-window-top-bar {
+      border-top-color: #37424D !important;
     }
 
     /* -------------------------------------------------------
@@ -395,6 +425,47 @@
       background: #2380D1;
     }
 
+
+    /* -------------------------------------------------------
+       Outils d'image : colonne verticale à gauche de l'image
+       (grand écran ; sur petit écran, le plugin les empile déjà)
+    ------------------------------------------------------- */
+    @media (min-width: 960px) {
+      .mirador-osd-container .MuiPaper-elevation4:has(> div > button[aria-label$="les outils"]),
+      .mirador-osd-container .MuiPaper-elevation4:has(> div > button[aria-label$="image tools"]) {
+        top: 8px !important;
+        right: auto !important;
+        left: 8px !important;
+        flex-direction: column !important;
+        align-items: center;
+      }
+
+      /* Bouton ouvrir / fermer en haut de la colonne */
+      .mirador-osd-container .MuiPaper-elevation4:has(> div > button[aria-label$="les outils"]) > div:last-child,
+      .mirador-osd-container .MuiPaper-elevation4:has(> div > button[aria-label$="image tools"]) > div:last-child {
+        order: -1;
+      }
+
+      /* Groupes d'outils empilés, séparés par un trait */
+      .mirador-osd-container .MuiPaper-elevation4:has(> div > button[aria-label$="les outils"]) > div:not(:last-child),
+      .mirador-osd-container .MuiPaper-elevation4:has(> div > button[aria-label$="image tools"]) > div:not(:last-child) {
+        flex-direction: column !important;
+        border-right: 0 !important;
+        border-image: none !important;
+        border-top: 1px solid rgba(0, 0, 0, 0.12) !important;
+      }
+
+      /* Curseurs (luminosité, contraste…) à droite de leur bouton */
+      .mirador-osd-container div:has(> .MuiPaper-elevation4[aria-labelledby]) {
+        position: relative;
+      }
+
+      .mirador-osd-container div:has(> .MuiPaper-elevation4[aria-labelledby]) > .MuiPaper-elevation4[aria-labelledby] {
+        top: 0 !important;
+        left: calc(100% + 6px) !important;
+        margin: 0 !important;
+      }
+    }
 
     /* -------------------------------------------------------
        Indicateur de chargement des pages (TileLoaderPlugin)

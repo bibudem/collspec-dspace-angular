@@ -48,68 +48,128 @@
 
 .vgr-cards {
   .card {
-    flex-flow: wrap;
     flex: 100%;
-    margin-bottom: 40px;
-    align-items: stretch;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 2.5rem;
+    margin-bottom: 2.5rem;
 
+    // Une carte sur deux : image à droite
     &:nth-child(even) .card-img-body {
       order: 2;
     }
-
-    &:nth-child(even) .card-body {
-      padding-left: 0;
-      padding-right: 1.25rem;
-    }
-
-    @media (max-width: 576px) {
-      display: block;
-    }
   }
 
+  // Image carrée : un tiers de la carte, plafonnée (380 / 300 / 220 px)
   .card-img-body {
-    flex: 1;
+    --taille-image: 380px;
+    flex: 0 0 min(var(--taille-image), 100% / 3);
     overflow: hidden;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 0;
     border-radius: 12px;
-    @media (max-width: 576px) {
-      width: auto;
-      height: auto;
-      margin-bottom: 20px;
-    }
   }
 
   .card-img {
     width: 100%;
     height: auto;
+    aspect-ratio: 1;
     display: block;
     border-radius: 12px;
     object-fit: cover;
     object-position: center;
-
-    @media (max-width: 1140px) {
-      height: auto;
-      max-height: none;
-    }
-
-    // Mobile : même format 3:2 que le carrousel
-    @media (max-width: 576px) {
-      aspect-ratio: 3 / 2;
-    }
   }
 
   .card-body {
-    flex: 2;
+    flex: 1 1 0;
+    min-width: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 0;
+  }
 
-    @media (max-width: 576px) {
-      padding: 0;
+  .card-title {
+    margin-top: 0 !important;
+  }
+
+  .card-text,
+  .btn-darkblue {
+    margin-left: 0 !important;
+  }
+
+  @media (max-width: 992px) {
+    .card {
+      gap: 2rem;
+    }
+
+    .card-img-body {
+      --taille-image: 300px;
+    }
+
+    .card-title {
+      font-size: 1.6rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .card {
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .card-img-body {
+      --taille-image: 220px;
+    }
+
+    .card-title {
+      font-size: 1.4rem;
+    }
+  }
+
+  // Mobile : ligne compacte, vignette toujours à gauche
+  @media (max-width: 576px) {
+    .card {
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid #e7ebee;
+
+      &:last-child {
+        border-bottom: 0;
+      }
+
+      &:nth-child(even) .card-img-body {
+        order: 0;
+      }
+    }
+
+    .card-img-body {
+      flex: 0 0 96px;
+    }
+
+    .card-img {
+      border-radius: 10px;
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-text {
+      font-size: 0.875rem;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+
+    .btn-darkblue {
+      margin-top: 0.25rem !important;
+      align-self: flex-start;
+      width: auto;
+      white-space: normal;
+      text-align: left;
+      font-size: 0.8rem;
     }
   }
 }

@@ -281,7 +281,7 @@ fetch(manifest)
           window: {
             allowClose: true,
             imageToolsEnabled: notMobile ? true: false,
-            imageToolsOpen: false,
+            imageToolsOpen: notMobile ? true : false, // ouverts par défaut sur grand écran
 		  osdConfig: {
 			  crossOriginPolicy: "Anonymous"
 		  },

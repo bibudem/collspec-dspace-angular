@@ -18,7 +18,23 @@
     </div>
   }
   @if (iiifEnabled) {
-    <button class="btn btn-notice-toggle ms-auto me-0" (click)="toggleNotice()"
+    <button type="button" class="btn-iiif-info ms-auto"
+            [ngbPopover]="iiifInfo" #iiifPop="ngbPopover" [popoverTitle]="'collspec.iiif.bouton' | translate"
+            popoverClass="collspec-iiif-popover" placement="bottom-end" container="body" autoClose="outside"
+            [attr.aria-expanded]="iiifPop.isOpen()"
+            [attr.aria-label]="'collspec.iiif.bouton' | translate">
+      <i class="fas fa-circle-question" aria-hidden="true"></i>
+      <span class="btn-iiif-info__libelle">{{ 'collspec.iiif.bouton' | translate }}</span>
+    </button>
+    <ng-template #iiifInfo>
+      <p>{{ 'collspec.iiif.texte' | translate }}</p>
+      <a routerLink="/page/mirador-guide" fragment="what-is-iiif" target="_blank" rel="noopener">
+        {{ 'collspec.iiif.lien' | translate }}
+        <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+        <span class="visually-hidden">{{ 'collspec.iiif.nouvel-onglet' | translate }}</span>
+      </a>
+    </ng-template>
+    <button class="btn btn-notice-toggle ms-2 me-0" (click)="toggleNotice()"
             [attr.aria-label]="'collspec.onglet-notice' | translate">
       {{'collspec.onglet-notice' | translate}}
       <i class="fas" [ngClass]="noticeOpen ? 'fa-chevron-right' : 'fa-chevron-left'" style="font-size:0.7rem;"></i>
@@ -41,13 +57,13 @@
     <div class="notice-drawer-header">
       <span class="notice-drawer-title">{{'collspec.onglet-notice' | translate}}</span>
       <button class="notice-close-btn" (click)="toggleNotice()" aria-label="Fermer">
-        <i class="fas fa-times"></i>
+        <i class="fas fa-times" aria-hidden="true"></i>
       </button>
     </div>
     <div class="notice-drawer-body">
       <dl class="notice-dl">
         <ng-container *ngFor="let meta of metadata">
-          <dt>{{meta.label}}</dt>
+          <dt>{{ fieldLabel(meta.label) }}</dt>
           <ng-container *ngIf="meta.value">
             <ng-container *ngFor="let v of meta.value">
               <dd>

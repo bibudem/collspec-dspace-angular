@@ -1,10 +1,17 @@
 import {
   AsyncPipe,
+  DOCUMENT,
   NgClass,
   NgIf,
   NgTemplateOutlet,
 } from '@angular/common';
-import { Component } from '@angular/core';
+import {
+  Component,
+  inject,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+} from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { HomeCoarComponent } from '../../../../app/home-page/home-coar/home-coar.component';
 import { ThemedHomeNewsComponent } from '../../../../app/home-page/home-news/themed-home-news.component';
@@ -43,6 +50,17 @@ import { VedetteListeComponent } from '../vedette/vedette-liste/vedette-liste.co
     VedetteListeComponent]
 })
 
-export class HomePageComponent extends BaseComponent {
+export class HomePageComponent extends BaseComponent implements OnInit, OnDestroy {
+  private readonly renderer = inject(Renderer2);
+  private readonly document = inject(DOCUMENT);
 
+  // En-tête aligné sur le titre de la bannière (voir _global-styles.scss)
+  ngOnInit(): void {
+    super.ngOnInit();
+    this.renderer.addClass(this.document.body, 'collspec-accueil');
+  }
+
+  ngOnDestroy(): void {
+    this.renderer.removeClass(this.document.body, 'collspec-accueil');
+  }
 }
