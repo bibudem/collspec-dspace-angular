@@ -7755,4 +7755,10 @@
   "collspec.notice.champ.dc.coverage.temporal": "Période",
 
   "collspec.notice.champ.dc.source": "Source",
+
+  "search.filters.language.ger": "Allemand",
+
+  "search.filters.language.und": "Indéterminée",
+
+  "collspec.menu.copyright": "Droit d'auteur et utilisation",
 }

@@ -211,6 +211,7 @@
   "search.filters.language.eng": "Anglais",
   "search.filters.language.enm": "Moyen anglais",
   "search.filters.language.deu": "Allemand",
+  "search.filters.language.ger": "Allemand",
   "search.filters.language.spa": "Espagnol",
   "search.filters.language.ita": "Italien",
   "search.filters.language.por": "Portugais",
@@ -218,6 +219,7 @@
   "search.filters.language.alg": "Langues algonquiennes",
   "search.filters.language.dut": "Hollandais",
   "search.filters.language.swe": "Suédois",
+  "search.filters.language.und": "Indéterminée",
   
   "search.filters.itemtype.Image": "Image",
   "search.filters.itemtype.Book": "Monographie",
@@ -257,6 +259,7 @@
   "collspec.menu.guides": "Guides et tutoriels",
   "collspec.menu.iiif": "Guide IIIF",
   "collspec.menu.mirador": "Guide Mirador",
+  "collspec.menu.copyright": "Droit d'auteur et utilisation",
   
   "info.mirador-guide.title": "Guide Mirador",
   "info.mirador-guide": "Guide Mirador",

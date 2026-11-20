@@ -7,6 +7,7 @@ import { AboutComponent } from "./about/about.component";
 import { CommonModule } from '@angular/common';
 import { PageFondsComponent } from './page-fonds/page-fonds.component';
 import { MiradorGuideComponent } from './mirador-guide/mirador-guide.component';
+import { CopyrightComponent } from './copyright/copyright.component';
 
 @Component({
   selector: 'ds-pages',
@@ -21,6 +22,7 @@ import { MiradorGuideComponent } from './mirador-guide/mirador-guide.component';
     AboutComponent,
     PageFondsComponent,
 	MiradorGuideComponent,
+	CopyrightComponent,
   ],
 })
 export class PagesComponent implements OnInit {
@@ -29,6 +31,7 @@ export class PagesComponent implements OnInit {
     'fonds-collections': PageFondsComponent,
     'a-propos': AboutComponent,
     'mirador-guide': MiradorGuideComponent,
+	'copyright': CopyrightComponent,
   };
 
   constructor(
