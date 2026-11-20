@@ -5,7 +5,7 @@ import {
   Component, inject, OnDestroy, OnInit, Renderer2,
 } from '@angular/core';
 import {ActivatedRoute, Router, RouterLink} from '@angular/router';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { Context } from '../../../../../../../app/core/shared/context.model';
 import { Item } from '../../../../../../../app/core/shared/item.model';
@@ -78,7 +78,6 @@ export class UntypedItemComponent extends BaseComponent implements OnInit, OnDes
   idItem: string;
   copiedUri: string | null = null;
   private readonly document = inject(DOCUMENT);
-  private readonly translate = inject(TranslateService);
 
   constructor(
     protected routeService: RouteService,
@@ -115,10 +114,14 @@ export class UntypedItemComponent extends BaseComponent implements OnInit, OnDes
 		// Schémas complets à masquer (préfixe)
 		const excludedSchemas = ['collspec.'];
 
+		// Tout champ lié à vedette, quel que soit son schéma (ex. collspec.vedettecoll)
+		const isVedette = (key: string) => key.toLowerCase().includes('vedette');
+
 		this.metadata = Object.entries(item.payload.metadata)
 		  .filter(([key]) =>
 			!excludedFields.includes(key) &&
-			!excludedSchemas.some(prefix => key.startsWith(prefix)))
+			!excludedSchemas.some(prefix => key.startsWith(prefix)) &&
+			!isVedette(key))
 		  .map(([key, value]) => ({
 			label: key,
 			value: this.extractMetadataValues(value),
@@ -136,13 +139,6 @@ export class UntypedItemComponent extends BaseComponent implements OnInit, OnDes
 
   toggleNotice(): void {
     this.noticeOpen = !this.noticeOpen;
-  }
-
-  /** Libellé lisible d'un champ (ex. dc.title → Titre), sinon le nom technique */
-  fieldLabel(field: string): string {
-    const key = 'collspec.notice.champ.' + field;
-    const label = this.translate.instant(key);
-    return label !== key ? label : field;
   }
 
   get handleUrl(): string | null {
