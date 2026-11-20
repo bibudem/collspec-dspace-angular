@@ -28,6 +28,7 @@ import { RootComponent } from './app/root/root.component';
 import { BrowseByComponent } from './app/shared/browse-by/browse-by.component';
 import { SearchResultsComponent } from './app/shared/search/search-results/search-results.component';
 import { CommunityPageSubCollectionListComponent } from './app/community-page/sections/sub-com-col-section/sub-collection-list/community-page-sub-collection-list.component';
+import { CommunityPageSubCommunityListComponent } from './app/community-page/sections/sub-com-col-section/sub-community-list/community-page-sub-community-list.component';
 import { JournalComponent } from './app/entity-groups/journal-entities/item-pages/journal/journal.component';
 import { JournalVolumeComponent } from './app/entity-groups/journal-entities/item-pages/journal-volume/journal-volume.component';
 // collspec modules
@@ -52,6 +53,7 @@ const DECLARATIONS = [
   BrowseByComponent,
   SearchResultsSkeletonComponent,
   CommunityPageSubCollectionListComponent,
+  CommunityPageSubCommunityListComponent,
   JournalComponent,
   JournalVolumeComponent,
   ThumbnailComponent,
