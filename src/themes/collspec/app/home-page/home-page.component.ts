@@ -54,6 +54,9 @@ export class HomePageComponent extends BaseComponent implements OnInit, OnDestro
   private readonly renderer = inject(Renderer2);
   private readonly document = inject(DOCUMENT);
 
+  /** Bulle de l'avis sur les contenus offensants ouverte (focus clavier ou toucher) */
+  avisOuvert = false;
+
   // En-tête aligné sur le titre de la bannière (voir _global-styles.scss)
   ngOnInit(): void {
     super.ngOnInit();

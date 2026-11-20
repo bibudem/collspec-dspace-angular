@@ -7370,6 +7370,10 @@
 
   "collspec.accueil.titre": "Special <br> Collections",
 
+  "collspec.accueil.avis.lien": "Notice about sensitive content",
+
+  "collspec.accueil.avis.texte": "Some texts, descriptions and documents on this site contain terms or depictions that may be considered offensive today. They are presented here for documentation and research purposes. They reflect the language and views of their time and do not represent the values of the Université de Montréal Libraries.",
+
   "collspec.accueil.vedette.titre": "Discover our unique pieces",
 
   "collspec.accueil.vedette.description": "The special collections of the Université de Montréal Libraries feature unique, historic and rare materials that offer many possibilities for research, study and teaching. Browse the various fonds and explore these rich collections through the digitized materials available in this digital space.",
