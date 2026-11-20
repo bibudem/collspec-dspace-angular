@@ -25,23 +25,37 @@
       </a>
 
       <!-- Menu desktop - visible seulement sur écrans XL et plus -->
-      <nav
-        class="navbar navbar-expand p-0 align-items-stretch align-self-stretch d-none d-xl-flex ml-10"
-        id="desktop-navbar"
-        [attr.aria-label]="'nav.main.description' | translate"
-      >
-	  
-	    <ul class="navbar-nav mr-auto menu-collspec">
-		  <li class="nav-item">
-			<a
-			  role="menuitem"
-			  class="ds-menu-item"
-			  href="/page/a-propos"
-			>
-			  {{ 'collspec.menu.a-propos' | translate }}
-			</a>
-		  </li>
-		</ul>
+		<nav
+		  class="navbar navbar-expand p-0 align-items-stretch align-self-stretch d-none d-xl-flex ml-10 me-4"
+		  id="desktop-navbar"
+		  [attr.aria-label]="'nav.main.description' | translate"
+		>
+		  <ul
+			class="navbar-nav mr-auto menu-collspec"
+			style="display: flex; flex-direction: row; flex-wrap: nowrap; align-items: center; gap: 1.5rem;"
+		  >
+			<li class="nav-item">
+			  <a
+				role="menuitem"
+				class="ds-menu-item"
+				href="/page/a-propos"
+				style="white-space: nowrap;"
+			  >
+				{{ 'collspec.menu.a-propos' | translate }}
+			  </a>
+			</li>
+
+			<li class="nav-item">
+			  <a
+				role="menuitem"
+				class="ds-menu-item"
+				href="/page/copyright"
+				style="white-space: nowrap;"
+			  >
+				{{ 'collspec.menu.copyright' | translate }}
+			  </a>
+			</li>
+		  </ul>
 		
         <!-- <ul class="navbar-nav mr-auto menu-collspec">
 
@@ -177,7 +191,17 @@
 			>
 			  {{ 'collspec.menu.a-propos' | translate }}
 			</a>
-            </li>
+			</li>
+
+			<li class="nav-item">
+			  <a
+				role="menuitem"
+				class="ds-menu-item"
+				href="/page/copyright"
+			  >
+				{{ 'collspec.menu.copyright' | translate }}
+			  </a>
+			</li>
 		  <!-- @if (isMobileRessourcesOpen) {
             <li class="nav-item nav-item-browse-sub">
               <a
