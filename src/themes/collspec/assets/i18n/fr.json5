@@ -33,6 +33,8 @@
   "collspec.iiif.texte": "IIIF (International Image Interoperability Framework, prononcé « triple-i-F ») est un standard ouvert utilisé par des bibliothèques, archives et musées du monde entier pour partager leurs images numérisées. Il permet de zoomer finement sur un document, d'en comparer plusieurs côte à côte et de l'ouvrir dans toute autre visionneuse compatible grâce à son manifeste.",
   "collspec.iiif.lien": "En savoir plus sur IIIF et Mirador",
   "collspec.iiif.nouvel-onglet": "(s'ouvre dans un nouvel onglet)",
+  "collspec.accueil.avis.lien": "Avis sur les contenus sensibles",
+  "collspec.accueil.avis.texte": "Certains textes, descriptions et documents diffusés sur ce site contiennent des termes ou des représentations qui peuvent être jugés offensants aujourd’hui. Ces contenus sont présentés ici à des fins de documentation et de recherche. Ils reflètent le langage et les points de vue de leur époque et ne représentent pas les valeurs des bibliothèques de l’Université de Montréal.",
   "collspec.notice.champ.dc.contributor.author": "Auteur",
   "collspec.notice.champ.dc.contributor": "Contributeur",
   "collspec.notice.champ.dc.creator": "Créateur",

@@ -967,6 +967,176 @@ body.collspec-accueil {
   opacity: 1 !important;
 }
 
+/* Avis sur les contenus sensibles : lien discret sous la barre de recherche.
+   Le lien et sa bulle s'alignent sur la partie blanche du champ de recherche :
+   mêmes marges que .input-group, et largeur de la bulle = largeur du champ,
+   calculée avec les mêmes pourcentages (100cqw = largeur de .search-bar).
+   Formule : largeur champ = (% du champ) × (% du groupe × 100cqw − retrait).
+   À ajuster si les largeurs du champ de recherche changent plus haut/plus bas. */
+.hero-section .search-bar {
+  container-type: inline-size;
+  // container-type crée un contexte d'empilement : on le place au-dessus
+  // des sections suivantes pour que la bulle ne passe pas dessous
+  position: relative;
+  z-index: 20;
+}
+
+// Mobile : la bulle est un panneau fixe en bas d'écran ; sans conteneur,
+// position: fixed se rapporte bien à l'écran et non à la barre de recherche
+@media (max-width: 600px) {
+  .hero-section .search-bar {
+    container-type: normal;
+  }
+}
+
+.hero-section .collspec-avis {
+  --avis-retrait: 20px;                                   // = padding-left de .input-group
+  --avis-largeur: calc(0.75 * (70cqw - var(--avis-retrait))); // champ 75 % d'un groupe de 70 %
+  position: relative;
+  z-index: 20;
+  text-align: left;
+  // Le champ de recherche a déjà mb-3 (1rem) : on remonte pour rester tout près
+  margin-top: -0.625rem;
+  margin-left: 5%;
+  padding-left: var(--avis-retrait);
+}
+
+.collspec-avis__lien {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 24px; // cible tactile minimale (WCAG 2.5.8)
+  padding: 0.25rem 0;
+  font-family: 'Figtree', sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  // Discret : blanc adouci, lisible sur l'image grâce à l'ombre portée
+  color: rgba(255, 255, 255, 0.8);
+  background: transparent;
+  border: 0;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
+  cursor: help;
+  transition: color 0.2s ease;
+
+  span {
+    font-size: inherit;
+    // Soulignement pointillé : convention d'une info au survol
+    text-decoration: underline dotted;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+
+  i {
+    font-size: 0.875rem;
+  }
+
+  &:hover,
+  &[aria-expanded="true"] {
+    color: #ffffff;
+
+    span {
+      text-decoration-style: solid;
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero-section .collspec-avis {
+    --avis-retrait: 15px;
+    --avis-largeur: calc(0.75 * (80cqw - var(--avis-retrait)));
+    margin-left: 3%;
+  }
+}
+@media (max-width: 768px) {
+  .hero-section .collspec-avis {
+    --avis-retrait: 10px;
+    --avis-largeur: calc(0.70 * (90cqw - var(--avis-retrait)));
+    margin-left: 2%;
+  }
+}
+@media (max-width: 600px) {
+  .hero-section .collspec-avis { --avis-retrait: 15px; margin-left: 0; }
+}
+@media (max-width: 425px) {
+  .hero-section .collspec-avis { --avis-retrait: 10px; }
+}
+@media (min-width: 1441px) {
+  .hero-section .collspec-avis {
+    --avis-largeur: calc(0.75 * (60cqw - var(--avis-retrait)));
+  }
+}
+
+/* Bulle de l'avis (CSS seulement) : visible au survol, ou quand .is-open
+   (focus clavier / toucher). Positionnée par rapport à .collspec-avis pour
+   commencer au bord gauche du champ ; le padding-top fait le pont entre le
+   lien et la bulle pour que le survol ne se perde pas. */
+.collspec-avis__ancre {
+  display: inline-block;
+}
+
+.collspec-avis__bulle {
+  position: absolute;
+  top: 100%;
+  left: var(--avis-retrait);
+  width: var(--avis-largeur);
+  padding-top: 0.375rem;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0s linear 0.15s;
+}
+
+.collspec-avis__ancre:hover .collspec-avis__bulle,
+.collspec-avis__ancre.is-open .collspec-avis__bulle {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.collspec-avis__contenu {
+  display: block;
+  padding: 0.875rem 1.25rem;
+  font-family: 'Figtree', sans-serif;
+  font-size: 0.85rem;
+  font-style: italic;
+  line-height: 1.55;
+  text-align: left;
+  text-shadow: none;
+  color: #0b113a;
+  background: #ffffff;
+  border: 1px solid #d4dbe2;
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(11, 17, 58, 0.16);
+}
+
+// Mobile : la bulle devient un panneau en bas de l'écran, toujours entière
+@media (max-width: 600px) {
+  .collspec-avis__bulle {
+    position: fixed;
+    top: auto;
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    width: auto;
+    padding-top: 0;
+    transform: translateY(8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .collspec-avis__bulle {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
 /* NIMA - 2026-09-18: masquer le contenu des divs de classe « list-hide » dans l’affichage en liste des communautés */
 ds-themed-top-level-community-list .list-hide {
     display: none !important;
@@ -2382,6 +2552,126 @@ body.collspec-visionneuse {
   }
 }
 
+
+/* =============================================
+   PAGE DROITS D'AUTEUR (/page/copyright)
+   Le contenu (assets/bib-pages/copyright/{lang}-copyright.html) reprend la
+   structure de la page À propos : .about-page, .about-intro, .about-section,
+   .h2-bib-titre, .bib-description et encadrés .about-cite-box.
+   Ici, seulement ce que la page À propos n'a pas : listes, liens, tableaux.
+   ============================================= */
+
+.copyright-page {
+  padding-bottom: 3rem;
+
+  // Listes à puces : même texte que les paragraphes
+  ul.bib-description {
+    margin: 0 0 1.25rem;
+    padding-left: 1.25rem;
+    font-size: 1.05rem !important;
+    line-height: 1.75 !important;
+
+    li {
+      margin-bottom: 0.25rem;
+
+      &::marker {
+        color: $secondaryblue;
+      }
+    }
+  }
+
+  .bib-description strong {
+    color: $darkblue;
+    font-weight: 600;
+  }
+
+  // Liens soulignés pour être repérables dans le texte (contraste AA)
+  .about-section a {
+    color: #0059ab;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+
+    &:hover {
+      color: #00407F;
+      text-decoration: underline !important;
+      text-decoration-thickness: 2px;
+    }
+
+    &:focus-visible {
+      outline: 2px solid #0057ac;
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+  }
+
+  // Logo de la mention de droits dans le texte
+  .bib-description img {
+    vertical-align: middle;
+    margin: 0 0.15rem;
+  }
+
+  // ── Tableaux ───────────────────────────────────────
+  .table-responsive {
+    margin: 1.5rem 0;
+    border: 1px solid #E7EBEE;
+    border-radius: 12px;
+  }
+
+  .table {
+    margin: 0;
+    font-family: $font-family-sans-serif;
+    font-size: 1rem;
+
+    th, td {
+      padding: 0.75rem 1rem;
+      border: 0;
+      border-bottom: 1px solid #E7EBEE;
+      vertical-align: top;
+      line-height: 1.5;
+    }
+
+    thead th {
+      background: #F3F6F9;
+      color: $darkblue;
+      font-weight: 600;
+    }
+
+    tbody td {
+      color: $gray;
+    }
+
+    // Première colonne : la mention ou la licence
+    tbody td:first-child {
+      color: $darkblue;
+      font-weight: 600;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: 0;
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  .copyright-page {
+    ul.bib-description {
+      font-size: 1rem !important;
+    }
+
+    .table {
+      font-size: 0.9rem;
+
+      th, td {
+        padding: 0.6rem 0.75rem;
+      }
+
+      thead th {
+        min-width: 7rem;
+      }
+    }
+  }
+}
 
 /* =============================================
    PAGE GUIDE MIRADOR
