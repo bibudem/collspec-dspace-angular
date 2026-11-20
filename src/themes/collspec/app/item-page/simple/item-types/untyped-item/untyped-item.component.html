@@ -63,7 +63,7 @@
     <div class="notice-drawer-body">
       <dl class="notice-dl">
         <ng-container *ngFor="let meta of metadata">
-          <dt>{{ fieldLabel(meta.label) }}</dt>
+          <dt>{{ meta.label }}</dt>
           <ng-container *ngIf="meta.value">
             <ng-container *ngFor="let v of meta.value">
               <dd>
