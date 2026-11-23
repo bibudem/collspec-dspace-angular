@@ -2554,3 +2554,14 @@ body.collspec-visionneuse {
     }
   }
 }
+
+/* Navigation entre les pages : pendant le chargement de la page suivante,
+   #main-content est vide quelques millisecondes et le pied de page (très haut
+   sur mobile) remontait juste sous l'en-tête avant d'être repoussé.
+   On réserve au contenu au moins la hauteur de l'écran : le pied de page reste
+   sous la ligne de flottaison et n'apparaît plus en flash.
+   svh = hauteur visible avec les barres du navigateur mobile affichées. */
+#main-content {
+  min-height: 100vh;
+  min-height: 100svh;
+}
