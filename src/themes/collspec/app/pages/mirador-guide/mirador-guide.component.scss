@@ -116,6 +116,11 @@
 }
 
 @media (max-width: 767.98px) {
+  // Titres de section : 34 px dans le thème, trop grand pour les longs titres du guide
+  .h2-bib-titre {
+    font-size: 1.625rem;
+  }
+
   .h3-bib-soustitre {
     font-size: 1.1rem;
   }
@@ -223,12 +228,13 @@
   cursor: pointer;
   transition: background-color 0.15s ease, color 0.15s ease;
 
-  &:hover:not(:disabled) {
+  &:hover:not([aria-disabled="true"]) {
     color: #ffffff;
     background: #0b113a;
   }
 
-  &:disabled {
+  // aria-disabled (et non disabled) : le bouton garde le focus au bout du carrousel
+  &[aria-disabled="true"] {
     color: #8a96a3;
     border-color: #c9d1d9;
     cursor: default;
