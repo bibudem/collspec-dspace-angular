@@ -8,22 +8,34 @@
                       [searchPlaceholder]="'home.search-form.placeholder' | translate">
       </ds-search-form>
 
-      <!-- Avis sur les contenus offensants (HTML/CSS seulement) :
-           s'affiche au survol (CSS), au focus clavier et au toucher ; Échap ou sortie du lien le ferme -->
+      <!-- Avis sur les contenus sensibles (sans bibliothèque) :
+           aperçu au survol à la souris (CSS) ; ouverture au clic, fermeture par ×, Échap ou clic en dehors -->
       <div class="collspec-avis">
-        <span class="collspec-avis__ancre" [class.is-open]="avisOuvert"
-              (keydown.escape)="avisOuvert = false">
-          <button type="button" class="collspec-avis__lien"
-                  aria-describedby="collspec-avis-texte"
+        <span class="collspec-avis__ancre" #avisAncre [class.is-open]="avisOuvert"
+              [class.is-masque]="avisMasque" (mouseleave)="avisMasque = false">
+          <button type="button" class="collspec-avis__lien" #avisLien
+                  aria-controls="collspec-avis-bulle"
                   [attr.aria-expanded]="avisOuvert"
-                  (focus)="avisOuvert = true"
-                  (click)="avisOuvert = true"
-                  (blur)="avisOuvert = false">
+                  (click)="avisOuvert = !avisOuvert">
             <i class="fas fa-circle-info" aria-hidden="true"></i>
             <span>{{ 'collspec.accueil.avis.lien' | translate }}</span>
           </button>
-          <span class="collspec-avis__bulle" id="collspec-avis-texte" role="tooltip">
-            <span class="collspec-avis__contenu">{{ 'collspec.accueil.avis.texte' | translate }}</span>
+          <span class="collspec-avis__bulle" id="collspec-avis-bulle">
+            <span class="collspec-avis__contenu">
+              <span class="collspec-avis__entete">
+                <span class="collspec-avis__titre">
+                  <i class="fas fa-circle-info" aria-hidden="true"></i>
+                  {{ 'collspec.accueil.avis.lien' | translate }}
+                </span>
+                <button type="button" class="collspec-avis__fermer"
+                        [attr.aria-label]="'collspec.accueil.avis.fermer' | translate"
+                        [attr.title]="'collspec.accueil.avis.fermer' | translate"
+                        (click)="fermerAvis(avisLien)">
+                  <i class="fas fa-xmark" aria-hidden="true"></i>
+                </button>
+              </span>
+              <span class="collspec-avis__texte">{{ 'collspec.accueil.avis.texte' | translate }}</span>
+            </span>
           </span>
         </span>
       </div>
