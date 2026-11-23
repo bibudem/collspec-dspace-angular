@@ -1,5 +1,5 @@
 <div class="container">
-<div class="about-page mirador-guide-page">
+<div class="about-page mirador-guide-page" lang="fr">
 
   <!-- ================================================= -->
   <!-- INTRODUCTION -->
@@ -38,7 +38,7 @@
   <nav class="about-section guide-sommaire" aria-labelledby="guide-sommaire-titre">
     <h2 class="h2-bib-titre" id="guide-sommaire-titre">Guide rapide</h2>
 
-    <ol class="guide-sommaire__liste">
+    <ol class="guide-sommaire__liste" role="list">
       <li><a href="#what-is-iiif" (click)="allerA($event, 'what-is-iiif')">Qu'est-ce que IIIF ?</a></li>
       <li><a href="#what-is-mirador" (click)="allerA($event, 'what-is-mirador')">Qu'est-ce que Mirador ?</a></li>
       <li><a href="#navigate-item" (click)="allerA($event, 'navigate-item')">Comment utiliser Mirador pour naviguer dans un document</a></li>
@@ -52,8 +52,8 @@
   <!-- QU'EST-CE QUE IIIF -->
   <!-- ================================================= -->
 
-  <section id="what-is-iiif" class="about-section" tabindex="-1" aria-labelledby="titre-iiif">
-    <h2 class="h2-bib-titre" id="titre-iiif">Qu'est-ce que IIIF ?</h2>
+  <section id="what-is-iiif" class="about-section" tabindex="-1">
+    <h2 class="h2-bib-titre">Qu'est-ce que IIIF ?</h2>
 
     <p class="bib-description">
       <strong>IIIF</strong> (International Image Interoperability Framework) est
@@ -74,8 +74,8 @@
   <!-- QU'EST-CE QUE MIRADOR -->
   <!-- ================================================= -->
 
-  <section id="what-is-mirador" class="about-section" tabindex="-1" aria-labelledby="titre-mirador">
-    <h2 class="h2-bib-titre" id="titre-mirador">Qu'est-ce que Mirador ?</h2>
+  <section id="what-is-mirador" class="about-section" tabindex="-1">
+    <h2 class="h2-bib-titre">Qu'est-ce que Mirador ?</h2>
 
     <p class="bib-description">
       <strong>Mirador</strong> est une visionneuse IIIF développée pour les
@@ -108,8 +108,8 @@
   <!-- NAVIGUER DANS UN DOCUMENT -->
   <!-- ================================================= -->
 
-  <section id="navigate-item" class="about-section" tabindex="-1" aria-labelledby="titre-naviguer">
-    <h2 class="h2-bib-titre" id="titre-naviguer">Comment utiliser Mirador pour naviguer dans un document</h2>
+  <section id="navigate-item" class="about-section" tabindex="-1">
+    <h2 class="h2-bib-titre">Comment utiliser Mirador pour naviguer dans un document</h2>
 
     <p class="bib-description">
       Mirador offre plusieurs zones et outils pour explorer un document :
@@ -153,8 +153,8 @@
   <!-- COPIER ET UTILISER UN MANIFESTE IIIF -->
   <!-- ================================================= -->
 
-  <section id="use-manifest" class="about-section" tabindex="-1" aria-labelledby="titre-manifeste">
-    <h2 class="h2-bib-titre" id="titre-manifeste">Copier et utiliser un manifeste IIIF</h2>
+  <section id="use-manifest" class="about-section" tabindex="-1">
+    <h2 class="h2-bib-titre">Copier et utiliser un manifeste IIIF</h2>
 
     <p class="bib-description">
       Vous pouvez copier l'adresse du manifeste IIIF d'un document pour le
@@ -168,8 +168,8 @@
   <!-- RECHERCHE DANS MIRADOR AVEC SURBRILLANCE -->
   <!-- ================================================= -->
 
-  <section id="search-mirador" class="about-section" tabindex="-1" aria-labelledby="titre-recherche">
-    <h2 class="h2-bib-titre" id="titre-recherche">Recherche dans Mirador avec surbrillance</h2>
+  <section id="search-mirador" class="about-section" tabindex="-1">
+    <h2 class="h2-bib-titre">Recherche dans Mirador avec surbrillance</h2>
 
     <p class="bib-description">
       Mirador permet de rechercher un terme dans le texte d'un document lorsque
@@ -183,8 +183,8 @@
   <!-- AFFICHAGE OCR AVEC TEXTE EN SURIMPRESSION -->
   <!-- ================================================= -->
 
-  <section id="ocr-textoverlay" class="about-section" tabindex="-1" aria-labelledby="titre-ocr">
-    <h2 class="h2-bib-titre" id="titre-ocr">Affichage OCR avec texte en surimpression</h2>
+  <section id="ocr-textoverlay" class="about-section" tabindex="-1">
+    <h2 class="h2-bib-titre">Affichage OCR avec texte en surimpression</h2>
 
     <p class="bib-description">
       Lorsque des données OCR sont disponibles, Mirador peut afficher le texte
@@ -205,9 +205,7 @@
   <div class="guide-carrousel"
        role="region"
        aria-roledescription="carrousel"
-       [attr.aria-label]="label"
-       (keydown.arrowleft)="aller(cle, actif(cle) - 1)"
-       (keydown.arrowright)="aller(cle, actif(cle) + 1)">
+       [attr.aria-label]="label">
 
     @for (diapo of carrousels[cle]; track diapo.src; let i = $index) {
       <figure class="guide-carrousel__diapo"
@@ -227,10 +225,13 @@
     }
 
     @if (carrousels[cle].length > 1) {
-      <div class="guide-carrousel__commandes">
+      <!-- Flèches ← → seulement ici : sur l'image (lien), changer de diapositive cacherait l'élément qui a le focus -->
+      <div class="guide-carrousel__commandes"
+           (keydown.arrowleft)="aller(cle, actif(cle) - 1)"
+           (keydown.arrowright)="aller(cle, actif(cle) + 1)">
         <button type="button" class="guide-carrousel__fleche"
                 aria-label="Image précédente"
-                [disabled]="actif(cle) === 0"
+                [attr.aria-disabled]="actif(cle) === 0"
                 (click)="aller(cle, actif(cle) - 1)">
           <i class="fas fa-chevron-left" aria-hidden="true"></i>
         </button>
@@ -246,13 +247,14 @@
           }
         </div>
 
-        <span class="guide-carrousel__compteur" aria-live="polite" aria-atomic="true">
-          <span class="visually-hidden">Image </span>{{ actif(cle) + 1 }} / {{ carrousels[cle].length }}
+        <span class="guide-carrousel__compteur">
+          <span aria-hidden="true">{{ actif(cle) + 1 }} / {{ carrousels[cle].length }}</span>
+          <span class="visually-hidden" aria-live="polite" aria-atomic="true">Image {{ actif(cle) + 1 }} sur {{ carrousels[cle].length }}</span>
         </span>
 
         <button type="button" class="guide-carrousel__fleche"
                 aria-label="Image suivante"
-                [disabled]="actif(cle) === carrousels[cle].length - 1"
+                [attr.aria-disabled]="actif(cle) === carrousels[cle].length - 1"
                 (click)="aller(cle, actif(cle) + 1)">
           <i class="fas fa-chevron-right" aria-hidden="true"></i>
         </button>
