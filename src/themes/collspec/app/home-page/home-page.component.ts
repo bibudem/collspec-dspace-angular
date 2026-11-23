@@ -7,10 +7,13 @@ import {
 } from '@angular/common';
 import {
   Component,
+  ElementRef,
+  HostListener,
   inject,
   OnDestroy,
   OnInit,
   Renderer2,
+  ViewChild,
 } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { HomeCoarComponent } from '../../../../app/home-page/home-coar/home-coar.component';
@@ -54,8 +57,46 @@ export class HomePageComponent extends BaseComponent implements OnInit, OnDestro
   private readonly renderer = inject(Renderer2);
   private readonly document = inject(DOCUMENT);
 
-  /** Bulle de l'avis sur les contenus offensants ouverte (focus clavier ou toucher) */
+  /** Avis sur les contenus sensibles ouvert (au clic) */
   avisOuvert = false;
+
+  /** Aperçu au survol fermé par Échap, jusqu'à ce que la souris quitte le lien (WCAG 1.4.13) */
+  avisMasque = false;
+
+  @ViewChild('avisAncre') private avisAncre?: ElementRef<HTMLElement>;
+  @ViewChild('avisLien') private avisLien?: ElementRef<HTMLElement>;
+
+  /** Échap, où que soit le focus : ferme l'avis ouvert, ou masque l'aperçu au survol */
+  @HostListener('document:keydown.escape')
+  fermerAvisParEchap(): void {
+    if (this.avisOuvert) {
+      const focusDansAvis = this.avisAncre?.nativeElement.contains(this.document.activeElement);
+      this.avisOuvert = false;
+      if (focusDansAvis) {
+        this.avisLien?.nativeElement.focus();
+      }
+    }
+    // Seulement si la souris est dessus : sinon mouseleave ne remettrait jamais l'aperçu
+    if (this.avisAncre?.nativeElement.matches(':hover')) {
+      this.avisMasque = true;
+    }
+  }
+
+  /** Ferme l'avis et rend le focus au lien qui l'a ouvert */
+  fermerAvis(lien: HTMLElement): void {
+    if (this.avisOuvert) {
+      this.avisOuvert = false;
+      lien.focus();
+    }
+  }
+
+  /** Clic ou toucher en dehors de l'avis : on le ferme */
+  @HostListener('document:click', ['$event'])
+  fermerAvisSiClicExterieur(event: Event): void {
+    if (this.avisOuvert && !this.avisAncre?.nativeElement.contains(event.target as Node)) {
+      this.avisOuvert = false;
+    }
+  }
 
   // En-tête aligné sur le titre de la bannière (voir _global-styles.scss)
   ngOnInit(): void {

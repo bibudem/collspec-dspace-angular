@@ -45,13 +45,12 @@
   font-family: 'Figtree', sans-serif;
   font-size: 0.8125rem;
   font-weight: 400;
-  // Discret : blanc adouci, lisible sur l'image grâce à l'ombre portée
-  color: rgba(255, 255, 255, 0.8);
+  // Blanc plein (contraste WCAG 1.4.3 sur l’image) ; la discrétion vient de la taille et du soulignement pointillé
+  color: #ffffff;
   background: transparent;
   border: 0;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
-  cursor: help;
-  transition: color 0.2s ease;
+  cursor: pointer;
 
   span {
     font-size: inherit;
@@ -67,8 +66,6 @@
 
   &:hover,
   &[aria-expanded="true"] {
-    color: #ffffff;
-
     span {
       text-decoration-style: solid;
     }
@@ -107,10 +104,12 @@
   }
 }
 
-/* Bulle de l'avis (CSS seulement) : visible au survol, ou quand .is-open
-   (focus clavier / toucher). Positionnée par rapport à .collspec-avis pour
-   commencer au bord gauche du champ ; le padding-top fait le pont entre le
-   lien et la bulle pour que le survol ne se perde pas. */
+/* Bulle de l'avis.
+   - Ordinateur (souris) : aperçu au survol ; un clic l'épingle, avec un bouton ×.
+   - Écrans tactiles et petits écrans : s'ouvre seulement au clic, se ferme
+     avec ×, Échap ou un clic en dehors.
+   Positionnée par rapport à .collspec-avis pour commencer au bord gauche du
+   champ ; le padding-top fait le pont entre le lien et la bulle (survol). */
 .collspec-avis__ancre {
   display: inline-block;
 }
@@ -127,7 +126,6 @@
   transition: opacity 0.15s ease, transform 0.15s ease, visibility 0s linear 0.15s;
 }
 
-.collspec-avis__ancre:hover .collspec-avis__bulle,
 .collspec-avis__ancre.is-open .collspec-avis__bulle {
   visibility: visible;
   opacity: 1;
@@ -135,13 +133,21 @@
   transition: opacity 0.15s ease, transform 0.15s ease;
 }
 
+// Aperçu au survol : seulement avec une vraie souris, et pas sur petit écran
+@media (hover: hover) and (pointer: fine) and (min-width: 601px) {
+  // .is-masque : aperçu fermé par Échap, jusqu’à ce que la souris quitte le lien (WCAG 1.4.13)
+  .collspec-avis__ancre:not(.is-masque):hover .collspec-avis__bulle {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+  }
+}
+
 .collspec-avis__contenu {
   display: block;
-  padding: 0.875rem 1.25rem;
+  padding: 0.875rem 1.25rem 1rem;
   font-family: 'Figtree', sans-serif;
-  font-size: 0.85rem;
-  font-style: italic;
-  line-height: 1.55;
   text-align: left;
   text-shadow: none;
   color: #0b113a;
@@ -151,17 +157,98 @@
   box-shadow: 0 6px 24px rgba(11, 17, 58, 0.16);
 }
 
-// Mobile : la bulle devient un panneau en bas de l'écran, toujours entière
+.collspec-avis__entete {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e6ebf0;
+}
+
+.collspec-avis__titre {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #0b113a;
+
+  i {
+    color: #0059ab;
+  }
+}
+
+// Le × n'apparaît que lorsque l'avis est ouvert au clic (pas en simple survol)
+.collspec-avis__fermer {
+  display: none;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem; // cible tactile ≥ 24px
+  margin: -0.25rem -0.5rem -0.25rem 0;
+  padding: 0;
+  font-size: 1rem;
+  color: #4a5568;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    color: #0b113a;
+    background: #f3f6f9;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #0059ab;
+    outline-offset: 2px;
+  }
+}
+
+.collspec-avis__ancre.is-open .collspec-avis__fermer {
+  display: inline-flex;
+}
+
+.collspec-avis__texte {
+  display: block;
+  font-size: 0.85rem;
+  font-style: italic;
+  line-height: 1.55;
+}
+
+// Petits écrans : panneau en bas de l'écran, pleine largeur, toujours entier
 @media (max-width: 600px) {
   .collspec-avis__bulle {
     position: fixed;
     top: auto;
-    left: 1rem;
-    right: 1rem;
-    bottom: 1rem;
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
+    z-index: 1050;
     width: auto;
+    max-height: 70vh;
     padding-top: 0;
-    transform: translateY(8px);
+    transform: translateY(12px);
+  }
+
+  .collspec-avis__contenu {
+    max-height: 70vh;
+    overflow-y: auto;
+    padding: 1rem 1.125rem 1.125rem;
+    box-shadow: 0 -4px 32px rgba(11, 17, 58, 0.28);
+  }
+
+  .collspec-avis__titre {
+    font-size: 0.95rem;
+  }
+
+  .collspec-avis__texte {
+    font-size: 0.9rem;
   }
 }
 

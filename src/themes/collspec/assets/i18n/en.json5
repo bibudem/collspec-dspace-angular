@@ -34,6 +34,7 @@
   "collspec.iiif.lien": "Learn more about IIIF and Mirador",
   "collspec.iiif.nouvel-onglet": "(opens in a new tab)",
   "collspec.accueil.avis.lien": "Notice about sensitive content",
+  "collspec.accueil.avis.fermer": "Close notice",
   "collspec.accueil.avis.texte": "Some texts, descriptions and documents on this site contain terms or depictions that may be considered offensive today. They are presented here for documentation and research purposes. They reflect the language and views of their time and do not represent the values of the Université de Montréal Libraries.",
   "collspec.notice.champ.dc.contributor.author": "Author",
   "collspec.notice.champ.dc.contributor": "Contributor",
