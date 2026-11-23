@@ -1,0 +1,320 @@
+/* Guide Mirador : la mise en page vient des styles globaux de la page À propos
+   (.about-page, .about-intro, .about-section, .h2-bib-titre, .bib-description).
+   Ici, seulement ce que le guide a en plus : sommaire, sous-titres, liens, figure. */
+
+.mirador-guide-page {
+  padding-bottom: 3rem;
+}
+
+// Sections ciblées par le sommaire : pas cachées sous l'en-tête, focus programmé sans contour
+.about-section[id] {
+  scroll-margin-top: 1.5rem;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.bib-description strong {
+  color: #0b113a;
+  font-weight: 600;
+}
+
+// Liens soulignés, repérables dans le texte (contraste AA) : comme la page Droits d'auteur
+.about-section a:not(.guide-carrousel__image) {
+  color: #0059ab;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+
+  &:hover {
+    color: #00407F;
+    text-decoration-thickness: 2px;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #0057ac;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+.h3-bib-soustitre {
+  margin: 2rem 0 0.75rem;
+  font-family: 'Figtree', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #0b113a;
+}
+
+// ── Sommaire « Guide rapide » ─────────────────────────
+.guide-sommaire__liste {
+  counter-reset: sommaire;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.25rem 2rem;
+  margin: 0;
+  padding: 1.25rem 1.5rem;
+  list-style: none;
+  background: #F3F6F9;
+  border: 1px solid #E7EBEE;
+  border-radius: 12px;
+
+  li {
+    counter-increment: sommaire;
+    display: flex;
+    gap: 0.75rem;
+    align-items: baseline;
+    font-family: 'Figtree', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.5;
+
+    &::before {
+      content: counter(sommaire);
+      flex: 0 0 1.75rem;
+      height: 1.75rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #ffffff;
+      background: #0b113a;
+      border-radius: 50%;
+      transform: translateY(0.3rem);
+    }
+  }
+
+  a {
+    display: inline-block;
+    padding: 0.3rem 0; // cible ≥ 24 px
+  }
+}
+
+@media (min-width: 768px) {
+  .guide-sommaire__liste {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-flow: column;
+    grid-template-rows: repeat(3, auto);
+  }
+}
+
+// ── Image seule : même cadre que les carrousels ───────
+.guide-figure {
+  margin: 1.5rem 0 0;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: #F3F6F9;
+    border: 1px solid #E7EBEE;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(11, 17, 58, 0.12);
+  }
+}
+
+@media (max-width: 767.98px) {
+  .h3-bib-soustitre {
+    font-size: 1.1rem;
+  }
+
+  .guide-sommaire__liste {
+    padding: 1rem 1.125rem;
+
+    li {
+      font-size: 1rem;
+    }
+  }
+}
+
+// ══ Carrousels (gabarit #carrousel) ═════════════════
+// Même cadre que les images de la page À propos (coins 12 px, ombre douce),
+// légende sous l'image, commandes sous la légende : ‹  • • •  1 / 3  ›
+
+.guide-carrousel {
+  margin: 1.5rem 0 2rem;
+}
+
+.guide-carrousel__diapo {
+  margin: 0;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.guide-carrousel__image {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: #F3F6F9;
+  border: 1px solid #E7EBEE;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(11, 17, 58, 0.12);
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    // Captures de tailles légèrement différentes : même hauteur, image entière
+    aspect-ratio: 1306 / 670;
+    object-fit: contain;
+  }
+
+  &:focus-visible {
+    outline: 3px solid #0059ab;
+    outline-offset: 3px;
+  }
+
+  &:hover .guide-carrousel__agrandir,
+  &:focus-visible .guide-carrousel__agrandir {
+    opacity: 1;
+  }
+}
+
+// Pastille « agrandir » en coin, discrète
+.guide-carrousel__agrandir {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  font-size: 0.9rem;
+  color: #ffffff;
+  background: rgba(11, 17, 58, 0.75);
+  border-radius: 50%;
+  opacity: 0.7;
+  transition: opacity 0.15s ease;
+}
+
+.guide-carrousel__legende {
+  margin: 0.75rem 0 0;
+  font-family: 'Figtree', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #37424D;
+}
+
+.guide-carrousel__commandes {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.guide-carrousel__fleche {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 2.5rem;
+  height: 2.5rem; // cible tactile confortable
+  padding: 0;
+  font-size: 0.9rem;
+  color: #0b113a;
+  background: #ffffff;
+  border: 1px solid #0b113a;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+
+  &:hover:not(:disabled) {
+    color: #ffffff;
+    background: #0b113a;
+  }
+
+  &:disabled {
+    color: #8a96a3;
+    border-color: #c9d1d9;
+    cursor: default;
+  }
+
+  &:focus-visible {
+    outline: 3px solid #0059ab;
+    outline-offset: 2px;
+  }
+}
+
+.guide-carrousel__points {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+// Point visible de 10 px dans une zone cliquable de 24 px (WCAG 2.5.8)
+.guide-carrousel__point {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background: #ffffff;
+    border: 2px solid #607386;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: background-color 0.15s ease, border-color 0.15s ease, width 0.15s ease;
+  }
+
+  &:hover::before {
+    border-color: #0b113a;
+  }
+
+  &.is-actif::before {
+    width: 22px;
+    background: #0b113a;
+    border-color: #0b113a;
+    border-radius: 5px;
+  }
+
+  &:focus-visible {
+    outline: 3px solid #0059ab;
+    outline-offset: 0;
+  }
+}
+
+.guide-carrousel__compteur {
+  margin-left: auto;
+  font-family: 'Figtree', sans-serif;
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+  color: #37424D;
+}
+
+@media (max-width: 575.98px) {
+  .guide-carrousel__image {
+    border-radius: 8px;
+  }
+
+  .guide-carrousel__legende {
+    font-size: 0.9rem;
+  }
+
+  .guide-carrousel__commandes {
+    gap: 0.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .guide-carrousel__point::before,
+  .guide-carrousel__fleche,
+  .guide-carrousel__agrandir {
+    transition: none;
+  }
+}

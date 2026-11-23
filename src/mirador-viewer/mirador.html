@@ -467,17 +467,49 @@
         margin: 0 !important;
       }
 
-      /* Barre de superposition de texte (OCR) : horizontale, en haut, juste à
-         gauche de la colonne d'outils ; elle se déploie vers la gauche.
-         Largeur de la colonne = icône 24 px + 2 × padding des boutons (voir plus bas). */
+      /* Barre de superposition de texte (OCR) : colonne verticale qui s'ouvre
+         vers le bas, comme la colonne d'outils, placée juste à sa gauche.
+         Largeur de la colonne d'outils = icône 24 px + 2 × padding (voir plus bas). */
       .mirador-osd-container .MuiPaper-elevation4:has(> div > button[aria-label*="superposition de texte"]),
       .mirador-osd-container .MuiPaper-elevation4:has(> div > button[aria-label*="text overlay options"]) {
         top: 8px !important;
         right: calc(8px + 24px + 2 * clamp(2px, 5cqh - 13px, 12px) + 8px) !important;
         left: auto !important;
-        flex-direction: row !important;
+        flex-direction: column !important;
+        align-items: center;
         z-index: 1200 !important;
       }
+
+      .mirador-osd-container .MuiPaper-elevation4:has(> div > button[aria-label*="superposition de texte"]) > div,
+      .mirador-osd-container .MuiPaper-elevation4:has(> div > button[aria-label*="text overlay options"]) > div {
+        position: relative;
+        flex-direction: column !important;
+        padding: 0 !important;
+        border: 0 !important;
+        border-image: none !important;
+      }
+
+      /* Bouton ouvrir / fermer en haut, puis séparateurs comme la colonne d'outils :
+         [×] | sélection du texte | affichage, opacité, couleurs */
+      .mirador-osd-container .MuiPaper-elevation4:has(> div > button[aria-label*="superposition de texte"]) > div:last-child,
+      .mirador-osd-container .MuiPaper-elevation4:has(> div > button[aria-label*="text overlay options"]) > div:last-child {
+        order: -1;
+      }
+
+      .mirador-osd-container .MuiPaper-elevation4:has(> div > button[aria-label*="superposition de texte"]) > div:is(:nth-child(1), :nth-child(2)):not(:last-child),
+      .mirador-osd-container .MuiPaper-elevation4:has(> div > button[aria-label*="text overlay options"]) > div:is(:nth-child(1), :nth-child(2)):not(:last-child) {
+        border-top: 1px solid rgba(0, 0, 0, 0.12) !important;
+      }
+
+      /* Curseur d'opacité et choix des couleurs : à gauche de leur bouton */
+      .mirador-osd-container .MuiPaper-elevation4:has(> div > button[aria-label*="superposition de texte"]) > div > div,
+      .mirador-osd-container .MuiPaper-elevation4:has(> div > button[aria-label*="text overlay options"]) > div > div {
+        top: 0 !important;
+        left: auto !important;
+        right: calc(100% + 6px) !important;
+        border-radius: 25px !important;
+      }
+    }
     }
 
     /* Colonne d'outils toujours entièrement visible, quelle que soit la hauteur
@@ -502,7 +534,9 @@
       }
 
       .mirador-osd-container .MuiPaper-elevation4:has(> div > button[aria-label$="les outils"]) .MuiIconButton-root,
-      .mirador-osd-container .MuiPaper-elevation4:has(> div > button[aria-label$="image tools"]) .MuiIconButton-root {
+      .mirador-osd-container .MuiPaper-elevation4:has(> div > button[aria-label$="image tools"]) .MuiIconButton-root,
+      .mirador-osd-container .MuiPaper-elevation4:has(> div > button[aria-label*="superposition de texte"]) > div > .MuiIconButton-root,
+      .mirador-osd-container .MuiPaper-elevation4:has(> div > button[aria-label*="text overlay options"]) > div > .MuiIconButton-root {
         padding: clamp(2px, 5cqh - 13px, 12px) !important;
       }
     }
