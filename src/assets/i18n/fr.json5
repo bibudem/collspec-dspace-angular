@@ -7378,7 +7378,7 @@
 
   "collspec.faq.description": "Trouvez rapidement les informations essentielles pour mieux naviguer sur notre site",
 
-  "collspec.droits.titre": "Droit d'auteur et utilisation",
+  "collspec.droits.titre": "Droits d'auteur et utilisation",
 
   "collspec.droits.description": "Avis sur l'utilisation du contenu des collections d'objets numériques",
 
@@ -7415,6 +7415,7 @@
   "collspec.accueil.titre": "Collections <br> spéciales",
 
   "collspec.accueil.avis.lien": "Avis sur les contenus sensibles",
+
   "collspec.accueil.avis.fermer": "Fermer l’avis",
 
   "collspec.accueil.avis.texte": "Certains textes, descriptions et documents diffusés sur ce site contiennent des termes ou des représentations qui peuvent être jugés offensants aujourd’hui. Ces contenus sont présentés ici à des fins de documentation et de recherche. Ils reflètent le langage et les points de vue de leur époque et ne représentent pas les valeurs des bibliothèques de l’Université de Montréal.",
