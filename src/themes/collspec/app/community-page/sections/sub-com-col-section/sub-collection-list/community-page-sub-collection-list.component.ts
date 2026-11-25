@@ -75,8 +75,7 @@ export class CommunityPageSubCollectionListComponent implements OnInit, OnDestro
    */
   private hiddenCollectionUuids = [
     '463625e1-602d-4844-a94f-5df83c681054',
-    'b9047ea9-57cb-4833-af4a-b8ab68dfea52',
-    'e4a7d3ab-2a62-46f9-8d71-c66ebf9cdbe3',
+    '7a0a8a46-dc90-446a-9a3f-fa6ffd8bdc3a',
   ];
 
   /**

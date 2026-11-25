@@ -363,6 +363,28 @@ themes:
           rel: manifest
           href: assets/diame/images/favicons/manifest.webmanifest
           
+  - name: diame
+    uuid: 7a0a8a46-dc90-446a-9a3f-fa6ffd8bdc3a
+    headTags:
+      - tagName: link
+        attributes:
+          rel: icon
+          href: assets/rech1/images/favicons/favicon.ico
+          sizes: any
+      - tagName: link
+        attributes:
+          rel: icon
+          href: assets/rech1/images/favicons/favicon.svg
+          type: image/svg+xml
+      - tagName: link
+        attributes:
+          rel: apple-touch-icon
+          href: assets/rech1/images/favicons/apple-touch-icon.png
+      - tagName: link
+        attributes:
+          rel: manifest
+          href: assets/rech1/images/favicons/manifest.webmanifest
+  
   - name: rech1
     uuid: 699d9a2c-27dd-4bc3-b74f-30d0a171c2ec
     headTags:
@@ -383,8 +405,8 @@ themes:
       - tagName: link
         attributes:
           rel: manifest
-          href: assets/rech1/images/favicons/manifest.webmanifest
-
+          href: assets/rech1/images/favicons/manifest.webmanifest        
+  
   - name: collspec
     headTags:
       - tagName: link
