@@ -1,5 +1,5 @@
-import { AsyncPipe, CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { AsyncPipe, CommonModule, DOCUMENT } from '@angular/common';
+import { ChangeDetectorRef, Component, HostListener, Inject, OnDestroy, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { Subject, of } from 'rxjs';
@@ -20,6 +20,8 @@ interface Subcommunity {
   description: string | null;
   id: string;
   logoUrl: string | null;
+  /** Clé de la référence de l'image (voir IMAGES), null si inconnue */
+  cleImage: string | null;
 }
 
 @Component({
@@ -32,6 +34,11 @@ interface Subcommunity {
 export class TopLevelCommunityListComponent extends BaseComponent implements OnInit, OnDestroy {
   allSouscommunities: Subcommunity[] = [];
 
+  /** Tuile dont la source de l'image est ouverte (au clic) */
+  sourceOuverte: string | null = null;
+  /** Tuile dont l'aperçu au survol a été fermé par Échap (jusqu'à la sortie de la souris) */
+  sourceMasquee: string | null = null;
+
   private unsubscribe$ = new Subject<void>();
   /** Évite les doublons si communitiesRD$ réémet après le premier succès */
   private loadedIds = new Set<string>();
@@ -42,6 +49,7 @@ export class TopLevelCommunityListComponent extends BaseComponent implements OnI
     @Inject(APP_CONFIG) public appConfig: AppConfig,
     paginationServiceCollspec: PaginationService,
     private cdr: ChangeDetectorRef,
+    @Inject(DOCUMENT) private document: Document,
   ) {
     super(appConfig, cdsCollspec, paginationServiceCollspec);
   }
@@ -95,7 +103,7 @@ export class TopLevelCommunityListComponent extends BaseComponent implements OnI
         const title: string = payload.metadata['dc.title']?.[0]?.value ?? '';
 
         const description: string | null = payload.metadata['dc.description']?.[0]?.value ?? null;
-        const subcommunity: Subcommunity = { title, description, id, logoUrl: null };
+        const subcommunity: Subcommunity = { title, description, id, logoUrl: null, cleImage: TopLevelCommunityListComponent.cleImage(title, id) };
 
         const logoHref = (payload._links as any)?.logo?.href;
         if (logoHref) {
@@ -153,9 +161,78 @@ export class TopLevelCommunityListComponent extends BaseComponent implements OnI
     'théologie et philosophie':                         'Explorer Théologie et philosophie',
   };
 
+  /**
+   * Images des tuiles dont la source est connue.
+   * Référence dans les traductions du thème : collspec.accueil.image.<cle>.reference
+   * (HTML : <em> pour les titres). Pour ajouter une image : une entrée ici + la clé en fr et en.
+   * titres : titre de la communauté DSpace en minuscules, sans « * » final ;
+   * uuid : si le titre ne suffit pas.
+   */
+  private static readonly IMAGES: { cle: string; titres: string[]; uuid?: string }[] = [
+    { cle: 'incunables', titres: ['incunables'] },
+    { cle: 'droit', titres: ['droit'] },
+    { cle: 'manuscrits', titres: ['manuscrits'] },
+    { cle: 'sciences-medecine', titres: ['sciences et médecine'] },
+    { cle: 'sciences-humaines-lettres', titres: ['sciences humaines et lettres'] },
+    { cle: 'theologie-philosophie', titres: ['théologie et philosophie'] },
+    { cle: 'canadiana-americana', titres: ['canadiana et americana'] },
+    { cle: 'iconographie', titres: ['iconographie (gravures, estampes, cartes, plans, affiches)', 'iconographie'] },
+    { cle: 'claude-gingras', titres: ['collection claude gingras'], uuid: 'bb619460-d68f-45d0-aad9-e8faaf0ed73f' },
+    { cle: 'education', titres: ['éducation'] },
+  ];
+
+  /** Clé de l'image d'une tuile, ou null si sa référence n'est pas connue */
+  private static cleImage(titre: string, uuid: string): string | null {
+    const t = (titre ?? '').replace(/\*+$/, '').trim().toLowerCase();
+    const image = TopLevelCommunityListComponent.IMAGES.find(i => i.uuid === uuid || i.titres.includes(t));
+    return image?.cle ?? null;
+  }
+
   getButtonLabel(title: string): string {
     const key = title?.replace(/\*+$/, '').trim().toLowerCase();
     return TopLevelCommunityListComponent.BUTTON_LABELS[key] ?? `Explorer ${title?.trim()}`;
+  }
+
+  // ── Source de l'image (même fonctionnement que l'avis de la page d'accueil) ──
+
+  basculerSource(id: string): void {
+    this.sourceOuverte = this.sourceOuverte === id ? null : id;
+  }
+
+  /** Ferme la source et rend le focus au bouton qui l'a ouverte */
+  fermerSource(id: string): void {
+    this.sourceOuverte = null;
+    this.document.getElementById('source-bouton-' + id)?.focus();
+  }
+
+  /** Échap : ferme la source ouverte, ou masque l'aperçu au survol (WCAG 1.4.13) */
+  @HostListener('document:keydown.escape')
+  fermerSourceParEchap(): void {
+    if (this.sourceOuverte) {
+      const id = this.sourceOuverte;
+      const figure = this.document.getElementById('tuile-image-' + id);
+      const focusDedans = figure?.contains(this.document.activeElement);
+      this.sourceOuverte = null;
+      if (focusDedans) {
+        this.document.getElementById('source-bouton-' + id)?.focus();
+      }
+    }
+    const survolee = this.document.querySelector<HTMLElement>('.tuile-image:hover');
+    if (survolee) {
+      this.sourceMasquee = survolee.dataset.tuile ?? null;
+    }
+  }
+
+  /** Clic ou toucher en dehors de l'image dont la source est ouverte : on la ferme */
+  @HostListener('document:click', ['$event'])
+  fermerSourceSiClicExterieur(event: Event): void {
+    if (!this.sourceOuverte) {
+      return;
+    }
+    const figure = this.document.getElementById('tuile-image-' + this.sourceOuverte);
+    if (!figure?.contains(event.target as Node)) {
+      this.sourceOuverte = null;
+    }
   }
 
   ngOnDestroy() {

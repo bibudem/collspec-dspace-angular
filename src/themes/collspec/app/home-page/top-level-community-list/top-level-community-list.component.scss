@@ -180,3 +180,249 @@
     }
   }
 }
+
+/* -------------------------------------------------------
+   Source de l'image de chaque tuile
+   - Grand écran : pastille ⓘ en bas à droite de l'image ; bandeau en bas de
+     l'image, en aperçu au survol (souris) ou ouvert au clic. La pastille reste
+     au-dessus du bandeau, qui lui réserve sa place en bas.
+   - Mobile (≤ 576 px) : mention « ⓘ Source » sous la vignette ;
+     la référence s'ouvre dans un panneau en bas de l'écran.
+   Même fonctionnement que l'avis sur les contenus sensibles de l'accueil.
+------------------------------------------------------- */
+.vgr-cards .tuile-image {
+  position: relative;
+  margin: 0;
+}
+
+.tuile-source__bouton {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  width: 1.625rem;
+  height: 1.625rem; // 26 px : cible ≥ 24 px
+  padding: 0;
+  font-size: 0.75rem;
+  // Discrète : un seul cercle blanc semi-transparent, « i » bleu foncé, sans ombre
+  color: #0b113a;
+  background: rgba(255, 255, 255, 0.65);
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+
+  &:hover,
+  &[aria-expanded="true"] {
+    background: rgba(255, 255, 255, 0.95);
+  }
+
+  &:focus-visible {
+    background: #ffffff;
+    outline: 2px solid #0059ab;
+    outline-offset: 2px;
+  }
+}
+
+.tuile-source__court,
+.tuile-source__i-mobile {
+  display: none;
+}
+
+.tuile-source__bandeau {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  max-height: 60%;
+  overflow-y: auto;
+  // En bas : place de la pastille ⓘ (1,625 rem + 0,75 rem de marge + espace)
+  padding: 0.75rem 1rem 3rem;
+  font-family: 'Figtree', sans-serif;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  text-align: left;
+  color: #37424D;
+  background: rgba(255, 255, 255, 0.97);
+  border-top: 1px solid #E7EBEE;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0s linear 0.15s;
+}
+
+.tuile-image.is-open .tuile-source__bandeau {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+// Tablette : image plus petite (220 à 300 px), le bandeau peut monter plus haut
+@media (max-width: 992px) {
+  .tuile-source__bandeau {
+    max-height: 80%;
+  }
+}
+
+// Aperçu au survol : seulement avec une vraie souris, et pas sur mobile
+@media (hover: hover) and (pointer: fine) and (min-width: 577px) {
+  .tuile-image.has-source:not(.is-masque):hover .tuile-source__bandeau {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+  }
+}
+
+.tuile-source__entete {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.tuile-source__titre {
+  flex: 1;
+  font-weight: 600;
+  color: #0b113a;
+}
+
+// Le × n'apparaît que lorsque la source est ouverte au clic (pas en simple aperçu)
+.tuile-source__fermer {
+  display: none;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem; // cible ≥ 24 px
+  margin: -0.25rem -0.375rem -0.25rem 0;
+  padding: 0;
+  font-size: 0.95rem;
+  color: #4a5568;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &:hover {
+    color: #0b113a;
+    background: #f3f6f9;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #0059ab;
+    outline-offset: 1px;
+  }
+}
+
+.tuile-image.is-open .tuile-source__fermer {
+  display: inline-flex;
+}
+
+// Référence en HTML (titres en <em>, italiques par défaut)
+.tuile-source__reference {
+  display: block;
+}
+
+// Mobile : vignette de 80 px, mention sous l'image et panneau en bas de l'écran
+@media (max-width: 576px) {
+  .vgr-cards .tuile-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.125rem;
+    overflow: visible;
+  }
+
+  .tuile-source__bouton {
+    position: static;
+    gap: 0.2rem;
+    width: auto;
+    height: auto;
+    min-height: 24px; // cible tactile (WCAG 2.5.8), le texte reste petit
+    padding: 0 0.25rem;
+    font-family: 'Figtree', sans-serif;
+    font-size: 0.6875rem !important; // 11 px : mention discrète, comme un crédit photo
+    font-weight: 400;
+    line-height: 1 !important;
+    letter-spacing: 0.01em;
+    color: #607386;
+    background: transparent;
+    border-radius: 4px;
+    box-shadow: none;
+
+    i {
+      font-size: 0.625rem;
+    }
+
+    &:hover,
+    &[aria-expanded="true"] {
+      color: #0b113a;
+      background: transparent;
+
+      .tuile-source__court {
+        text-decoration: underline;
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid #0059ab;
+      outline-offset: 1px;
+      box-shadow: none;
+    }
+  }
+
+  .tuile-source__i {
+    display: none;
+  }
+
+  .tuile-source__i-mobile {
+    display: inline;
+  }
+
+  .tuile-source__court {
+    display: inline;
+    text-underline-offset: 2px;
+  }
+
+  .tuile-source__bandeau {
+    position: fixed;
+    top: auto;
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
+    z-index: 1050;
+    max-height: 70vh;
+    padding: 1rem 1.125rem 1.125rem;
+    font-size: 0.875rem;
+    background: #ffffff;
+    border: 1px solid #d4dbe2;
+    border-radius: 12px;
+    box-shadow: 0 -4px 32px rgba(11, 17, 58, 0.28);
+    transform: translateY(12px);
+  }
+
+  .tuile-source__entete {
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e6ebf0;
+  }
+
+  .tuile-source__titre {
+    font-size: 0.95rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tuile-source__bandeau,
+  .tuile-source__bouton {
+    transition: none !important;
+    transform: none !important;
+  }
+}

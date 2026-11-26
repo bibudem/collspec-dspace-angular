@@ -9,9 +9,47 @@
         <ng-container *ngIf="allSouscommunities.length > 0; else loadingContent">
           <ng-container *ngFor="let souscommunitie of allSouscommunities">
             <div class="card">
-              <div class="card-img-body">
-                <img class="card-img" [src]="souscommunitie.logoUrl || 'assets/collspec/images/imageDefaultcollspec.jpg'" alt="Logo {{ souscommunitie.title }}">
-              </div>
+              <!-- Image de la tuile et sa source : bouton ⓘ (aperçu au survol à la souris,
+                   ouverture au clic, fermeture par ✕, Échap ou clic en dehors) -->
+              <figure class="card-img-body tuile-image"
+                      [id]="'tuile-image-' + souscommunitie.id"
+                      [attr.data-tuile]="souscommunitie.id"
+                      [class.has-source]="souscommunitie.cleImage"
+                      [class.is-open]="sourceOuverte === souscommunitie.id"
+                      [class.is-masque]="sourceMasquee === souscommunitie.id"
+                      (mouseleave)="sourceMasquee = null">
+                <img class="card-img"
+                     [src]="souscommunitie.logoUrl || 'assets/collspec/images/imageDefaultcollspec.jpg'"
+                     [alt]="'collspec.accueil.image.alt' | translate: { titre: souscommunitie.title }">
+
+                <ng-container *ngIf="souscommunitie.cleImage as cle">
+                  <button type="button" class="tuile-source__bouton"
+                          [id]="'source-bouton-' + souscommunitie.id"
+                          [attr.aria-label]="'collspec.accueil.image.bouton' | translate: { titre: souscommunitie.title }"
+                          [attr.aria-expanded]="sourceOuverte === souscommunitie.id"
+                          [attr.aria-controls]="'source-' + souscommunitie.id"
+                          (click)="basculerSource(souscommunitie.id)">
+                    <!-- Grand écran : « i » seul dans la pastille ; mobile : ⓘ devant « Source » -->
+                    <i class="fas fa-info tuile-source__i" aria-hidden="true"></i>
+                    <i class="fas fa-circle-info tuile-source__i-mobile" aria-hidden="true"></i>
+                    <span class="tuile-source__court" aria-hidden="true">{{ 'collspec.accueil.image.court' | translate }}</span>
+                  </button>
+
+                  <figcaption class="tuile-source__bandeau" [id]="'source-' + souscommunitie.id">
+                    <span class="tuile-source__entete">
+                      <span class="tuile-source__titre">{{ 'collspec.accueil.image.source' | translate }}</span>
+                      <button type="button" class="tuile-source__fermer"
+                              [attr.aria-label]="'collspec.accueil.image.fermer' | translate"
+                              [attr.title]="'collspec.accueil.image.fermer' | translate"
+                              (click)="fermerSource(souscommunitie.id)">
+                        <i class="fas fa-xmark" aria-hidden="true"></i>
+                      </button>
+                    </span>
+                    <span class="tuile-source__reference"
+                          [innerHTML]="'collspec.accueil.image.' + cle + '.reference' | translate"></span>
+                  </figcaption>
+                </ng-container>
+              </figure>
               <div class="card-body">
                 <h4 class="card-title mt-5 text-start">{{ souscommunitie.title }}</h4>
                 <div class="card-text ml-2" [innerHTML]="souscommunitie.description"></div>

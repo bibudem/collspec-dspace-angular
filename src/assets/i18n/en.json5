@@ -7376,6 +7376,37 @@
 
   "collspec.accueil.avis.texte": "Some texts, descriptions and documents on this site contain terms or depictions that may be considered offensive today. They are presented here for documentation and research purposes. They reflect the language and views of their time and do not represent the values of the Université de Montréal Libraries.",
 
+
+  "collspec.accueil.image.source": "Image source",
+
+  "collspec.accueil.image.court": "Source",
+
+  "collspec.accueil.image.bouton": "Image source: {{titre}}",
+
+  "collspec.accueil.image.fermer": "Close image source",
+
+  "collspec.accueil.image.alt": "Illustrative image for the {{titre}} collection",
+
+  "collspec.accueil.image.incunables.reference": "Antonin. <em>[Chronicon Sive Opus Historiarum]</em>. Nurnberg: Anton Koberger, 1484.",
+
+  "collspec.accueil.image.droit.reference": "Denisart, Jean Baptiste. <em>Collection de décisions nouvelles et de notions relatives à la jurisprudence actuelle</em>. 7e éd. revue et considérablement augm. Paris: Chez la veuve Desaint, 1771.",
+
+  "collspec.accueil.image.manuscrits.reference": "Università di Padova. “Universis &amp; Singulis Praesens Hoc Publicum Doctorat Privilegi Um Uisuris, Lecturis, Seù Legi Audituris Nos Vincentius Bonifacius ... D. Io. Dominicum Scolari,” 1699.",
+
+  "collspec.accueil.image.sciences-medecine.reference": "Atkins, Anna. <em>Photographs of British Algae : Cyanotype Impressions</em>. [Londres, Angleterre]: [Anna Atkins], 1843-1859.",
+
+  "collspec.accueil.image.sciences-humaines-lettres.reference": "Iribe, Paul, et Jean Cocteau. “Le Mot.,” 1915.",
+
+  "collspec.accueil.image.theologie-philosophie.reference": "Germain Hardouyn, Gilles Hardouyn, et Jean Pichore. <em>Hore Dive Virginis Marie Secundum Usum Romanum : Cum Aliis Multis Folio Sequenti Notatis, Una Cum Figuris Apocalipsis &amp; Multis Figuris Biblie Insertis</em>. [Paris, France]: [Gilles et Germain Hardouyn], 1514.",
+
+  "collspec.accueil.image.canadiana-americana.reference": "Augustin Cuvillier, Turton Penn, et Walter Johnson. “[Original Warrant for the Arrest of Louis Joseph Papineau for the Crime of High Treason].” Montreal, 1837.",
+
+  "collspec.accueil.image.iconographie.reference": "Smyth, Coke, and Charles Bentley. <em>Sketches in the Canadas</em>. London: Published by Thos. McLean, 1839",
+
+  "collspec.accueil.image.claude-gingras.reference": "Photo of Claude Gingras at home, taken in 2014 by Annik MH de Carufel (<em>Le Devoir</em>).",
+
+  "collspec.accueil.image.education.reference": "Sœurs de Sainte-Croix. <em>Supplément au manuel “Cours pratique de dessin d’observation”</em>. Saint-Laurent: [éditeur non identifié], 1940.",
+
   "collspec.accueil.vedette.titre": "Discover our unique pieces",
 
   "collspec.accueil.vedette.description": "The special collections of the Université de Montréal Libraries feature unique, historic and rare materials that offer many possibilities for research, study and teaching. Browse the various fonds and explore these rich collections through the digitized materials available in this digital space.",
