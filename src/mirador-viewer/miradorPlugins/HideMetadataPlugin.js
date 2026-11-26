@@ -154,6 +154,12 @@ const COLLECTION_RULES = {
     hideLabels: ['description', 'Pays d’origine', 'Contributeur(s)', 'Fonds', 'Identifiant'],
   },
   
+  /* Sciences et médecine -- Collection Éloi-Philippe-Chagnon */
+  
+  'e2c433f0-fba1-4a3f-a6a3-a8dd2c0347d0': {
+    hideLabels: ['description'],
+  },
+  
   /* Images d'aménagement (/diame) */
   
   '463625e1-602d-4844-a94f-5df83c681054': {
