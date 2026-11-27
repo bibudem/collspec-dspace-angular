@@ -91,84 +91,164 @@
 }
 
 @if (!iiifEnabled) {
-<div class="row" >
-    <div class="col-xs-12 col-md-4">
+  <div class="d-flex flex-row">
+    <ds-item-page-title-field [item]="object" class="me-auto">
+    </ds-item-page-title-field>
+
+    <ds-dso-edit-menu></ds-dso-edit-menu>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-md-4">
       @if (!(mediaViewer.image || mediaViewer.video)) {
-      <ds-metadata-field-wrapper [hideIfNoTextContent]="false">
-        <ds-thumbnail [thumbnail]="object?.thumbnail | async"></ds-thumbnail>
-      </ds-metadata-field-wrapper>
+        <ds-metadata-field-wrapper [hideIfNoTextContent]="false">
+          <ds-thumbnail [thumbnail]="object?.thumbnail | async"></ds-thumbnail>
+        </ds-metadata-field-wrapper>
       }
+
       @if (mediaViewer.image || mediaViewer.video) {
-      <div class="mb-2">
-        <ds-media-viewer [item]="object"></ds-media-viewer>
-      </div>
+        <div class="mb-2">
+          <ds-media-viewer [item]="object"></ds-media-viewer>
+        </div>
       }
+
       <ds-item-page-file-section [item]="object"></ds-item-page-file-section>
+
       <ds-item-page-date-field [item]="object"></ds-item-page-date-field>
-      <ds-metadata-representation-list class="ds-item-page-mixed-author-field"
-                                       [parentItem]="object"
-                                       [itemType]="'Person'"
-                                       [metadataFields]="['dc.contributor.author', 'dc.creator']"
-                                       [label]="'relationships.isAuthorOf' | translate">
+
+      <ds-metadata-representation-list
+        class="ds-item-page-mixed-author-field"
+        [parentItem]="object"
+        [itemType]="'Person'"
+        [metadataFields]="['dc.contributor.author', 'dc.creator']"
+        [label]="'item.page.authors' | translate">
       </ds-metadata-representation-list>
-      <ds-generic-item-page-field [item]="object"
-                                  [fields]="['journal.title']"
-                                  [label]="'item.page.journal-title'">
+
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['dc.contributor']"
+        [label]="'collspec.item.participant'">
       </ds-generic-item-page-field>
-      <ds-generic-item-page-field [item]="object"
-                                  [fields]="['journal.identifier.issn']"
-                                  [label]="'item.page.journal-issn'">
+
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['dc.publisher']"
+        [label]="'item.page.publisher'">
       </ds-generic-item-page-field>
-      <ds-generic-item-page-field [item]="object"
-                                  [fields]="['journalvolume.identifier.name']"
-                                  [label]="'item.page.volume-title'">
+
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['journal.title']"
+        [label]="'item.page.journal-title'">
       </ds-generic-item-page-field>
-      <ds-generic-item-page-field [item]="object"
-                                  [fields]="['dc.publisher']"
-                                  [label]="'item.page.publisher'">
+
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['journal.identifier.issn']"
+        [label]="'item.page.journal-issn'">
+      </ds-generic-item-page-field>
+
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['journalvolume.identifier.name']"
+        [label]="'item.page.volume-title'">
       </ds-generic-item-page-field>
     </div>
-    <div class="col-xs-12 col-md-6">
+
+    <div class="col-12 col-md-8">
       <ds-item-page-abstract-field [item]="object"></ds-item-page-abstract-field>
-      <ds-generic-item-page-field [item]="object"
-                                  [fields]="['dc.description']"
-                                  [label]="'item.page.description'">
+
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['dc.format.extent', 'dc.format']"
+        [label]="'collspec.item.format'">
       </ds-generic-item-page-field>
-      <ds-generic-item-page-field [item]="object"
-                                  [fields]="['dc.subject']"
-                                  [separator]="', '"
-                                  [label]="'item.page.subject'">
+
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['dc.provenance', 'dc.source']"
+        [label]="'collspec.item.provenance'">
       </ds-generic-item-page-field>
-      <ds-generic-item-page-field [item]="object"
-                                  [fields]="['dc.identifier.citation']"
-                                  [label]="'item.page.citation'">
+
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['dc.description']"
+        [label]="'collspec.item.notes'">
       </ds-generic-item-page-field>
-      <ds-item-page-uri-field [item]="object"
-                              [fields]="['dc.identifier.uri']"
-                              [label]="'item.page.uri'">
+
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['dc.type']"
+        [label]="'collspec.item.type'">
+      </ds-generic-item-page-field>
+
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['dc.rights']"
+        [label]="'collspec.item.rights'">
+      </ds-generic-item-page-field>
+
+      <ds-item-page-uri-field
+        [item]="object"
+        [fields]="['dc.rights.uri']"
+        [label]="'collspec.item.rights-uri'">
       </ds-item-page-uri-field>
+
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['dc.subject']"
+        [separator]="', '"
+        [label]="'item.page.subject'">
+      </ds-generic-item-page-field>
+
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['dc.identifier.citation']"
+        [label]="'item.page.citation'">
+      </ds-generic-item-page-field>
+
+      <ds-item-page-uri-field
+        [item]="object"
+        [fields]="['dc.identifier.uri']"
+        [label]="'item.page.uri'">
+      </ds-item-page-uri-field>
+
       <ds-item-page-collections [item]="object"></ds-item-page-collections>
-      <ds-item-page-uri-field [item]="object"
-                              [fields]="['coar.notify.endorsedBy']"
-                              [label]="'item.page.endorsement'">
+
+      <ds-item-page-uri-field
+        [item]="object"
+        [fields]="['coar.notify.endorsedBy']"
+        [label]="'item.page.endorsement'">
       </ds-item-page-uri-field>
-      <ds-item-page-uri-field [item]="object"
-                              [fields]="['datacite.relation.isReviewedBy']"
-                              [label]="'item.page.review'">
+
+      <ds-item-page-uri-field
+        [item]="object"
+        [fields]="['datacite.relation.isReviewedBy']"
+        [label]="'item.page.review'">
       </ds-item-page-uri-field>
-      <ds-item-page-uri-field [item]="object"
-                              [fields]="['datacite.relation.isSupplementedBy']"
-                              [label]="'item.page.supplemented'">
+
+      <ds-item-page-uri-field
+        [item]="object"
+        [fields]="['datacite.relation.isSupplementedBy']"
+        [label]="'item.page.supplemented'">
       </ds-item-page-uri-field>
-      <ds-item-page-uri-field [item]="object"
-                              [fields]="['datacite.relation.isReferencedBy']"
-                              [label]="'item.page.referenced'">
+
+      <ds-item-page-uri-field
+        [item]="object"
+        [fields]="['datacite.relation.isReferencedBy']"
+        [label]="'item.page.referenced'">
       </ds-item-page-uri-field>
+
       <ds-item-page-cc-license-field [item]="object" [variant]="'full'">
       </ds-item-page-cc-license-field>
+
       <div>
-        <a class="btn btn-outline-primary" [routerLink]="[itemPageRoute + '/full']" role="button">
-          <i class="fas fa-info-circle"></i> {{"item.page.link.full" | translate}}
+        <a class="btn btn-outline-primary"
+           [routerLink]="[itemPageRoute + '/full']"
+           role="button"
+           tabindex="0">
+          <i class="fas fa-info-circle"></i>
+          {{ 'item.page.link.full' | translate }}
         </a>
       </div>
     </div>
