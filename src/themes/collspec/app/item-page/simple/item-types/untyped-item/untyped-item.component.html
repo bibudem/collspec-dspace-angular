@@ -181,7 +181,9 @@
     </div>
 
     <div class="col-12 col-md-8">
-      <ds-item-page-abstract-field [item]="object"></ds-item-page-abstract-field>
+	  <div class="collspec-justify">
+        <ds-item-page-abstract-field [item]="object"></ds-item-page-abstract-field>
+	  </div>
 
       <ds-generic-item-page-field
         [item]="object"
@@ -189,11 +191,13 @@
         [label]="'collspec.item.provenance'">
       </ds-generic-item-page-field>
 
-      <ds-generic-item-page-field
-        [item]="object"
-        [fields]="['dc.description']"
-        [label]="'collspec.item.notes'">
-      </ds-generic-item-page-field>
+      <div class="collspec-justify">
+	    <ds-generic-item-page-field
+          [item]="object"
+          [fields]="['dc.description']"
+          [label]="'collspec.item.notes'">
+        </ds-generic-item-page-field>
+	  </div>
 	  
 	  <ds-generic-item-page-field
 		[item]="object"
