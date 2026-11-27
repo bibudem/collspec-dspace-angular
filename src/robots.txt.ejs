@@ -8,6 +8,8 @@ Sitemap: <%= origin %>/sitemap_index.html
 # (NOTE: blank lines are not allowable in a group record)
 ##########################
 User-agent: *
+# Demande aux robots d'attendre 15 s entre deux pages (ignoré par Google)
+Crawl-delay: 15
 # Disable access to Discovery search and filters; admin pages; processes; submission; workspace; workflow & profile page
 Disallow: /search
 Disallow: /admin/*
