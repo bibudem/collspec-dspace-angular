@@ -7797,4 +7797,8 @@
   "collspec.item.rights": "Droits",
 
   "collspec.item.rights-uri": "Droits (lien)",
+
+  "collspec.item.ispartof": "Fait partie de",
+
+  "collspec.item.haspart": "Comprend",
 }

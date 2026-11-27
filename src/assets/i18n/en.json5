@@ -7793,4 +7793,8 @@
   "collspec.item.rights": "Rights",
 
   "collspec.item.rights-uri": "Rights link",
+
+  "collspec.item.ispartof": "Is part of",
+
+  "collspec.item.haspart": "Has part",
 }
