@@ -435,29 +435,26 @@
 }
 
 .collspec-notice-row {
-  ::ng-deep .simple-view-element-header {
-    font-size: 0.8rem;
+  ::ng-deep .simple-view-element .simple-view-element-header,
+  ::ng-deep .simple-view-element h5,
+  ::ng-deep h5.simple-view-element-header {
+    font-size: 0.85rem !important;
     font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
+    text-transform: none !important;
+    letter-spacing: normal;
     margin-bottom: 0.15rem;
 
-    @media (min-width: 768px) {
-      font-size: 0.85rem;
+    @media (max-width: 767.98px) {
+      font-size: 0.8rem !important;
     }
   }
 
   ::ng-deep .simple-view-element-body {
-    font-size: 0.95rem;
-    overflow-wrap: anywhere;
+    font-size: 1rem;
 
-    @media (min-width: 768px) {
-      font-size: 1rem;
+    @media (max-width: 767.98px) {
+      font-size: 0.95rem;
     }
-  }
-
-  ::ng-deep .simple-view-element {
-    margin-bottom: 0.75rem;
   }
 }
 
