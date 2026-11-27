@@ -28,6 +28,11 @@ ui:
 #  # NOTE: Space is capitalized because 'namespace' is a reserved string in TypeScript
 #  nameSpace: /server
 
+# Rendu serveur (SSR) : Node appelle le backend en local.
+# Le navigateur garde l'URL publique définie dans config.prod.yml.
+rest:
+  ssrBaseUrl: http://localhost:8080/server
+
 # Caching settings
 cache:
   # NOTE: how long should objects be cached for by default
