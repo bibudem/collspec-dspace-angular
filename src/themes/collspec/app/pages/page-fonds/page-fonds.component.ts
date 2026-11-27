@@ -1,9 +1,9 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { forkJoin, from } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import * as XLSX from 'xlsx';
 
 const COL_NOM       = 'Nom';
 const COL_PRECISION = 'Précision';
@@ -50,8 +50,12 @@ export class PageFondsComponent implements OnInit {
 
   loadExcel(): void {
     const path = '/assets/collspec/files/repertoire-collections-fonds.xlsx';
-    this.http.get(path, { responseType: 'arraybuffer' }).subscribe({
-      next: (buffer) => {
+    // xlsx chargée seulement sur cette page
+    forkJoin([
+      this.http.get(path, { responseType: 'arraybuffer' }),
+      from(import('xlsx')),
+    ]).subscribe({
+      next: ([buffer, XLSX]) => {
         const wb = XLSX.read(buffer, { type: 'array' });
         const ws = wb.Sheets[wb.SheetNames[0]];
         // range: 1 — ignore la ligne 1 (titre fusionné), ligne 2 = en-têtes réels
