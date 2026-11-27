@@ -7406,7 +7406,6 @@
 
   "collspec.accueil.avis.texte": "Certains textes, descriptions et documents diffusés sur ce site contiennent des termes ou des représentations qui peuvent être jugés offensants aujourd’hui. Ces contenus sont présentés ici à des fins de documentation et de recherche. Ils reflètent le langage et les points de vue de leur époque et ne représentent pas les valeurs des bibliothèques de l’Université de Montréal.",
 
-
   "collspec.accueil.image.source": "Source de l’image",
 
   "collspec.accueil.image.court": "Source",
@@ -7784,4 +7783,22 @@
   "search.filters.language.und": "Indéterminée",
 
   "collspec.menu.copyright": "Droits d'auteur et utilisation",
+
+  "collspec.item.participant": "Participant",
+
+  "collspec.item.format": "Format",
+
+  "collspec.item.provenance": "Provenance",
+
+  "collspec.item.notes": "Notes",
+
+  "collspec.item.type": "Type",
+
+  "collspec.item.rights": "Droits",
+
+  "collspec.item.rights-uri": "Droits (lien)",
+
+  "collspec.item.ispartof": "Fait partie de",
+
+  "collspec.item.haspart": "Comprend",
 }

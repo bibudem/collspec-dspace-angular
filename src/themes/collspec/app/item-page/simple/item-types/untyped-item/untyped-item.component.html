@@ -91,14 +91,14 @@
 }
 
 @if (!iiifEnabled) {
-  <div class="d-flex flex-row">
+  <div class="d-flex flex-row collspec-title-row">
     <ds-item-page-title-field [item]="object" class="me-auto">
     </ds-item-page-title-field>
 
     <ds-dso-edit-menu></ds-dso-edit-menu>
   </div>
 
-  <div class="row">
+  <div class="row collspec-notice-row">
     <div class="col-12 col-md-4">
       @if (!(mediaViewer.image || mediaViewer.video)) {
         <ds-metadata-field-wrapper [hideIfNoTextContent]="false">
@@ -120,7 +120,7 @@
         class="ds-item-page-mixed-author-field"
         [parentItem]="object"
         [itemType]="'Person'"
-        [metadataFields]="['dc.contributor.author', 'dc.creator']"
+        [metadataFields]="['dc.contributor.author', 'dcterms.creator']"
         [label]="'item.page.authors' | translate">
       </ds-metadata-representation-list>
 
@@ -135,6 +135,31 @@
         [fields]="['dc.publisher']"
         [label]="'item.page.publisher'">
       </ds-generic-item-page-field>
+	  
+	  <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['dc.type']"
+        [label]="'collspec.item.type'">
+      </ds-generic-item-page-field>
+	  
+	  <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['dc.format.extent', 'dc.format']"
+        [label]="'collspec.item.format'">
+      </ds-generic-item-page-field>
+	  
+	  <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['dc.subject']"
+        [separator]="', '"
+        [label]="'item.page.subject'">
+      </ds-generic-item-page-field>
+	  
+	  <ds-item-page-uri-field
+        [item]="object"
+        [fields]="['dc.identifier.uri']"
+        [label]="'item.page.uri'">
+      </ds-item-page-uri-field>
 
       <ds-generic-item-page-field
         [item]="object"
@@ -156,13 +181,9 @@
     </div>
 
     <div class="col-12 col-md-8">
-      <ds-item-page-abstract-field [item]="object"></ds-item-page-abstract-field>
-
-      <ds-generic-item-page-field
-        [item]="object"
-        [fields]="['dc.format.extent', 'dc.format']"
-        [label]="'collspec.item.format'">
-      </ds-generic-item-page-field>
+	  <div class="collspec-justify">
+        <ds-item-page-abstract-field [item]="object"></ds-item-page-abstract-field>
+	  </div>
 
       <ds-generic-item-page-field
         [item]="object"
@@ -170,17 +191,25 @@
         [label]="'collspec.item.provenance'">
       </ds-generic-item-page-field>
 
-      <ds-generic-item-page-field
-        [item]="object"
-        [fields]="['dc.description']"
-        [label]="'collspec.item.notes'">
-      </ds-generic-item-page-field>
+      <div class="collspec-justify">
+	    <ds-generic-item-page-field
+          [item]="object"
+          [fields]="['dc.description']"
+          [label]="'collspec.item.notes'">
+        </ds-generic-item-page-field>
+	  </div>
+	  
+	  <ds-generic-item-page-field
+		[item]="object"
+		[fields]="['dc.relation.ispartof']"
+		[label]="'collspec.item.ispartof'">
+	  </ds-generic-item-page-field>
 
-      <ds-generic-item-page-field
-        [item]="object"
-        [fields]="['dc.type']"
-        [label]="'collspec.item.type'">
-      </ds-generic-item-page-field>
+	  <ds-generic-item-page-field
+		[item]="object"
+		[fields]="['dc.relation.haspart']"
+		[label]="'collspec.item.haspart'">
+	  </ds-generic-item-page-field>
 
       <ds-generic-item-page-field
         [item]="object"
@@ -193,13 +222,6 @@
         [fields]="['dc.rights.uri']"
         [label]="'collspec.item.rights-uri'">
       </ds-item-page-uri-field>
-
-      <ds-generic-item-page-field
-        [item]="object"
-        [fields]="['dc.subject']"
-        [separator]="', '"
-        [label]="'item.page.subject'">
-      </ds-generic-item-page-field>
 
       <ds-generic-item-page-field
         [item]="object"

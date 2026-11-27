@@ -7376,7 +7376,6 @@
 
   "collspec.accueil.avis.texte": "Some texts, descriptions and documents on this site contain terms or depictions that may be considered offensive today. They are presented here for documentation and research purposes. They reflect the language and views of their time and do not represent the values of the Université de Montréal Libraries.",
 
-
   "collspec.accueil.image.source": "Image source",
 
   "collspec.accueil.image.court": "Source",
@@ -7568,6 +7567,7 @@
   "collspec.menu.iiif": "IIIF Guide",
 
   "collspec.menu.mirador": "Mirador Guide",
+
   "collspec.menu.copyright": "Copyright and usage",
 
   "info.mirador-guide.title": "Mirador Guide",
@@ -7779,4 +7779,22 @@
   "collspec.notice.champ.dc.coverage.temporal": "Period",
 
   "collspec.notice.champ.dc.source": "Source",
+
+  "collspec.item.participant": "Participant",
+
+  "collspec.item.format": "Format",
+
+  "collspec.item.provenance": "Provenance",
+
+  "collspec.item.notes": "Notes",
+
+  "collspec.item.type": "Type",
+
+  "collspec.item.rights": "Rights",
+
+  "collspec.item.rights-uri": "Rights link",
+
+  "collspec.item.ispartof": "Is part of",
+
+  "collspec.item.haspart": "Has part",
 }

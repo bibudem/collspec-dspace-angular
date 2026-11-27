@@ -401,3 +401,72 @@
     }
   }
 }
+
+// ── Items sans IIIF : titre plus petit ─────────
+.collspec-title-row {
+  ::ng-deep ds-item-page-title-field {
+    h1,
+    h2,
+    .item-page-title-field {
+      font-size: 1.5rem;
+      line-height: 1.3;
+      margin-bottom: 0.75rem;
+    }
+  }
+}
+
+// ── Items sans IIIF : titre et libellés (desktop + mobile) ─────────
+.collspec-title-row {
+  ::ng-deep ds-item-page-title-field {
+    h1,
+    h2,
+    .item-page-title-field {
+      font-size: 1.25rem;
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+      overflow-wrap: anywhere;
+
+      @media (min-width: 768px) {
+        font-size: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+    }
+  }
+}
+
+.collspec-notice-row {
+  ::ng-deep .simple-view-element .simple-view-element-header,
+  ::ng-deep .simple-view-element h5,
+  ::ng-deep h5.simple-view-element-header {
+    font-size: 0.95rem !important;
+    font-weight: 600;
+    text-transform: none !important;
+    letter-spacing: normal;
+    margin-bottom: 0.15rem;
+
+    @media (max-width: 767.98px) {
+      font-size: 0.8rem !important;
+    }
+  }
+
+  ::ng-deep .simple-view-element-body {
+    font-size: 1rem;
+
+    @media (max-width: 767.98px) {
+      font-size: 0.95rem;
+    }
+  }
+}
+
+.collspec-justify {
+  ::ng-deep .simple-view-element-body,
+  ::ng-deep ds-item-page-abstract-field,
+  ::ng-deep ds-item-page-abstract-field span,
+  ::ng-deep ds-item-page-abstract-field div {
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+  }
+}
+
