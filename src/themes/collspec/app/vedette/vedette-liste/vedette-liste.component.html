@@ -39,7 +39,13 @@
                       <a [routerLink]="['/items', slide.id]"
                          [attr.tabindex]="isClone ? -1 : null"
                          (focus)="goToSlide($index)">
-                        <img [src]="slide.imageUrl" [alt]="slide.title" loading="lazy" />
+                        <!-- Images visibles chargées tout de suite (le lazy loading attend qu'elles entrent dans
+                             l'écran, donc pendant le défilement) ; la copie de la boucle reste en différé -->
+                        <img [src]="slide.imageUrl" [alt]="slide.title"
+                             [attr.loading]="isClone ? 'lazy' : 'eager'"
+                             [attr.fetchpriority]="$index < 2 ? 'high' : null"
+                             decoding="async"
+                             (error)="onImageError($event)" />
                         <div class="slider__caption">
                           <h4>{{ slide.title }}</h4>
                         </div>

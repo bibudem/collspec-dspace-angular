@@ -1,8 +1,8 @@
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { EMPTY, Observable, of, throwError } from 'rxjs';
-import { catchError, map, shareReplay, tap } from 'rxjs/operators';
+import { EMPTY, Observable, of, throwError, timer } from 'rxjs';
+import { catchError, map, retry, shareReplay, tap, timeout } from 'rxjs/operators';
 import { Vedette } from '../models/Vedette';
 import { config } from '../config/config';
 
@@ -20,6 +20,9 @@ export class VedetteService {
   private readonly CACHE_KEY_HOME = 'vedette_home';
   private readonly CACHE_KEY_COLL_PREFIX = 'vedette_coll_';
   private readonly COLLECTION_LIMIT = 10;
+  /** Délai max d'une réponse de l'API, puis nouvelles tentatives (1 s, puis 2 s) */
+  private readonly HTTP_TIMEOUT_MS = 10000;
+  private readonly RETRY_COUNT = 2;
   private readonly isBrowser: boolean;
 
   /** Requêtes en cours / résolues, partagées entre les abonnés (clé = clé localStorage) */
@@ -58,21 +61,31 @@ export class VedetteService {
    * localStorage (5 min) puis cache mémoire, sinon appel HTTP.
    * - Côté serveur (SSR) : aucun appel, le carrousel est chargé dans le navigateur
    *   (évite de ralentir le rendu et un ordre aléatoire différent serveur/navigateur).
-   * - En cas d'erreur : rien n'est mis en cache, l'appel suivant réessaie.
+   * - Appel lent ou en échec : nouvelles tentatives automatiques ; si tout échoue,
+   *   on reprend les dernières images connues (même expirées) plutôt qu'un carrousel vide.
+   * - Réponse vide ou en erreur : rien n'est mis en cache, l'appel suivant réessaie.
    */
   private getCached(cacheKey: string, url: string): Observable<Vedette[]> {
     if (!this.isBrowser) return EMPTY;
 
     const stored = this.getFromLocalStorage<Vedette[]>(cacheKey);
-    if (stored) return of(stored);
+    if (stored && !stored.expired) return of(stored.data);
 
     if (!this.memoryCache.has(cacheKey)) {
       this.memoryCache.set(cacheKey, this.fetchImages(url).pipe(
-        tap(data => this.saveToLocalStorage(cacheKey, data)),
+        timeout(this.HTTP_TIMEOUT_MS),
+        retry({ count: this.RETRY_COUNT, delay: (_error, attempt) => timer(attempt * 1000) }),
+        tap(data => {
+          if (data.length > 0) {
+            this.saveToLocalStorage(cacheKey, data);
+          } else {
+            this.memoryCache.delete(cacheKey); // réponse vide : on réessaiera au prochain affichage
+          }
+        }),
         catchError(error => {
           this.memoryCache.delete(cacheKey);
           console.error('[VedetteService] Erreur lors du fetch', error);
-          return throwError(() => error);
+          return stored?.data.length ? of(stored.data) : throwError(() => error);
         }),
         shareReplay(1),
       ));
@@ -91,19 +104,19 @@ export class VedetteService {
     }
   }
 
-  private getFromLocalStorage<T>(key: string): T | null {
+  /** Données enregistrées, avec leur état : les données expirées servent de secours si l'API échoue */
+  private getFromLocalStorage<T>(key: string): { data: T; expired: boolean } | null {
     try {
       const raw = localStorage.getItem(key);
       if (!raw) return null;
 
       const entry: CacheEntry<T> = JSON.parse(raw);
-      if (Date.now() > entry.expiresAt) {
-        localStorage.removeItem(key);
+      const expired = Date.now() > entry.expiresAt;
+      if (expired) {
         // Invalide le cache mémoire de cette même clé pour forcer un nouveau fetch
         this.memoryCache.delete(key);
-        return null;
       }
-      return entry.data;
+      return { data: entry.data, expired };
     } catch (error) {
       console.warn(`[VedetteService] Erreur de lecture du localStorage`, error);
       return null;

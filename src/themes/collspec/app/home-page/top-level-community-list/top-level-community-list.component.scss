@@ -289,6 +289,7 @@
 
 .tuile-source__titre {
   flex: 1;
+  font-size: inherit; // annule « span { font-size: 1rem } » global
   font-weight: 600;
   color: #0b113a;
 }
@@ -330,6 +331,15 @@
   display: block;
 }
 
+// La règle globale « p, span, a { font-size: 1rem } » (_global-styles.scss) s'applique
+// directement aux <span> : on leur fait hériter la taille de leur conteneur.
+.tuile-source__court,
+.tuile-source__entete,
+.tuile-source__reference {
+  font-size: inherit;
+  line-height: inherit;
+}
+
 // Mobile : vignette de 80 px, mention sous l'image et panneau en bas de l'écran
 @media (max-width: 576px) {
   .vgr-cards .tuile-image {
@@ -342,23 +352,26 @@
 
   .tuile-source__bouton {
     position: static;
-    gap: 0.2rem;
+    align-self: flex-start; // aligné à gauche sous la vignette
+    justify-content: flex-start;
+    gap: 0.25rem;
     width: auto;
     height: auto;
     min-height: 24px; // cible tactile (WCAG 2.5.8), le texte reste petit
-    padding: 0 0.25rem;
+    padding: 0;
     font-family: 'Figtree', sans-serif;
-    font-size: 0.6875rem !important; // 11 px : mention discrète, comme un crédit photo
+    font-size: 11px !important; // mention discrète, comme un crédit photo
     font-weight: 400;
     line-height: 1 !important;
-    letter-spacing: 0.01em;
-    color: #607386;
+    letter-spacing: 0.02em;
+    color: #607386; // contraste 4,9:1 sur blanc
     background: transparent;
     border-radius: 4px;
     box-shadow: none;
 
     i {
-      font-size: 0.625rem;
+      font-size: 0.5rem !important;
+      opacity: 0.8;
     }
 
     &:hover,
@@ -394,13 +407,14 @@
   .tuile-source__bandeau {
     position: fixed;
     top: auto;
-    left: 0.75rem;
-    right: 0.75rem;
-    bottom: max(0.75rem, env(safe-area-inset-bottom));
+    left: 0.5rem;
+    right: 0.5rem;
+    bottom: max(0.5rem, env(safe-area-inset-bottom));
     z-index: 1050;
-    max-height: 70vh;
-    padding: 1rem 1.125rem 1.125rem;
-    font-size: 0.875rem;
+    max-height: 75vh;
+    padding: 1.5rem 1.25rem 1.75rem;
+    font-size: 0.9375rem;
+    line-height: 1.55;
     background: #ffffff;
     border: 1px solid #d4dbe2;
     border-radius: 12px;
@@ -409,8 +423,8 @@
   }
 
   .tuile-source__entete {
-    margin-bottom: 0.5rem;
-    padding-bottom: 0.5rem;
+    margin-bottom: 0.875rem;
+    padding-bottom: 0.75rem;
     border-bottom: 1px solid #e6ebf0;
   }
 
