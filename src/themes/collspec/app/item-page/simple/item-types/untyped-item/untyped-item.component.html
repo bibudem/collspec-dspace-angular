@@ -91,7 +91,7 @@
 }
 
 @if (!iiifEnabled) {
-  <div class="d-flex flex-row">
+  <div class="d-flex flex-row collspec-title-row">
     <ds-item-page-title-field [item]="object" class="me-auto">
     </ds-item-page-title-field>
 
@@ -120,7 +120,7 @@
         class="ds-item-page-mixed-author-field"
         [parentItem]="object"
         [itemType]="'Person'"
-        [metadataFields]="['dc.contributor.author', 'dc.creator']"
+        [metadataFields]="['dc.contributor.author', 'dcterms.creator']"
         [label]="'item.page.authors' | translate">
       </ds-metadata-representation-list>
 
