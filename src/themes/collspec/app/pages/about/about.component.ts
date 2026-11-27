@@ -1,13 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { of, Subject } from 'rxjs';
-import { catchError, takeUntil } from 'rxjs/operators';
+import { ChangeDetectorRef, Component, DestroyRef, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { PageStatiqueService } from '../../../service/page-statique.service';
 
 /**
- * Page « À propos » : charge le contenu HTML statique selon la langue courante
- * (assets/collspec/bib-pages/about/{lang}-about.html). Les styles sont dans _global-styles.scss.
+ * Page « À propos » : contenu HTML statique selon la langue courante
+ * (assets/collspec/bib-pages/about/{lang}-about.html), chargé par PageStatiqueService
+ * (une seule fois, repris du rendu serveur). Les styles sont dans _global-styles.scss.
  */
 @Component({
   selector: 'ds-about',
@@ -16,43 +15,21 @@ import { catchError, takeUntil } from 'rxjs/operators';
   standalone: true,
   imports: [CommonModule],
 })
-export class AboutComponent implements OnInit, OnDestroy {
+export class AboutComponent implements OnInit {
   contenuHtml = '';
 
-  private destroy$ = new Subject<void>();
-
   constructor(
-    private http: HttpClient,
-    private translate: TranslateService,
+    private pageStatique: PageStatiqueService,
     private cdRef: ChangeDetectorRef,
+    private destroyRef: DestroyRef,
   ) {}
 
   ngOnInit(): void {
-    this.load(this.translate.currentLang || this.translate.getDefaultLang());
-
-    this.translate.onLangChange
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(event => this.load(event.lang));
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
-
-  private load(lang: string): void {
-    const filePath = `/assets/collspec/bib-pages/about/${lang}-about.html`;
-    this.http.get(filePath, { responseType: 'text' })
-      .pipe(
-        catchError(err => {
-          console.error(`Erreur lors du chargement de ${filePath}`, err);
-          return of('<p>Contenu non disponible.</p>');
-        }),
-        takeUntil(this.destroy$),
-      )
+    this.pageStatique.contenu('about')
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(html => {
         this.contenuHtml = html;
-        this.cdRef.detectChanges();
+        this.cdRef.markForCheck();
       });
   }
 }
