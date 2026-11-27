@@ -44,7 +44,6 @@ import { PROCESS_MODULE_PATH } from './process-page/process-page-routing.paths';
 import { viewTrackerResolver } from './statistics/angulartics/dspace/view-tracker.resolver';
 import { provideSubmissionState } from './submission/provide-submission-state';
 import { SUGGESTION_MODULE_PATH } from './suggestions-page/suggestions-page-routing-paths';
-import {PagesComponent} from "../themes/collspec/app/pages/pages.component";
 import {i18nBreadcrumbResolver} from "./core/breadcrumbs/i18n-breadcrumb.resolver";
 import { DiameLandingComponent } from '../themes/diame/app/diame-landing/diame-landing.component';
 
@@ -59,7 +58,8 @@ export const APP_ROUTES: Route[] = [
       { path: '', redirectTo: '/home', pathMatch: 'full' },
       {
         path: 'page/:page',
-        component: PagesComponent,
+        // Chargé à la demande
+        loadComponent: () => import('../themes/collspec/app/pages/pages.component').then(m => m.PagesComponent),
         pathMatch: 'full',
         resolve: { breadcrumb: i18nBreadcrumbResolver },
         data: { title: 'collspec.page-udem', breadcrumbKey: 'collspec.page-udem' },
