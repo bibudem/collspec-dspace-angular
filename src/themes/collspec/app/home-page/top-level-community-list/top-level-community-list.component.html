@@ -9,7 +9,7 @@
         <ng-container *ngIf="allSouscommunities.length > 0; else loadingContent">
           <ng-container *ngFor="let souscommunitie of allSouscommunities">
             <div class="card">
-              <!-- Image de la tuile et sa source : bouton ⓘ (aperçu au survol à la souris,
+              <!-- Image de la tuile et sa source : bouton guillemets (aperçu au survol à la souris,
                    ouverture au clic, fermeture par ✕, Échap ou clic en dehors) -->
               <figure class="card-img-body tuile-image"
                       [id]="'tuile-image-' + souscommunitie.id"
@@ -29,9 +29,9 @@
                           [attr.aria-expanded]="sourceOuverte === souscommunitie.id"
                           [attr.aria-controls]="'source-' + souscommunitie.id"
                           (click)="basculerSource(souscommunitie.id)">
-                    <!-- Grand écran : « i » seul dans la pastille ; mobile : ⓘ devant « Source » -->
-                    <i class="fas fa-info tuile-source__i" aria-hidden="true"></i>
-                    <i class="fas fa-circle-info tuile-source__i-mobile" aria-hidden="true"></i>
+                    <!-- Grand écran : guillemets seuls dans la pastille ; mobile : guillemets devant « Source » -->
+                    <i class="fas fa-quote-right tuile-source__i" aria-hidden="true"></i>
+                    <i class="fas fa-quote-right tuile-source__i-mobile" aria-hidden="true"></i>
                     <span class="tuile-source__court" aria-hidden="true">{{ 'collspec.accueil.image.court' | translate }}</span>
                   </button>
 

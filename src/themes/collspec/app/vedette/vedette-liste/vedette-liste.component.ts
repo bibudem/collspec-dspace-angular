@@ -22,6 +22,7 @@ import { RouterModule } from '@angular/router';
 const AUTO_SLIDE_DELAY_MS = 5000;
 const MAX_SLIDES = 8;
 const SWIPE_THRESHOLD_PX = 40;
+const IMAGE_RETRY_DELAY_MS = 1500;
 
 /**
  * Carrousel des pièces en vedette (page d'accueil).
@@ -71,6 +72,8 @@ export class VedetteListeComponent implements OnInit, OnDestroy {
 
   private readonly onVisibilityChange = () => this.updateAutoSlide();
 
+  private readonly onOnline = () => this.ngZone.run(() => this.loadData());
+
   constructor(
     private vedetteService: VedetteService,
     private cdr: ChangeDetectorRef,
@@ -116,6 +119,10 @@ export class VedetteListeComponent implements OnInit, OnDestroy {
         this.error = true;
         this.loading = false;
         this.cdr.detectChanges();
+        // Échec réseau : on recharge dès que la connexion revient, sans attendre un F5
+        if (this.isBrowser) {
+          window.addEventListener('online', this.onOnline, { once: true });
+        }
       }
     });
   }
@@ -259,6 +266,19 @@ export class VedetteListeComponent implements OnInit, OnDestroy {
     }
   }
 
+  // ───── Images ─────
+
+  /** Image qui ne se charge pas (serveur d'images lent ou coupure) : une nouvelle tentative */
+  onImageError(event: Event): void {
+    const img = event.target as HTMLImageElement;
+    if (!this.isBrowser || img.dataset.retried) return;
+    img.dataset.retried = 'true';
+    const src = img.getAttribute('src');
+    setTimeout(() => {
+      if (img.isConnected && src) img.src = src;
+    }, IMAGE_RETRY_DELAY_MS);
+  }
+
   // ───── Balayage tactile ─────
 
   onTouchStart(event: TouchEvent): void {
@@ -277,6 +297,7 @@ export class VedetteListeComponent implements OnInit, OnDestroy {
     this.stopAutoSlide();
     if (this.isBrowser) {
       window.removeEventListener('resize', this.onResize);
+      window.removeEventListener('online', this.onOnline);
       document.removeEventListener('visibilitychange', this.onVisibilityChange);
       if (this.resizeFrame !== null) cancelAnimationFrame(this.resizeFrame);
     }
