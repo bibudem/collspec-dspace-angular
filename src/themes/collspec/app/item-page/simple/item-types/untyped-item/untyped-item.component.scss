@@ -415,3 +415,49 @@
   }
 }
 
+// ── Items sans IIIF : titre et libellés (desktop + mobile) ─────────
+.collspec-title-row {
+  ::ng-deep ds-item-page-title-field {
+    h1,
+    h2,
+    .item-page-title-field {
+      font-size: 1.25rem;
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+      overflow-wrap: anywhere;
+
+      @media (min-width: 768px) {
+        font-size: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+    }
+  }
+}
+
+.collspec-notice-row {
+  ::ng-deep .simple-view-element-header {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 0.15rem;
+
+    @media (min-width: 768px) {
+      font-size: 0.85rem;
+    }
+  }
+
+  ::ng-deep .simple-view-element-body {
+    font-size: 0.95rem;
+    overflow-wrap: anywhere;
+
+    @media (min-width: 768px) {
+      font-size: 1rem;
+    }
+  }
+
+  ::ng-deep .simple-view-element {
+    margin-bottom: 0.75rem;
+  }
+}
+

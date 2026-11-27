@@ -98,7 +98,7 @@
     <ds-dso-edit-menu></ds-dso-edit-menu>
   </div>
 
-  <div class="row">
+  <div class="row collspec-notice-row">
     <div class="col-12 col-md-4">
       @if (!(mediaViewer.image || mediaViewer.video)) {
         <ds-metadata-field-wrapper [hideIfNoTextContent]="false">
@@ -135,6 +135,31 @@
         [fields]="['dc.publisher']"
         [label]="'item.page.publisher'">
       </ds-generic-item-page-field>
+	  
+	  <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['dc.type']"
+        [label]="'collspec.item.type'">
+      </ds-generic-item-page-field>
+	  
+	  <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['dc.format.extent', 'dc.format']"
+        [label]="'collspec.item.format'">
+      </ds-generic-item-page-field>
+	  
+	  <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['dc.subject']"
+        [separator]="', '"
+        [label]="'item.page.subject'">
+      </ds-generic-item-page-field>
+	  
+	  <ds-item-page-uri-field
+        [item]="object"
+        [fields]="['dc.identifier.uri']"
+        [label]="'item.page.uri'">
+      </ds-item-page-uri-field>
 
       <ds-generic-item-page-field
         [item]="object"
@@ -160,12 +185,6 @@
 
       <ds-generic-item-page-field
         [item]="object"
-        [fields]="['dc.format.extent', 'dc.format']"
-        [label]="'collspec.item.format'">
-      </ds-generic-item-page-field>
-
-      <ds-generic-item-page-field
-        [item]="object"
         [fields]="['dc.provenance', 'dc.source']"
         [label]="'collspec.item.provenance'">
       </ds-generic-item-page-field>
@@ -175,12 +194,18 @@
         [fields]="['dc.description']"
         [label]="'collspec.item.notes'">
       </ds-generic-item-page-field>
+	  
+	  <ds-generic-item-page-field
+		[item]="object"
+		[fields]="['dc.relation.ispartof']"
+		[label]="'collspec.item.ispartof'">
+	  </ds-generic-item-page-field>
 
-      <ds-generic-item-page-field
-        [item]="object"
-        [fields]="['dc.type']"
-        [label]="'collspec.item.type'">
-      </ds-generic-item-page-field>
+	  <ds-generic-item-page-field
+		[item]="object"
+		[fields]="['dc.relation.haspart']"
+		[label]="'collspec.item.haspart'">
+	  </ds-generic-item-page-field>
 
       <ds-generic-item-page-field
         [item]="object"
@@ -193,13 +218,6 @@
         [fields]="['dc.rights.uri']"
         [label]="'collspec.item.rights-uri'">
       </ds-item-page-uri-field>
-
-      <ds-generic-item-page-field
-        [item]="object"
-        [fields]="['dc.subject']"
-        [separator]="', '"
-        [label]="'item.page.subject'">
-      </ds-generic-item-page-field>
 
       <ds-generic-item-page-field
         [item]="object"

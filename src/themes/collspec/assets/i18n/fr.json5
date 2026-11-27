@@ -36,6 +36,8 @@
   "collspec.item.type": "Type",
   "collspec.item.rights": "Droits",
   "collspec.item.rights-uri": "Droits (lien)",
+  "collspec.item.ispartof": "Fait partie de",
+  "collspec.item.haspart": "Comprend",
   "collspec.iiif.bouton": "C'est quoi IIIF ?",
   "collspec.iiif.texte": "IIIF (International Image Interoperability Framework, prononcé « triple-i-F ») est un standard ouvert utilisé par des bibliothèques, archives et musées du monde entier pour partager leurs images numérisées. Il permet de zoomer finement sur un document, d'en comparer plusieurs côte à côte et de l'ouvrir dans toute autre visionneuse compatible grâce à son manifeste.",
   "collspec.iiif.lien": "En savoir plus sur IIIF et Mirador",
